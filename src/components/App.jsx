@@ -29,7 +29,10 @@ const router = createBrowserRouter(
 
       <Route index element={<MainLayout />}>
         <Route path="account" element={<AccountPage />} />
-        <Route path="calendar" element={<CalendarPage />} />
+        <Route path="calendar" element={<CalendarPage />}>
+          <Route path="month/:currentMonth" element={<ChoosedMonth />} />
+          <Route path="day/:currentDay" element={<ChoosedDay />} />
+        </Route>
       </Route>
 
       <Route path="*" element={<NoMatchPage />} />
