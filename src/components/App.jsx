@@ -17,7 +17,7 @@ const AccountPage = lazy(() => import('pages/AccountPage'));
 const NoMatchPage = lazy(() => import('pages/StartPage'));
 
 //basename for react-router
-const basename = '';
+const basename = 'Goose-Track_Work-Smart';
 
 //router and routes
 const router = createBrowserRouter(
