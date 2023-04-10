@@ -20,10 +20,10 @@ const ChoosedDay = lazy(() => import('pages/ChoosedDay/ChoosedDay'));
 
 // ----------------------------------------------------
 // for gitHub
-const basename = 'Goose-Track_Work-Smart';
+// const basename = 'Goose-Track_Work-Smart';
 
 // for work
-// const basename = '';
+const basename = '';
 // ----------------------------------------------------
 
 const router = createBrowserRouter(
