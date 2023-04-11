@@ -21,6 +21,7 @@ const extraLogActions = [authRegister, authLogin];
 const getExtraActions = type => extraActions.map(action => action.type);
 const getExtraLogActions = type => extraLogActions.map(action => action.type);
 
+//!Auth initial state
 const authInitialState = {
   user: {
     name: null,
@@ -36,14 +37,13 @@ const authInitialState = {
   refreshToken: null,
 };
 
+//!Auth slice
 const authSlice = createSlice({
   name: 'auth',
   initialState: authInitialState,
   extraReducers: builder =>
     builder
       .addCase(authLogout.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = false;
         state.accessToken = null;
         state.refreshToken = null;
         state.user = {
@@ -54,12 +54,29 @@ const authSlice = createSlice({
           userImgUrl: null,
         };
       })
+      .addCase(
+        authRefresh.fulfilled,
+        (
+          state,
+          {
+            payload: {
+              data: { accessToken, refreshToken },
+            },
+          }
+        ) => {
+          state.accessToken = accessToken;
+          state.refreshToken = refreshToken;
+        }
+      )
       .addMatcher(
         isAnyOf(...getExtraLogActions('fulfilled')),
         (state, action) => {
-          authFulfilled(state, action);
+          authLogFulfilled(state, action);
         }
       )
+      .addMatcher(isAnyOf(...getExtraActions('fulfilled')), state => {
+        authFulfilled(state);
+      })
       .addMatcher(isAnyOf(...getExtraActions('pending')), state =>
         authPending(state)
       )
@@ -68,7 +85,7 @@ const authSlice = createSlice({
       ),
 });
 
-function authFulfilled(state, action) {
+function authLogFulfilled(state, action) {
   const { name, email, data } = action.payload;
   state.isLogged = true;
   state.isLoading = false;
@@ -78,10 +95,15 @@ function authFulfilled(state, action) {
   state.refreshToken = data.refreshToken;
 }
 
+function authFulfilled(state) {
+  state.isLoading = false;
+  state.error = false;
+}
+
 function authPending(state) {
   state.isLogged = false;
   state.isLoading = true;
-  state.error = null;
+  state.error = false;
 }
 
 function authRejected(state, action) {

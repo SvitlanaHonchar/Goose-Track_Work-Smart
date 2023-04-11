@@ -65,4 +65,8 @@ export const GooseTracker_API = {
     const response = await $privateHost.delete(`task/${taskId}`);
     return response.data;
   },
+  updateTask: async (taskId, taskData) => {
+    const response = await $privateHost.put(`task/${taskId}`, taskData);
+    return response.data;
+  },
 };
