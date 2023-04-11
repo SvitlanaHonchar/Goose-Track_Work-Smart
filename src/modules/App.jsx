@@ -14,6 +14,7 @@ import MainLayout from './MainLayout/components/MainLayout/MainLayout';
 // import { useDispatch, useSelector } from 'react-redux';
 import StartPage from 'pages/StartPage/StartPage';
 import withAuthRedirect from './Common/withAuthRedirect/withAuthRedirect';
+import SharedLayout from './Common/SharedLayout.js/SharedLayout';
 // const StartPage = lazy(() => import('pages/StartPage/StartPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
@@ -24,16 +25,12 @@ const ChoosedMonth = lazy(() => import('pages/ChoosedMonth/ChoosedMonth'));
 const ChoosedDay = lazy(() => import('pages/ChoosedDay/ChoosedDay'));
 
 //using MainLayout HOC for adding shared layout
-const AccountPageWithLayout = MainLayout(AccountPage);
-const CalendarPageWithLayout = MainLayout(CalendarPage);
+// const AccountPageWithLayout = MainLayout(AccountPage);
+// const CalendarPageWithLayout = MainLayout(CalendarPage);
 
 //adding private routes with redirect using HOC withAuthRedirect
-const AccountPageWithLayoutandRedirect = withAuthRedirect(
-  AccountPageWithLayout
-);
-const CalendarPageWithLayoutandRedirect = withAuthRedirect(
-  CalendarPageWithLayout
-);
+const AccountPageWithRedirect = withAuthRedirect(AccountPage, '/');
+const CalendarPageWithRedirect = withAuthRedirect(CalendarPage, '/');
 // ----------------------------------------------------
 // for gitHub
 // const basename = 'Goose-Track_Work-Smart';
@@ -44,14 +41,16 @@ const basename = '';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/">
+    <Route path="/" element={<SharedLayout />}>
       <Route index element={<StartPage />} />
       <Route path="login" element={<LoginPage />} />
       <Route path="register" element={<RegisterPage />} />
-      <Route path="account" element={<AccountPageWithLayout />} />
-      <Route path="calendar" element={<CalendarPageWithLayout />}>
-        <Route path="month/:currentMonth" element={<ChoosedMonth />} />
-        <Route path="day/:currentDay" element={<ChoosedDay />} />
+      <Route element={<MainLayout />}>
+        <Route path="account" element={<AccountPageWithRedirect />} />
+        <Route path="calendar" element={<CalendarPageWithRedirect />}>
+          <Route path="month/:currentMonth" element={<ChoosedMonth />} />
+          <Route path="day/:currentDay" element={<ChoosedDay />} />
+        </Route>
       </Route>
 
       <Route path="*" element={<NoMatchPage />} />
