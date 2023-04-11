@@ -1,4 +1,4 @@
-const { default: axios } = require('axios');
+import axios from 'axios';
 
 const $publicHost = axios.create({
   baseURL: 'https://goose-tracker-backend.p.goit.global/api-docs/',

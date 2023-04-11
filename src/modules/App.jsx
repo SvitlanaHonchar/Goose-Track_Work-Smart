@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React, { lazy, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import {
   Route,
@@ -9,6 +9,9 @@ import {
 
 //layoutes and pages lazy loading
 import MainLayout from './MainLayout/components/MainLayout/MainLayout';
+import { authRegister } from 'redux/auth/authOperations';
+import { selectUser } from 'redux/auth/authSelectors';
+import { useSelector } from 'react-redux';
 const StartPage = lazy(() => import('pages/StartPage/StartPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
@@ -49,6 +52,15 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
+  const user = useSelector(selectUser);
+  console.log('user: ', user);
+  useEffect(() => {
+    authRegister({
+      name: 'test1',
+      email: 'userTest@example.com',
+      password: 'qwerty123',
+    });
+  }, []);
   return (
     <div
     // style={{

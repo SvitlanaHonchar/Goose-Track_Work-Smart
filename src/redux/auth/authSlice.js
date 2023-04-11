@@ -1,3 +1,4 @@
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
   authGetUserInfo,
   authLogin,
@@ -6,8 +7,6 @@ import {
   authRegister,
   authUpdate,
 } from './authOperations';
-
-const { createSlice, isAnyOf } = require('@reduxjs/toolkit');
 
 const extraActions = [
   authRegister,

@@ -1,11 +1,10 @@
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
   createTask,
   deleteTask,
   getMonthTasks,
   updateTask,
 } from './tasksOperations';
-
-const { createSlice, isAnyOf } = require('@reduxjs/toolkit');
 
 const extraActions = [getMonthTasks, createTask, deleteTask, updateTask];
 const getExtraActions = type => extraActions.map(action => action.type);
