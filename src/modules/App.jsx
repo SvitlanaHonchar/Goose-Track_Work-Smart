@@ -6,9 +6,11 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
+import { useTheme } from '@mui/material/styles';
 
 //layoutes and pages lazy loading
 import MainLayout from './MainLayout/components/MainLayout/MainLayout';
+import { Box, Typography } from '@mui/material';
 const StartPage = lazy(() => import('pages/StartPage/StartPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
@@ -48,23 +50,28 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
+  const theme = useTheme();
   return (
-    <div
-    // style={{
-    //   height: '100vh',
-    //   display: 'flex',
-    //   justifyContent: 'center',
-    //   alignItems: 'center',
-    //   fontSize: 40,
-    //   color: '#010101',
-    // }}
-    >
-      <RouterProvider router={router} />
-      <div>
-        <Toaster />
-      </div>
-      Goose Track
-    </div>
+    <Box sx={{ backgroundColor: theme.palette.primary.main }}>
+      <Typography
+        variant="h1"
+        color={theme.palette.common.white}
+        // style={{
+        //   height: '100vh',
+        //   display: 'flex',
+        //   justifyContent: 'center',
+        //   alignItems: 'center',
+        //   fontSize: 40,
+        //   color: '#010101',
+        // }}
+      >
+        <RouterProvider router={router} />
+        <div>
+          <Toaster />
+        </div>
+        Goose Track
+      </Typography>
+    </Box>
   );
 };
 
