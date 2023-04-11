@@ -7,8 +7,11 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 
+import { useTheme } from '@mui/material/styles';
+
 //layoutes and pages lazy loading
 import MainLayout from './MainLayout/components/MainLayout/MainLayout';
+import { Box, Typography } from '@mui/material';
 // import { authLogin, authRegister } from 'redux/auth/authOperations';
 // import { selectUser } from 'redux/auth/authSelectors';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -79,14 +82,17 @@ const App = () => {
   //     })
   //   );
   // }, [dispatch]);
+  const theme = useTheme();
   return (
-    <div className="App">
-      <RouterProvider router={router} />
-      <div>
-        <Toaster />
-      </div>
-      Goose Track
-    </div>
+    <Box sx={{ backgroundColor: theme.palette.primary.main }}>
+      <Typography variant="h1" color={theme.palette.common.white}>
+        <RouterProvider router={router} />
+        <div>
+          <Toaster />
+        </div>
+        Goose Track
+      </Typography>
+    </Box>
   );
 };
 
