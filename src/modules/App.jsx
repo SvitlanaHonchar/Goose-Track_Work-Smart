@@ -34,6 +34,7 @@ const router = createBrowserRouter(
       <Route path="register" element={<RegisterPage />} />
 
       <Route element={<MainLayout />}>
+        {/*//!add withAuthRedirect */}
         <Route path="account" element={<AccountPage />} />
         <Route path="calendar" element={<CalendarPage />}>
           <Route path="month/:currentMonth" element={<ChoosedMonth />} />
