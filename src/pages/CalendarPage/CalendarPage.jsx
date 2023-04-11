@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CalendarPage = () => {
-  return <div></div>;
+  return <div>Calendar page</div>;
 };
 
 export default CalendarPage;

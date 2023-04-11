@@ -7,7 +7,7 @@ import {
 } from './tasksOperations';
 
 const extraActions = [getMonthTasks, createTask, deleteTask, updateTask];
-const getExtraActions = type => extraActions.map(action => action.type);
+const getExtraActions = type => extraActions.map(action => action[type]);
 
 //! Tasks initial state
 const tasksInitialState = {

@@ -17,8 +17,8 @@ const extraActions = [
   authUpdate,
 ];
 const extraLogActions = [authRegister, authLogin];
-const getExtraActions = type => extraActions.map(action => action.type);
-const getExtraLogActions = type => extraLogActions.map(action => action.type);
+const getExtraActions = type => extraActions.map(action => action[type]);
+const getExtraLogActions = type => extraLogActions.map(action => action[type]);
 
 //!Auth initial state
 const authInitialState = {

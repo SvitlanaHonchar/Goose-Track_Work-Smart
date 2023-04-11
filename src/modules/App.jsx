@@ -21,6 +21,10 @@ const NoMatchPage = lazy(() => import('pages/NoMatchPage/NoMatchPage'));
 const ChoosedMonth = lazy(() => import('pages/ChoosedMonth/ChoosedMonth'));
 const ChoosedDay = lazy(() => import('pages/ChoosedDay/ChoosedDay'));
 
+//using MainLayout HOC for adding shared layout
+const AccountPageWithLayout = MainLayout(AccountPage);
+const CalendarPageWithLayout = MainLayout(CalendarPage);
+
 // ----------------------------------------------------
 // for gitHub
 // const basename = 'Goose-Track_Work-Smart';
@@ -35,14 +39,10 @@ const router = createBrowserRouter(
       <Route index element={<StartPage />} />
       <Route path="login" element={<LoginPage />} />
       <Route path="register" element={<RegisterPage />} />
-
-      <Route element={<MainLayout />}>
-        {/*//!add withAuthRedirect */}
-        <Route path="account" element={<AccountPage />} />
-        <Route path="calendar" element={<CalendarPage />}>
-          <Route path="month/:currentMonth" element={<ChoosedMonth />} />
-          <Route path="day/:currentDay" element={<ChoosedDay />} />
-        </Route>
+      <Route path="account" element={<AccountPageWithLayout />} />
+      <Route path="calendar" element={<CalendarPageWithLayout />}>
+        <Route path="month/:currentMonth" element={<ChoosedMonth />} />
+        <Route path="day/:currentDay" element={<ChoosedDay />} />
       </Route>
 
       <Route path="*" element={<NoMatchPage />} />
