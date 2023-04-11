@@ -86,6 +86,7 @@ const authSlice = createSlice({
 
 function authLogFulfilled(state, action) {
   const { name, email, data } = action.payload;
+  console.log('action.payload: ', action.payload);
   state.isLogged = true;
   state.isLoading = false;
   state.user.name = name;

@@ -1,4 +1,4 @@
-import React, { lazy, useEffect } from 'react';
+import React, { lazy } from 'react';
 import { Toaster } from 'react-hot-toast';
 import {
   Route,
@@ -9,9 +9,9 @@ import {
 
 //layoutes and pages lazy loading
 import MainLayout from './MainLayout/components/MainLayout/MainLayout';
-import { authRegister } from 'redux/auth/authOperations';
-import { selectUser } from 'redux/auth/authSelectors';
-import { useSelector } from 'react-redux';
+// import { authLogin, authRegister } from 'redux/auth/authOperations';
+// import { selectUser } from 'redux/auth/authSelectors';
+// import { useDispatch, useSelector } from 'react-redux';
 import StartPage from 'pages/StartPage/StartPage';
 // const StartPage = lazy(() => import('pages/StartPage/StartPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
@@ -53,26 +53,20 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
-  const user = useSelector(selectUser);
-  console.log('user: ', user);
-  useEffect(() => {
-    authRegister({
-      name: 'test1',
-      email: 'userTest@example.com',
-      password: 'qwerty123',
-    });
-  }, []);
+  // const user = useSelector(selectUser);
+  // const dispatch = useDispatch();
+  // console.log('user: ', user);
+  // useEffect(() => {
+  //   dispatch(
+  //     authRegister({
+  //       name: 'artemartem',
+  //       email: 'artem24232@gmail.com',
+  //       password: '13135463442342',
+  //     })
+  //   );
+  // }, [dispatch]);
   return (
-    <div
-    // style={{
-    //   height: '100vh',
-    //   display: 'flex',
-    //   justifyContent: 'center',
-    //   alignItems: 'center',
-    //   fontSize: 40,
-    //   color: '#010101',
-    // }}
-    >
+    <div className="App">
       <RouterProvider router={router} />
       <div>
         <Toaster />
