@@ -13,6 +13,7 @@ import MainLayout from './MainLayout/components/MainLayout/MainLayout';
 // import { selectUser } from 'redux/auth/authSelectors';
 // import { useDispatch, useSelector } from 'react-redux';
 import StartPage from 'pages/StartPage/StartPage';
+import withAuthRedirect from './Common/withAuthRedirect/withAuthRedirect';
 // const StartPage = lazy(() => import('pages/StartPage/StartPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
@@ -26,6 +27,13 @@ const ChoosedDay = lazy(() => import('pages/ChoosedDay/ChoosedDay'));
 const AccountPageWithLayout = MainLayout(AccountPage);
 const CalendarPageWithLayout = MainLayout(CalendarPage);
 
+//adding private routes with redirect using HOC withAuthRedirect
+const AccountPageWithLayoutandRedirect = withAuthRedirect(
+  AccountPageWithLayout
+);
+const CalendarPageWithLayoutandRedirect = withAuthRedirect(
+  CalendarPageWithLayout
+);
 // ----------------------------------------------------
 // for gitHub
 // const basename = 'Goose-Track_Work-Smart';
