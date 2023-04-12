@@ -90,7 +90,7 @@ const App = () => {
         <div>
           <Toaster />
         </div>
-        Goose Track
+        {/* Goose Track */}
       </Typography>
     </Box>
   );
