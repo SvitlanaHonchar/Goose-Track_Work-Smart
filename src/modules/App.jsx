@@ -7,13 +7,17 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 
+import { useTheme } from '@mui/material/styles';
+
 //layoutes and pages lazy loading
 import MainLayout from './MainLayout/components/MainLayout/MainLayout';
+import { Box, Typography } from '@mui/material';
 // import { authLogin, authRegister } from 'redux/auth/authOperations';
 // import { selectUser } from 'redux/auth/authSelectors';
 // import { useDispatch, useSelector } from 'react-redux';
 import StartPage from 'pages/StartPage/StartPage';
-import withAuthRedirect from './Common/withAuthRedirect/withAuthRedirect';
+// import withAuthRedirect from './Common/withAuthRedirect/withAuthRedirect';
+import SharedLayout from './Common/SharedLayout.js/SharedLayout';
 // const StartPage = lazy(() => import('pages/StartPage/StartPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
@@ -24,16 +28,16 @@ const ChoosedMonth = lazy(() => import('pages/ChoosedMonth/ChoosedMonth'));
 const ChoosedDay = lazy(() => import('pages/ChoosedDay/ChoosedDay'));
 
 //using MainLayout HOC for adding shared layout
-const AccountPageWithLayout = MainLayout(AccountPage);
-const CalendarPageWithLayout = MainLayout(CalendarPage);
+// const AccountPageWithLayout = MainLayout(AccountPage);
+// const CalendarPageWithLayout = MainLayout(CalendarPage);
 
 //adding private routes with redirect using HOC withAuthRedirect
-const AccountPageWithLayoutandRedirect = withAuthRedirect(
-  AccountPageWithLayout
-);
-const CalendarPageWithLayoutandRedirect = withAuthRedirect(
-  CalendarPageWithLayout
-);
+
+// -------------------повернути коли буде store-------------------
+// const AccountPageWithRedirect = withAuthRedirect(AccountPage, '/');
+// const CalendarPageWithRedirect = withAuthRedirect(CalendarPage, '/');
+// -------------------/повернути коли буде store-------------------
+
 // ----------------------------------------------------
 // for gitHub
 // const basename = 'Goose-Track_Work-Smart';
@@ -44,14 +48,19 @@ const basename = '';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/">
+    <Route path="/" element={<SharedLayout />}>
       <Route index element={<StartPage />} />
       <Route path="login" element={<LoginPage />} />
       <Route path="register" element={<RegisterPage />} />
-      <Route path="account" element={<AccountPageWithLayout />} />
-      <Route path="calendar" element={<CalendarPageWithLayout />}>
-        <Route path="month/:currentMonth" element={<ChoosedMonth />} />
-        <Route path="day/:currentDay" element={<ChoosedDay />} />
+      <Route element={<MainLayout />}>
+        {/* // -------------------повернути коли буде store------------------- */}
+        {/* <Route path="account" element={<AccountPageWithRedirect />} />
+        <Route path="calendar" element={<CalendarPageWithRedirect />}> */}
+        <Route path="account" element={<AccountPage />} />
+        <Route path="calendar" element={<CalendarPage />}>
+          <Route path="month/:currentMonth" element={<ChoosedMonth />} />
+          <Route path="day/:currentDay" element={<ChoosedDay />} />
+        </Route>
       </Route>
 
       <Route path="*" element={<NoMatchPage />} />
@@ -73,14 +82,17 @@ const App = () => {
   //     })
   //   );
   // }, [dispatch]);
+  const theme = useTheme();
   return (
-    <div className="App">
-      <RouterProvider router={router} />
-      <div>
-        <Toaster />
-      </div>
-      Goose Track
-    </div>
+    <Box sx={{ backgroundColor: theme.palette.primary.main }}>
+      <Typography variant="h1" color={theme.palette.common.white}>
+        <RouterProvider router={router} />
+        <div>
+          <Toaster />
+        </div>
+        Goose Track
+      </Typography>
+    </Box>
   );
 };
 
