@@ -16,7 +16,7 @@ import { Box, Typography } from '@mui/material';
 // import { selectUser } from 'redux/auth/authSelectors';
 // import { useDispatch, useSelector } from 'react-redux';
 import StartPage from 'pages/StartPage/StartPage';
-// import withAuthRedirect from './Common/withAuthRedirect/withAuthRedirect';
+import withAuthRedirect from './Common/withAuthRedirect/withAuthRedirect';
 import SharedLayout from './Common/SharedLayout.js/SharedLayout';
 // const StartPage = lazy(() => import('pages/StartPage/StartPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
@@ -33,10 +33,8 @@ const ChoosedDay = lazy(() => import('pages/ChoosedDay/ChoosedDay'));
 
 //adding private routes with redirect using HOC withAuthRedirect
 
-// -------------------повернути коли буде store-------------------
-// const AccountPageWithRedirect = withAuthRedirect(AccountPage, '/');
-// const CalendarPageWithRedirect = withAuthRedirect(CalendarPage, '/');
-// -------------------/повернути коли буде store-------------------
+const AccountPageWithRedirect = withAuthRedirect(AccountPage, '/');
+const CalendarPageWithRedirect = withAuthRedirect(CalendarPage, '/');
 
 // ----------------------------------------------------
 // for gitHub
@@ -53,11 +51,11 @@ const router = createBrowserRouter(
       <Route path="login" element={<LoginPage />} />
       <Route path="register" element={<RegisterPage />} />
       <Route element={<MainLayout />}>
-        {/* // -------------------повернути коли буде store------------------- */}
-        {/* <Route path="account" element={<AccountPageWithRedirect />} />
-        <Route path="calendar" element={<CalendarPageWithRedirect />}> */}
-        <Route path="account" element={<AccountPage />} />
-        <Route path="calendar" element={<CalendarPage />}>
+        <Route path="account" element={<AccountPageWithRedirect />} />
+        <Route path="calendar" element={<CalendarPageWithRedirect />}>
+          {/* for use without authoriazation */}
+          {/* <Route path="account" element={<AccountPage />} />
+        <Route path="calendar" element={<CalendarPage />}> */}
           <Route path="month/:currentMonth" element={<ChoosedMonth />} />
           <Route path="day/:currentDay" element={<ChoosedDay />} />
         </Route>
@@ -90,7 +88,6 @@ const App = () => {
         <div>
           <Toaster />
         </div>
-        {/* Goose Track */}
       </Typography>
     </Box>
   );
