@@ -1,15 +1,15 @@
 import axios from 'axios';
 
 const $publicHost = axios.create({
-  baseURL: 'https://goose-tracker-backend.p.goit.global/api-docs/',
+  baseURL: 'https://goose-tracker-backend.p.goit.global/',
 });
 
 const $privateHost = axios.create({
-  baseURL: 'https://goose-tracker-backend.p.goit.global/api-docs/',
+  baseURL: 'https://goose-tracker-backend.p.goit.global/',
 });
 
 const $refreshHost = axios.create({
-  baseURL: 'https://goose-tracker-backend.p.goit.global/api-docs/',
+  baseURL: 'https://goose-tracker-backend.p.goit.global/',
 });
 
 const authInterceptorPrivate = config => {
