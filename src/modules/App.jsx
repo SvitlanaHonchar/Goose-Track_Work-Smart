@@ -6,7 +6,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
-
 import { useTheme } from '@mui/material/styles';
 
 //layoutes and pages lazy loading
@@ -81,12 +80,39 @@ const App = () => {
   //   );
   // }, [dispatch]);
   const theme = useTheme();
+
   return (
     <Box sx={{ backgroundColor: theme.palette.primary.main }}>
       <Typography variant="h1" color={theme.palette.common.white}>
         <RouterProvider router={router} />
+
         <div>
-          <Toaster />
+          <Toaster
+            position="top-right"
+            reverseOrder={true}
+            toastOptions={{
+              duration: 5000,
+              style: {
+                background: '#F7F7F7',
+                color: '#111111',
+                fontSize: '14px',
+                lineHeight: '1.17',
+              },
+
+              success: {
+                iconTheme: {
+                  primary: '#3E85F3',
+                  secondary: '#FFFFFF',
+                },
+              },
+              error: {
+                iconTheme: {
+                  primary: '#EA3D65',
+                  secondary: '#FFFFFF',
+                },
+              },
+            }}
+          />
         </div>
       </Typography>
     </Box>
