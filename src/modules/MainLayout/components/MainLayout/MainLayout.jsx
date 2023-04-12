@@ -1,25 +1,23 @@
-import React, { Suspense } from 'react';
-// import React, { useEffect } from 'react';
-
+import React, { Suspense, useEffect } from 'react';
 import Header from '../Header/Header';
 import SideBar from '../SideBar/SideBar';
 import { Outlet } from 'react-router';
 import { StyledDiv } from './MainLayout.styled';
-// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from 'redux/auth/authSelectors';
+import { authGetUserInfo } from 'redux/auth/authOperations';
 
 const MainLayout = () => {
-  // -------------------повернути коли буде store-------------------
-  // const user = useSelector(selectUser);
-  // const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   if (user.name !== null) {
-  //     return;
-  //   }
+  useEffect(() => {
+    if (user.name !== null) {
+      return;
+    }
 
-  //   dispatch(authGetUserInfo);
-  // }, [dispatch, user.name]);
-  // -------------------/повернути коли буде store-------------------
+    dispatch(authGetUserInfo);
+  }, [dispatch, user.name]);
 
   return (
     // Component =>
