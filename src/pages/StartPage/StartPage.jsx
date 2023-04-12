@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AuthNavigate from 'modules/Common/AuthNavigate/AuthNavigate';
+import AuthNavigate from 'shared/components/AuthNavigate/AuthNavigate';
 
 const StartPage = () => {
   return (

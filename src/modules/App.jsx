@@ -15,16 +15,20 @@ import { Box, Typography } from '@mui/material';
 // import { selectUser } from 'redux/auth/authSelectors';
 // import { useDispatch, useSelector } from 'react-redux';
 import StartPage from 'pages/StartPage/StartPage';
-import withAuthRedirect from './Common/withAuthRedirect/withAuthRedirect';
-import SharedLayout from './Common/SharedLayout.js/SharedLayout';
+
+import SharedLayout from '../shared/components/SharedLayout.js/SharedLayout';
+import withAuthRedirect from 'hoc/withAuthRedirect/withAuthRedirect';
+
 // const StartPage = lazy(() => import('pages/StartPage/StartPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const CalendarPage = lazy(() => import('pages/CalendarPage/CalendarPage'));
 const AccountPage = lazy(() => import('pages/AccountPage/AccountPage'));
 const NoMatchPage = lazy(() => import('pages/NoMatchPage/NoMatchPage'));
-const ChoosedMonth = lazy(() => import('pages/ChoosedMonth/ChoosedMonth'));
-const ChoosedDay = lazy(() => import('pages/ChoosedDay/ChoosedDay'));
+const ChosenMonth = lazy(() => import('./ChosenMonth/components/ChosenMonth'));
+const ChosenDay = lazy(() =>
+  import('./ChosenDay/components/ChosenDay/ChosenDay')
+);
 
 //using MainLayout HOC for adding shared layout
 // const AccountPageWithLayout = MainLayout(AccountPage);
@@ -55,8 +59,8 @@ const router = createBrowserRouter(
           {/* for use without authoriazation */}
           {/* <Route path="account" element={<AccountPage />} />
         <Route path="calendar" element={<CalendarPage />}> */}
-          <Route path="month/:currentMonth" element={<ChoosedMonth />} />
-          <Route path="day/:currentDay" element={<ChoosedDay />} />
+          <Route path="month/:currentMonth" element={<ChosenMonth />} />
+          <Route path="day/:currentDay" element={<ChosenDay />} />
         </Route>
       </Route>
 
