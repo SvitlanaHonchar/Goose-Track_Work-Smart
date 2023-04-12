@@ -2,7 +2,13 @@ import { createTheme } from '@mui/material/styles';
 
 const fontFamily = 'Inter, sans-serif';
 
-const theme = createTheme({
+export const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
+export const theme = createTheme({
   palette: {
     primary: {
       main: '#3E85F3',

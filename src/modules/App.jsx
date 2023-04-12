@@ -83,9 +83,10 @@ const App = () => {
   //   );
   // }, [dispatch]);
   const theme = useTheme();
+  console.log(theme);
   return (
-    <Box sx={{ backgroundColor: theme.palette.primary.main }}>
-      <Typography variant="h1" color={theme.palette.common.white}>
+    <Box>
+      <Typography variant="h1">
         <RouterProvider router={router} />
         <div>
           <Toaster />
