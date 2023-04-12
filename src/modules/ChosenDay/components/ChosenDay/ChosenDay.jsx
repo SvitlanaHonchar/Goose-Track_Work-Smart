@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ChoosedDay = () => {
+const ChosenDay = () => {
   return <div></div>;
 };
 
-export default ChoosedDay;
+export default ChosenDay;
