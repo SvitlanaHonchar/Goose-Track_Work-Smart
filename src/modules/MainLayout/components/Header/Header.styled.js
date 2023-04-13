@@ -1,9 +1,19 @@
 import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
-  /* background-color: #eaeaea; */
   display: flex;
+  align-items: center;
   width: 100%;
+
+  & .header__right-container {
+    display: flex;
+    gap: 16px;
+    margin-left: auto;
+  }
+
+  & .header-calendar {
+    display: none;
+  }
 
   & h2 {
     display: none;
@@ -13,19 +23,42 @@ export const StyledHeader = styled.header`
     padding: 0;
     border: none;
     background-color: transparent;
+    width: 32px;
 
-    & .header_burger-btn {
+    /* & .MuiTouchRipple-root {
+      display: block;
+    } */
+
+    & .header_burger-btn_icon {
       stroke: #343434;
     }
   }
 
   @media screen and (min-width: 1440px) {
+    & .header-calendar {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+
+      & .header-motivation__quote {
+        line-height: 0.8;
+      }
+
+      & span {
+        color: #3e85f3;
+      }
+    }
+
     & button {
       display: none;
     }
 
     & h2 {
       display: block;
+
+      &.header-title__calendar {
+        left: 72px;
+      }
     }
   }
 `;
