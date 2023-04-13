@@ -11,7 +11,7 @@ const getExtraActions = type => extraActions.map(action => action[type]);
 
 //! Tasks initial state
 const tasksInitialState = {
-  data: null,
+  data: null, // [{date: string, tasks: Task[]}]
   isLoading: false,
   error: false,
 };
@@ -23,24 +23,44 @@ const tasksSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(getMonthTasks.fulfilled, (state, { payload }) => {
-        state.data = payload;
+        state.data = payload ?? null;
       })
       .addCase(createTask.fulfilled, (state, { payload }) => {
-        state.data = [payload, ...state.data];
+        console.log('payload: ', payload);
+        const taskDate = payload.date.slice(0, 10);
+        console.log('taskDate: ', taskDate);
+        let dateFound = false;
+        state.data = state.data.map(el => {
+          if (el.date === taskDate) {
+            el.tasks = [payload, ...el.tasks];
+            dateFound = true;
+          }
+          return el;
+        });
+        if (!dateFound) {
+          state.data = [{ date: taskDate, tasks: [payload] }, ...state.data];
+        }
       })
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
-        const filteredTasks = state.data.filter(task => task._id !== payload);
+        const filteredTasks = state.data.map(el => {
+          el.tasks.filter(task => task._id !== payload);
+          return el;
+        });
         state.data = filteredTasks;
       })
-      .addCase(
-        updateTask.fulfilled,
-        (state, { payload: { taskId, taskData } }) => {
-          const updatedTasks = state.data.map(task =>
-            task._id === taskId ? taskData : task
-          );
-          state.data = updatedTasks;
-        }
-      )
+      .addCase(updateTask.fulfilled, (state, { payload }) => {
+        const updatedTask = payload.task;
+
+        state.data = state.data.map(el => {
+          el.tasks.map(task => {
+            if (task._id === updatedTask._id) {
+              return updatedTask;
+            }
+            return task;
+          });
+          return el;
+        });
+      })
 
       .addMatcher(isAnyOf(...getExtraActions('fulfilled')), state =>
         tasksFulfilled(state)

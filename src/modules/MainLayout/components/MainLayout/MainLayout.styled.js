@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledDiv = styled.div`
-  display: flex;
+  /* background-color: #eaeaea; */
 
   margin-left: auto;
   margin-right: auto;
@@ -9,6 +9,10 @@ export const StyledDiv = styled.div`
   margin-bottom: 20px;
 
   padding-right: 32px;
+
+  & .mainLayout-frame {
+    display: flex;
+  }
 
   @media screen and (min-width: 375px) {
     width: 375px;

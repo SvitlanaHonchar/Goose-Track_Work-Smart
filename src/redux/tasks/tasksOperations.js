@@ -38,7 +38,7 @@ export const updateTask = createAsyncThunk(
   'task/update',
   async ({ taskId, taskData }, thunkAPI) => {
     try {
-      return await GooseTracker_API.updateTask(taskId, taskData);
+      return await GooseTracker_API.updateTask({ taskId, taskData });
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
