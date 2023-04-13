@@ -1,7 +1,13 @@
 import React from 'react';
 
+import AuthNavigate from 'shared/components/AuthNavigate/AuthNavigate';
+
 const StartPage = () => {
-  return <div>Start page</div>;
+  return (
+    <div>
+      <AuthNavigate />
+    </div>
+  );
 };
 
 export default StartPage;

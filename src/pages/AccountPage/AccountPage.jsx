@@ -1,7 +1,8 @@
+import AccountComponent from 'modules/AccountComponent/components/AccountComponent';
 import React from 'react';
 
 const AccountPage = () => {
-  return <div>Account page</div>;
+  return <AccountComponent />;
 };
 
 export default AccountPage;
