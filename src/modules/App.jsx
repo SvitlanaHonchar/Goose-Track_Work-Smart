@@ -14,9 +14,9 @@ import {
   // authGetUserInfo,
   authLogin,
   // authLogout,
-  // authRefresh,
+  authRefresh,
   // authRegister,
-  authUpdate,
+  // authUpdate,
 } from 'redux/auth/authOperations';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,6 +24,12 @@ import StartPage from 'pages/StartPage/StartPage';
 
 import SharedLayout from '../shared/components/SharedLayout.js/SharedLayout';
 import withAuthRedirect from 'hoc/withAuthRedirect/withAuthRedirect';
+import {
+  // createTask,
+  // deleteTask,
+  getMonthTasks,
+  // updateTask,
+} from 'redux/tasks/tasksOperations';
 
 // const StartPage = lazy(() => import('pages/StartPage/StartPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
@@ -86,7 +92,7 @@ const App = () => {
   //   dispatch(
   //     authRegister({
   //       name: 'Test',
-  //       email: 'test13042023@gmail.com',
+  //       email: 'smth5@gmail.com',
   //       password: '1234567',
   //     })
   //   );
@@ -97,7 +103,7 @@ const App = () => {
     dispatch(
       authLogin({
         // name: 'Avataghtr',
-        email: 'test13042023@gmail.com',
+        email: 'smth5@gmail.com',
         password: '1234567',
       })
     );
@@ -110,10 +116,10 @@ const App = () => {
   // }, [dispatch, isLogged]);
   // const theme = useTheme();
 
-  //Refresh - success
-  // useEffect(() => {
-  //   dispatch(authRefresh());
-  // }, [dispatch]);
+  // Refresh - success
+  useEffect(() => {
+    dispatch(authRefresh());
+  }, [dispatch]);
 
   //Get user info -success
   // useEffect(() => {
@@ -123,20 +129,75 @@ const App = () => {
   // }, [dispatch, isLogged]);
 
   //Update user
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (isLogged)
+  //       dispatch(
+  //         authUpdate({
+  //           name: 'One',
+  //           phone: 38094383377,
+  //           birthday: null,
+  //           skype: 'One1',
+  //           userImgUrl: 'image.jpg',
+  //         })
+  //       );
+  //   }, 1000);
+  // }, [dispatch, isLogged]);
+
+  //Get month tasks - success
   useEffect(() => {
     setTimeout(() => {
-      if (isLogged)
-        dispatch(
-          authUpdate({
-            name: 'One',
-            phone: 38094383377,
-            birthday: null,
-            skype: 'One1',
-            userImgUrl: 'image.jpg',
-          })
-        );
+      if (isLogged) dispatch(getMonthTasks({ year: '2023', month: '4' }));
     }, 1000);
   }, [dispatch, isLogged]);
+
+  //Create task - success
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (isLogged) {
+  //       dispatch(
+  //         createTask({
+  //           title: 'new',
+  //           start: '9-00',
+  //           end: '14-00',
+  //           priority: 'low',
+  //           category: 'to-do',
+  //           date: '2023-04-18',
+  //         })
+  //       );
+  //     }
+  //   }, 1000);
+  // }, [dispatch, isLogged]);
+
+  // Update task
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (isLogged) {
+  //       dispatch(
+  //         updateTask({
+  //           taskId: '6437ec67a7f30f6c375288f9',
+  //           taskData: {
+  //             title: 'updated',
+  //             start: '8-00',
+  //             end: '16-00',
+  //             priority: 'high',
+  //             category: 'to-do',
+  //             date: '2023-04-20',
+  //           },
+  //         })
+  //       );
+  //     }
+  //   }, 1000);
+  // }, [dispatch, isLogged]);
+
+  //Delete task
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (isLogged) {
+  //       dispatch(deleteTask('6437f3a7a7f30f6c37528c15'));
+  //     }
+  //   }, 2000);
+  // }, [dispatch, isLogged]);
 
   //!Testing API
 

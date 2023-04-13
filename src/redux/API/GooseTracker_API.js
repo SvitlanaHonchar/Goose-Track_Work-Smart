@@ -50,23 +50,20 @@ export const GooseTracker_API = {
 
   //!Tasks
   getMonthTasks: async () => {
-    const response = await axios.get('task/by-month');
-    return JSON.parse(response.data);
+    const response = await $privateHost.get('task/by-month');
+    return response.data;
   },
   createTask: async task => {
-    const response = await axios.post('task', JSON.stringify(task));
-    return JSON.parse(response.data);
+    const response = await $privateHost.post('task', task);
+    return response.data;
   },
   deleteTask: async taskId => {
-    const response = await axios.delete(`task/${taskId}`);
-    return JSON.parse(response.data);
+    const response = await $privateHost.delete(`task/${taskId}`);
+    return response.data;
   },
-  updateTask: async (taskId, taskData) => {
-    const response = await axios.put(
-      `task/${taskId}`,
-      JSON.stringify(taskData)
-    );
-    return JSON.parse(response.data);
+  updateTask: async ({ taskId, taskData }) => {
+    const response = await $privateHost.put(`task/${taskId}`, taskData);
+    return response.data;
   },
 };
 
@@ -75,10 +72,8 @@ function refreshInterseptor() {
     const accessToken = JSON.parse(
       localStorage.getItem('persist:auth')
     ).accessToken;
-    console.log('accessToken: ', accessToken);
 
     const authHeader = `Bearer ${accessToken.slice(1, accessToken.length - 1)}`;
-    console.log('authHeader: ', authHeader);
 
     config.headers['Authorization'] = authHeader;
     return config;
@@ -88,13 +83,11 @@ function refreshInterseptor() {
     const refreshToken = JSON.parse(
       localStorage.getItem('persist:auth')
     ).refreshToken;
-    console.log('accessToken: ', refreshToken);
 
     const refreshHeader = `Bearer ${refreshToken.slice(
       1,
       refreshToken.length - 1
     )}`;
-    console.log('refreshHeader: ', refreshHeader);
 
     config.headers['Authorization'] = refreshHeader;
     return config;
