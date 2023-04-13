@@ -1,23 +1,26 @@
-import { Grid, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import React from 'react';
+import ButtonAuth from 'shared/components/ui/ButtonAuth/ButtonAuth';
+import TextInput from 'shared/components/ui/TextInput/TextInput';
 
-const UserForm = () => {
+export default function UserForm() {
   return (
-    <Grid container spacing={1}>
-      <Grid item xs={12} sm={6} md={4} lg={3}>
-        <Typography variant="overline">User Profile</Typography>
-      </Grid>
-      <Grid item xs={12} sm={6} md={4} lg={3}>
-        <Typography variant="overline">User Profile</Typography>
-      </Grid>
-      <Grid item xs={12} sm={6} md={4} lg={3}>
-        <Typography variant="overline">User Profile</Typography>
-      </Grid>
-      <Grid item xs={12} sm={6} md={4} lg={3}>
-        <Typography variant="overline">User Profile</Typography>
-      </Grid>
-    </Grid>
-  );
-};
+    <>
+      <Typography variant="h1">UserForm</Typography>
+      <TextInput>Name</TextInput>
+      <ButtonAuth
+      // sx={{ color: { md: 'red', lg: 'green' } }}
+      >
+        <Typography variant="button">Save changes</Typography>
+      </ButtonAuth>
 
-export default UserForm;
+      {/* <StyledDiv $theme={theme} variant="outlined">
+        hello
+      </StyledDiv> */}
+    </>
+  );
+}
+
+// const StyledDiv = styled(ButtonAuth)`
+//   color: ${p => p.$theme.palette.secondary.dark};
+// `;
