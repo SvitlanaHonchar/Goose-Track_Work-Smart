@@ -8,6 +8,11 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 // import { Provider } from 'react-redux';
 // import { persistor, store } from 'redux/store';
 // import { PersistGate } from 'redux-persist/integration/react';
+import theme from 'shared/theme';
+import { ThemeProvider } from '@mui/material';
+import { Provider } from 'react-redux';
+import { persistor, store } from 'redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 // TODO: Add theme when RTK is ready
 // const themeMode = useSelector((state) => state.app.themeMode);
@@ -24,5 +29,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </ThemeProvider>
     {/* </Provider> */}
     {/* </PersistGate> */}
+    <PersistGate loading={null} persistor={persistor}>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </Provider>
+    </PersistGate>
   </React.StrictMode>
 );
