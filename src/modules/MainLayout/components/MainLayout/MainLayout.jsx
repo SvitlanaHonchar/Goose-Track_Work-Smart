@@ -23,8 +23,11 @@ const MainLayout = () => {
     // Component =>
     // ({ ...props }) => {
     <StyledDiv>
-      <Header />
-      <SideBar />
+      <div className="mainLayout-frame">
+        <Header />
+        <SideBar />
+      </div>
+
       {/* <Component {...props} /> */}
       <Suspense>
         <Outlet />
