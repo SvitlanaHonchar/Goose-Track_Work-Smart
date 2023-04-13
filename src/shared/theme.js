@@ -68,6 +68,10 @@ export const theme = createTheme({
       fontWeight: 600,
       fontSize: '1.3rem',
     },
+    h4: {
+      fontWeight: 700,
+      fontSize: '1rem',
+    },
     subtitle1: {
       fontSize: '0.9rem',
       fontWeight: 600,
@@ -78,7 +82,7 @@ export const theme = createTheme({
     },
     subtitle3: {
       fontWeight: 400,
-      fontSize: 12,
+      fontSize: '0.9rem',
     },
     button: {
       fontSize: '1rem',
@@ -92,6 +96,7 @@ export const theme = createTheme({
     overline: {
       fontSize: '0.9rem',
       fontWeight: 400,
+      textTransform: 'none',
     },
   },
 });

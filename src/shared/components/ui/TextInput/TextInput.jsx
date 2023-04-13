@@ -5,7 +5,10 @@ export default function TextInput({ children, ...props }) {
   return (
     <TextField
       {...props}
-      InputProps={{ sx: { borderRadius: '8px', height: '42px' } }}
+      sx={{ display: 'block', height: '42px' }}
+      InputProps={{
+        sx: { borderRadius: '8px', display: 'block' },
+      }}
     >
       {children}
     </TextField>
