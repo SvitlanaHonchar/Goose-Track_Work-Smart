@@ -84,6 +84,7 @@ const App = () => {
   //   );
   // }, [dispatch]);
   const theme = useTheme();
+  console.log('theme', theme);
   return (
     <Box>
       <Typography variant="h1">

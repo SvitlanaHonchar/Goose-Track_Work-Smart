@@ -75,6 +75,7 @@ export const theme = createTheme({
     button: {
       fontSize: '1rem',
       fontWeight: 600,
+      textTransform: 'none',
     },
     body1: {
       fontSize: '1rem',

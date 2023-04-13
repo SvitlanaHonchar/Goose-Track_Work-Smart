@@ -1,8 +1,8 @@
-import AccountPageComponent from 'modules/AccountPageComponent/components/AccountPageComponent';
+import AccountComponent from 'modules/AccountComponent/components/AccountComponent';
 import React from 'react';
 
 const AccountPage = () => {
-  return <AccountPageComponent />;
+  return <AccountComponent />;
 };
 
 export default AccountPage;
