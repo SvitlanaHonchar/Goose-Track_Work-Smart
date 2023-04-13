@@ -3,6 +3,14 @@ import { createTheme } from '@mui/material/styles';
 const fontFamily = 'Inter, sans-serif';
 
 const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 375,
+      md: 768,
+      lg: 1440,
+    },
+  },
   palette: {
     primary: {
       main: '#3E85F3',
