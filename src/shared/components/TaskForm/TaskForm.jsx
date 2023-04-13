@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as Yup from 'yup';
+import dayjs from 'dayjs';
 import {
   StyledForm,
   InfoWrapper,
@@ -10,22 +10,22 @@ import {
   AddButton,
   EditButton,
   CancelButton,
-  // Warning,
+  WarningTime,
+  WarningTitle,
 } from './TaskForm.styled';
 import TimePickerWithLocalization from './TimePickerWithLocalization/TimePickerWithLocalization';
-import dayjs from 'dayjs';
 import sprite from 'shared/icons/sprite.svg';
+import taskValidationSchema from './taskValidationSchema';
 import { PriorityList } from './PriorityList/PriorityList';
 import { TASKS_PRIORITY } from 'shared/constants';
 import getTimeStringWithDate from 'shared/utils/getTimeStringWithDate';
 import theme from 'shared/theme';
-const validationSchema = Yup.object().shape({
-  title: Yup.string().max(250, 'Must be 250 characters or less'),
-});
+import { showErrorValidation } from 'shared/utils/notifications';
 
 const TaskForm = props => {
   const { action, onClose, category, date, taskDetails } = props;
   const [title, setTitle] = useState(taskDetails.title || '');
+
   const [start, setStart] = useState(
     taskDetails.start
       ? dayjs(getTimeStringWithDate(taskDetails.start, date))
@@ -39,23 +39,30 @@ const TaskForm = props => {
   const [priority, setPriority] = useState(
     taskDetails.priority || TASKS_PRIORITY.LOW
   );
-
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    const taskStart = start.format('HH-00');
-    const taskEnd = end.format('HH-00');
+    try {
+      const taskStart = start.format('HH-mm');
+      const taskEnd = end.format('HH-mm');
 
-    const task = {
-      title: title,
-      start: taskStart,
-      end: taskEnd,
-      priority: priority,
-      category: category,
-      date: date,
-    };
-    console.log('task: ', task);
-    onClose();
+      const task = {
+        title: title,
+        start: taskStart,
+        end: taskEnd,
+        priority: priority,
+        category: category,
+        date: date,
+      };
+      console.log('task: ', task);
+
+      await taskValidationSchema.validate(task, { abortEarly: false });
+      onClose();
+    } catch (error) {
+      const validationErrors = [...error.errors].join(' ');
+      showErrorValidation(validationErrors);
+    }
   };
+  const isTimeWarning = end.isBefore(start);
 
   return (
     <StyledForm
@@ -73,7 +80,11 @@ const TaskForm = props => {
               value={title}
               onChange={event => setTitle(event.target.value)}
             />
+            {title.length > 250 && (
+              <WarningTitle>*Title limit: 250 characters max</WarningTitle>
+            )}
           </Info>
+
           <TimePickerWithLocalization
             label="start"
             value={start}
@@ -84,6 +95,11 @@ const TaskForm = props => {
             value={end}
             onChange={newValue => setEnd(newValue)}
           />
+          {isTimeWarning && (
+            <WarningTime>
+              *End time must not be earlier than start time.
+            </WarningTime>
+          )}
         </Block>
         <PriorityList defaultValue={priority} handleChange={setPriority} />
       </InfoWrapper>

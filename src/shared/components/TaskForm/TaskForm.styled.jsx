@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import { Form, Field } from 'formik';
 import { TimeField } from '@mui/x-date-pickers/TimeField';
 import theme from 'shared/theme';
 
@@ -47,6 +46,16 @@ const commonOperationBtnStyles = `
   background-color: ${theme.palette.primary.main};
 `;
 
+const commonWarningStyles = `
+  position: absolute;
+  bottom: -14px;
+  width: 100%;
+  margin: 0;
+  margin-top: 5px;
+  font-size: 10px;
+  color: ${theme.palette.error.main};
+`;
+
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
@@ -82,6 +91,7 @@ export const Block = styled.div``;
 
 export const InfoWrapper = styled.div`
   ${Block} {
+    position: relative;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -97,6 +107,7 @@ export const InfoWrapper = styled.div`
 `;
 
 export const Info = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   row-gap: 8px;
@@ -114,6 +125,7 @@ export const Info = styled.div`
     font-weight: 500;
     line-height: 1.2;
     color: ${theme.palette.grey[500]};
+    font-family: ${theme.typography.fontFamily};
   }
 `;
 export const TimePicker = styled(TimeField)`
@@ -172,10 +184,9 @@ export const EditButton = styled.button`
   }
 `;
 
-export const Warning = styled.p`
-  width: 100%;
-  margin-top: 5px;
-  font-size: 12px;
-  font-style: italic;
-  color: ${theme.palette.error.main};
+export const WarningTime = styled.p`
+  ${commonWarningStyles};
+`;
+export const WarningTitle = styled.p`
+  ${commonWarningStyles};
 `;
