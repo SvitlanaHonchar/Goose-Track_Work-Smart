@@ -1,7 +1,9 @@
 import React from 'react';
-
+import { StartPageComponents } from '../../modules/StartPageComponents/StartPageConmponents';
 const StartPage = () => {
-  return <div>Start page</div>;
+  return(
+    <StartPageComponents></StartPageComponents>
+  );
 };
 
 export default StartPage;

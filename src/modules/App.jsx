@@ -82,15 +82,16 @@ const App = () => {
   // }, [dispatch]);
   const theme = useTheme();
   return (
-    <Box sx={{ backgroundColor: theme.palette.primary.main }}>
+    <RouterProvider router={router} />
+  );
+};
+
+export default App;
+/*         <Box sx={{ backgroundColor: theme.palette.primary.main }}>
       <Typography variant="h1" color={theme.palette.common.white}>
         <RouterProvider router={router} />
         <div>
           <Toaster />
         </div>
       </Typography>
-    </Box>
-  );
-};
-
-export default App;
+    </Box> */
