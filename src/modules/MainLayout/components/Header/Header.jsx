@@ -9,22 +9,24 @@ import React from 'react';
 import ThemeToggler from '../ThemeToggler/ThemeToggler';
 import UserInfo from '../UserInfo/UserInfo';
 import { useLocation } from 'react-router';
+import { StyledHeader } from './Header.styled';
+import icons from '../../../../shared/icons/sprite.svg';
 
 const Header = () => {
   const location = useLocation();
   const path = location.pathname;
 
   return (
-    <div>
+    <StyledHeader>
       {path === '/account' ? <h2>User Profile</h2> : <h2>Calendar</h2>}
-      <button type="button" data-menu-open>
-        <svg width="40" height="40" aria-label="menu icon">
-          <use href="../../../../shared/icons/sprite.svg#menu"></use>
+      <button type="button">
+        <svg width="32px" height="32px">
+          <use href={`${icons}#menu`} className="header_burger-btn"></use>
         </svg>
       </button>
       <ThemeToggler />
       <UserInfo />
-    </div>
+    </StyledHeader>
   );
 };
 
