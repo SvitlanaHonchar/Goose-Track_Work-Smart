@@ -1,7 +1,8 @@
 import React from 'react';
+import UserForm from './UserForm';
 
-const AccountPageComponent = () => {
-  return <div></div>;
+const AccountComponent = () => {
+  return <UserForm />;
 };
 
-export default AccountPageComponent;
+export default AccountComponent;
