@@ -3,18 +3,15 @@ import CustomModal from '../CustomModal/CustomModal';
 import TaskForm from '../TaskForm/TaskForm';
 
 const TaskModal = props => {
-  const { action, onClose } = props;
+  const { action, onClose, isOpen, category, date, taskDetails } = props;
   return (
-    <CustomModal {...props}>
+    <CustomModal action={action} onClose={onClose} isOpen={isOpen}>
       <TaskForm
-        taskDetails={{
-          title: 'Refining designs based on feedback',
-          start: '10:00',
-          end: '12:00',
-          priority: 'high',
-        }}
         action={action}
         onClose={onClose}
+        category={category}
+        date={date}
+        taskDetails={taskDetails}
       />
     </CustomModal>
   );

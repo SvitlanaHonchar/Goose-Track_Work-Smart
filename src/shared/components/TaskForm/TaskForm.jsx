@@ -20,33 +20,24 @@ import { PriorityList } from './PriorityList/PriorityList';
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().max(250, 'Must be 250 characters or less'),
-  // .required('Required'),
-  // start: Yup.string()
-  //   .matches(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format')
-  //   .required('Required'),
-  // end: Yup.string()
-  //   .matches(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format')
-  //   .test(
-  //     'is-greater',
-  //     'End time must be greater than start time',
-  //     function (value) {
-  //       return value && value > start;
-  //     }
-  //   )
-  //   .required('Required'),
-  // priority: Yup.string()
-  //   .oneOf(['low', 'medium', 'high'])
-  //   .required('Required'),
 });
 
-const TaskForm = ({ taskDetails, onClose, action }) => {
+const TaskForm = props => {
+  const { action, onClose, category, date, taskDetails } = props;
+  console.log('taskDetails: ', taskDetails);
+  console.log('date: ', date);
+  console.log('category: ', category);
+  console.log('action: ', action);
+
   const initialValues = {
     title: taskDetails.title,
-    start: dayjs('2022-04-17T09:30'),
-    end: dayjs('2022-04-17T14:40'),
-    priority: 'medium',
+    // start: dayjs('2022-04-17T09:30'),
+    // end: dayjs('2022-04-17T14:40'),
+    start: '',
+    end: '',
+    priority: taskDetails.priority,
   };
-
+  // console.log('initialValues: ', initialValues);
   const handleSubmit = values => {
     console.log('values: ', values);
     console.log('here it will be request to backend for add or edit task');

@@ -51,7 +51,7 @@ export const PriorityList = ({ values, handleChange }) => {
   return (
     <FormControl>
       <FormLabel className="sr-only">Priority</FormLabel>
-      <Field name="priority" defaultValue="medium">
+      <Field name="priority">
         {({ field }) => (
           <RadioGroup
             {...field}
