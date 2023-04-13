@@ -11,7 +11,7 @@ import UserInfo from '../UserInfo/UserInfo';
 import { useLocation } from 'react-router';
 import { StyledHeader } from './Header.styled';
 import icons from '../../../../shared/icons/sprite.svg';
-
+import goosePic from '../../../../shared/images/header/desktop_goose_header@2x.png';
 const Header = () => {
   const location = useLocation();
   const path = location.pathname;
@@ -23,7 +23,17 @@ const Header = () => {
           <use href={`${icons}#menu`} className="header_burger-btn"></use>
         </svg>
       </button>
+
+      <div
+        className="header-motivation"
+        // style={{ display: 'none' }}
+      >
+        <img src={`${goosePic}`} alt="motivational goose" />
+        <p>Let go of the past and focus on the present!</p>
+      </div>
+
       {path === '/account' ? <h2>User Profile</h2> : <h2>Calendar</h2>}
+
       <ThemeToggler />
       <UserInfo />
     </StyledHeader>
