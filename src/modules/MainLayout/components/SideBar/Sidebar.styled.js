@@ -6,12 +6,16 @@ export const SideBarContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  flex-grow: 7, 1;
+
+  border-right: 1px solid #dce3e5;
+  height: 900px;
 `;
 
 export const StyledNavContainer = styled.nav`
   padding: 24px;
-  border-right: 1px solid #dce3e5;
   background-color: #fff;
+  flex-grow: 6;
 
   & p {
     padding: 0;
@@ -39,7 +43,7 @@ export const StyledLogoDiv = styled.div`
   }
 `;
 
-export const NavigationDiv = styled.div``;
+// export const NavigationDiv = styled.div``;
 
 export const StyledNavLink = styled(NavLink)`
   padding-top: 18px;
