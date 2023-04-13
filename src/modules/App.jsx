@@ -6,7 +6,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
-import { useTheme } from '@mui/material/styles';
+// import { useTheme } from '@mui/material/styles';
 
 //layoutes and pages lazy loading
 import MainLayout from './MainLayout/components/MainLayout/MainLayout';
@@ -82,7 +82,7 @@ const App = () => {
   //     })
   //   );
   // }, [dispatch]);
-  const theme = useTheme();
+  // const theme = useTheme();
 
   return (
     <>
