@@ -1,3 +1,4 @@
+import { Icon } from './Icon';
 import {
   StyledIcon,
   StyledLogoDiv,
@@ -6,13 +7,6 @@ import {
   StyledNavLink,
   StyledNavName,
 } from './Sidebar.styled';
-import Icons from '../../../../shared/icons/sprite.svg';
-
-export const Icon = ({ name, width, height }) => (
-  <svg width={width} height={height}>
-    <use xlinkHref={`${Icons}#${name}`} />
-  </svg>
-);
 
 export default function UserNav() {
   return (

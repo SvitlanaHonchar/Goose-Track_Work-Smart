@@ -1,6 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
+export const SideBarContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 export const StyledNavContainer = styled.nav`
   padding: 24px;
   border-right: 1px solid #dce3e5;
@@ -92,4 +99,39 @@ export const StyledNavDiv = styled.div`
 
 export const StyledNavName = styled.p`
   margin-bottom: 32px;
+`;
+
+export const StyledLogoutBtn = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  max-width: 141px;
+  border: none;
+  padding: 16px 23px;
+
+  cursor: pointer;
+
+  background: #3e85f3;
+
+  border-radius: 16px;
+
+  &:hover {
+    box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
+  }
+
+  & span {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.33;
+
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  & svg {
+    stroke: #fff;
+  }
 `;
