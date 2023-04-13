@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Form, Field } from 'formik';
+// import { Form, Field } from 'formik';
 import { TimeField } from '@mui/x-date-pickers/TimeField';
 import theme from 'shared/theme';
 
@@ -47,7 +47,7 @@ const commonOperationBtnStyles = `
   background-color: ${theme.palette.primary.main};
 `;
 
-export const StyledForm = styled(Form)`
+export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   row-gap: 32px;
@@ -64,19 +64,17 @@ export const StyledForm = styled(Form)`
     clip: rect(0 0 0 0);
     overflow: hidden;
   }
-
-  label {
-    /* font-size: 10px;
-    font-weight: 500;
-    line-height: 1.2;
-    color: ${theme.palette.grey[500]}; */
-  }
 `;
 
-export const InfoInput = styled(Field)`
+export const InfoInput = styled.input`
   ${commonInputStyles}
   &:focus {
     outline: 1px solid ${theme.palette.primary.main};
+  }
+  &::placeholder {
+    ${commonInputStyles};
+    padding: 0;
+    opacity: 1;
   }
 `;
 

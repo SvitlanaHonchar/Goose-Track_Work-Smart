@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   FormControl,
   FormControlLabel,
@@ -5,9 +6,9 @@ import {
   Radio,
   RadioGroup,
 } from '@mui/material';
-import { Field } from 'formik';
 import capitalizeString from 'shared/utils/capitalizeString';
 import theme from 'shared/theme';
+import { TASKS_PRIORITY } from 'shared/constants';
 
 const radioStyles = {
   low: {
@@ -47,62 +48,63 @@ const RadioIcon = ({ color, borderColor }) => (
   </span>
 );
 
-export const PriorityList = ({ values, handleChange }) => {
+export const PriorityList = ({ defaultValue, handleChange }) => {
+  const [priority, setPriority] = useState(defaultValue);
   return (
-    <FormControl>
-      <FormLabel className="sr-only">Priority</FormLabel>
-      <Field name="priority">
-        {({ field }) => (
-          <RadioGroup
-            {...field}
-            value={values.priority}
-            onChange={handleChange}
-            row={true}
-            sx={{ columnGap: '16px' }}
-          >
-            {['low', 'medium', 'high'].map((value, index) => (
-              <FormControlLabel
-                key={index}
-                value={value}
-                control={
-                  <Radio
-                    value={value}
-                    icon={
-                      <RadioIcon
-                        color={radioStyles[value].color}
-                        borderColor="#ffffff"
-                      />
-                    }
-                    checkedIcon={
-                      <RadioIcon
-                        color={radioStyles[value].color}
-                        borderColor={radioStyles[value].iconColor}
-                      />
-                    }
-                    sx={{
-                      '& .MuiRadio-root': {
-                        padding: '0px',
-                        marginRight: '6px',
-                      },
-                    }}
-                  />
-                }
-                label={capitalizeString(value)}
-                sx={{
-                  marginLeft: '0px',
-                  marginRight: '0px',
-                  '& .MuiTypography-root': {
-                    fontWeight: 600,
-                    fontSize: '12px',
-                    lineHeight: '1.17',
-                    color: '#616161',
-                  },
-                }}
-              />
-            ))}
-          </RadioGroup>
+    <FormControl component="fieldset">
+      <FormLabel component="legend" className="sr-only">
+        Priority
+      </FormLabel>
+      <RadioGroup
+        row
+        value={priority}
+        onChange={event => {
+          setPriority(event.target.value);
+          handleChange(event.target.value);
+        }}
+        sx={{ columnGap: '16px' }}
+      >
+        {[TASKS_PRIORITY.LOW, TASKS_PRIORITY.MEDIUM, TASKS_PRIORITY.HIGH].map(
+          (value, index) => (
+            <FormControlLabel
+              key={index}
+              value={value}
+              control={
+                <Radio
+                  value={value}
+                  icon={
+                    <RadioIcon
+                      color={radioStyles[value].color}
+                      borderColor="#ffffff"
+                    />
+                  }
+                  checkedIcon={
+                    <RadioIcon
+                      color={radioStyles[value].color}
+                      borderColor={radioStyles[value].iconColor}
+                    />
+                  }
+                  sx={{
+                    padding: '0px',
+                    marginRight: '6px',
+                  }}
+                />
+              }
+              label={capitalizeString(value)}
+              sx={{
+                marginLeft: '0px',
+                marginRight: '0px',
+                '& .MuiTypography-root': {
+                  fontWeight: 600,
+                  fontSize: '12px',
+                  lineHeight: '1.17',
+                  color: '#616161',
+                },
+              }}
+            />
+          )
         )}
-      </Field>
+      </RadioGroup>
     </FormControl>
   );
 };

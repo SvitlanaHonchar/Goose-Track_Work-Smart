@@ -3,10 +3,9 @@ import { Info } from '../TaskForm.styled';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { ukUA } from '@mui/x-date-pickers/locales';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { TimePickerField } from '../TimePickerField/TimePickerField';
+import { TimePicker } from '../TaskForm.styled';
 
-const TimePickerWithLocalization = ({ label, value }) => {
-  const [time, setTime] = React.useState(value);
+const TimePickerWithLocalization = ({ label, value, onChange }) => {
   const localeText =
     ukUA.components.MuiLocalizationProvider.defaultProps.localeText;
   const timePickerStyles = {
@@ -25,12 +24,12 @@ const TimePickerWithLocalization = ({ label, value }) => {
     <Info>
       <label htmlFor={label}>{label}</label>
       <LocalizationProvider dateAdapter={AdapterDayjs} localeText={localeText}>
-        <TimePickerField
+        <TimePicker
           format="HH:mm"
           sx={timePickerStyles}
           name={label}
-          value={time}
-          onChange={newValue => setTime(newValue)}
+          value={value}
+          onChange={onChange}
         />
       </LocalizationProvider>
     </Info>
