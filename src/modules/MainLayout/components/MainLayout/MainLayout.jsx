@@ -6,6 +6,8 @@ import { StyledDiv } from './MainLayout.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/authSelectors';
 import { authGetUserInfo } from 'redux/auth/authOperations';
+import { Box } from '@mui/system';
+import { useTheme } from 'styled-components';
 
 const MainLayout = () => {
   const user = useSelector(selectUser);
@@ -19,12 +21,17 @@ const MainLayout = () => {
     dispatch(authGetUserInfo);
   }, [dispatch, user.name]);
 
+  const theme = useTheme();
+
   return (
     // Component =>
     // ({ ...props }) => {
-    <StyledDiv>
-      <Header />
-      <SideBar />
+    <StyledDiv theme={theme}>
+      <Box className="mainLayout-frame">
+        <Header />
+        <SideBar />
+      </Box>
+
       {/* <Component {...props} /> */}
       <Suspense>
         <Outlet />
