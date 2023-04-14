@@ -30,6 +30,9 @@ const tasksSlice = createSlice({
         const taskDate = payload.date.slice(0, 10);
         console.log('taskDate: ', taskDate);
         let dateFound = false;
+        if (!state.data) {
+          state.data = [{ date: taskDate, tasks: [payload] }];
+        }
         state.data = state.data.map(el => {
           if (el.date === taskDate) {
             el.tasks = [payload, ...el.tasks];
