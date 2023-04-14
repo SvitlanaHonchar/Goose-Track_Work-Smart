@@ -87,7 +87,7 @@ export const LoginForm = () => {
               <StyledButton
                 type="submit"
                 disabled={isSubmitting}
-                sx={{ backgroundColor: theme.palette.primary.main }}
+                variant="contained"
               >
                 Submit
                 <Icon className="Login" name="logIn" width="18" height="18" />
