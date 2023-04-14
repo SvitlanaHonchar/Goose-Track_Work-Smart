@@ -20,8 +20,6 @@ export const theme = createTheme({
   palette: {
     primary: {
       main: '#3E85F3',
-      light: '#72C2F8',
-      dark: '#CEEEFD',
     },
     secondary: {
       main: '#DCEBF7',
@@ -48,6 +46,12 @@ export const theme = createTheme({
       body: '#111111',
       dark: '#21222C',
       light: '#DCE3E5',
+      input: '#F7F7F7',
+    },
+    custom: {
+      input: '#F7F7F7',
+      lightBlue: '#72C2F8',
+      blue: '#CEEEFD',
     },
   },
   typography: {
@@ -68,6 +72,10 @@ export const theme = createTheme({
       fontWeight: 600,
       fontSize: '1.3rem',
     },
+    h4: {
+      fontWeight: 700,
+      fontSize: '1rem',
+    },
     subtitle1: {
       fontSize: '0.9rem',
       fontWeight: 600,
@@ -78,7 +86,7 @@ export const theme = createTheme({
     },
     subtitle3: {
       fontWeight: 400,
-      fontSize: 12,
+      fontSize: '0.9rem',
     },
     button: {
       fontSize: '1rem',
@@ -92,6 +100,19 @@ export const theme = createTheme({
     overline: {
       fontSize: '0.9rem',
       fontWeight: 400,
+      textTransform: 'none',
+    },
+  },
+  components: {
+    // Name of the component
+    MuiOutlinedInput: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          height: 42,
+        },
+      },
     },
   },
 });
