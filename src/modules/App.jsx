@@ -71,7 +71,8 @@ const router = createBrowserRouter(
         {/* <Route path="account" element={<AccountPage />} />*/}
         <Route path="calendar" element={<CalendarPage />}>
           <Route path="month/:currentMonth" element={<ChosenMonth />} />
-          <Route path="day/:currentDay" element={<ChosenDay />} />
+          <Route path="day/:currentDay" element={<ChosenDay />} />{' '}
+          {/*!!!!! currentDay format: '2023-04-14'*/}
         </Route>
       </Route>
 
