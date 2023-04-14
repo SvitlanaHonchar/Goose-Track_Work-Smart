@@ -1,12 +1,8 @@
 import React from 'react';
-
-import AuthNavigate from 'shared/components/AuthNavigate/AuthNavigate';
-
+import { StartPageComponents } from '../../modules/StartPageComponents/StartPageConmponents';
 const StartPage = () => {
-  return (
-    <div>
-      <AuthNavigate />
-    </div>
+  return(
+    <StartPageComponents></StartPageComponents>
   );
 };
 
