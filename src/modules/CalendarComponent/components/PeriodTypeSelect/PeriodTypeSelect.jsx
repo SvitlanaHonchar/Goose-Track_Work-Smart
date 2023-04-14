@@ -1,14 +1,32 @@
 import React from 'react';
 import { TypeButton } from './PeriodTypeSelect.styled';
+import { format } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 
-const PeriodTypeSelect = ({ selectedType, onTypeSelect }) => {
+const PeriodTypeSelect = ({ currentType, onTypeSelect, setDate }) => {
+  console.log('currentType: ', currentType);
+  const navigate = useNavigate();
+
   const handlePeriodType = type => {
     console.log(type);
     onTypeSelect(type);
+    setDate(new Date());
+    navigateToCalendar();
+  };
+
+  const navigateToCalendar = () => {
+    const urlFormatDate =
+      currentType === 'month'
+        ? format(new Date(), 'yyyy-MM-dd')
+        : format(new Date(), 'yyyy-MM');
+
+    const newType = currentType === 'month' ? 'day' : 'month';
+
+    navigate(`/calendar/${newType}/${urlFormatDate}`);
   };
 
   const handleClick = type => {
-    if (selectedType !== type) {
+    if (currentType !== type) {
       handlePeriodType(type);
     }
   };
@@ -17,7 +35,7 @@ const PeriodTypeSelect = ({ selectedType, onTypeSelect }) => {
     <div className="period-type-select">
       <TypeButton
         className={`period-type-button ${
-          selectedType === 'day' ? 'active' : ''
+          currentType === 'day' ? 'active' : ''
         }`}
         onClick={() => handleClick('day')}
       >
@@ -25,7 +43,7 @@ const PeriodTypeSelect = ({ selectedType, onTypeSelect }) => {
       </TypeButton>
       <TypeButton
         className={`period-type-button ${
-          selectedType === 'month' ? 'active' : ''
+          currentType === 'month' ? 'active' : ''
         }`}
         onClick={() => handleClick('month')}
       >

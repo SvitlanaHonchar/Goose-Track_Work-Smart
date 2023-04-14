@@ -7,26 +7,15 @@ import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { selectAllTasks } from 'redux/tasks/tasksSelectors';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 
-const CalendarToolbar = ({ period }) => {
-  const [periodType, setPeriodType] = useState('month');
+const CalendarToolbar = () => {
+  const location = useLocation();
+  const pathArray = location.pathname.split('/');
+  const period = pathArray[2];
+
+  const [periodType, setPeriodType] = useState(period);
+  console.log('periodType: ', periodType);
   const [date, setDate] = useState(new Date());
   console.log('date: ', date);
-  // const [tasks, setTasks] = useState(null);
-  // const [error, setError] = useState(null);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const tasks = useSelector(selectAllTasks);
-  const { currentMonth } = useParams();
-  console.log('currentMonth: ', currentMonth);
-  const tasksAll = useSelector(selectAllTasks);
-  const isLogged = useSelector(selectIsLoggedIn);
-  // console.log('isLogged: ', isLogged);
-
-  // useEffect(() => {
-  //   if (!isLogged) return;
-  //   dispatch(getMonthTasks({ year: 2023, month: 3 }));
-  // }, [dispatch, periodType, date]);
 
   const handlePeriodTypeSelect = type => {
     setPeriodType(type);
@@ -34,6 +23,7 @@ const CalendarToolbar = ({ period }) => {
   const handleDateChange = date => {
     setDate(date);
   };
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -43,8 +33,9 @@ const CalendarToolbar = ({ period }) => {
         onDateChange={handleDateChange}
       />
       <PeriodTypeSelect
-        selectedType={periodType}
+        currentType={periodType}
         onTypeSelect={handlePeriodTypeSelect}
+        setDate={handleDateChange}
       />
     </div>
   );

@@ -1,41 +1,33 @@
 import React from 'react';
+import { addMonths, addDays, format } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 
 const PeriodPaginator = ({ date, period, onDateChange }) => {
+  const navigate = useNavigate();
+
+  const calculateNewDate = (amount, unit) =>
+    unit === 'month' ? addMonths(date, amount) : addDays(date, amount);
+
+  const updateUrlAndDate = newDate => {
+    const urlFormatDate =
+      period === 'month'
+        ? format(newDate, 'yyyy-MM')
+        : format(newDate, 'yyyy-MM-dd');
+    navigate(`/calendar/${period}/${urlFormatDate}`);
+    onDateChange(newDate);
+  };
+
   const updateDate = (amount, unit) => {
-    const dateCopy = new Date(date);
-    if (unit === 'month') {
-      dateCopy.setMonth(dateCopy.getMonth() + amount);
-    } else {
-      dateCopy.setDate(dateCopy.getDate() + amount);
-    }
-
-    onDateChange(dateCopy);
+    const newDate = calculateNewDate(amount, unit);
+    updateUrlAndDate(newDate);
   };
 
-  const formatDate = (date, format) => {
-    const monthNames = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
+  const formattedDate =
+    period === 'month'
+      ? format(date, 'MMMM yyyy').toUpperCase()
+      : format(date, ' d MMM yyyy ').toUpperCase();
 
-    const day = date.getDate();
-    const monthIndex = date.getMonth();
-    const year = date.getFullYear();
-
-    return format === 'month'
-      ? `${monthNames[monthIndex].toUpperCase()} ${year}`
-      : `${day} ${monthNames[monthIndex].toUpperCase()} ${year}`;
-  };
+  console.log('formattedDate : ', formattedDate);
 
   return (
     <div
@@ -52,7 +44,7 @@ const PeriodPaginator = ({ date, period, onDateChange }) => {
           fontSize: '20px',
         }}
       >
-        {formatDate(date, period)}
+        {formattedDate}
       </span>
 
       <div
