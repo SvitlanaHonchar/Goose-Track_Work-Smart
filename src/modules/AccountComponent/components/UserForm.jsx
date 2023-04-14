@@ -1,4 +1,4 @@
-import { Grid, IconButton, Typography } from '@mui/material';
+import { Grid, IconButton, Typography, Box } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import React, { useState } from 'react';
 import TextInput from 'shared/components/ui/TextInput/TextInput';
@@ -20,7 +20,7 @@ export default function UserForm({ formData, onChange, setBirthday }) {
       </Grid>
       <Grid item sm={12} md={6}>
         <Typography variant="overline">Birthday</Typography>
-        <TextInput
+        {/* <TextInput
           onChange={onChange}
           name="birthday"
           value={birthday || ''}
@@ -31,8 +31,8 @@ export default function UserForm({ formData, onChange, setBirthday }) {
               </IconButton>
             ),
           }}
-        />
-        {isDatePickerOpen && (
+        /> */}
+        <Box>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
               value={birthday}
@@ -40,7 +40,7 @@ export default function UserForm({ formData, onChange, setBirthday }) {
               startWeekDay="monday"
             />
           </LocalizationProvider>
-        )}
+        </Box>
       </Grid>
       <Grid item sm={12} md={6}>
         <Typography variant="overline">Email</Typography>

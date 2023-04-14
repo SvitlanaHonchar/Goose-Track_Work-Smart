@@ -103,6 +103,18 @@ export const theme = createTheme({
       textTransform: 'none',
     },
   },
+  components: {
+    // Name of the component
+    MuiOutlinedInput: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          height: 42,
+        },
+      },
+    },
+  },
 });
 
 export default theme;
