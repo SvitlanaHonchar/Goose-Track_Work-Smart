@@ -85,16 +85,16 @@
 // `;
 
 import styled from 'styled-components';
-import img1 from '../../../shared/images/authNavigation/mobile/mobile_gooseTrack_sideBar.png';
-import img2 from '../../../shared/images/authNavigation/mobile/mobile_gooseTrack_sideBar@2x.png';
-import img3 from '../../../shared/images/authNavigation/tablet/tablet_gooseTrack_sideBar.png';
-import img4 from '../../../shared/images/authNavigation/tablet/tablet_gooseTrack_sideBar@2x.png';
-import img5 from '../../../shared/images/authNavigation/desktop/desktop_gooseTrack_sideBar 2.png';
-import img6 from '../../../shared/images/authNavigation/desktop/desktop_gooseTrack_sideBar@2x.png';
+import img1 from '../../../shared/images/authNavigation/mobile/mobile_gooseTrack_authNav.png';
+import img2 from '../../../shared/images/authNavigation/mobile/mobile_gooseTrack_authNav@2x.png';
+import img3 from '../../../shared/images/authNavigation/tablet/tablet_gooseTrack_authNav.png';
+import img4 from '../../../shared/images/authNavigation/tablet/tablet_gooseTrack_authNav@2x.png';
+import img5 from '../../../shared/images/authNavigation/desktop/desktop_gooseTrack_authNav.png';
+import img6 from '../../../shared/images/authNavigation/desktop/desktop_gooseTrack_authNav@2x.png';
 
 export const StyledAuthNavigate = styled.header`
   background-color: rgba(62, 133, 243, 1);
-  padding-top: 376px;
+  padding-top: 232px;
   padding-bottom: 88px;
 
   @media screen and (min-width: 768px) {
@@ -178,11 +178,12 @@ export const StyledAuthNavigate = styled.header`
 
     @media screen and (max-width: 767px) {
       flex-direction: column;
-      gap: 176px;
+      gap: 178px;
     }
   }
 
   .AuthNavBtn {
+    font-family: 'Inter';
     padding-top: 14px;
     padding-bottom: 14px;
     width: 131px;
@@ -200,6 +201,7 @@ export const StyledAuthNavigate = styled.header`
     border: none;
     box-shadow: none;
     border-radius: 16px;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover,
     &:focus {

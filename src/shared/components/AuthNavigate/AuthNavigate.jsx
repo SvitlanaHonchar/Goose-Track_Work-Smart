@@ -56,7 +56,6 @@
 
 // export default AuthNavigate;
 
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
