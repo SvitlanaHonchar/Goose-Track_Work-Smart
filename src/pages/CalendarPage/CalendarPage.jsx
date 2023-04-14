@@ -1,7 +1,12 @@
+import CalendarComponent from 'modules/CalendarComponent/components/CalendarComponent';
 import React from 'react';
 
 const CalendarPage = () => {
-  return <div>Calendar page</div>;
+  return (
+    <div>
+      <CalendarComponent />
+    </div>
+  );
 };
 
 export default CalendarPage;
