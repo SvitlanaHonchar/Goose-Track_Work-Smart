@@ -12,7 +12,7 @@ CalendarTable.propTypes = {
       tasks: PropTypes.arrayOf(
         PropTypes.shape({
           title: PropTypes.string.isRequired,
-          data: PropTypes.string.isRequired,
+          date: PropTypes.string.isRequired,
           priority: PropTypes.string,
         })
       ),

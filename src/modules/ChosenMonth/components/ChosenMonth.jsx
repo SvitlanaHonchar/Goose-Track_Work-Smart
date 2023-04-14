@@ -4,17 +4,22 @@ import CalendarTable from './CalendarTable/CalendarTable';
 import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
 import { selectAllTasks } from 'redux/tasks/tasksSelectors';
+import Loader from 'shared/components/Loader/Loader';
 
 const ChosenMonth = () => {
   const { currentMonth } = useParams();
   const tasks = useSelector(selectAllTasks);
-  // console.log('tasks: ', tasks);
-  // console.log('currentMonth: ', currentMonth);
+  console.log('tasks: ', tasks);
+  console.log('currentMonth: ', currentMonth);
   return (
     <div className="chosenMonth">
       ChosenMonth
       <CalendarHead />
-      <CalendarTable tasks={tasks} currentMonth={currentMonth} />
+      {tasks ? (
+        <CalendarTable tasks={tasks} currentMonth={currentMonth} />
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };
