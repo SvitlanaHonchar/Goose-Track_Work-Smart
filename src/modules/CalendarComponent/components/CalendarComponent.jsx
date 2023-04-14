@@ -9,9 +9,6 @@
 // 6. На сторінці повинен здійснюватись запит за завданнями, якщо вони відсутні в глобальному стейті
 // 7. Успіх - данні записуються у відповідний стейт
 // 8. Помилка - користувачу показується відповідне пушповідомлення
-
-import ChosenDay from 'modules/ChosenDay/components/ChosenDay/ChosenDay';
-import ChosenMonth from 'modules/ChosenMonth/components/ChosenMonth';
 import React from 'react';
 import CalendarToolbar from './CalendarToolbar/CalendarToolbar';
 
@@ -20,8 +17,6 @@ const CalendarComponent = () => {
     <div>
       CalendarComponent
       <CalendarToolbar />
-      <ChosenDay />
-      <ChosenMonth />
     </div>
   );
 };

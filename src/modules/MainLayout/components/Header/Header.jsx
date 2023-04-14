@@ -23,7 +23,7 @@ const Header = () => {
   const monthTasks = useSelector(selectAllTasks);
 
   useEffect(() => {
-    if (monthTasks) {
+    if (monthTasks && path.includes('day')) {
       const currentDate = path.includes('day') && path.slice(14, path.length);
       // ----for positive result:
       // const currentDate = '2023-04-17';

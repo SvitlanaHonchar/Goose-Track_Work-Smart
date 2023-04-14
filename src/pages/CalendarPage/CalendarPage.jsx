@@ -1,3 +1,4 @@
+import CalendarComponent from 'modules/CalendarComponent/components/CalendarComponent';
 import React, { Suspense, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router';
@@ -27,6 +28,7 @@ const CalendarPage = () => {
   return (
     <div>
       Calendar page
+      <CalendarComponent />
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
