@@ -15,6 +15,7 @@ import { showSuccessDoneTasks } from 'shared/utils/notifications';
 const Header = () => {
   const location = useLocation();
   const path = location.pathname;
+  // console.log(location);
 
   const [tasksStatus, setTasksStatus] = useState(null);
 
@@ -23,13 +24,12 @@ const Header = () => {
 
   useEffect(() => {
     if (monthTasks) {
-      // get current date - замінити на дату з ChosenDay
-      // const currentDate = new Date().toISOString().slice(0, 10);
+      const currentDate = path.includes('day') && path.slice(14, path.length);
       // ----for positive result:
-      const testDate = '2023-04-17';
+      // const currentDate = '2023-04-17';
 
       // find todays tasks
-      const todayTasks = monthTasks.filter(task => task.date === testDate);
+      const todayTasks = monthTasks.filter(task => task.date === currentDate);
 
       if (todayTasks.length > 0) {
         // find if there are not done tasks
@@ -42,7 +42,7 @@ const Header = () => {
     }
 
     setTasksStatus(tasksNotDone);
-  }, [monthTasks]);
+  }, [monthTasks, path]);
 
   return (
     <StyledHeader>
@@ -69,14 +69,11 @@ const Header = () => {
         )}
 
         {/* motivational quote */}
-        {path === '/calendar' ? (
+        {path.includes('/calendar') ? (
           <div className="header-calendar">
-            {tasksStatus && (
+            {tasksStatus && path.includes('/calendar/day') && (
               <picture>
-                <source
-                  // srcset="./images/imgfirst.jpg 1x, ./images/imgfirst@2x.jpg 2x"
-                  srcSet={`${goosePic} 1x, ${goosePic2x} 2x`}
-                />
+                <source srcSet={`${goosePic} 1x, ${goosePic2x} 2x`} />
                 <img
                   src={`${goosePic2x}`}
                   alt="motivational goose"
@@ -94,7 +91,7 @@ const Header = () => {
               >
                 Calendar
               </Typography>
-              {tasksStatus && (
+              {tasksStatus && path.includes('/calendar/day') && (
                 <>
                   <Typography
                     variant="subtitle1"
