@@ -4,6 +4,7 @@ import { Outlet } from 'react-router';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { getMonthTasks } from 'redux/tasks/tasksOperations';
 import Loader from 'shared/components/Loader/Loader';
+import CalendarToolbar from 'modules/CalendarComponent/components/CalendarToolbar/CalendarToolbar';
 
 const CalendarPage = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const CalendarPage = () => {
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
+      <CalendarToolbar />
     </div>
   );
 };
