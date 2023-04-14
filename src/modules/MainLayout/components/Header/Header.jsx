@@ -26,7 +26,7 @@ const Header = () => {
       // get current date - замінити на дату з ChosenDay
       // const currentDate = new Date().toISOString().slice(0, 10);
       // ----for positive result:
-      const testDate = '2023-04-10';
+      const testDate = '2023-04-17';
 
       // find todays tasks
       const todayTasks = monthTasks.filter(task => task.date === testDate);
