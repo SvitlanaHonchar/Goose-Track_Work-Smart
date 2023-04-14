@@ -3,6 +3,7 @@ import styled from "styled-components";
 const mainBlue='#3E85F3';
 const mainWhite = 'white';
 export const StartPageHeaderStyled = styled.header`
+font-family: 'Coolvetica';
 height: 812px;
 @media screen and (min-width: 768px)and (max-width:1439px) {
     height:1024px;
@@ -29,13 +30,11 @@ nav {
 }
 .box {
   width: 142px;
-  height: 142px;
   margin-left:auto;
   margin-right:auto;
 padding-top: 232px;
 @media screen and (min-width: 768px) {
     width: 150px;
-  height: 150px;
 
 }
 @media screen and (min-width: 768px)and (max-width:1439px) {
@@ -53,6 +52,7 @@ img{
     height: 100%;
 }
 h1{
+    font-weight: 400;
     margin-top: 2px;
     color: ${mainWhite};
     font-size: 44px;
@@ -69,12 +69,15 @@ h1{
     
 }
 span{
+    
     font-style: italic;
 }
 `
 export const StartPageLink=styled(Link)` 
+ font-family: "Inter";
  cursor: pointer;
  &.start-page--login{
+    font-weight: 600;
     display: flex;
     column-gap: 8.25px; 
     justify-content: center;
@@ -89,8 +92,13 @@ export const StartPageLink=styled(Link)`
     line-height: 1.29;
     padding-top:14px;
     padding-bottom:14px;
+    opacity: 1;
+    &:hover, &:focus{
+        opacity: 0.8;
+    }
     & svg{
         stroke:${mainBlue};
+
     }
 }
 &.start-page--register{
@@ -101,5 +109,8 @@ export const StartPageLink=styled(Link)`
         font-size: 14px;
         line-height: 1.29;
         }
+        &:hover, &:focus{
+        opacity: 0.8;
+    }
     }
 `

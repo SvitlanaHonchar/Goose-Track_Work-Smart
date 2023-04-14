@@ -1,5 +1,6 @@
 import styled from "styled-components";
 export const CommentStyled = styled.div`
+font-family: "Inter";
 box-sizing: border-box;
 height: 194px;
 width: 335px;
@@ -42,10 +43,12 @@ margin-bottom: 13px;
 }
 & .comment-box{
     width: 50px;
-    border-radius: 50%;
+    height: 50px;
+   
 }
 & img{
     width:100%;
+    border-radius: 50%;
     display: block;
     height: auto;
 }

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 const mainBlue='#3E85F3';
 const mainBlue2='#DCEBF7';
-const mainWhite = 'white';
 const mainBlack = '#171820';
 const mainBlack2 = '#111111';
 export const OpportunityStyled = styled.li`
@@ -103,6 +102,7 @@ margin-right: auto;
     height: 100%;
 }
 & .opportunity--text{
+
     margin: 0;
     margin-bottom: 40px;
     font-weight: 500;

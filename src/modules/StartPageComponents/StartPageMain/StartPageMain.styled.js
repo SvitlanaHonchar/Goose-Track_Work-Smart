@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import sprite from '../../../shared/icons/sprite.svg'
 const mainBlue='#3E85F3';
 
 
 export const StartPageMainStyled = styled.main`
+font-family: "Inter";
 display: flex;
 flex-direction: column;
 row-gap: 64px;
@@ -87,9 +87,13 @@ margin-top: 64px;
 & svg.svg-arrow{
     width: 39px;
     height: 50px;
+    fill: black;
     @media screen and (min-width: 768px) {
     width: 47px;
     height: 61px;
+    &:hover,&:focus{
+        fill:${mainBlue};
+    }
 }
 }
 & .slick-arrow.slick-prev{
