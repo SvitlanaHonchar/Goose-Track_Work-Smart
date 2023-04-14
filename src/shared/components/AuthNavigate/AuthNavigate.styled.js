@@ -1,17 +1,23 @@
 import styled from 'styled-components';
+import img1 from '../../../shared/images/authNavigation/mobile/mobile_gooseTrack_authNav.png';
+import img2 from '../../../shared/images/authNavigation/mobile/mobile_gooseTrack_authNav@2x.png';
+import img3 from '../../../shared/images/authNavigation/tablet/tablet_gooseTrack_authNav.png';
+import img4 from '../../../shared/images/authNavigation/tablet/tablet_gooseTrack_authNav@2x.png';
+import img5 from '../../../shared/images/authNavigation/desktop/desktop_gooseTrack_authNav.png';
+import img6 from '../../../shared/images/authNavigation/desktop/desktop_gooseTrack_authNav@2x.png';
 
 export const StyledAuthNavigate = styled.header`
   background-color: rgba(62, 133, 243, 1);
-  padding-top: 376px;
+  padding-top: 232px;
   padding-bottom: 88px;
 
   @media screen and (min-width: 768px) {
-    padding-top: 465px;
+    padding-top: 321px;
     padding-bottom: 320px;
   }
 
   @media screen and (min-width: 1440px) {
-    padding-top: 331px;
+    padding-top: 187px;
     padding-bottom: 200px;
   }
 
@@ -22,9 +28,48 @@ export const StyledAuthNavigate = styled.header`
     align-items: center;
   }
 
+  .StyledImage {
+    background-image: url(${img1});
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 142px;
+    height: 142px;
+
+    @media screen and (min-device-pixel-ratio: 2) and (max-width: 767px),
+      screen and (min-resolution: 192dpi) and (max-width: 767px),
+      screen and (min-resolution: 2dppx) and (max-width: 767px) {
+      background-image: url(${img2});
+    }
+
+    @media screen and (min-width: 768px) {
+      background-image: url(${img3});
+      width: 150px;
+      height: 149px;
+    }
+
+    @media screen and (min-device-pixel-ratio: 2) and (min-width: 768px),
+      screen and (min-resolution: 192dpi) and (min-width: 768px),
+      screen and (min-resolution: 2dppx) and (min-width: 768px) {
+      background-image: url(${img4});
+    }
+
+    @media screen and (min-width: 1200px) {
+      background-image: url(${img5});
+    }
+
+    @media screen and (min-device-pixel-ratio: 2) and (min-width: 1200px),
+      screen and (min-resolution: 192dpi) and (min-width: 1200px),
+      screen and (min-resolution: 2dppx) and (min-width: 1200px) {
+      background-image: url(${img6});
+    }
+  }
+
   .AuthNavHeadline {
-    margin-top: 0;
+    position: relative;
+    display: flex;
     font-family: 'Coolvetica', sans-serif;
+    margin-top: -5px;
     margin-bottom: 32px;
     font-weight: 400;
     font-size: 44px;
@@ -46,11 +91,12 @@ export const StyledAuthNavigate = styled.header`
 
     @media screen and (max-width: 767px) {
       flex-direction: column;
-      gap: 176px;
+      gap: 183px;
     }
   }
 
   .AuthNavBtn {
+    font-family: 'Inter';
     padding-top: 14px;
     padding-bottom: 14px;
     width: 131px;
@@ -60,7 +106,7 @@ export const StyledAuthNavigate = styled.header`
     align-items: center;
     font-size: 14;
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 1.29;
     letter-spacing: -0.02em;
     color: rgba(255, 255, 255, 1);
     text-decoration: underline;
@@ -68,6 +114,7 @@ export const StyledAuthNavigate = styled.header`
     border: none;
     box-shadow: none;
     border-radius: 16px;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover,
     &:focus {

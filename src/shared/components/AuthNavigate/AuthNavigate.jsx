@@ -1,8 +1,7 @@
 import React from 'react';
-
-import { StyledAuthNavigate } from './AuthNavigate.styled';
 import { useNavigate } from 'react-router-dom';
 
+import { StyledAuthNavigate } from './AuthNavigate.styled';
 import Icons from '../../../shared/icons/sprite.svg';
 
 export const Icon = ({ name, width, height }) => (
@@ -24,7 +23,10 @@ const AuthNavigate = () => {
   return (
     <StyledAuthNavigate>
       <div className="ContentContainer">
-        <h1 className="AuthNavHeadline"> GooseTrack</h1>
+        <div className="StyledImage"></div>
+        <h1 className="AuthNavHeadline">
+          G<i>oo</i>seTrack
+        </h1>
         <div className="AuthNavBtnContainer">
           <button
             type="button"
