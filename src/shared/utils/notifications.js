@@ -18,3 +18,20 @@ export const showSuccessDoneTasks = () => {
 export const showErrorValidation = message => {
   toast.error(message);
 };
+
+export const showSuccessReg = () => {
+  toast.success(
+    'Thank you for registering! Your account has been created successfully.'
+  );
+};
+
+export const showUnknwnErrReg = () => {
+  toast.error(
+    'Registration failed due to an unexpected error. Please try again later.'
+  );
+};
+export const showExistAcctErrorReg = () => {
+  toast.error(
+    'Registration failed. Probably this email is already associated with an existing account. Please try again.'
+  );
+};

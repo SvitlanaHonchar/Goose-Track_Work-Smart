@@ -15,6 +15,10 @@ const ChosenDay = () => {
     if (!tasksAll) return;
 
     const currentTasks = tasksAll.find(task => task.date === currentDay)?.tasks;
+    if (!currentTasks || currentTasks.length === 0) {
+      setTasksCurrentDay({ todoTasks: [], inProgressTasks: [], doneTasks: [] });
+      return;
+    }
 
     const todoTasks = currentTasks.filter(task => task.category === 'to-do');
     const inProgressTasks = currentTasks.filter(
