@@ -1,7 +1,8 @@
 import { Grid, Typography } from '@mui/material';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import React from 'react';
 import TextInput from 'shared/components/ui/TextInput/TextInput';
-import { DatePicker } from './DatePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 export default function UserForm({ formData, onChange, setBirthday }) {
   const { name, email, birthday, phone, skype } = formData || [];
@@ -14,7 +15,10 @@ export default function UserForm({ formData, onChange, setBirthday }) {
       <Grid item sm={12} md={6}>
         <Typography variant="overline">Birthday</Typography>
         <TextInput onChange={onChange} name="birthday" value={birthday || ''} />
-        <DatePicker setBirthday={setBirthday} />
+        {/* <DatePicker setBirthday={setBirthday} /> */}
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker />
+        </LocalizationProvider>
       </Grid>
       <Grid item sm={12} md={6}>
         <Typography variant="overline">Email</Typography>

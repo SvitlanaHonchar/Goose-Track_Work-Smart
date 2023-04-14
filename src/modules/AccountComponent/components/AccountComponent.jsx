@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { Grid, Typography } from '@mui/material';
 import ButtonAuth from 'shared/components/ui/ButtonAuth/ButtonAuth';
+import theme from 'shared/theme';
+import styled from 'styled-components';
 
 const AccountComponent = () => {
   const dispatch = useDispatch();
@@ -53,13 +55,13 @@ const AccountComponent = () => {
         <Typography variant="button">Save changes</Typography>
       </ButtonAuth>
 
-      {/* <StyledDiv $theme={theme} variant="outlined">
+      {/* <StyledDiv theme={theme} variant="outlined">
         hello
       </StyledDiv> */}
     </Grid>
   );
 };
 // const StyledDiv = styled(ButtonAuth)`
-//   color: ${p => p.$theme.palette.secondary.dark};
+//   color: ${p => p.theme.palette.error.main};
 // `;
 export default AccountComponent;

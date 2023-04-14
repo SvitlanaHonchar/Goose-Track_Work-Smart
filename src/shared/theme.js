@@ -20,8 +20,6 @@ export const theme = createTheme({
   palette: {
     primary: {
       main: '#3E85F3',
-      light: '#72C2F8',
-      dark: '#CEEEFD',
     },
     secondary: {
       main: '#DCEBF7',
@@ -48,6 +46,11 @@ export const theme = createTheme({
       body: '#111111',
       dark: '#21222C',
       light: '#DCE3E5',
+    },
+    custom: {
+      input: '#F7F7F7',
+      lightBlue: '#72C2F8',
+      blue: '#CEEEFD',
     },
   },
   typography: {
