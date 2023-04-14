@@ -12,7 +12,7 @@ import { TASKS_PRIORITY } from 'shared/constants';
 
 const radioStyles = {
   low: {
-    color: theme.palette.primary.light,
+    color: theme.palette.custom.lightBlue,
     iconColor: 'rgba(114, 194, 248, 0.5)',
   },
   medium: {

@@ -18,8 +18,8 @@ import {
   // authRegister,
   // authUpdate,
 } from 'redux/auth/authOperations';
-// import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import { useDispatch } from 'react-redux';
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import { useDispatch, useSelector } from 'react-redux';
 import StartPage from 'pages/StartPage/StartPage';
 
 import SharedLayout from '../shared/components/SharedLayout.js/SharedLayout';
@@ -234,9 +234,7 @@ const App = () => {
         />
       </div>
     </>
-
   );
 };
 
 export default App;
-
