@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ThemeToggler from '../ThemeToggler/ThemeToggler';
-import { useLocation } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import icons from '../../../../shared/icons/sprite.svg';
 import goosePic2x from '../../../../shared/images/header/desktop_goose_header@2x.png';
 import goosePic from '../../../../shared/images/header/desktop_goose_header.png';
@@ -16,6 +16,8 @@ const Header = () => {
   const location = useLocation();
   const path = location.pathname;
   // console.log(location);
+  const params = useParams();
+  // console.log('params:', params);
 
   const [tasksStatus, setTasksStatus] = useState(null);
 
@@ -24,7 +26,7 @@ const Header = () => {
 
   useEffect(() => {
     if (monthTasks && path.includes('day')) {
-      const currentDate = path.includes('day') && path.slice(14, path.length);
+      const currentDate = path.includes('day') && params.currentDay;
       // ----for positive result:
       // const currentDate = '2023-04-17';
 

@@ -11,12 +11,14 @@
 // 8. Помилка - користувачу показується відповідне пушповідомлення
 import React from 'react';
 import CalendarToolbar from './CalendarToolbar/CalendarToolbar';
+import ChosenDay from 'modules/ChosenDay/components/ChosenDay/ChosenDay';
 
 const CalendarComponent = () => {
   return (
     <div>
       CalendarComponent
       <CalendarToolbar />
+      <ChosenDay />
     </div>
   );
 };

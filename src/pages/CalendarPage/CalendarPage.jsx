@@ -12,6 +12,11 @@ const CalendarPage = () => {
 
   const [chosenDate] = useState(new Date());
 
+  useEffect(() =>
+    // redirect to /calendar/month/currentdate
+
+    {}, []);
+
   useEffect(() => {
     if (isLogged) {
       setTimeout(() => {
