@@ -28,8 +28,8 @@ const radioStyles = {
 const RadioIcon = ({ color, borderColor }) => (
   <span
     style={{
-      width: '12px',
-      height: '12px',
+      width: '14px',
+      height: '14px',
       borderRadius: '50%',
       display: 'flex',
       alignItems: 'center',

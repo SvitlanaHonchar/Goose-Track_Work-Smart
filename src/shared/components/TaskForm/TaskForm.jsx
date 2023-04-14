@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import dayjs from 'dayjs';
+import { useDispatch } from 'react-redux';
 import {
   StyledForm,
   InfoWrapper,
@@ -20,8 +21,9 @@ import { PriorityList } from './PriorityList/PriorityList';
 import { TASKS_PRIORITY } from 'shared/constants';
 import getTimeStringWithDate from 'shared/utils/getTimeStringWithDate';
 import theme from 'shared/theme';
-import { showErrorValidation } from 'shared/utils/notifications';
+import { showErrorValidation, showError } from 'shared/utils/notifications';
 
+import { createTask, updateTask } from 'redux/tasks/tasksOperations';
 const TaskForm = props => {
   const { action, onClose, category, date, taskDetails } = props;
   const [title, setTitle] = useState(taskDetails.title || '');
@@ -39,28 +41,42 @@ const TaskForm = props => {
   const [priority, setPriority] = useState(
     taskDetails.priority || TASKS_PRIORITY.LOW
   );
+
+  const dispatch = useDispatch();
+
   const handleSubmit = async e => {
     e.preventDefault();
+    const taskStart = start.format('HH-mm');
+    const taskEnd = end.format('HH-mm');
+
+    const task = {
+      title: title,
+      start: taskStart,
+      end: taskEnd,
+      priority: priority,
+      category: category,
+      date: date,
+    };
+    console.log('task: ', task);
+
     try {
-      const taskStart = start.format('HH-mm');
-      const taskEnd = end.format('HH-mm');
-
-      const task = {
-        title: title,
-        start: taskStart,
-        end: taskEnd,
-        priority: priority,
-        category: category,
-        date: date,
-      };
-      console.log('task: ', task);
-
       await taskValidationSchema.validate(task, { abortEarly: false });
-      onClose();
     } catch (error) {
       const validationErrors = [...error.errors].join(' ');
       showErrorValidation(validationErrors);
+      return;
     }
+
+    const result =
+      action === 'add'
+        ? await dispatch(createTask(task))
+        : await dispatch(updateTask({ taskId: taskDetails.id, task }));
+
+    if (result.error) {
+      showError();
+    }
+
+    onClose();
   };
   const isTimeWarning = end.isBefore(start);
 

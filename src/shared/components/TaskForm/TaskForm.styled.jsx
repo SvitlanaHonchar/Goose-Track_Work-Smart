@@ -81,7 +81,10 @@ export const InfoInput = styled.input`
     outline: 1px solid ${theme.palette.primary.main};
   }
   &::placeholder {
-    ${commonInputStyles};
+    color: ${theme.palette.grey[600]};
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.29;
     padding: 0;
     opacity: 1;
   }
@@ -168,6 +171,7 @@ export const AddButton = styled.button`
     height: 20px;
   }
 `;
+
 export const EditButton = styled.button`
   ${commonOperationBtnStyles};
   padding-left: 108px;

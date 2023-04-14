@@ -38,7 +38,7 @@ const CustomModal = ({ children, ...props }) => {
       bottom: 'auto',
       marginRight: '-50%',
       background: '#FFFFFF',
-      width: width >= 768 ? '340px' : '267px',
+      width: width >= 768 ? '396px' : '303px',
       maxWidth: '100%',
       paddingTop: width >= 768 ? '40px' : '48px',
       paddingBottom: '40px',
