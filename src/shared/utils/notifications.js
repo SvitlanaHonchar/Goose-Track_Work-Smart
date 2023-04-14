@@ -12,3 +12,6 @@ export const showSuccessAddTask = () => {
 export const showSuccessEditTask = () => {
   toast.success("You've just  editted task");
 };
+export const showErrorValidation = message => {
+  toast.error(message);
+};
