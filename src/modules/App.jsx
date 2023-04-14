@@ -49,7 +49,7 @@ const ChosenDay = lazy(() =>
 //adding private routes with redirect using HOC withAuthRedirect
 
 const AccountPageWithRedirect = withAuthRedirect(AccountPage, '/');
-const CalendarPageWithRedirect = withAuthRedirect(CalendarPage, '/');
+// const CalendarPageWithRedirect = withAuthRedirect(CalendarPage, '/');
 
 // ----------------------------------------------------
 // for gitHub
@@ -67,10 +67,10 @@ const router = createBrowserRouter(
       <Route path="register" element={<RegisterPage />} />
       <Route element={<MainLayout />}>
         <Route path="account" element={<AccountPageWithRedirect />} />
-        <Route path="calendar" element={<CalendarPageWithRedirect />}>
-          {/* for use without authoriazation */}
-          {/* <Route path="account" element={<AccountPage />} />
-        <Route path="calendar" element={<CalendarPage />}> */}
+        {/*  <Route path="calendar" element={<CalendarPageWithRedirect />}>*/}
+        {/* for use without authoriazation */}
+        {/* <Route path="account" element={<AccountPage />} />*/}
+        <Route path="calendar" element={<CalendarPage />}>
           <Route path="month/:currentMonth" element={<ChosenMonth />} />
           <Route path="day/:currentDay" element={<ChosenDay />} />
         </Route>
