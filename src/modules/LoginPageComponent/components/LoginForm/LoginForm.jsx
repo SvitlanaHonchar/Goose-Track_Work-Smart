@@ -8,10 +8,7 @@ import {
   StyledButton,
   StyledNavLink,
   StyledContainer,
-  FormikStyled,
 } from './LoginForm.styled.js';
-// import Icons from '../../../shared/icons/sprite.svg';
-
 import Icons from '../../../../shared/icons/sprite.svg';
 import { authLogin } from 'redux/auth/authOperations.js';
 import theme from '../../../../shared/theme.js';
@@ -54,9 +51,7 @@ export const LoginForm = () => {
       >
         {({ values, isSubmitting }) => (
           <StyledContainer>
-            <StyledLoginForm
-            // onSubmit={handleSubmit}
-            >
+            <StyledLoginForm>
               <p className="Title"> Log in</p>
               <label className="Inputlabel">
                 Email

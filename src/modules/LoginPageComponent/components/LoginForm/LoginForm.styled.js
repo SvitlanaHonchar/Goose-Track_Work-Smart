@@ -5,31 +5,32 @@ import { NavLink } from 'react-router-dom';
 
 export const StyledContainer = styled.div`
   background-color: #ffffff;
-  margin-bottom: 18px;
-  padding: 40px 24px;
   border-radius: 8px;
+  margin-bottom: 18px;
 
   @media screen and (max-width: 374px) {
-    margin-bottom: 24px;
     width: 100%;
-    max-width: 287px;
-  }
-
-  @media screen and (min-width: 375px) {
-    width: 287px;
+    max-width: 335px;
   }
 
   @media screen and (min-width: 768px) {
     margin-bottom: 24px;
-    padding: 40px;
-    width: 480px;
   }
 `;
 
 export const StyledLoginForm = styled(Form)`
-  margin-bottom: 18px;
   display: flex;
   flex-direction: column;
+  padding: 40px 24px;
+
+  @media screen and (min-width: 375px) {
+    width: 335px;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 40px;
+    width: 480px;
+  }
 
   .Title {
     margin-top: 0;
@@ -121,7 +122,6 @@ export const StyledButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
-  // background: #3e85f3;
   box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
   border-radius: 16px;
 
@@ -134,13 +134,10 @@ export const StyledButton = styled(Button)`
   text-transform: none;
 
   @media screen and (min-width: 768px) {
-    font-size: 18px;
-    line-height: 1.33;
-  }
-
-  @media screen and (min-width: 1440px) {
     padding-top: 16px;
     padding-bottom: 16px;
+    font-size: 18px;
+    line-height: 1.33;
   }
 `;
 
