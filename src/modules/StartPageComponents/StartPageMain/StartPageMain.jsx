@@ -116,9 +116,3 @@ export function StartPageMain(){
         </StartPageMainStyled>
     );
 }
-/*
- <div className="arrow">
-                    <svg height="6" width="39">
-                        <use href={sprite+'#arRight'}></use>
-                    </svg>
-                </div> */
