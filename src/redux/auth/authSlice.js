@@ -67,6 +67,18 @@ const authSlice = createSlice({
           state.refreshToken = refreshToken;
         }
       )
+      .addCase(
+        authUpdate.fulfilled,
+        (state, { payload: { name, email, skype, phone, userImgUrl } }) => {
+          state.user = {
+            name,
+            email,
+            phone,
+            skype,
+            userImgUrl,
+          };
+        }
+      )
       .addMatcher(
         isAnyOf(...getExtraLogActions('fulfilled')),
         (state, action) => {
@@ -101,17 +113,31 @@ function authFulfilled(state) {
 }
 
 function authPending(state) {
-  state.isLogged = false;
+  // state.isLogged = false;
   state.isLoading = true;
   state.error = false;
+  state.user = {
+    name: null,
+    email: null,
+    phone: null,
+    skype: null,
+    userImgUrl: null,
+  };
 }
 
 function authRejected(state, action) {
   state.isLogged = false;
   state.isLoading = false;
+  state.user = {
+    name: null,
+    email: null,
+    phone: null,
+    skype: null,
+    userImgUrl: null,
+  };
   state.error = action.payload;
-  state.accessToken = null;
-  state.refreshToken = null;
+  // state.accessToken = null;
+  // state.refreshToken = null;
 }
 
 export const authReducer = authSlice.reducer;

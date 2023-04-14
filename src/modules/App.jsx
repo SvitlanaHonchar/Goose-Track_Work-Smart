@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React, { lazy, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import {
   Route,
@@ -6,26 +6,41 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
-
-import { useTheme } from '@mui/material/styles';
+// import { useTheme } from '@mui/material/styles';
 
 //layoutes and pages lazy loading
 import MainLayout from './MainLayout/components/MainLayout/MainLayout';
-import { Box, Typography } from '@mui/material';
-// import { authLogin, authRegister } from 'redux/auth/authOperations';
-// import { selectUser } from 'redux/auth/authSelectors';
-// import { useDispatch, useSelector } from 'react-redux';
+import {
+  // authGetUserInfo,
+  authLogin,
+  // authLogout,
+  authRefresh,
+  // authRegister,
+  // authUpdate,
+} from 'redux/auth/authOperations';
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import { useDispatch, useSelector } from 'react-redux';
 import StartPage from 'pages/StartPage/StartPage';
-import withAuthRedirect from './Common/withAuthRedirect/withAuthRedirect';
-import SharedLayout from './Common/SharedLayout.js/SharedLayout';
+
+import SharedLayout from '../shared/components/SharedLayout.js/SharedLayout';
+import withAuthRedirect from 'hoc/withAuthRedirect/withAuthRedirect';
+import {
+  // createTask,
+  // deleteTask,
+  getMonthTasks,
+  // updateTask,
+} from 'redux/tasks/tasksOperations';
+
 // const StartPage = lazy(() => import('pages/StartPage/StartPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const CalendarPage = lazy(() => import('pages/CalendarPage/CalendarPage'));
 const AccountPage = lazy(() => import('pages/AccountPage/AccountPage'));
 const NoMatchPage = lazy(() => import('pages/NoMatchPage/NoMatchPage'));
-const ChoosedMonth = lazy(() => import('pages/ChoosedMonth/ChoosedMonth'));
-const ChoosedDay = lazy(() => import('pages/ChoosedDay/ChoosedDay'));
+const ChosenMonth = lazy(() => import('./ChosenMonth/components/ChosenMonth'));
+const ChosenDay = lazy(() =>
+  import('./ChosenDay/components/ChosenDay/ChosenDay')
+);
 
 //using MainLayout HOC for adding shared layout
 // const AccountPageWithLayout = MainLayout(AccountPage);
@@ -56,8 +71,8 @@ const router = createBrowserRouter(
           {/* for use without authoriazation */}
           {/* <Route path="account" element={<AccountPage />} />
         <Route path="calendar" element={<CalendarPage />}> */}
-          <Route path="month/:currentMonth" element={<ChoosedMonth />} />
-          <Route path="day/:currentDay" element={<ChoosedDay />} />
+          <Route path="month/:currentMonth" element={<ChosenMonth />} />
+          <Route path="day/:currentDay" element={<ChosenDay />} />
         </Route>
       </Route>
 
@@ -68,30 +83,160 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
-  // const user = useSelector(selectUser);
-  // const dispatch = useDispatch();
-  // console.log('user: ', user);
+  //!Testing API
+  const isLogged = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
+
+  // Register- success
   // useEffect(() => {
   //   dispatch(
   //     authRegister({
-  //       name: 'artemartem',
-  //       email: 'artem24232@gmail.com',
-  //       password: '13135463442342',
+  //       name: 'Test',
+  //       email: 'smth5@gmail.com',
+  //       password: '1234567',
   //     })
   //   );
   // }, [dispatch]);
-  const theme = useTheme();
+
+  //login- success
+  useEffect(() => {
+    dispatch(
+      authLogin({
+        // name: 'Avataghtr',
+        email: 'smth5@gmail.com',
+        password: '1234567',
+      })
+    );
+  }, [dispatch]);
+
+  //logout
+  // useEffect(() => {
+  //   console.log('isLogged: ', isLogged);
+  //   if (isLogged) dispatch(authLogout());
+  // }, [dispatch, isLogged]);
+  // const theme = useTheme();
+
+  // Refresh - success
+  useEffect(() => {
+    dispatch(authRefresh());
+  }, [dispatch]);
+
+  //Get user info -success
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (isLogged) dispatch(authGetUserInfo());
+  //   }, 1000);
+  // }, [dispatch, isLogged]);
+
+  //Update user
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (isLogged)
+  //       dispatch(
+  //         authUpdate({
+  //           name: 'One',
+  //           phone: 38094383377,
+  //           birthday: null,
+  //           skype: 'One1',
+  //           userImgUrl: 'image.jpg',
+  //         })
+  //       );
+  //   }, 1000);
+  // }, [dispatch, isLogged]);
+
+  //Get month tasks - success
+  useEffect(() => {
+    setTimeout(() => {
+      if (isLogged) dispatch(getMonthTasks({ year: '2023', month: '4' }));
+    }, 1000);
+  }, [dispatch, isLogged]);
+
+  //Create task - success
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (isLogged) {
+  //       dispatch(
+  //         createTask({
+  //           title: 'new',
+  //           start: '9-00',
+  //           end: '14-00',
+  //           priority: 'low',
+  //           category: 'to-do',
+  //           date: '2023-04-18',
+  //         })
+  //       );
+  //     }
+  //   }, 1000);
+  // }, [dispatch, isLogged]);
+
+  // Update task
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (isLogged) {
+  //       dispatch(
+  //         updateTask({
+  //           taskId: '6437ec67a7f30f6c375288f9',
+  //           taskData: {
+  //             title: 'updated',
+  //             start: '8-00',
+  //             end: '16-00',
+  //             priority: 'high',
+  //             category: 'to-do',
+  //             date: '2023-04-20',
+  //           },
+  //         })
+  //       );
+  //     }
+  //   }, 1000);
+  // }, [dispatch, isLogged]);
+
+  //Delete task
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (isLogged) {
+  //       dispatch(deleteTask('6437f3a7a7f30f6c37528c15'));
+  //     }
+  //   }, 2000);
+  // }, [dispatch, isLogged]);
+
+  //!Testing API
+
   return (
-    <RouterProvider router={router} />
+    <>
+      <RouterProvider router={router} />
+
+      <div>
+        <Toaster
+          position="top-right"
+          reverseOrder={true}
+          toastOptions={{
+            duration: 5000,
+            style: {
+              background: '#F7F7F7',
+              color: '#111111',
+              fontSize: '14px',
+              lineHeight: '1.17',
+            },
+
+            success: {
+              iconTheme: {
+                primary: '#3E85F3',
+                secondary: '#FFFFFF',
+              },
+            },
+            error: {
+              iconTheme: {
+                primary: '#EA3D65',
+                secondary: '#FFFFFF',
+              },
+            },
+          }}
+        />
+      </div>
+    </>
+
   );
 };
 
 export default App;
-/*         <Box sx={{ backgroundColor: theme.palette.primary.main }}>
-      <Typography variant="h1" color={theme.palette.common.white}>
-        <RouterProvider router={router} />
-        <div>
-          <Toaster />
-        </div>
-      </Typography>
-    </Box> */
+
