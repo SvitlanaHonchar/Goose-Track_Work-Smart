@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const PeriodPaginator = ({ date, period, onDateChange }) => {
-  const [currentDate, setCurrentDate] = useState(date);
-
   const updateDate = (amount, unit) => {
-    const dateCopy = new Date(currentDate);
+    const dateCopy = new Date(date);
     if (unit === 'month') {
       dateCopy.setMonth(dateCopy.getMonth() + amount);
     } else {
       dateCopy.setDate(dateCopy.getDate() + amount);
     }
-    setCurrentDate(dateCopy);
-    // onDateChange(dateCopy);
+
+    onDateChange(dateCopy);
   };
 
   const formatDate = (date, format) => {
@@ -54,7 +52,7 @@ const PeriodPaginator = ({ date, period, onDateChange }) => {
           fontSize: '20px',
         }}
       >
-        {formatDate(currentDate, period)}
+        {formatDate(date, period)}
       </span>
 
       <div
