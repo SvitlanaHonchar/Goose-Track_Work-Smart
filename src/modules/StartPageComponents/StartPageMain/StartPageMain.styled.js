@@ -47,7 +47,7 @@ margin-top: 64px;
     line-height: 1.14;
     margin-bottom: 40px;
 
-    @media screen and (min-width: 768px) and (max-width: 1439px) {
+    @media screen and (min-width: 768px) {
         font-size: 40px;
         line-height: 1.1;
         margin-bottom: 50px;
