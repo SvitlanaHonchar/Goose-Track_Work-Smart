@@ -1,7 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function CalendarTable() {
+function CalendarTable({ tasks, currentMonth }) {
   return <div>CalendarTable</div>;
 }
+
+CalendarTable.propTypes = {
+  tasks: PropTypes.arrayOf(
+    PropTypes.shape({
+      date: PropTypes.string.isRequired,
+      tasks: PropTypes.arrayOf(
+        PropTypes.shape({
+          title: PropTypes.string.isRequired,
+          data: PropTypes.string.isRequired,
+          priority: PropTypes.string,
+        })
+      ),
+    }).isRequired
+  ).isRequired,
+  currentMonth: PropTypes.string.isRequired,
+};
 
 export default CalendarTable;
