@@ -3,9 +3,9 @@ import { GooseTracker_API } from 'redux/API/GooseTracker_API';
 
 export const getMonthTasks = createAsyncThunk(
   'task/by-month',
-  async (_, thunkAPI) => {
+  async ({ year, month }, thunkAPI) => {
     try {
-      return await GooseTracker_API.getMonthTasks();
+      return await GooseTracker_API.getMonthTasks({ year, month });
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -16,7 +16,7 @@ export const createTask = createAsyncThunk(
   'task/create',
   async (task, thunkAPI) => {
     try {
-      return await GooseTracker_API.createTask(task);
+      return GooseTracker_API.createTask(task);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

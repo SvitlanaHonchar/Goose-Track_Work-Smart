@@ -49,8 +49,12 @@ export const GooseTracker_API = {
   },
 
   //!Tasks
-  getMonthTasks: async () => {
-    const response = await $privateHost.get('task/by-month');
+  getMonthTasks: async ({ year, month }) => {
+    if (typeof month !== 'number' || month > 12 || month < 1)
+      throw new Error('Bad month tasks request: enter correct values!');
+    const response = await $privateHost.get(
+      `task/by-month?year=${year}&month=${month}`
+    );
     return response.data;
   },
   createTask: async task => {

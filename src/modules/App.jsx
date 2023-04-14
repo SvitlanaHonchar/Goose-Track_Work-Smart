@@ -24,12 +24,11 @@ import StartPage from 'pages/StartPage/StartPage';
 
 import SharedLayout from '../shared/components/SharedLayout.js/SharedLayout';
 import withAuthRedirect from 'hoc/withAuthRedirect/withAuthRedirect';
-import {
-  // createTask,
-  // deleteTask,
-  getMonthTasks,
-  // updateTask,
-} from 'redux/tasks/tasksOperations';
+import // createTask,
+// deleteTask,
+// getMonthTasks,
+// updateTask,
+'redux/tasks/tasksOperations';
 
 // const StartPage = lazy(() => import('pages/StartPage/StartPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
@@ -49,7 +48,7 @@ const ChosenDay = lazy(() =>
 //adding private routes with redirect using HOC withAuthRedirect
 
 const AccountPageWithRedirect = withAuthRedirect(AccountPage, '/');
-const CalendarPageWithRedirect = withAuthRedirect(CalendarPage, '/');
+// const CalendarPageWithRedirect = withAuthRedirect(CalendarPage, '/');
 
 // ----------------------------------------------------
 // for gitHub
@@ -66,13 +65,14 @@ const router = createBrowserRouter(
       <Route path="login" element={<LoginPage />} />
       <Route path="register" element={<RegisterPage />} />
       <Route element={<MainLayout />}>
-        {/* <Route path="account" element={<AccountPageWithRedirect />} />
-        <Route path="calendar" element={<CalendarPageWithRedirect />}> */}
+        <Route path="account" element={<AccountPageWithRedirect />} />
+        {/*  <Route path="calendar" element={<CalendarPageWithRedirect />}>*/}
         {/* for use without authoriazation */}
-        <Route path="account" element={<AccountPage />} />
+        {/* <Route path="account" element={<AccountPage />} />*/}
         <Route path="calendar" element={<CalendarPage />}>
           <Route path="month/:currentMonth" element={<ChosenMonth />} />
-          <Route path="day/:currentDay" element={<ChosenDay />} />
+          <Route path="day/:currentDay" element={<ChosenDay />} />{' '}
+          {/*!!!!! currentDay format: '2023-04-14'*/}
         </Route>
       </Route>
 
@@ -84,7 +84,7 @@ const router = createBrowserRouter(
 
 const App = () => {
   //!Testing API
-  const isLogged = useSelector(selectIsLoggedIn);
+  // const isLogged = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
 
   // Register- success
@@ -145,11 +145,11 @@ const App = () => {
   // }, [dispatch, isLogged]);
 
   //Get month tasks - success
-  useEffect(() => {
-    setTimeout(() => {
-      if (isLogged) dispatch(getMonthTasks({ year: '2023', month: '4' }));
-    }, 1000);
-  }, [dispatch, isLogged]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (isLogged) dispatch(getMonthTasks({ year: 2023, month: 3 }));
+  //   }, 1000);
+  // }, [dispatch, isLogged]);
 
   //Create task - success
   // useEffect(() => {

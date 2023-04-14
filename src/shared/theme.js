@@ -46,6 +46,7 @@ export const theme = createTheme({
       body: '#111111',
       dark: '#21222C',
       light: '#DCE3E5',
+      input: '#F7F7F7',
     },
     custom: {
       input: '#F7F7F7',
