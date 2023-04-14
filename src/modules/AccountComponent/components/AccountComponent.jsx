@@ -5,14 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { Grid, Typography } from '@mui/material';
 import ButtonAuth from 'shared/components/ui/ButtonAuth/ButtonAuth';
-import theme from 'shared/theme';
-import styled from 'styled-components';
+import { authUpdate } from 'redux/auth/authOperations';
 
 const AccountComponent = () => {
   const dispatch = useDispatch();
 
   const userData = useSelector(state => state.auth.user);
-
+  console.log('userData', userData);
   const formRef = useRef(null);
 
   const formik = useFormik({
@@ -21,7 +20,7 @@ const AccountComponent = () => {
       const formData = new FormData(formRef.current);
       formData.delete('file');
       formData.append('userImgUrl', v.userImgUrl);
-      // dispatch(updateUser(formData));
+      dispatch(authUpdate(formData));
     },
   });
 
@@ -33,19 +32,20 @@ const AccountComponent = () => {
     setValues,
   } = formik;
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const setAvatar = useCallback(file => setFieldValue('userImgUrl', file), []);
   const setBirthday = useCallback(date => {
     setFieldValue('birthday', date);
-    // eslint-disable-next-line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const userAvatarFormData = { name, userImgUrl };
   const userFormData = { name, birthday, email, phone, skype };
 
   return (
-    <Grid container>
+    <Grid container justifyContent={'center'}>
       <UserAvatar setAvatar={setAvatar} formData={userAvatarFormData} />
       <UserForm
-        formData={userFormData}
+        formData={userData}
         onChange={handleChange}
         setBirthday={setBirthday}
       />
@@ -54,14 +54,8 @@ const AccountComponent = () => {
       >
         <Typography variant="button">Save changes</Typography>
       </ButtonAuth>
-
-      {/* <StyledDiv theme={theme} variant="outlined">
-        hello
-      </StyledDiv> */}
     </Grid>
   );
 };
-// const StyledDiv = styled(ButtonAuth)`
-//   color: ${p => p.theme.palette.error.main};
-// `;
+
 export default AccountComponent;

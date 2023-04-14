@@ -1,11 +1,17 @@
-import { Grid, Typography } from '@mui/material';
+import { Grid, IconButton, Typography } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import React from 'react';
+import React, { useState } from 'react';
 import TextInput from 'shared/components/ui/TextInput/TextInput';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function UserForm({ formData, onChange, setBirthday }) {
-  const { name, email, birthday, phone, skype } = formData || [];
+  const { name, email, birthday, phone, skype } = formData;
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  const handleExpandClick = () => {
+    setIsDatePickerOpen(!isDatePickerOpen);
+  };
+  console.log('formData', formData);
   return (
     <Grid container spacing={2}>
       <Grid item sm={12} md={6}>
@@ -14,11 +20,27 @@ export default function UserForm({ formData, onChange, setBirthday }) {
       </Grid>
       <Grid item sm={12} md={6}>
         <Typography variant="overline">Birthday</Typography>
-        <TextInput onChange={onChange} name="birthday" value={birthday || ''} />
-        {/* <DatePicker setBirthday={setBirthday} /> */}
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DatePicker />
-        </LocalizationProvider>
+        <TextInput
+          onChange={onChange}
+          name="birthday"
+          value={birthday || ''}
+          InputProps={{
+            endAdornment: (
+              <IconButton onClick={handleExpandClick}>
+                <ExpandMoreIcon />
+              </IconButton>
+            ),
+          }}
+        />
+        {isDatePickerOpen && (
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DatePicker
+              value={birthday}
+              onChange={date => setBirthday(date.toISOString())}
+              startWeekDay="monday"
+            />
+          </LocalizationProvider>
+        )}
       </Grid>
       <Grid item sm={12} md={6}>
         <Typography variant="overline">Email</Typography>
