@@ -16,7 +16,7 @@ export const createTask = createAsyncThunk(
   'task/create',
   async (task, thunkAPI) => {
     try {
-      return await GooseTracker_API.createTask(task);
+      return GooseTracker_API.createTask(task);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
