@@ -8,9 +8,9 @@ import Loader from 'shared/components/Loader/Loader';
 
 const ChosenMonth = () => {
   const { currentMonth } = useParams();
+
   const tasks = useSelector(selectAllTasks);
-  console.log('tasks: ', tasks);
-  console.log('currentMonth: ', currentMonth);
+
   return (
     <div className="chosenMonth">
       ChosenMonth

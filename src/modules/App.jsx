@@ -18,18 +18,17 @@ import {
   // authRegister,
   // authUpdate,
 } from 'redux/auth/authOperations';
-import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import { useDispatch, useSelector } from 'react-redux';
+// import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import { useDispatch } from 'react-redux';
 import StartPage from 'pages/StartPage/StartPage';
 
 import SharedLayout from '../shared/components/SharedLayout.js/SharedLayout';
 import withAuthRedirect from 'hoc/withAuthRedirect/withAuthRedirect';
-import {
-  // createTask,
-  // deleteTask,
-  getMonthTasks,
-  // updateTask,
-} from 'redux/tasks/tasksOperations';
+import // createTask,
+// deleteTask,
+// getMonthTasks,
+// updateTask,
+'redux/tasks/tasksOperations';
 
 // const StartPage = lazy(() => import('pages/StartPage/StartPage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
@@ -84,7 +83,7 @@ const router = createBrowserRouter(
 
 const App = () => {
   //!Testing API
-  const isLogged = useSelector(selectIsLoggedIn);
+  // const isLogged = useSelector(selectIsLoggedIn);
   const dispatch = useDispatch();
 
   // Register- success
@@ -145,11 +144,11 @@ const App = () => {
   // }, [dispatch, isLogged]);
 
   //Get month tasks - success
-  useEffect(() => {
-    setTimeout(() => {
-      if (isLogged) dispatch(getMonthTasks({ year: '2023', month: '4' }));
-    }, 1000);
-  }, [dispatch, isLogged]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (isLogged) dispatch(getMonthTasks({ year: 2023, month: 3 }));
+  //   }, 1000);
+  // }, [dispatch, isLogged]);
 
   //Create task - success
   // useEffect(() => {
