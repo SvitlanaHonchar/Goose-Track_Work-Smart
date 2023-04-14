@@ -1,5 +1,6 @@
 import { Opportunity } from "./Opportunity/Opportunity";
 import { Comment } from "./Comment/Comment";
+
 import React from 'react';
 
 import { StartPageMainStyled } from "./StartPageMain.styled";
@@ -22,15 +23,67 @@ import Alexander from '../../../shared/image/GooseStartPage/comments/Alexander.j
 import sprite from '../../../shared/icons/sprite.svg';
 
 import Slider from "react-slick";
-const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
+
+
+const SlickArrowLeft = ({ currentSlide, slideCount, ...props }) => (
+  <div
+    {...props}
+    className={
+      "slick-prev slick-arrow" +
+      (currentSlide === 0 ? " slick-disabled" : "")
+    }
+    aria-hidden="true"
+    aria-disabled={false}
+    type="button"
+  >
+   <svg height="6" width="39" className="svg-arrow">
+                        <use href={sprite+'#arRight'}></use>
+                    </svg>
+   
+  </div>
+);
+const SlickArrowRight = ({ currentSlide, slideCount, ...props }) => (
+  <div
+    {...props}
+    className={
+      "slick-next slick-arrow" +
+      (currentSlide === slideCount - 1 ? " slick-disabled" : "")
+    }
+    aria-hidden="true"
+    aria-disabled={ false}
+    type="button"
+  > <svg height="6" width="39" className="svg-arrow">
+  <use href={sprite+'#arLeft'}></use>
+</svg>
+    
+  </div>
+);
+
+
 
 export function StartPageMain(){
+
+      const settings={
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow:2,
+        slidesToScroll: 1,
+        adaptiveHeight:true,
+        responsive:[
+            {
+                breakpoint:1439,
+                settings:{
+                    slidesToShow:1,
+                }
+            }
+        ],
+        nextArrow:<SlickArrowRight></SlickArrowRight>,
+        prevArrow:<SlickArrowLeft></SlickArrowLeft>
+
+      }
+
+    
     return(
         <StartPageMainStyled>
             <section>
@@ -49,14 +102,15 @@ export function StartPageMain(){
                     </Opportunity>
             </ul>
             </section>
-            <section>
-                <h2 className="content-review">Reviews</h2>
-                <Slider className="slider"  {...settings} >
+            <section className="content-review">
+                <h2 className="content-h2">Reviews</h2>
+                <Slider  className="slider"  {...settings} >
                 <Comment src={Olena} num={2} name='Olena Doe'>GooseTrack is impressive, the calendar view and
                     filter options make it easy to stay organized and focused. Highly recommended.</Comment>
-                <Comment src={Alexander} num={4} name='Alexander Hubbard'>i</Comment>
+                <Comment src={Alexander} num={4} name='Alexander Hubbard'>i</Comment>   
+                <Comment src={Alexander} num={4} name='Alexander Hubbard'>i</Comment>  
+                <Comment src={Alexander} num={4} name='Alexander Hubbard'>i</Comment>      
                 </Slider>
-              
             </section>
           
         </StartPageMainStyled>

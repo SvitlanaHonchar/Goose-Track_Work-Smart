@@ -7,17 +7,21 @@ export const StartPageMainStyled = styled.main`
 display: flex;
 flex-direction: column;
 row-gap: 64px;
-margin-bottom: 100px;
+margin-bottom: 64px;
 margin-top: 64px;
     padding-left:20px;
     padding-right: 20px;
   @media screen and (min-width: 768px) and (max-width: 1439px) {
     padding-left:32px;
     padding-right: 32px;
+    row-gap: 100px;
+    margin-bottom: 100px;
 }
 @media screen and (min-width: 1440px) {
     padding-left:128px;
     padding-right: 128px;
+    row-gap: 100px;
+    margin-bottom: 100px;
 }
 & ul.content-gap {
     display: flex;
@@ -34,23 +38,40 @@ margin-top: 64px;
     list-style: none;
     padding: 0;
 }
-& .content-review{
-    font-size: 40px;
+& .content-h2{
+    font-size: 28px;
     color:${mainBlue};
     text-align: center;
     margin: 0;
     text-transform: uppercase;
-    line-height: 1.1;
-    margin-bottom: 50px;
+    line-height: 1.14;
+    margin-bottom: 40px;
+
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+        font-size: 40px;
+        line-height: 1.1;
+        margin-bottom: 50px;
+}
+    
+}
+& .content-review{
+    height: 324px;
+    position: relative;
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
+        height: 360px;
+}
+@media screen and (min-width: 1440px) {
+        height: 374px;
+        width:1184px;
+        margin-left: auto;
+        margin-right: auto;
+}
 }
 & .slider{
-    position: relative;
+    
     height: fit-content;
 }
-& .arrow svg{
-    fill:black;
-    height: fit-content;
-}
+
 & .slick-track {
     display: flex;
 }
@@ -60,21 +81,42 @@ margin-top: 64px;
 & .slick-arrow{
     position: absolute;
     bottom:0;
-    
+    z-index: 20;  
 }
 
+& svg.svg-arrow{
+    width: 39px;
+    height: 50px;
+    @media screen and (min-width: 768px) {
+    width: 47px;
+    height: 61px;
+}
+}
 & .slick-arrow.slick-prev{
- left: 0;
- display: block;
- width: 40px;
- height: 40px;
- border:none;
-background-image:url(${sprite+'#arLeft'});
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+ height: 50px;
+ width: 39px;
+ left: calc(50% + 15px);
+ @media screen and (min-width: 768px) {
+    height: 61px;
+    width: 47px;
+}
 }
 
 & .slick-arrow.slick-next{
-  right: 0;
-    
+    cursor: pointer;
+height: 50px;
+ width: 39px;
+ right:calc(50% + 15px);  
+& svg.svg-arrow{
+    margin-left: auto;
+}
+@media screen and (min-width: 768px) {
+    height: 61px;
+    width: 47px;
+}
 }
 
 `

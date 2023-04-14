@@ -4,7 +4,7 @@ import sprite from '../../../../shared/icons/sprite.svg';
 export function Comment(props){
     return(
     
-              <CommentStyled>
+            <CommentStyled>
             <div className="comment-container">
             <div className="comment-box">
                 <img src={props.src} alt='User avatar' />
