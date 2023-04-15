@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { format, getYear, getMonth } from 'date-fns';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import PeriodPaginator from '../PeriodPaginator/PeriodPaginator';
 import PeriodTypeSelect from '../PeriodTypeSelect/PeriodTypeSelect';
 import { getMonthTasks } from 'redux/tasks/tasksOperations';
@@ -15,16 +16,37 @@ const CalendarToolbar = () => {
     useSelectedPeriodType(periodType);
 
   console.log('date: ', date);
+  const navigate = useNavigate();
 
-  const handleDateChange = date => setDate(date);
+  const handleDateChange = useCallback(
+    d => {
+      setDate(d);
+      const url = createCalendarUrl(d, periodType);
+      navigate(url);
+    },
+    [periodType, navigate]
+  );
+
+  const createCalendarUrl = (newDate, period) => {
+    return `/calendar/${period}/${format(
+      newDate,
+      period === 'month' ? 'yyyy-MM' : 'yyyy-MM-dd'
+    )}`;
+  };
+
+  const setActiveDate = () => {
+    setDate(new Date());
+  };
+
   const dispatch = useDispatch();
   const tasksForSelectedMonth = useSelector(selectAllTasks);
   const formattedDate = useMemo(() => format(date, 'yyyy-MM'), [date]);
   console.log('tasksForSelectedMonth : ', tasksForSelectedMonth);
   const hasMatchingDate = useMemo(() => {
-    if (!tasksForSelectedMonth) return false;
-    return tasksForSelectedMonth.some(task =>
-      task.date.startsWith(formattedDate)
+    return (
+      tasksForSelectedMonth?.some(task =>
+        task.date?.startsWith(formattedDate)
+      ) || false
     );
   }, [formattedDate, tasksForSelectedMonth]);
 
@@ -49,7 +71,7 @@ const CalendarToolbar = () => {
       <PeriodTypeSelect
         selectedType={selectedPeriodType}
         onTypeSelect={handlePeriodTypeSelect}
-        setActiveDate={handleDateChange}
+        setActiveDate={setActiveDate}
       />
     </div>
   );

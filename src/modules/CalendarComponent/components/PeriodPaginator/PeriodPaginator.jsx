@@ -1,28 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { addMonths, addDays, format } from 'date-fns';
-import { useNavigate } from 'react-router-dom';
 
 const PeriodPaginator = ({ date, period, onDateChange }) => {
-  const navigate = useNavigate();
-
-  const createCalendarUrl = (newDate, period) => {
-    return `/calendar/${period}/${format(
-      newDate,
-      period === 'month' ? 'yyyy-MM' : 'yyyy-MM-dd'
-    )}`;
-  };
-
-  const updateUrlAndDate = newDate => {
-    const url = createCalendarUrl(newDate, period);
-    navigate(url);
-    onDateChange(newDate);
-  };
-
   const updateDate = amount => {
     const newDate =
       period === 'month' ? addMonths(date, amount) : addDays(date, amount);
-    updateUrlAndDate(newDate);
+    onDateChange(newDate);
   };
 
   const formattedDate =
