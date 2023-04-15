@@ -1,13 +1,21 @@
-import { TextField } from '@mui/material';
+import { TextField, Box } from '@mui/material';
 import React from 'react';
 
 export default function TextInput({ children, ...props }) {
   return (
-    <TextField
-      {...props}
-      InputProps={{ sx: { borderRadius: '8px', height: '42px' } }}
-    >
-      {children}
-    </TextField>
+    <Box>
+      <TextField
+        {...props}
+        fullWidth
+        size="small"
+        // sx={{ display: 'block', height: '42px' }}
+        InputProps={{
+          ...(props.InputProps || {}),
+          // sx: { borderRadius: '8px', display: 'block' },
+        }}
+      >
+        {children}
+      </TextField>
+    </Box>
   );
 }

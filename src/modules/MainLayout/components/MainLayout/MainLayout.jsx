@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/authSelectors';
 import { authGetUserInfo } from 'redux/auth/authOperations';
 import { Box } from '@mui/system';
-import { useTheme } from 'styled-components';
+import { useTheme } from '@mui/material';
 
 const MainLayout = () => {
   const user = useSelector(selectUser);
@@ -22,6 +22,7 @@ const MainLayout = () => {
   }, [dispatch, user.name]);
 
   const theme = useTheme();
+  // console.log(theme);
 
   return (
     // Component =>

@@ -6,7 +6,7 @@ import theme from 'shared/theme';
 const LoginPageComponent = () => {
   return (
     <StyledLoginPageComponent
-      sx={{ backgroundColor: theme.palette.primary.dark }}
+      sx={{ backgroundColor: theme.palette.custom.blue }}
     >
       <LoginForm />
       <div className="ImageContainer">
