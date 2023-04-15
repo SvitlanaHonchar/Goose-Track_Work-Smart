@@ -35,3 +35,7 @@ export const showExistAcctErrorReg = () => {
     'Registration failed. Probably this email is already associated with an existing account. Please try again.'
   );
 };
+
+export const showAnyError = errorText => {
+  toast.error(errorText);
+};

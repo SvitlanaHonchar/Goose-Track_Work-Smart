@@ -98,16 +98,26 @@ const App = () => {
   //   );
   // }, [dispatch]);
 
+  //login-
   //login- success
   useEffect(() => {
     dispatch(
       authLogin({
-        // name: 'Avataghtr',
-        email: 'smth5@gmail.com',
-        password: '1234567',
+        email: 'lolol@gmail.com',
+        password: 'mari123mari',
       })
     );
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(
+  //     authLogin({
+  //       // name: 'Avataghtr',
+  //       email: 'smth5@gmail.com',
+  //       password: '1234567',
+  //     })
+  //   );
+  // }, [dispatch]);
 
   //logout
   // useEffect(() => {
