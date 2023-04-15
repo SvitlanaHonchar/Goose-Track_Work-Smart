@@ -11,14 +11,19 @@ const PeriodTypeSelect = ({ selectedType, onTypeSelect, setActiveDate }) => {
     onTypeSelect(type);
     const currentDate = new Date();
     setActiveDate(currentDate);
-    navigateToCalendar(selectedType, currentDate);
+    navigateToCalendarDate(selectedType, currentDate);
   };
 
-  const navigateToCalendar = (type, date) => {
+  const getUrlFormatDate = (type, date) => {
     const urlFormatDate =
       type === 'month' ? format(date, 'yyyy-MM-dd') : format(date, 'yyyy-MM');
     const newType = type === 'month' ? 'day' : 'month';
-    navigate(`/calendar/${newType}/${urlFormatDate}`);
+    return `/calendar/${newType}/${urlFormatDate}`;
+  };
+
+  const navigateToCalendarDate = (type, date) => {
+    const url = getUrlFormatDate(type, date);
+    navigate(url);
   };
 
   const handleClick = type => {
