@@ -36,6 +36,14 @@ export const showExistAcctErrorReg = () => {
   );
 };
 
-export const showAnyError = errorText => {
-  toast.error(errorText);
+export const showSuccessMoveTask = columnName => {
+  toast.success(
+    `Task has been successfully moved to the "${columnName}" column`
+  );
+};
+
+export const showSuccessDeleteTask = columnName => {
+  toast.success(
+    `Task has been successfully deleted from the "${columnName}" column`
+  );
 };
