@@ -1,57 +1,44 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { format, getYear, getMonth } from 'date-fns';
+import { useSelector, useDispatch } from 'react-redux';
 import PeriodPaginator from '../PeriodPaginator/PeriodPaginator';
 import PeriodTypeSelect from '../PeriodTypeSelect/PeriodTypeSelect';
 import { getMonthTasks } from 'redux/tasks/tasksOperations';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { selectAllTasks } from 'redux/tasks/tasksSelectors';
-import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import usePeriodTypeFromPath from 'shared/hooks/usePeriodTypeFromPath';
 import useSelectedPeriodType from 'shared/hooks/useSelectedPeriodType';
 
 const CalendarToolbar = () => {
-  const { currentMonth } = useParams();
-
+  const [date, setDate] = useState(new Date());
   const periodType = usePeriodTypeFromPath();
   const [selectedPeriodType, handlePeriodTypeSelect] =
     useSelectedPeriodType(periodType);
-  const [date, setDate] = useState(new Date());
+
   console.log('date: ', date);
 
-  const handleDateChange = date => {
-    setDate(date);
-  };
-
-  const formattedDate = format(date, 'yyyy-MM');
-  const year = getYear(date);
-  console.log('year: ', year);
-  const month = getMonth(date) + 1;
-  console.log('month: ', month);
-
+  const handleDateChange = date => setDate(date);
   const dispatch = useDispatch();
   const tasksForSelectedMonth = useSelector(selectAllTasks);
+  const formattedDate = useMemo(() => format(date, 'yyyy-MM'), [date]);
   console.log('tasksForSelectedMonth : ', tasksForSelectedMonth);
-
-  useEffect(() => {
-    if (!tasksForSelectedMonth) return;
-    if (tasksForSelectedMonth.length === 0) {
-      console.log('no tasks for this date');
-    }
-    const hasMatchingDate = tasksForSelectedMonth.some(task =>
+  const hasMatchingDate = useMemo(() => {
+    if (!tasksForSelectedMonth) return false;
+    return tasksForSelectedMonth.some(task =>
       task.date.startsWith(formattedDate)
     );
-    console.log('hasMatchingDate: ', hasMatchingDate);
+  }, [formattedDate, tasksForSelectedMonth]);
+
+  useEffect(() => {
     if (!hasMatchingDate) {
-      console.log('i need to make new request');
+      console.log('hasMatchingDate: ', hasMatchingDate);
       dispatch(
         getMonthTasks({
-          year: year,
-          month: month,
+          year: getYear(date),
+          month: getMonth(date) + 1,
         })
       );
     }
-  }, [tasksForSelectedMonth, formattedDate, dispatch, year, month]);
+  }, [dispatch, date, hasMatchingDate]);
 
   return (
     <div>

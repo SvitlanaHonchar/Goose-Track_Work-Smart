@@ -8,7 +8,6 @@ const PeriodTypeSelect = ({ selectedType, onTypeSelect, setActiveDate }) => {
   const navigate = useNavigate();
 
   const handlePeriodType = type => {
-    console.log(type);
     onTypeSelect(type);
     const currentDate = new Date();
     setActiveDate(currentDate);
