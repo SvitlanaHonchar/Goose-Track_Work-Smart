@@ -8,6 +8,7 @@ import { getMonthTasks } from 'redux/tasks/tasksOperations';
 import { selectAllTasks } from 'redux/tasks/tasksSelectors';
 import usePeriodTypeFromPath from 'shared/hooks/usePeriodTypeFromPath';
 import useSelectedPeriodType from 'shared/hooks/useSelectedPeriodType';
+import { showError } from 'shared/utils/notifications';
 
 const CalendarToolbar = () => {
   const [date, setDate] = useState(new Date());
@@ -51,14 +52,25 @@ const CalendarToolbar = () => {
   }, [formattedDate, tasksForSelectedMonth]);
 
   useEffect(() => {
-    if (!hasMatchingDate) {
-      dispatch(
-        getMonthTasks({
-          year: getYear(date),
-          month: getMonth(date) + 1,
-        })
-      );
-    }
+    const fetchData = async () => {
+      if (!hasMatchingDate) {
+        try {
+          const result = await dispatch(
+            getMonthTasks({
+              year: getYear(date),
+              month: getMonth(date) + 1,
+            })
+          );
+          if (result.error) {
+            showError();
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
+
+    fetchData();
   }, [dispatch, date, hasMatchingDate]);
 
   return (
