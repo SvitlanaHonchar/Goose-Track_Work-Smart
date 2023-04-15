@@ -22,7 +22,7 @@ const MainLayout = () => {
   }, [dispatch, user.name]);
 
   const theme = useTheme();
-  console.log(theme);
+  // console.log(theme);
 
   return (
     // Component =>
