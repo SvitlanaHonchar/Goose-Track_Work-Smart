@@ -52,6 +52,9 @@ export const theme = createTheme({
       input: '#F7F7F7',
       lightBlue: '#72C2F8',
       blue: '#CEEEFD',
+      borderLight: '#3e85f333',
+      borderDark: '#ffffff26',
+      activePeriod: '#CAE8FF',
     },
   },
   typography: {
