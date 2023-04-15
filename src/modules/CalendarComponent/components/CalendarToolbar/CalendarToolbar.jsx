@@ -30,7 +30,6 @@ const CalendarToolbar = () => {
 
   useEffect(() => {
     if (!hasMatchingDate) {
-      console.log('hasMatchingDate: ', hasMatchingDate);
       dispatch(
         getMonthTasks({
           year: getYear(date),
