@@ -15,7 +15,7 @@ import {
   authLogin,
   // authLogout,
   authRefresh,
-  // authRegister,
+  authRegister,
   // authUpdate,
 } from 'redux/auth/authOperations';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
@@ -91,9 +91,9 @@ const App = () => {
   // useEffect(() => {
   //   dispatch(
   //     authRegister({
-  //       name: 'Test',
-  //       email: 'smth5@gmail.com',
-  //       password: '1234567',
+  //       name: 'Marina',
+  //       email: 'lolol@gmail.com',
+  //       password: 'mari123mari',
   //     })
   //   );
   // }, [dispatch]);
