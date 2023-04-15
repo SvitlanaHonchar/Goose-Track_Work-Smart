@@ -1,56 +1,55 @@
 import React from 'react';
-import { TypeButton } from './PeriodTypeSelect.styled';
+import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
+import PeriodTypeButton from './PeriodTypeButton/PeriodTypeButton';
 
-const PeriodTypeSelect = ({ currentType, onTypeSelect, setDate }) => {
-  console.log('currentType: ', currentType);
+const PeriodTypeSelect = ({ selectedType, onTypeSelect, setActiveDate }) => {
   const navigate = useNavigate();
 
   const handlePeriodType = type => {
     console.log(type);
     onTypeSelect(type);
-    setDate(new Date());
-    navigateToCalendar();
+    const currentDate = new Date();
+    setActiveDate(currentDate);
+    navigateToCalendar(selectedType, currentDate);
   };
 
-  const navigateToCalendar = () => {
+  const navigateToCalendar = (type, date) => {
     const urlFormatDate =
-      currentType === 'month'
-        ? format(new Date(), 'yyyy-MM-dd')
-        : format(new Date(), 'yyyy-MM');
-
-    const newType = currentType === 'month' ? 'day' : 'month';
-
+      type === 'month' ? format(date, 'yyyy-MM-dd') : format(date, 'yyyy-MM');
+    const newType = type === 'month' ? 'day' : 'month';
     navigate(`/calendar/${newType}/${urlFormatDate}`);
   };
 
   const handleClick = type => {
-    if (currentType !== type) {
+    if (selectedType !== type) {
       handlePeriodType(type);
     }
   };
 
   return (
     <div className="period-type-select">
-      <TypeButton
-        className={`period-type-button ${
-          currentType === 'day' ? 'active' : ''
-        }`}
+      <PeriodTypeButton
+        selected={selectedType === 'day'}
         onClick={() => handleClick('day')}
       >
         Day
-      </TypeButton>
-      <TypeButton
-        className={`period-type-button ${
-          currentType === 'month' ? 'active' : ''
-        }`}
+      </PeriodTypeButton>
+      <PeriodTypeButton
+        selected={selectedType === 'month'}
         onClick={() => handleClick('month')}
       >
         Month
-      </TypeButton>
+      </PeriodTypeButton>
     </div>
   );
 };
 
 export default PeriodTypeSelect;
+
+PeriodTypeSelect.propTypes = {
+  selectedType: PropTypes.oneOf(['day', 'month']).isRequired,
+  onTypeSelect: PropTypes.func.isRequired,
+  setActiveDate: PropTypes.func.isRequired,
+};

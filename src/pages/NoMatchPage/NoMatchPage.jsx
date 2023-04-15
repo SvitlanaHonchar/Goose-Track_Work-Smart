@@ -1,7 +1,6 @@
 import React from 'react';
 import TaskModal from 'shared/components/TaskModal/TaskModal';
 import useModal from 'shared/hooks/useModal';
-
 const NoMatchPage = () => {
   const { isOpen, action, closeModal, toggleModal, details } = useModal();
 

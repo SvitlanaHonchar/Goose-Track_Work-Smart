@@ -1,33 +1,34 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { addMonths, addDays, format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
 const PeriodPaginator = ({ date, period, onDateChange }) => {
   const navigate = useNavigate();
 
-  const calculateNewDate = (amount, unit) =>
-    unit === 'month' ? addMonths(date, amount) : addDays(date, amount);
+  const createCalendarUrl = (newDate, period) => {
+    return `/calendar/${period}/${format(
+      newDate,
+      period === 'month' ? 'yyyy-MM' : 'yyyy-MM-dd'
+    )}`;
+  };
 
   const updateUrlAndDate = newDate => {
-    const urlFormatDate =
-      period === 'month'
-        ? format(newDate, 'yyyy-MM')
-        : format(newDate, 'yyyy-MM-dd');
-    navigate(`/calendar/${period}/${urlFormatDate}`);
+    const url = createCalendarUrl(newDate, period);
+    navigate(url);
     onDateChange(newDate);
   };
 
-  const updateDate = (amount, unit) => {
-    const newDate = calculateNewDate(amount, unit);
+  const updateDate = amount => {
+    const newDate =
+      period === 'month' ? addMonths(date, amount) : addDays(date, amount);
     updateUrlAndDate(newDate);
   };
 
   const formattedDate =
     period === 'month'
-      ? format(date, 'MMMM yyyy').toUpperCase()
-      : format(date, ' d MMM yyyy ').toUpperCase();
-
-  console.log('formattedDate : ', formattedDate);
+      ? `${format(date, 'MMMM yyyy').toUpperCase()}`
+      : `${format(date, ' d MMM yyyy ').toUpperCase()}`;
 
   return (
     <div
@@ -53,19 +54,17 @@ const PeriodPaginator = ({ date, period, onDateChange }) => {
           alignItems: 'center',
         }}
       >
-        <button
-          onClick={() => updateDate(-1, period === 'month' ? 'month' : 'day')}
-        >
-          Previous
-        </button>
-        <button
-          onClick={() => updateDate(1, period === 'month' ? 'month' : 'day')}
-        >
-          Next
-        </button>
+        <button onClick={() => updateDate(-1)}>Previous</button>
+        <button onClick={() => updateDate(1)}>Next</button>
       </div>
     </div>
   );
 };
 
 export default PeriodPaginator;
+
+PeriodPaginator.propTypes = {
+  date: PropTypes.instanceOf(Date).isRequired,
+  period: PropTypes.oneOf(['month', 'day']).isRequired,
+  onDateChange: PropTypes.func.isRequired,
+};

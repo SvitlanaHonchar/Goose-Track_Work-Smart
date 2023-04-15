@@ -6,20 +6,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import { selectAllTasks } from 'redux/tasks/tasksSelectors';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import usePeriodTypeFromPath from 'shared/hooks/usePeriodTypeFromPath';
+import useSelectedPeriodType from 'shared/hooks/useSelectedPeriodType';
 
 const CalendarToolbar = () => {
-  const location = useLocation();
-  const pathArray = location.pathname.split('/');
-  const period = pathArray[2];
+  const periodType = usePeriodTypeFromPath();
+  const [selectedPeriodType, handlePeriodTypeSelect] =
+    useSelectedPeriodType(periodType);
 
-  const [periodType, setPeriodType] = useState(period);
-  console.log('periodType: ', periodType);
   const [date, setDate] = useState(new Date());
   console.log('date: ', date);
 
-  const handlePeriodTypeSelect = type => {
-    setPeriodType(type);
-  };
   const handleDateChange = date => {
     setDate(date);
   };
@@ -33,9 +30,9 @@ const CalendarToolbar = () => {
         onDateChange={handleDateChange}
       />
       <PeriodTypeSelect
-        currentType={periodType}
+        selectedType={selectedPeriodType}
         onTypeSelect={handlePeriodTypeSelect}
-        setDate={handleDateChange}
+        setActiveDate={handleDateChange}
       />
     </div>
   );

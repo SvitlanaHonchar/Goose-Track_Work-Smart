@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import IconButton from '@mui/material/IconButton';
 import sprite from 'shared/icons/sprite.svg';
@@ -75,6 +76,13 @@ const CustomModal = ({ children, ...props }) => {
       {children}
     </Modal>
   );
+};
+
+CustomModal.propTypes = {
+  children: PropTypes.node.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  action: PropTypes.string.isRequired,
 };
 
 export default CustomModal;
