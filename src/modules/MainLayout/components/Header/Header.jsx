@@ -41,7 +41,7 @@ const Header = () => {
         task => task.category === 'to-do' || task.category === 'in-progress'
       );
     } else {
-      console.log('no tasks for this date');
+      // console.log('no tasks for this date');
     }
   }
 

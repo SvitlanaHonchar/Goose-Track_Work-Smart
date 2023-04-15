@@ -33,8 +33,8 @@ const NoMatchPage = () => {
           action={action}
           onClose={closeModal}
           isOpen={isOpen}
-          category="to-do" // string : 'to-do', 'in-progress', 'done'
-          date="2023-03-17T00:00:00.000Z"
+          category="in-progress" // string : 'to-do', 'in-progress', 'done'
+          date="2023-02-11T00:00:00.000Z"
           taskDetails={details ? details.details : {}}
         />
       )}
