@@ -47,3 +47,7 @@ export const showSuccessDeleteTask = columnName => {
     `Task has been successfully deleted from the "${columnName}" column`
   );
 };
+
+export const showAnyError = errorText => {
+  toast.error(errorText);
+};
