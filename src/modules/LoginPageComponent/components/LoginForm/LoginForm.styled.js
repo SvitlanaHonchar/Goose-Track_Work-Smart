@@ -72,6 +72,10 @@ export const StyledLoginForm = styled(Form)`
       @media screen and (min-width: 768px) {
         margin-bottom: 18px;
       }
+
+      &.custom-border {
+        border: 2px solid red;
+      }
     }
 
     &:nth-of-type(2) {

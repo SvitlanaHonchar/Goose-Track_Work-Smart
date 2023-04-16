@@ -49,7 +49,6 @@ export const LoginForm = () => {
         }}
         validationSchema={validationSchema}
         onSubmit={async (values, { setSubmitting, resetForm }) => {
-          console.log(values);
           try {
             const actionResult = await dispatch(
               authLogin({
@@ -57,7 +56,7 @@ export const LoginForm = () => {
                 password: values.password,
               })
             );
-            console.log(actionResult);
+
             if (actionResult.type === 'user/login/fulfilled') {
               showSuccessLogIn();
               navigate('/calendar/month');
