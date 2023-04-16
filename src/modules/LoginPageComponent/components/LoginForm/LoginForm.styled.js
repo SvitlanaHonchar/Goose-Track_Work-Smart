@@ -4,17 +4,23 @@ import { Form } from 'formik';
 import { NavLink } from 'react-router-dom';
 
 export const StyledContainer = styled.div`
-  background-color: #ffffff;
-  border-radius: 8px;
-  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  @media screen and (max-width: 374px) {
-    width: 100%;
-    max-width: 335px;
-  }
+  .FormContainer {
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 18px;
 
-  @media screen and (min-width: 768px) {
-    margin-bottom: 24px;
+    @media screen and (max-width: 374px) {
+      width: 100%;
+      max-width: 335px;
+    }
+
+    @media screen and (min-width: 768px) {
+      margin-bottom: 24px;
+    }
   }
 `;
 
@@ -90,6 +96,7 @@ export const StyledLoginForm = styled(Form)`
     padding: 14px;
     border: 1px solid rgba(220, 227, 229, 0.6);
     border-radius: 8px;
+    width: 100%;
 
     font-weight: 400;
     font-size: 14px;
@@ -113,6 +120,15 @@ export const StyledLoginForm = styled(Form)`
         line-height: 1.12;
       }
     }
+  }
+
+  .InputFieldPassword::placeholder {
+    letter-spacing: 8px;
+  }
+
+  .PasswordInput {
+    position: relative;
+    width: 100%;
   }
 `;
 
@@ -139,6 +155,14 @@ export const StyledButton = styled(Button)`
     font-size: 18px;
     line-height: 1.33;
   }
+`;
+
+export const StyledVisibilityBtn = styled(Button)`
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
 `;
 
 export const StyledNavLink = styled(NavLink)`
