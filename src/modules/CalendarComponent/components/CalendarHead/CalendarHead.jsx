@@ -2,10 +2,13 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { List, ListItem } from '@mui/material';
 import { Box } from '@mui/system';
+import { Navigate } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const WEEK_DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
 const CalendarHead = ({ mode, currentDay }) => {
+  console.log('currentDay: ', currentDay);
   const options = {};
   if (currentDay) {
     options.selectedDate = new Date(currentDay);
@@ -30,23 +33,41 @@ const CalendarHead = ({ mode, currentDay }) => {
           WEEK_DAYS.indexOf(day) === options.day ? (
             <ListItem key={day} className="calendarHead__item current">
               <Box
-                sx={
-                  'display: flex; align-items: center; justify-content: space-between;'
-                }
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
               >
                 <span>{window.innerWidth >= 765 ? day : day[0]}</span>
-                <span>{options.startWeekDate + WEEK_DAYS.indexOf(day)}</span>
+                <Link
+                  to={`/calendar/day/${currentDay.slice(0, -2)}${
+                    options.startWeekDate + WEEK_DAYS.indexOf(day)
+                  }`}
+                >
+                  {options.startWeekDate + WEEK_DAYS.indexOf(day)}
+                </Link>
               </Box>
             </ListItem>
           ) : (
             <ListItem key={day} className="calendarHead__item">
               <Box
-                sx={
-                  'display: flex; align-items: center; justify-content: space-between;'
-                }
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
               >
                 <span>{window.innerWidth >= 765 ? day : day[0]}</span>
-                <span>{options.startWeekDate + WEEK_DAYS.indexOf(day)}</span>
+                <Link
+                  to={`/calendar/day/${currentDay.slice(0, -2)}${
+                    options.startWeekDate + WEEK_DAYS.indexOf(day)
+                  }`}
+                >
+                  {options.startWeekDate + WEEK_DAYS.indexOf(day)}
+                </Link>
               </Box>
             </ListItem>
           )
