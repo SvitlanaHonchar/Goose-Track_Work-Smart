@@ -8,14 +8,16 @@ const LoginPageComponent = () => {
     <StyledLoginPageComponent
       sx={{ backgroundColor: theme.palette.custom.blue }}
     >
-      <LoginForm />
-      <div className="ImageContainer">
-        <div className="StyledImageGoose"></div>
-        <div className="StyledImageMessage">
-          <span className="Message">
-            Quickly <span className="MessageFocus">come in</span> and write down
-            your tasks for the day!
-          </span>
+      <div className="ContentContainer">
+        <LoginForm />
+        <div className="ImageContainer">
+          <div className="StyledImageGoose"></div>
+          <div className="StyledImageMessage">
+            <span className="Message">
+              Quickly <span className="MessageFocus">come in</span> and write
+              down your tasks for the day!
+            </span>
+          </div>
         </div>
       </div>
     </StyledLoginPageComponent>
