@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TypeButton } from '../PeriodTypeSelect.styled';
+import { TypeButton } from '../PeriodTypeSelectStyles';
 
 const PeriodTypeButton = ({ selected, onClick, children }) => (
   <TypeButton

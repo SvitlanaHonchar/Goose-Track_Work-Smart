@@ -55,6 +55,8 @@ export const theme = createTheme({
       borderLight: '#3e85f333',
       borderDark: '#ffffff26',
       activePeriod: '#CAE8FF',
+      pagBorder: '#dce3e580',
+      mainWhite: '#FFFFFF',
     },
   },
   typography: {
@@ -104,6 +106,11 @@ export const theme = createTheme({
       fontSize: '0.9rem',
       fontWeight: 400,
       textTransform: 'none',
+    },
+    text: {
+      fontSize: '0.875rem',
+      fontWeight: 700,
+      textTransform: 'uppercase',
     },
   },
   components: {
