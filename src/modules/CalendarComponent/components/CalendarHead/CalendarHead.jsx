@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { List, ListItem } from '@mui/material';
+import { Box } from '@mui/system';
 
 const WEEK_DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
@@ -10,31 +12,46 @@ const CalendarHead = ({ mode, currentDay }) => {
     options.day = options.selectedDate.getDay() - 1;
     options.startWeekDate = options.selectedDate.getDate() - options.day;
   }
-
-  console.log('selectedDate: ', options);
+  // console.log(window.innerWidth, typeof window.innerWidth);
+  // console.log('selectedDate: ', options);
   return (
-    <ul className="calendarHead__list">
+    <List
+      className="calendarHead__list"
+      sx={'display: flex; align-items: center; justify-content: space-between;'}
+    >
       {mode === 'monthMode' &&
         WEEK_DAYS.map(day => (
-          <li key={day} className="calendarHead__item">
-            {day}
-          </li>
+          <ListItem key={day} className="calendarHead__item">
+            {window.innerWidth >= 765 ? day : day[0]}
+          </ListItem>
         ))}
       {mode === 'dayMode' &&
         WEEK_DAYS.map(day =>
           WEEK_DAYS.indexOf(day) === options.day ? (
-            <li key={day} className="calendarHead__item current">
-              <span>{day}</span>
-              <span>{options.startWeekDate + WEEK_DAYS.indexOf(day)}</span>
-            </li>
+            <ListItem key={day} className="calendarHead__item current">
+              <Box
+                sx={
+                  'display: flex; align-items: center; justify-content: space-between;'
+                }
+              >
+                <span>{window.innerWidth >= 765 ? day : day[0]}</span>
+                <span>{options.startWeekDate + WEEK_DAYS.indexOf(day)}</span>
+              </Box>
+            </ListItem>
           ) : (
-            <li key={day} className="calendarHead__item">
-              <span>{day}</span>
-              <span>{options.startWeekDate + WEEK_DAYS.indexOf(day)}</span>
-            </li>
+            <ListItem key={day} className="calendarHead__item">
+              <Box
+                sx={
+                  'display: flex; align-items: center; justify-content: space-between;'
+                }
+              >
+                <span>{window.innerWidth >= 765 ? day : day[0]}</span>
+                <span>{options.startWeekDate + WEEK_DAYS.indexOf(day)}</span>
+              </Box>
+            </ListItem>
           )
         )}
-    </ul>
+    </List>
   );
 };
 CalendarHead.propTypes = {
