@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { Form, Field, ErrorMessage } from 'formik';
-import Icons from '../../../shared/icons/sprite.svg';
 // import theme from '../../../shared/theme';
 
 export const Container = styled.div`
@@ -146,11 +145,9 @@ export const StyledButton = styled(Button)`
   }
 `;
 
-export const Icon = ({ name, width, height, color }) => (
-  <svg width={width} height={height} stroke={color}>
-    <use xlinkHref={`${Icons}#${name}`} style={{ transform: 'scale(100%)' }} />
-  </svg>
-);
+export const Svg = styled.svg`
+  stroke: #ffffff;
+`;
 
 export const StyledLink = styled(Link)`
   display: flex;
