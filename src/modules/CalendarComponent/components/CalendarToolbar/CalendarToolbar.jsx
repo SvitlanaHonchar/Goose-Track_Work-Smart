@@ -18,7 +18,6 @@ const CalendarToolbar = () => {
   const [selectedPeriodType, handlePeriodTypeSelect] =
     useSelectedPeriodType(periodType);
 
-  console.log('date: ', date);
   const navigate = useNavigate();
 
   const handleDateChange = useCallback(
@@ -44,7 +43,6 @@ const CalendarToolbar = () => {
   const dispatch = useDispatch();
   const tasksForSelectedMonth = useSelector(selectAllTasks);
   const formattedDate = useMemo(() => format(date, 'yyyy-MM'), [date]);
-  console.log('tasksForSelectedMonth : ', tasksForSelectedMonth);
   const hasMatchingDate = useMemo(() => {
     return (
       tasksForSelectedMonth?.some(task =>
