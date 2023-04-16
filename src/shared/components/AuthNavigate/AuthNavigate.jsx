@@ -1,59 +1,19 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { StyledAuthNavigate } from './AuthNavigate.styled';
-import Icons from '../../../shared/icons/sprite.svg';
 
-export const Icon = ({ name, width, height }) => (
-  <svg width={width} height={height}>
-    <use xlinkHref={`${Icons}#${name}`} />
-  </svg>
-);
-
-const AuthNavigate = () => {
-  const navigate = useNavigate();
-  const handleSignupBtnClick = () => {
-    navigate('/register', { replace: true });
-  };
-
-  const handleLoginBtnClick = () => {
-    navigate('/login', { replace: true });
-  };
-
+const AuthNavigate = ({ link, text }) => {
   return (
-    <StyledAuthNavigate>
-      <div className="ContentContainer">
-        <div className="StyledImage"></div>
-        <h1 className="AuthNavHeadline">
-          G<i>oo</i>seTrack
-        </h1>
-        <div className="AuthNavBtnContainer">
-          <button
-            type="button"
-            className="AuthNavBtn"
-            onClick={handleSignupBtnClick}
-          >
-            Sign up
-            <Icon className="Login" name="logIn" width="18" height="18" />
-          </button>
-          <button
-            type="button"
-            className="AuthNavBtn"
-            onClick={handleLoginBtnClick}
-          >
-            Log in
-            <Icon
-              className="Login"
-              name="logIn"
-              color="rgba(62, 133, 243, 1)"
-              width="18"
-              height="18"
-            />
-          </button>
-        </div>
-      </div>
-    </StyledAuthNavigate>
+    <div>
+      <StyledAuthNavigate to={link}>{text}</StyledAuthNavigate>
+    </div>
   );
+};
+
+AuthNavigate.propTypes = {
+  link: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 export default AuthNavigate;
