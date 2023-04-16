@@ -52,6 +52,11 @@ export const theme = createTheme({
       input: '#F7F7F7',
       lightBlue: '#72C2F8',
       blue: '#CEEEFD',
+      borderLight: '#3e85f333',
+      borderDark: '#ffffff26',
+      activePeriod: '#CAE8FF',
+      pagBorder: '#dce3e580',
+      mainWhite: '#FFFFFF',
     },
   },
   typography: {
@@ -101,6 +106,11 @@ export const theme = createTheme({
       fontSize: '0.9rem',
       fontWeight: 400,
       textTransform: 'none',
+    },
+    text: {
+      fontSize: '0.875rem',
+      fontWeight: 700,
+      textTransform: 'uppercase',
     },
   },
   components: {

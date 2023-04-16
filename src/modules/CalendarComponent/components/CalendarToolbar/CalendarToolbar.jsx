@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { format, getYear, getMonth } from 'date-fns';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Box } from '@mui/material';
 import PeriodPaginator from '../PeriodPaginator/PeriodPaginator';
 import PeriodTypeSelect from '../PeriodTypeSelect/PeriodTypeSelect';
 import { getMonthTasks } from 'redux/tasks/tasksOperations';
@@ -14,9 +15,7 @@ const CalendarToolbar = () => {
   const [date, setDate] = useState(new Date());
   const periodType = usePeriodTypeFromPath();
   const [selectedPeriodType, handlePeriodTypeSelect] =
-    useSelectedPeriodType(periodType);
-
-  console.log('date: ', date);
+  useSelectedPeriodType(periodType);
   const navigate = useNavigate();
 
   const handleDateChange = useCallback(
@@ -42,7 +41,6 @@ const CalendarToolbar = () => {
   const dispatch = useDispatch();
   const tasksForSelectedMonth = useSelector(selectAllTasks);
   const formattedDate = useMemo(() => format(date, 'yyyy-MM'), [date]);
-  console.log('tasksForSelectedMonth : ', tasksForSelectedMonth);
   const hasMatchingDate = useMemo(() => {
     return (
       tasksForSelectedMonth?.some(task =>
@@ -74,7 +72,14 @@ const CalendarToolbar = () => {
   }, [dispatch, date, hasMatchingDate]);
 
   return (
-    <div>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: { xs: 'column', md: 'row' },
+        rowGap: { xs: '18px', md: '0' },
+        justifyContent: { xs: 'flex-start', md: 'space-between' },
+      }}
+    >
       <PeriodPaginator
         date={date}
         period={periodType}
@@ -85,7 +90,7 @@ const CalendarToolbar = () => {
         onTypeSelect={handlePeriodTypeSelect}
         setActiveDate={setActiveDate}
       />
-    </div>
+    </Box>
   );
 };
 export default CalendarToolbar;
