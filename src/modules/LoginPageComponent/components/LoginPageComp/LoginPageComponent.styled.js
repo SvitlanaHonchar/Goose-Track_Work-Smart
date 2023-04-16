@@ -27,8 +27,8 @@ export const StyledLoginPageComponent = styled(Box)`
 
   .ImageContainer {
     position: absolute;
-    top: 50%;
-    right: -50%;
+    top: 250px;
+    right: 250px;
 
     @media screen and (max-width: 1439px) {
       display: none;
