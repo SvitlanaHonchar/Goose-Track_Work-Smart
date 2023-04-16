@@ -12,6 +12,9 @@ export const showSuccessAddTask = () => {
 export const showSuccessEditTask = () => {
   toast.success("You've just  editted task");
 };
+export const showSuccessDoneTasks = () => {
+  toast.success('All done for today!');
+};
 export const showErrorValidation = message => {
   toast.error(message);
 };
@@ -31,4 +34,20 @@ export const showExistAcctErrorReg = () => {
   toast.error(
     'Registration failed. Probably this email is already associated with an existing account. Please try again.'
   );
+};
+
+export const showSuccessMoveTask = columnName => {
+  toast.success(
+    `Task has been successfully moved to the "${columnName}" column`
+  );
+};
+
+export const showSuccessDeleteTask = columnName => {
+  toast.success(
+    `Task has been successfully deleted from the "${columnName}" column`
+  );
+};
+
+export const showAnyError = errorText => {
+  toast.error(errorText);
 };

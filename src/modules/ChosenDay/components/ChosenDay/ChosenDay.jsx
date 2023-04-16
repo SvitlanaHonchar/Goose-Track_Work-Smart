@@ -11,23 +11,17 @@ const ChosenDay = () => {
   const { currentDay } = useParams();
   const tasksAll = useSelector(selectAllTasks);
 
-  useEffect(() => {
-    if (!tasksAll) return;
+  // useEffect(() => {
+  //   if (!tasksAll) return;
+  //   const currentTasks = tasksAll.find(task => task.date === currentDay)?.tasks;
+  //   const todoTasks = currentTasks.filter(task => task.category === 'to-do');
+  //   const inProgressTasks = currentTasks.filter(
+  //     task => task.category === 'in-progress'
+  //   );
+  //   const doneTasks = currentTasks.filter(task => task.category === 'done');
 
-    const currentTasks = tasksAll.find(task => task.date === currentDay)?.tasks;
-    if (!currentTasks || currentTasks.length === 0) {
-      setTasksCurrentDay({ todoTasks: [], inProgressTasks: [], doneTasks: [] });
-      return;
-    }
-
-    const todoTasks = currentTasks.filter(task => task.category === 'to-do');
-    const inProgressTasks = currentTasks.filter(
-      task => task.category === 'in-progress'
-    );
-    const doneTasks = currentTasks.filter(task => task.category === 'done');
-
-    setTasksCurrentDay({ todoTasks, inProgressTasks, doneTasks });
-  }, [tasksAll, currentDay]);
+  //   setTasksCurrentDay({ todoTasks, inProgressTasks, doneTasks });
+  // }, [tasksAll, currentDay]);
 
   return (
     <>
