@@ -8,18 +8,25 @@ import {
   Container,
   SignUpText,
   StyledButton,
-  Icon,
   StyledLink,
   Label,
   StyledField,
   StyledErrorMessage,
+  Svg,
 } from './RegisterForm.styled';
 import { useDispatch } from 'react-redux';
 import { authRegister } from '../../../redux/auth/authOperations';
-// import theme from '../../../shared/theme';
+import sprite from '../../../shared/icons/sprite.svg';
+import {
+  showExistAcctErrorReg,
+  showSuccessReg,
+  showUnknwnErrReg,
+} from 'shared/utils/notifications';
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required('Name is required'),
+  name: Yup.string()
+    .required('Name is required')
+    .min(3, 'Name must be at least 3 characters long'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string()
     .required('Password is required')
@@ -40,17 +47,17 @@ const RegisterForm = () => {
             const resultAction = await dispatch(authRegister(values));
             if (resultAction.type === 'user/register/fulfilled') {
               navigate('/calendar/month');
+              showSuccessReg();
             } else {
-              alert('Error registering user in try');
+              // alert('Error registering user in try');
+              showExistAcctErrorReg();
             }
           } catch (error) {
-            if (error.response && error.response.status === 409) {
-              alert('This user is already registered.');
-            } else {
-              alert(
-                'Registration failed due to an unexpected error. Please try again later.'
-              );
-            }
+            // if (error.response && error.response.status === 409) {
+            //   alert('This user is already registered.');
+            // } else {
+            showUnknwnErrReg();
+            // }
           } finally {
             setSubmitting(false);
           }
@@ -97,7 +104,9 @@ const RegisterForm = () => {
                 disabled={isSubmitting}
               >
                 {isSubmitting ? 'Submitting' : 'Sign Up'}
-                <Icon name="logIn" width="18" height="18" color="#FFFFFF" />
+                <Svg height="13.5" width="13.5">
+                  <use href={sprite + '#loginStartPage'}></use>
+                </Svg>
               </StyledButton>
             </RegisterFormEl>
           </RegisterFormWrapper>
