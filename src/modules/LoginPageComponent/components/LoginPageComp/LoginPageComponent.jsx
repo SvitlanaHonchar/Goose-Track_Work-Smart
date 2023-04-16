@@ -2,6 +2,7 @@ import React from 'react';
 import { LoginForm } from '../LoginForm/LoginForm';
 import { StyledLoginPageComponent } from './LoginPageComponent.styled';
 import AuthNavigate from 'shared/components/AuthNavigate/AuthNavigate';
+
 import theme from 'shared/theme';
 
 const LoginPageComponent = () => {

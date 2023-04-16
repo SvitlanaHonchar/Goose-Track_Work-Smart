@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { Form, Field, ErrorMessage } from 'formik';
 // import theme from '../../../shared/theme';
 
@@ -11,7 +10,7 @@ export const Container = styled.div`
 
 export const RegisterFormWrapper = styled.div`
   margin-right: auto;
-  margin-bottom: 18px;
+  // margin-bottom: 18px;
   margin-left: auto;
 
   @media screen and (max-width: 374px) {
@@ -20,7 +19,7 @@ export const RegisterFormWrapper = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    margin-bottom: 24px;
+    // margin-bottom: 24px;
   }
 `;
 
@@ -149,18 +148,18 @@ export const Svg = styled.svg`
   stroke: #ffffff;
 `;
 
-export const StyledLink = styled(Link)`
-  display: flex;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 1.16;
-  color: #3e85f3;
-  text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
-    0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
+// export const StyledLink = styled(Link)`
+//   display: flex;
+//   justify-content: center;
+//   font-weight: 600;
+//   font-size: 12px;
+//   line-height: 1.16;
+//   color: #3e85f3;
+//   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
+//     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
 
-  @media screen and (min-width: 768px) {
-    font-size: 18px;
-    line-height: 1.33;
-  }
-`;
+//   @media screen and (min-width: 768px) {
+//     font-size: 18px;
+//     line-height: 1.33;
+//   }
+// `;
