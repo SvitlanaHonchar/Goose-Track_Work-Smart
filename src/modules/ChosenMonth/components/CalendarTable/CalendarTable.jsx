@@ -1,6 +1,8 @@
 // + 1. Компонент отримує колекцію днів обраного місяця з задачами, вказаними для виконання на відповідні дні.
 // 2. Якщо день має заплановані задачі, вони відображаються відповідними блоками всередині комірки дня.
 // + 3. Клік по комірці переадресовує юзера на відповідний день по маршруту /calendar/day/:date і показує модуль одного дня ChoosedDay з відповідною датою.
+// 4. на стор.404 - переадресація
+// 5. календар пейдж - запит за датою з юзпарамс
 // Додатково:
 // Клік по завданню з комірки, відкриває модалку для редагування даного завдання, заповнену даними з цього завдання.
 
@@ -38,17 +40,22 @@ function CalendarTable({ tasks, currentMonth }) {
     return todayTasksMarkup;
   };
 
-  console.log(tasks);
+  // function getNextDay(currDate) {
+  //   const nextDate = new Date(currDate);
+  //   nextDate.setDate(nextDate.getDate() + 1);
+
+  //   return nextDate.toISOString().slice(0, 10);
+  // }
 
   function getNextDay(currDate) {
-    const nextDate = new Date(currDate);
-    nextDate.setDate(nextDate.getDate() + 1);
+    currDate = new Date(currDate);
+    const nextDate = new Date(currDate.getTime() + 24 * 60 * 60 * 1000);
 
     return nextDate.toISOString().slice(0, 10);
   }
 
-  const yesterday = getNextDay('2023-03-26');
-  console.log(yesterday);
+  // const yesterday = getNextDay('2023-03-26');
+  // console.log(yesterday);
 
   useEffect(() => {
     const mainAsync = async () => {
@@ -100,7 +107,7 @@ function CalendarTable({ tasks, currentMonth }) {
                       }}
                     >
                       <NavLink to={`/calendar/day/${getNextDay(day.iso)}`}>
-                        {getNextDay(day.iso)}
+                        {getNextDay(day.iso).slice(8, 10)}
                       </NavLink>
                       <ul>{getAllDayTasks(`${getNextDay(day.iso)}`)}</ul>
                     </TableCell>
