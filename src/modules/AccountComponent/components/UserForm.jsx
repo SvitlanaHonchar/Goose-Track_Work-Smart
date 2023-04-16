@@ -20,24 +20,30 @@ export default function UserForm({ formData, onChange, setBirthday }) {
       </Grid>
       <Grid item sm={12} md={6}>
         <Typography variant="overline">Birthday</Typography>
-        {/* <TextInput
-          onChange={onChange}
-          name="birthday"
-          value={birthday || ''}
-          InputProps={{
-            endAdornment: (
-              <IconButton onClick={handleExpandClick}>
-                <ExpandMoreIcon />
-              </IconButton>
-            ),
-          }}
-        /> */}
-        <Box>
+        <Box sx={{ width: '100%' }}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
-              value={birthday}
-              onChange={date => setBirthday(date.toISOString())}
+              value={birthday || ''}
+              onChange={date => setBirthday(date.toISOString() || '')}
               startWeekDay="monday"
+              InputProps={{
+                endAdornment: (
+                  <IconButton
+                    sx={{ color: 'primary.main' }}
+                    onClick={handleExpandClick}
+                  >
+                    <ExpandMoreIcon />
+                  </IconButton>
+                ),
+                sx: { '& .MuiIconButton-root': { padding: '10px' } },
+              }}
+              renderInput={params => <TextInput {...params} />}
+              PopperProps={{
+                sx: {
+                  '& .MuiPopover-paper': { width: '100%', maxWidth: 'none' },
+                },
+              }}
+              sx={{ '& .MuiTypography-root': { color: 'primary.main' } }}
             />
           </LocalizationProvider>
         </Box>
@@ -52,7 +58,12 @@ export default function UserForm({ formData, onChange, setBirthday }) {
       </Grid>
       <Grid item sm={12} md={6}>
         <Typography variant="overline">Skype</Typography>
-        <TextInput onChange={onChange} name="skype" value={skype || ''} />
+        <TextInput
+          onChange={onChange}
+          name="skype"
+          value={skype || ''}
+          inputProps={{ maxLength: 16 }}
+        />
       </Grid>
     </Grid>
   );
