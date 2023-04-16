@@ -3,7 +3,6 @@ import { format, getYear, getMonth } from 'date-fns';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Box } from '@mui/material';
-
 import PeriodPaginator from '../PeriodPaginator/PeriodPaginator';
 import PeriodTypeSelect from '../PeriodTypeSelect/PeriodTypeSelect';
 import { getMonthTasks } from 'redux/tasks/tasksOperations';
@@ -16,8 +15,7 @@ const CalendarToolbar = () => {
   const [date, setDate] = useState(new Date());
   const periodType = usePeriodTypeFromPath();
   const [selectedPeriodType, handlePeriodTypeSelect] =
-    useSelectedPeriodType(periodType);
-
+  useSelectedPeriodType(periodType);
   const navigate = useNavigate();
 
   const handleDateChange = useCallback(

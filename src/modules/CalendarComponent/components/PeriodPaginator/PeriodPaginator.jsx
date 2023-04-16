@@ -18,6 +18,7 @@ const PeriodPaginator = ({ date, period, onDateChange }) => {
       : `${format(date, ' d MMM yyyy ').toUpperCase()}`;
 
   return (
+
     <Box
       sx={{
         display: 'flex',

@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useSelector } from 'react-redux';
+import { IconButton, TextField } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const formatDate = date => {
   const y = date.getFullYear();
@@ -18,17 +20,46 @@ export const DatePicker = ({ setBirthday }) => {
   const [date, setDate] = useState(
     () => (birthday && new Date(birthday)) || new Date()
   );
+  const [open, setOpen] = useState(false);
+  const datePickerRef = useRef(null);
 
   useEffect(() => {
     const formatedDate = formatDate(date);
     setBirthday(formatedDate);
   }, [date, setBirthday]);
 
+  const handleIconClick = () => {
+    setOpen(true);
+    datePickerRef.current.setFocus();
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <ReactDatePicker
       dateFormat={'dd-mm-yyyy'}
       selected={date}
       onChange={setDate}
+      open={open}
+      onClose={handleClose}
+      ref={datePickerRef}
+      customInput={
+        <TextField
+          fullWidth
+          size="small"
+          color="primary"
+          InputProps={{
+            onBlur: handleClose,
+            endAdornment: (
+              <IconButton size="small" onClick={handleIconClick}>
+                <ExpandMoreIcon />
+              </IconButton>
+            ),
+          }}
+        />
+      }
     />
   );
 };
