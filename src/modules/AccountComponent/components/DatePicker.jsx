@@ -44,7 +44,7 @@ export const DatePicker = ({ setBirthday }) => {
 
   return (
     <ReactDatePicker
-      dateFormat={'dd-MM-yyyy'}
+      dateFormat={'yyyy-MM-dd'}
       selected={date}
       onChange={handleChange}
       open={open}
