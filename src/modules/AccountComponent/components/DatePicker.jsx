@@ -17,7 +17,9 @@ const formatDate = date => {
 
 export const DatePicker = ({ setBirthday }) => {
   const birthday = useSelector(state => state.auth.user.birthday);
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(
+    (birthday && new Date(birthday)) || new Date()
+  );
   const [open, setOpen] = useState(false);
   const datePickerRef = useRef(null);
   useEffect(() => {

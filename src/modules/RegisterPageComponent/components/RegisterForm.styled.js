@@ -1,11 +1,14 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { Button } from '@mui/material';
 import { Form, Field, ErrorMessage } from 'formik';
-// import theme from '../../../shared/theme';
+
+import theme from '../../../shared/theme';
 
 export const Container = styled.div`
   margin-right: auto;
   margin-left: auto;
+  padding-right: 20px;
+  padding-left: 20px;
 `;
 
 export const RegisterFormWrapper = styled.div`
@@ -13,14 +16,10 @@ export const RegisterFormWrapper = styled.div`
   // margin-bottom: 18px;
   margin-left: auto;
 
-  @media screen and (max-width: 374px) {
-    width: 100%;
-    max-width: 335px;
-  }
-
-  @media screen and (min-width: 768px) {
-    // margin-bottom: 24px;
-  }
+  /* @media screen and (max-width: 374px) {
+    max-width: 100%; */
+  /* max-width: 335px; */
+  /* } */
 `;
 
 export const RegisterFormEl = styled(Form)`
@@ -28,10 +27,10 @@ export const RegisterFormEl = styled(Form)`
   flex-direction: column;
   background-color: #ffffff;
   border-radius: 8px;
-
   padding: 40px 24px;
+
   @media screen and (max-width: 374px) {
-    width: 100%;
+    /* width: 100%; */
     max-width: 335px;
   }
 
@@ -42,6 +41,14 @@ export const RegisterFormEl = styled(Form)`
     padding: 40px;
     width: 480px;
   }
+
+  .ValidInput {
+    border: 1px solid rgba(220, 227, 229, 0.6);
+  }
+
+  .InvalidInput {
+    border: 1px solid #ea3d65;
+  }
 `;
 
 export const SignUpText = styled.p`
@@ -50,7 +57,7 @@ export const SignUpText = styled.p`
   font-weight: 600;
   font-size: 18px;
   line-height: 1.33;
-  color: #3e85f3;
+  color: ${theme.palette.primary.main};
   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
 
@@ -68,7 +75,7 @@ export const Label = styled.label`
   font-weight: 600;
   font-size: 12px;
   line-height: 1.25;
-  color: #111111;
+  color: ${theme.palette.grey.body};
 
   @media screen and (min-width: 768px) {
     font-size: 14px;
@@ -93,7 +100,7 @@ export const Label = styled.label`
 `;
 
 export const StyledErrorMessage = styled(ErrorMessage)`
-  color: #ea3d65;
+  color: ${theme.palette.error.main};
 `;
 
 export const StyledField = styled(Field)`
@@ -102,7 +109,8 @@ export const StyledField = styled(Field)`
   border-radius: 8px;
   font-size: 14px;
   line-height: 1.29px;
-  color: #111111;
+  color: ${theme.palette.grey.body};
+  width: 100%;
 
   @media screen and (min-width: 768px) {
     padding: 18px;
@@ -113,7 +121,7 @@ export const StyledField = styled(Field)`
   &::placeholder {
     font-size: 14px;
     line-height: 1.29;
-    color: #dce3e5;
+    color: ${theme.palette.grey.light};
 
     @media screen and (min-width: 768px) {
       font-size: 16px;
@@ -122,15 +130,28 @@ export const StyledField = styled(Field)`
   }
 `;
 
+export const PasswordInput = styled.div`
+  position: relative;
+  /* width: 100%; */
+`;
+
+export const StyledVisibilityBtn = styled(Button)`
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+`;
+
 export const StyledButton = styled(Button)`
+  padding-top: 14px;
+  padding-bottom: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 14px;
-  padding-bottom: 14px;
-  gap: 10px;
+  gap: 11px;
   box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
-  border-radius: 16px !important;
+  border-radius: 16px;
   font-weight: 600;
   font-size: 14px;
   line-height: 1.28px;
@@ -147,19 +168,3 @@ export const StyledButton = styled(Button)`
 export const Svg = styled.svg`
   stroke: #ffffff;
 `;
-
-// export const StyledLink = styled(Link)`
-//   display: flex;
-//   justify-content: center;
-//   font-weight: 600;
-//   font-size: 12px;
-//   line-height: 1.16;
-//   color: #3e85f3;
-//   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
-//     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
-
-//   @media screen and (min-width: 768px) {
-//     font-size: 18px;
-//     line-height: 1.33;
-//   }
-// `;

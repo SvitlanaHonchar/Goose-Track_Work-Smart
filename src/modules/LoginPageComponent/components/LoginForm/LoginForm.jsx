@@ -132,7 +132,7 @@ export const LoginForm = () => {
                 variant="contained"
               >
                 Submit
-                <svg height="13.5" width="13.5">
+                <svg height="18" width="18">
                   <use href={sprite + '#loginStartPage'}></use>
                 </svg>
               </StyledButton>
