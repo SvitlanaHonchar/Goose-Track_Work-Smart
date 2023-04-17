@@ -7,7 +7,7 @@ export default function LogoutBtn() {
   const dispatch = useDispatch();
 
   return (
-    <StyledLogoutBtn type="button" onClick={() => dispatch(authLogout)}>
+    <StyledLogoutBtn type="button" onClick={() => dispatch(authLogout())}>
       <span>Log out</span>
       <Icon name="arrowShortRight" width="20px" height="20px" />
     </StyledLogoutBtn>
