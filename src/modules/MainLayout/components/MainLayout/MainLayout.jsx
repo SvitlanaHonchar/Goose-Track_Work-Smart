@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import SideBar from '../SideBar/SideBar';
 import { Outlet } from 'react-router';
@@ -11,8 +11,9 @@ import { useTheme } from '@mui/material';
 
 const MainLayout = () => {
   const user = useSelector(selectUser);
-
   const dispatch = useDispatch();
+
+  const [menuStatus, setMenuStatus] = useState('is-closed');
 
   useEffect(() => {
     if (user.name !== null) {
@@ -25,19 +26,30 @@ const MainLayout = () => {
   const theme = useTheme();
   // console.log(theme);
 
+  const openMenu = () => {
+    setMenuStatus('is-open');
+  };
+
+  const closeMenu = () => {
+    setMenuStatus('is-closed');
+  };
+
   return (
     // Component =>
     // ({ ...props }) => {
     <StyledDiv theme={theme}>
       <Box className="mainLayout-frame">
-        <Header />
-        <SideBar />
+        <SideBar menu={menuStatus} onClose={closeMenu} />
+        <div>
+          <Header onBurgerClick={openMenu} />
+
+          <Suspense>
+            <Outlet />
+          </Suspense>
+        </div>
       </Box>
 
       {/* <Component {...props} /> */}
-      <Suspense>
-        <Outlet />
-      </Suspense>
     </StyledDiv>
   );
 };

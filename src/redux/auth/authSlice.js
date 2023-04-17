@@ -13,7 +13,7 @@ const extraActions = [
   authLogin,
   authLogout,
   authRefresh,
-  // authGetUserInfo,
+  authGetUserInfo,
   authUpdate,
 ];
 const extraLogActions = [authRegister, authLogin];

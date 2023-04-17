@@ -34,7 +34,7 @@ export const StyledHeader = styled.header`
     }
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 768px) {
     & .header-calendar {
       display: flex;
       align-items: flex-end;

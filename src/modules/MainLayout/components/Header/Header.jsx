@@ -12,7 +12,7 @@ import { useSelector } from 'react-redux';
 import { selectAllTasks } from 'redux/tasks/tasksSelectors';
 // import { showSuccessDoneTasks } from 'shared/utils/notifications';
 
-const Header = () => {
+const Header = ({ onBurgerClick }) => {
   const location = useLocation();
   const path = location.pathname;
   // console.log(location);
@@ -56,6 +56,7 @@ const Header = () => {
           height: '32px',
           width: '32px',
         }}
+        onClick={onBurgerClick}
       >
         <svg width="32px" height="32px">
           <use href={`${icons}#menu`} className="header_burger-btn_icon"></use>
