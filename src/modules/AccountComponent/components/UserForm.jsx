@@ -8,8 +8,8 @@ export default function UserForm({ formData, onChange, setBirthday, errors }) {
   const { name, email, phone, skype } = formData;
 
   return (
-    <Grid container spacing={2}>
-      <Grid item sm={12} md={6}>
+    <Grid container rowSpacing={2} columnSpacing={6} sx={{ pl: 4 }}>
+      <Grid item xs={12} lg={6}>
         <Typography variant="overline">User Name</Typography>
         <TextInput
           onChange={onChange}
@@ -20,13 +20,13 @@ export default function UserForm({ formData, onChange, setBirthday, errors }) {
           placeholder="Enter your name"
         />
       </Grid>
-      <Grid item sm={12} md={6}>
+      <Grid item xs={12} lg={6}>
         <Typography variant="overline">Birthday</Typography>
         <Box sx={{ width: '100%' }}>
           <DatePicker setBirthday={setBirthday} />
         </Box>
       </Grid>
-      <Grid item sm={12} md={6}>
+      <Grid item xs={12} lg={6}>
         <Typography variant="overline">Email</Typography>
         <TextInput
           onChange={onChange}
@@ -37,7 +37,7 @@ export default function UserForm({ formData, onChange, setBirthday, errors }) {
           placeholder="Enter your email"
         />
       </Grid>
-      <Grid item sm={12} md={6}>
+      <Grid item xs={12} lg={6}>
         <Typography variant="overline">Phone</Typography>
         <TextInput
           onChange={onChange}
@@ -48,7 +48,7 @@ export default function UserForm({ formData, onChange, setBirthday, errors }) {
           placeholder="Enter your phone number"
         />
       </Grid>
-      <Grid item sm={12} md={6}>
+      <Grid item xs={12} lg={6}>
         <Typography variant="overline">Skype</Typography>
         <TextInput
           onChange={onChange}
