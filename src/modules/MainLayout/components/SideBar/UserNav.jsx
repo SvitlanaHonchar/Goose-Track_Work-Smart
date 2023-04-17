@@ -1,5 +1,6 @@
 import { Icon } from './Icon';
 import {
+  StyledCloseBtn,
   StyledIcon,
   StyledLogoDiv,
   StyledNavContainer,
@@ -8,7 +9,7 @@ import {
   StyledNavName,
 } from './Sidebar.styled';
 
-export default function UserNav() {
+export default function UserNav({ onClick }) {
   return (
     <StyledNavContainer>
       <StyledLogoDiv>
@@ -16,6 +17,10 @@ export default function UserNav() {
           <img src={require('images/goose-logo.png')} alt="goose logo" />
         </div>
         <h2>Goose Track</h2>
+
+        <StyledCloseBtn type="button" onClick={onClick}>
+          <Icon name="close" width="16px" height="16px" />
+        </StyledCloseBtn>
       </StyledLogoDiv>
       <StyledNavDiv>
         <StyledNavName>User Panel</StyledNavName>

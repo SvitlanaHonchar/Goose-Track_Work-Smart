@@ -75,8 +75,7 @@ const router = createBrowserRouter(
           {/*!!!!! currentDay format: '2023-04-14'*/}
         </Route>
       </Route>
-
-      <Route path="*" element={<NoMatchPage />} />
+      // <Route path="*" element={<NoMatchPage />} />
     </Route>
   ),
   { basename }

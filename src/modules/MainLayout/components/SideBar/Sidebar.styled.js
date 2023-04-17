@@ -12,9 +12,30 @@ export const SideBarContainer = styled.div`
   height: 900px;
 
   padding: 24px 32px;
+  /* 
+  @media screen and (max-width: 767px) {
+    transform: translateX(-100%);
+  } */
+
+  @media screen and (max-width: 767px) {
+    background-color: #fff;
+    width: 289px;
+    &.is-closed {
+      position: absolute;
+      left: -100%;
+    }
+
+    &.is-open {
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      left: 0%;
+    }
+  }
 
   @media screen and (max-width: 375px) {
     padding: 24px 20px;
+    width: 225px;
   }
 `;
 
@@ -31,6 +52,7 @@ export const StyledNavContainer = styled.nav`
 export const StyledLogoDiv = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   /* padding: 8px; */
   margin-bottom: 32px;
 
@@ -40,6 +62,10 @@ export const StyledLogoDiv = styled.div`
 
   @media screen and (max-width: 767px) {
     margin-bottom: 64px;
+
+    & h2 {
+      margin-right: 45px;
+    }
   }
 
   & h2 {
@@ -200,5 +226,30 @@ export const StyledLogoutBtn = styled.button`
 
   & svg {
     stroke: #fff;
+  }
+`;
+
+export const StyledCloseBtn = styled.button`
+  /* position: absolute;
+
+  @media screen and (min-width: 375px) {
+    top: 35px;
+    right: 187px;
+  }
+
+  @media screen and (min-width: 768px) {
+    top: 45px;
+    right: 232px;
+  } */
+
+  @media screen and (min-width: 769px) {
+    display: none;
+  }
+
+  border: none;
+  background-color: #fff;
+  & svg {
+    stroke: #3e85f3;
+    fill: #3e85f3;
   }
 `;

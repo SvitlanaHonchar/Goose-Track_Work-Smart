@@ -18,7 +18,7 @@ import UserInfo from '../UserInfo/UserInfo';
 import { useSelector } from 'react-redux';
 import { selectAllTasks } from 'redux/tasks/tasksSelectors';
 
-const Header = () => {
+const Header = ({ onBurgetClick }) => {
   const location = useLocation();
   // console.log(location);
   const path = location.pathname;
@@ -49,6 +49,7 @@ const Header = () => {
     <StyledHeader>
       {/* burger-btn */}
       <Button
+        onClick={onBurgetClick}
         type="button"
         sx={{
           height: '32px',
