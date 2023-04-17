@@ -11,6 +11,7 @@ import { useTheme } from '@mui/material';
 
 const MainLayout = () => {
   const user = useSelector(selectUser);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

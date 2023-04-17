@@ -31,6 +31,7 @@ const authInitialState = {
   },
   isLogged: false,
   isLoading: false,
+  // isRefreshing
   error: false,
   accessToken: null,
   refreshToken: null,
@@ -65,6 +66,7 @@ const authSlice = createSlice({
         ) => {
           state.accessToken = accessToken;
           state.refreshToken = refreshToken;
+          state.isLogged = true;
         }
       )
       .addCase(
@@ -121,19 +123,20 @@ function authLogFulfilled(state, action) {
 function authFulfilled(state) {
   state.isLoading = false;
   state.error = false;
+  state.isLogged = true;
 }
 
 function authPending(state) {
   // state.isLogged = false;
   state.isLoading = true;
   state.error = false;
-  state.user = {
-    name: null,
-    email: null,
-    phone: null,
-    skype: null,
-    userImgUrl: null,
-  };
+  // state.user = {
+  //   name: null,
+  //   email: null,
+  //   phone: null,
+  //   skype: null,
+  //   userImgUrl: null,
+  // };
 }
 
 function authRejected(state, action) {

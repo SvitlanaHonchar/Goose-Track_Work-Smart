@@ -2,9 +2,13 @@ import CalendarComponent from 'modules/CalendarComponent/components/CalendarComp
 import React, { Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Outlet, useLocation, useParams } from 'react-router';
-import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import {
+  selectIsLoggedIn,
+  selectIsUserLoading,
+} from 'redux/auth/authSelectors';
 import { getMonthTasks } from 'redux/tasks/tasksOperations';
 import {
+  selectAllTasks,
   selectIsTasksError,
   selectTasksError,
 } from 'redux/tasks/tasksSelectors';
@@ -15,7 +19,8 @@ import { showAnyError } from 'shared/utils/notifications';
 const CalendarPage = () => {
   const dispatch = useDispatch();
   const isLogged = useSelector(selectIsLoggedIn);
-
+  const taskData = useSelector(selectAllTasks);
+  // console.log(taskData);
   // const [chosenDate] = useState(new Date());
 
   // --data for dispatch getMonthTasks
@@ -40,11 +45,11 @@ const CalendarPage = () => {
 
   const taskError = useSelector(selectTasksError);
   const taskErrorStatus = useSelector(selectIsTasksError);
-
+  const isUserLoading = useSelector(selectIsUserLoading);
   // console.log('taskErrorStatus', taskErrorStatus);
 
   useEffect(() => {
-    if (isLogged) {
+    if (isLogged && taskData === null && !isUserLoading) {
       // setTimeout(() => {
       dispatch(
         getMonthTasks({
@@ -60,7 +65,7 @@ const CalendarPage = () => {
       // );
       // }, 1000);
     }
-  }, [dispatch, isLogged, yearParams, monthParams]);
+  }, [dispatch, isLogged, yearParams, monthParams, taskData, isUserLoading]);
 
   useEffect(() => {
     if (taskErrorStatus) {
