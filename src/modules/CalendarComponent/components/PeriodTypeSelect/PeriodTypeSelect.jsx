@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
-import PeriodTypeButton from './PeriodTypeButton/PeriodTypeButton';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { buttonStyles } from './PeriodTypeSelectStyles';
 
 const PeriodTypeSelect = ({ selectedType, onTypeSelect, setActiveDate }) => {
   const navigate = useNavigate();
@@ -32,21 +34,23 @@ const PeriodTypeSelect = ({ selectedType, onTypeSelect, setActiveDate }) => {
     }
   };
 
+  const buttonData = [
+    { label: 'Month', type: 'month' },
+    { label: 'Day', type: 'day' },
+  ];
   return (
-    <div className="period-type-select">
-      <PeriodTypeButton
-        selected={selectedType === 'day'}
-        onClick={() => handleClick('day')}
-      >
-        Day
-      </PeriodTypeButton>
-      <PeriodTypeButton
-        selected={selectedType === 'month'}
-        onClick={() => handleClick('month')}
-      >
-        Month
-      </PeriodTypeButton>
-    </div>
+    <ToggleButtonGroup>
+      {buttonData.map(({ label, type }) => (
+        <ToggleButton
+          key={type}
+          selected={selectedType === type}
+          onClick={() => handleClick(type)}
+          sx={buttonStyles}
+        >
+          {label}
+        </ToggleButton>
+      ))}
+    </ToggleButtonGroup>
   );
 };
 

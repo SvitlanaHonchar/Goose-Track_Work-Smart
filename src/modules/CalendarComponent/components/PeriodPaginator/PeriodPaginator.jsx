@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { addMonths, addDays, format } from 'date-fns';
+import { Box, Typography, Button, List, ListItem } from '@mui/material';
+import sprite from 'shared/icons/sprite.svg';
+import { styles } from './PeriodPaginatorStyles';
 
 const PeriodPaginator = ({ date, period, onDateChange }) => {
   const updateDate = amount => {
@@ -15,33 +18,52 @@ const PeriodPaginator = ({ date, period, onDateChange }) => {
       : `${format(date, ' d MMM yyyy ').toUpperCase()}`;
 
   return (
-    <div
-      style={{
+
+    <Box
+      sx={{
         display: 'flex',
+        columnGap: { md: '8px' },
+        justifyContent: { xs: 'space-between', md: 'flex-start' },
       }}
     >
-      <span
-        style={{
-          color: 'red',
-          backgroundColor: 'yellow',
-          display: 'inline-block',
-          padding: '20px',
-          fontSize: '20px',
-        }}
-      >
+      <Typography variant="text" component="span" sx={styles.text}>
         {formattedDate}
-      </span>
+      </Typography>
 
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
-        <button onClick={() => updateDate(-1)}>Previous</button>
-        <button onClick={() => updateDate(1)}>Next</button>
-      </div>
-    </div>
+      <List disablePadding sx={{ display: 'flex' }}>
+        <ListItem disablePadding>
+          <Button
+            sx={{
+              ...styles.navBtn,
+              borderTopRightRadius: '0px',
+              borderBottomRightRadius: '0px',
+            }}
+            variant="text"
+            onClick={() => updateDate(-1)}
+          >
+            <svg>
+              <use xlinkHref={`${sprite}#arrowShortLeft`} />
+            </svg>
+          </Button>
+        </ListItem>
+        <ListItem disablePadding>
+          <Button
+            sx={{
+              ...styles.navBtn,
+              borderTopLeftRadius: '0px',
+              borderBottomLeftRadius: '0px',
+              borderLeftWidth: '0px',
+            }}
+            variant="text"
+            onClick={() => updateDate(1)}
+          >
+            <svg>
+              <use xlinkHref={`${sprite}#arrowShortRight`} />
+            </svg>
+          </Button>
+        </ListItem>
+      </List>
+    </Box>
   );
 };
 
