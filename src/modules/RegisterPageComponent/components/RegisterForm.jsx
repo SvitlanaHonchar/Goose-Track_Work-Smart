@@ -8,7 +8,6 @@ import {
   Container,
   SignUpText,
   StyledButton,
-  StyledLink,
   Label,
   StyledField,
   StyledErrorMessage,
@@ -112,7 +111,6 @@ const RegisterForm = () => {
           </RegisterFormWrapper>
         )}
       </Formik>
-      <StyledLink to="/login">Log In</StyledLink>
     </Container>
   );
 };

@@ -65,7 +65,7 @@ const router = createBrowserRouter(
       <Route path="login" element={<LoginPage />} />
       <Route path="register" element={<RegisterPage />} />
       <Route element={<MainLayout />}>
-        // <Route path="account" element={<AccountPageWithRedirect />} />
+        {/*// <Route path="account" element={<AccountPageWithRedirect />} />
         {/*  <Route path="calendar" element={<CalendarPageWithRedirect />}>*/}
         {/* for use without authoriazation */}
         <Route path="account" element={<AccountPage />} />
