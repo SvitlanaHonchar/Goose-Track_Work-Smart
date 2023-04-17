@@ -93,7 +93,6 @@ export const StyledLoginForm = styled(Form)`
 
   .InputField {
     padding: 14px;
-    border: 1px solid rgba(220, 227, 229, 0.6);
     border-radius: 8px;
     width: 100%;
 
@@ -119,6 +118,14 @@ export const StyledLoginForm = styled(Form)`
         line-height: 1.12;
       }
     }
+  }
+
+  .ValidInput {
+    border: 1px solid rgba(220, 227, 229, 0.6);
+  }
+
+  .InvalidInput {
+    border: 1px solid #ea3d65;
   }
 
   .InputFieldPassword::placeholder {

@@ -70,18 +70,23 @@ export const LoginForm = () => {
           }
         }}
       >
-        {({ values, isSubmitting }) => (
+        {({ values, isSubmitting, errors, touched }) => (
           <div className="FormContainer">
             <StyledLoginForm>
               <p className="Title"> Log in</p>
               <label className="Inputlabel">
                 Email
                 <Field
-                  className="InputField"
+                  className={
+                    errors.email && touched.email
+                      ? 'InvalidInput InputField'
+                      : 'ValidInput InputField'
+                  }
                   type="email"
                   name="email"
                   value={values.email}
                   placeholder="nadiia@gmail.com"
+                  required
                 />
                 <ErrorMessage
                   name="email"
@@ -93,11 +98,16 @@ export const LoginForm = () => {
                 <span>Password</span>
                 <div className="PasswordInput ">
                   <Field
-                    className="InputField InputFieldPassword"
+                    className={
+                      errors.password && touched.password
+                        ? 'InvalidInput InputField InputFieldPassword'
+                        : 'ValidInput InputField InputFieldPassword'
+                    }
                     name="password"
                     value={values.password}
                     placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
                     type={passwordType}
+                    required
                   />
                   <StyledVisibilityBtn type="button" onClick={togglePassword}>
                     {passwordType === 'password' ? (
