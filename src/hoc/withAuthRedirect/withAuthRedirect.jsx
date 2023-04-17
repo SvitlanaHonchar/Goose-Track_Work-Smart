@@ -6,8 +6,7 @@ import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 function withAuthRedirect(Component, redirectTo) {
   const ComponentWithRedirect = props => {
     const isLoggedIn = useSelector(selectIsLoggedIn);
-    console.log('isLoggedIn in redirect hoc: ', isLoggedIn);
-    return true ? <Component {...props} /> : <Navigate to={redirectTo} />;
+    return isLoggedIn ? <Component {...props} /> : <Navigate to={redirectTo} />;
   };
   return ComponentWithRedirect;
 }

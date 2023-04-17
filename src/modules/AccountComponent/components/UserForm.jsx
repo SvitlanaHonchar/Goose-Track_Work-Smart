@@ -1,16 +1,16 @@
 import { Grid, Typography, Box } from '@mui/material';
 
-import React, { useState } from 'react';
+import React from 'react';
 import TextInput from 'shared/components/ui/TextInput/TextInput';
 import { DatePicker } from './DatePicker';
 
 export default function UserForm({ formData, onChange, setBirthday, errors }) {
   const { name, email, birthday, phone, skype } = formData;
-  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
-  const handleExpandClick = () => {
-    setIsDatePickerOpen(!isDatePickerOpen);
-  };
-  const birthdayDate = birthday ? new Date(birthday) : null;
+  // const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
+  // const handleExpandClick = () => {
+  //   setIsDatePickerOpen(!isDatePickerOpen);
+  // };
+  // const birthdayDate = birthday ? new Date(birthday) : null;
 
   return (
     <Grid container spacing={2}>
@@ -19,7 +19,7 @@ export default function UserForm({ formData, onChange, setBirthday, errors }) {
         <TextInput
           onChange={onChange}
           name="name"
-          value={name}
+          value={name || ''}
           error={!!errors.name}
           helperText={errors.name}
         />

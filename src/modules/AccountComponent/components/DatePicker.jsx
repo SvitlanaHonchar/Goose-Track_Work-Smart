@@ -22,31 +22,36 @@ export const DatePicker = ({ setBirthday }) => {
   );
   const [open, setOpen] = useState(false);
   const datePickerRef = useRef(null);
-
+  useEffect(() => {
+    setDate((birthday && new Date(birthday)) || new Date());
+  }, [birthday]);
   useEffect(() => {
     const formatedDate = formatDate(date);
     setBirthday(formatedDate);
   }, [date, setBirthday]);
 
   const handleIconClick = () => {
-    setOpen(true);
+    setOpen(!open);
     datePickerRef.current.setFocus();
   };
-
+  const handleChange = value => {
+    setDate(value);
+    setOpen(false);
+  };
   const handleClose = () => {
     setOpen(false);
   };
 
   return (
     <ReactDatePicker
-      dateFormat={'dd-mm-yyyy'}
+      dateFormat={'dd-MM-yyyy'}
       selected={date}
-      onChange={setDate}
+      onChange={handleChange}
       open={open}
-      onClose={handleClose}
       ref={datePickerRef}
       customInput={
         <TextField
+          name="birthday"
           fullWidth
           size="small"
           color="primary"

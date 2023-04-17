@@ -13,7 +13,7 @@ const extraActions = [
   authLogin,
   authLogout,
   authRefresh,
-  authGetUserInfo,
+  // authGetUserInfo,
   authUpdate,
 ];
 const extraLogActions = [authRegister, authLogin];
@@ -28,6 +28,7 @@ const authInitialState = {
     phone: null,
     skype: null,
     userImgUrl: null,
+    birthday: null,
   },
   isLogged: false,
   isLoading: false,
@@ -69,14 +70,36 @@ const authSlice = createSlice({
       )
       .addCase(
         authUpdate.fulfilled,
-        (state, { payload: { name, email, skype, phone, userImgUrl } }) => {
+        (
+          state,
+          { payload: { name, email, skype, phone, userImgUrl, birthday } }
+        ) => {
           state.user = {
             name,
             email,
             phone,
             skype,
             userImgUrl,
+            birthday,
           };
+        }
+      )
+      .addCase(
+        authGetUserInfo.fulfilled,
+        (
+          state,
+          { payload: { name, email, skype, phone, userImgUrl, birthday } }
+        ) => {
+          state.user = {
+            name,
+            email,
+            phone,
+            skype,
+            userImgUrl,
+            birthday,
+          };
+          state.isLoading = false;
+          state.error = false;
         }
       )
       .addMatcher(
