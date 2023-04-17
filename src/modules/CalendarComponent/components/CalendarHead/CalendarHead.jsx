@@ -12,11 +12,18 @@ const CalendarHead = ({ mode, currentDay }) => {
   const options = {};
   if (currentDay) {
     options.selectedDate = new Date(currentDay);
-    options.day = options.selectedDate.getDay() - 1;
-    options.startWeekDate = options.selectedDate.getDate() - options.day;
+    options.day =
+      options.selectedDate.getDay() === 0
+        ? 6
+        : options.selectedDate.getDay() - 1;
+    options.startWeekDate = new Date(
+      new Date(options.selectedDate).setDate(
+        options.selectedDate.getDate() - options.day
+      )
+    );
   }
   // console.log(window.innerWidth, typeof window.innerWidth);
-  // console.log('selectedDate: ', options);
+  console.log('selectedDate: ', options);
   return (
     <List
       className="calendarHead__list"
@@ -29,9 +36,21 @@ const CalendarHead = ({ mode, currentDay }) => {
           </ListItem>
         ))}
       {mode === 'dayMode' &&
-        WEEK_DAYS.map(day =>
-          WEEK_DAYS.indexOf(day) === options.day ? (
-            <ListItem key={day} className="calendarHead__item current">
+        WEEK_DAYS.map((day, index) => {
+          const currentDate = new Date(
+            new Date(options.startWeekDate).setDate(
+              options.startWeekDate.getDate() + index
+            )
+          );
+          console.log('currentDate: ', currentDate);
+
+          return (
+            <ListItem
+              key={day}
+              className={`calendarHead__item ${
+                WEEK_DAYS.indexOf(day) === options.day ? 'current' : ''
+              }`}
+            >
               <Box
                 sx={{
                   display: 'flex',
@@ -42,36 +61,17 @@ const CalendarHead = ({ mode, currentDay }) => {
               >
                 <span>{window.innerWidth >= 765 ? day : day[0]}</span>
                 <Link
-                  to={`/calendar/day/${currentDay.slice(0, -2)}${
-                    options.startWeekDate + WEEK_DAYS.indexOf(day)
-                  }`}
+                  to={`/calendar/day/${currentDay.slice(
+                    0,
+                    -2
+                  )}${currentDate.getDate()}`}
                 >
-                  {options.startWeekDate + WEEK_DAYS.indexOf(day)}
+                  {currentDate.getDate()}
                 </Link>
               </Box>
             </ListItem>
-          ) : (
-            <ListItem key={day} className="calendarHead__item">
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
-                <span>{window.innerWidth >= 765 ? day : day[0]}</span>
-                <Link
-                  to={`/calendar/day/${currentDay.slice(0, -2)}${
-                    options.startWeekDate + WEEK_DAYS.indexOf(day)
-                  }`}
-                >
-                  {options.startWeekDate + WEEK_DAYS.indexOf(day)}
-                </Link>
-              </Box>
-            </ListItem>
-          )
-        )}
+          );
+        })}
     </List>
   );
 };
