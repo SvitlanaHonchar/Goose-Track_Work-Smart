@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
 
 import { StyledAuthNavigate } from './AuthNavigate.styled';
@@ -19,8 +20,15 @@ const AuthNavigate = () => {
   const handleLoginBtnClick = () => {
     navigate('/login', { replace: true });
   };
+=======
+import PropTypes from 'prop-types';
 
+import { StyledAuthNavigate } from './AuthNavigate.styled';
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
+
+const AuthNavigate = ({ link, text }) => {
   return (
+<<<<<<< HEAD
     <StyledAuthNavigate>
       <div className="ContentContainer">
         <div className="StyledImage"></div>
@@ -53,7 +61,17 @@ const AuthNavigate = () => {
         </div>
       </div>
     </StyledAuthNavigate>
+=======
+    <div>
+      <StyledAuthNavigate to={link}>{text}</StyledAuthNavigate>
+    </div>
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
   );
+};
+
+AuthNavigate.propTypes = {
+  link: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 export default AuthNavigate;

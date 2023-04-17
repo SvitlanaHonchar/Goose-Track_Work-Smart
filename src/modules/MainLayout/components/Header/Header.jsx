@@ -1,13 +1,6 @@
-// + 1. Компонент використовує визначає активну сторінку і використовує відповідне значення заголовку з назвою даної сторінки.
-// + 2. На планшетній та мобільній версіях відображається кнопка для відкриття бургер меню.
-// 3. На сторінціз календарем дня, при наявності не виконаних завдань в цей день, відображається Гусак з мотиваційним повідомленням, так як показано на макеті.
-// + 4. Компонент рендерить:
-//  - ThemeToggler - перемикач теми світла/темна
-//  - UserInfo - блок з інфо про юзера
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ThemeToggler from '../ThemeToggler/ThemeToggler';
-import { useLocation } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import icons from '../../../../shared/icons/sprite.svg';
 import goosePic2x from '../../../../shared/images/header/desktop_goose_header@2x.png';
 import goosePic from '../../../../shared/images/header/desktop_goose_header.png';
@@ -17,39 +10,46 @@ import { StyledHeader } from './Header.styled';
 import UserInfo from '../UserInfo/UserInfo';
 import { useSelector } from 'react-redux';
 import { selectAllTasks } from 'redux/tasks/tasksSelectors';
+import { showSuccessDoneTasks } from 'shared/utils/notifications';
 
-const Header = ({ onBurgetClick }) => {
+const Header = () => {
   const location = useLocation();
-  // console.log(location);
   const path = location.pathname;
+  // console.log(location);
+  const params = useParams();
+  // console.log('params:', params);
+
+  const [tasksStatus, setTasksStatus] = useState(null);
 
   // pulling all tasks for month
   const monthTasks = useSelector(selectAllTasks);
 
-  if (monthTasks) {
-    // get current date - замінити на дату з ChosenDay
-    // const currentDate = new Date().toISOString().slice(0, 10);
-    // ----for positive result:
-    const testDate = '2023-04-17';
+  useEffect(() => {
+    if (monthTasks && path.includes('day')) {
+      const currentDate = path.includes('day') && params.currentDay;
+      // ----for positive result:
+      // const currentDate = '2023-04-17';
 
-    // find todays tasks
-    const todayTasks = monthTasks.filter(task => task.date === testDate);
+      // find todays tasks
+      const todayTasks = monthTasks.filter(task => task.date === currentDate);
 
-    if (todayTasks.length > 0) {
-      // find if there are not done tasks
-      var tasksNotDone = todayTasks[0].tasks.some(
-        task => task.category === 'to-do' || task.category === 'in-progress'
-      );
-    } else {
-      console.log('no tasks for this date');
+      if (todayTasks.length > 0) {
+        // find if there are not done tasks
+        var tasksNotDone = todayTasks[0].tasks.some(
+          task => task.category === 'to-do' || task.category === 'in-progress'
+        );
+      } else {
+        showSuccessDoneTasks();
+      }
     }
-  }
+
+    setTasksStatus(tasksNotDone);
+  }, [monthTasks, path]);
 
   return (
     <StyledHeader>
       {/* burger-btn */}
       <Button
-        onClick={onBurgetClick}
         type="button"
         sx={{
           height: '32px',
@@ -71,14 +71,11 @@ const Header = ({ onBurgetClick }) => {
         )}
 
         {/* motivational quote */}
-        {path === '/calendar' ? (
+        {path.includes('/calendar') ? (
           <div className="header-calendar">
-            {tasksNotDone && (
+            {tasksStatus && path.includes('/calendar/day') && (
               <picture>
-                <source
-                  // srcset="./images/imgfirst.jpg 1x, ./images/imgfirst@2x.jpg 2x"
-                  srcSet={`${goosePic} 1x, ${goosePic2x} 2x`}
-                />
+                <source srcSet={`${goosePic} 1x, ${goosePic2x} 2x`} />
                 <img
                   src={`${goosePic2x}`}
                   alt="motivational goose"
@@ -96,7 +93,7 @@ const Header = ({ onBurgetClick }) => {
               >
                 Calendar
               </Typography>
-              {tasksNotDone && (
+              {tasksStatus && path.includes('/calendar/day') && (
                 <>
                   <Typography
                     variant="subtitle1"

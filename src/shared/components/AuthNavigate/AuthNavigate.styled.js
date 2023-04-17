@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+<<<<<<< HEAD
 import img1 from '../../../shared/images/authNavigation/mobile/mobile_gooseTrack_authNav.png';
 import img2 from '../../../shared/images/authNavigation/mobile/mobile_gooseTrack_authNav@2x.png';
 import img3 from '../../../shared/images/authNavigation/tablet/tablet_gooseTrack_authNav.png';
@@ -128,5 +129,24 @@ export const StyledAuthNavigate = styled.header`
       width: 121px;
       height: 49px;
     }
+=======
+import { NavLink } from 'react-router-dom';
+
+export const StyledAuthNavigate = styled(NavLink)`
+  display: block;
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.16;
+  text-decoration: underline;
+  color: #3e85f3;
+
+  text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
+    0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+    line-height: 1.33;
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
   }
 `;

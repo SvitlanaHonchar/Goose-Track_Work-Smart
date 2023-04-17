@@ -15,7 +15,7 @@ import {
   authLogin,
   // authLogout,
   authRefresh,
-  // authRegister,
+  authRegister,
   // authUpdate,
 } from 'redux/auth/authOperations';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
@@ -65,10 +65,17 @@ const router = createBrowserRouter(
       <Route path="login" element={<LoginPage />} />
       <Route path="register" element={<RegisterPage />} />
       <Route element={<MainLayout />}>
+<<<<<<< HEAD
         <Route path="account" element={<AccountPageWithRedirect />} />
         {/*  <Route path="calendar" element={<CalendarPageWithRedirect />}>*/}
         {/* for use without authoriazation */}
         {/* <Route path="account" element={<AccountPage />} />*/}
+=======
+        // <Route path="account" element={<AccountPageWithRedirect />} />
+        {/*  <Route path="calendar" element={<CalendarPageWithRedirect />}>*/}
+        {/* for use without authoriazation */}
+        <Route path="account" element={<AccountPage />} />
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
         <Route path="calendar" element={<CalendarPage />}>
           <Route path="month/:currentMonth" element={<ChosenMonth />} />
           <Route path="day/:currentDay" element={<ChosenDay />} />{' '}
@@ -90,23 +97,33 @@ const App = () => {
   // useEffect(() => {
   //   dispatch(
   //     authRegister({
-  //       name: 'Test',
+  //       name: 'Marina',
+  //       email: 'lolol@gmail.com',
+  //       password: 'mari123mari',
+  //     })
+  //   );
+  // }, [dispatch]);
+
+  //login-
+  //login- success
+  useEffect(() => {
+    dispatch(
+      authLogin({
+        email: 'lolol@gmail.com',
+        password: 'mari123mari',
+      })
+    );
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(
+  //     authLogin({
+  //       // name: 'Avataghtr',
   //       email: 'smth5@gmail.com',
   //       password: '1234567',
   //     })
   //   );
   // }, [dispatch]);
-
-  //login- success
-  useEffect(() => {
-    dispatch(
-      authLogin({
-        // name: 'Avataghtr',
-        email: 'smth5@gmail.com',
-        password: '1234567',
-      })
-    );
-  }, [dispatch]);
 
   //logout
   // useEffect(() => {

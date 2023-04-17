@@ -4,11 +4,7 @@ import ButtonComponent from '@mui/material/Button';
 
 export default function ButtonAuth({ children, ...props }) {
   return (
-    <ButtonComponent
-      {...props}
-      variant="contained"
-      sx={{ borderRadius: '16px', display: 'block', height: '46px' }}
-    >
+    <ButtonComponent {...props} variant="contained">
       {children}
     </ButtonComponent>
   );

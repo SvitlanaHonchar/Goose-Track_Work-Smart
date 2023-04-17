@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Button } from '@mui/material';
 import { Form } from 'formik';
+<<<<<<< HEAD
 import { NavLink } from 'react-router-dom';
 
 export const StyledContainer = styled.div`
@@ -15,6 +16,23 @@ export const StyledContainer = styled.div`
 
   @media screen and (min-width: 768px) {
     margin-bottom: 24px;
+=======
+
+export const StyledContainer = styled.div`
+  .FormContainer {
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 18px;
+
+    @media screen and (max-width: 374px) {
+      width: 100%;
+      max-width: 335px;
+    }
+
+    @media screen and (min-width: 768px) {
+      margin-bottom: 24px;
+    }
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
   }
 `;
 
@@ -71,6 +89,13 @@ export const StyledLoginForm = styled(Form)`
       @media screen and (min-width: 768px) {
         margin-bottom: 18px;
       }
+<<<<<<< HEAD
+=======
+
+      &.custom-border {
+        border: 2px solid red;
+      }
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
     }
 
     &:nth-of-type(2) {
@@ -88,8 +113,13 @@ export const StyledLoginForm = styled(Form)`
 
   .InputField {
     padding: 14px;
+<<<<<<< HEAD
     border: 1px solid rgba(220, 227, 229, 0.6);
     border-radius: 8px;
+=======
+    border-radius: 8px;
+    width: 100%;
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
 
     font-weight: 400;
     font-size: 14px;
@@ -114,6 +144,26 @@ export const StyledLoginForm = styled(Form)`
       }
     }
   }
+<<<<<<< HEAD
+=======
+
+  .ValidInput {
+    border: 1px solid rgba(220, 227, 229, 0.6);
+  }
+
+  .InvalidInput {
+    border: 1px solid #ea3d65;
+  }
+
+  .InputFieldPassword::placeholder {
+    letter-spacing: 8px;
+  }
+
+  .PasswordInput {
+    position: relative;
+    width: 100%;
+  }
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
 `;
 
 export const StyledButton = styled(Button)`
@@ -122,6 +172,10 @@ export const StyledButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
+<<<<<<< HEAD
+=======
+  gap: 11px;
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
   box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48);
   border-radius: 16px;
 
@@ -141,6 +195,7 @@ export const StyledButton = styled(Button)`
   }
 `;
 
+<<<<<<< HEAD
 export const StyledNavLink = styled(NavLink)`
   font-weight: 600;
   font-size: 18px;
@@ -150,4 +205,12 @@ export const StyledNavLink = styled(NavLink)`
 
   text-shadow: 0px 47px 355px rgba(0, 0, 0, 0.07),
     0px 9.4px 57.6875px rgba(0, 0, 0, 0.035);
+=======
+export const StyledVisibilityBtn = styled(Button)`
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
 `;

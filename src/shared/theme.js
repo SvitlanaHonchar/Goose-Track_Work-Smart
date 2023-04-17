@@ -52,6 +52,14 @@ export const theme = createTheme({
       input: '#F7F7F7',
       lightBlue: '#72C2F8',
       blue: '#CEEEFD',
+<<<<<<< HEAD
+=======
+      borderLight: '#3e85f333',
+      borderDark: '#ffffff26',
+      activePeriod: '#CAE8FF',
+      pagBorder: '#dce3e580',
+      mainWhite: '#FFFFFF',
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
     },
   },
   typography: {
@@ -102,6 +110,14 @@ export const theme = createTheme({
       fontWeight: 400,
       textTransform: 'none',
     },
+<<<<<<< HEAD
+=======
+    text: {
+      fontSize: '0.875rem',
+      fontWeight: 700,
+      textTransform: 'uppercase',
+    },
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
   },
   components: {
     // Name of the component
