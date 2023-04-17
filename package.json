@@ -15,18 +15,11 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.3.5",
-<<<<<<< HEAD
-=======
     "date-fns": "^2.29.3",
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
     "dayjs": "^1.11.7",
     "dayjs-plugin-utc": "^0.1.2",
     "formik": "^2.2.9",
     "react": "^18.1.0",
-<<<<<<< HEAD
-    "react-burger-menu": "^3.0.9",
-=======
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
     "react-datepicker": "^4.11.0",
     "react-dom": "^18.1.0",
     "react-hot-toast": "^2.4.0",

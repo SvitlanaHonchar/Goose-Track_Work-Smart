@@ -65,24 +65,18 @@ const router = createBrowserRouter(
       <Route path="login" element={<LoginPage />} />
       <Route path="register" element={<RegisterPage />} />
       <Route element={<MainLayout />}>
-<<<<<<< HEAD
-        <Route path="account" element={<AccountPageWithRedirect />} />
-        {/*  <Route path="calendar" element={<CalendarPageWithRedirect />}>*/}
-        {/* for use without authoriazation */}
-        {/* <Route path="account" element={<AccountPage />} />*/}
-=======
         // <Route path="account" element={<AccountPageWithRedirect />} />
         {/*  <Route path="calendar" element={<CalendarPageWithRedirect />}>*/}
         {/* for use without authoriazation */}
         <Route path="account" element={<AccountPage />} />
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
         <Route path="calendar" element={<CalendarPage />}>
           <Route path="month/:currentMonth" element={<ChosenMonth />} />
           <Route path="day/:currentDay" element={<ChosenDay />} />{' '}
           {/*!!!!! currentDay format: '2023-04-14'*/}
         </Route>
       </Route>
-      // <Route path="*" element={<NoMatchPage />} />
+
+      <Route path="*" element={<NoMatchPage />} />
     </Route>
   ),
   { basename }

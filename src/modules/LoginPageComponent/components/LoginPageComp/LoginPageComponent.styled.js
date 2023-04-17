@@ -3,25 +3,10 @@ import styled from 'styled-components';
 
 import img1 from '../../../../shared/images/logInPage/desktop_goose_loginPage.png';
 import img2 from '../../../../shared/images/logInPage/desktop_goose_loginPage@2x.png';
-<<<<<<< HEAD
-
-=======
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
 import img3 from '../../../../shared/images/logInPage/desktop_goose_message_logIn.png';
 import img4 from '../../../../shared/images/logInPage/desktop_goose_message_logIn@2x.png';
 
 export const StyledLoginPageComponent = styled(Box)`
-<<<<<<< HEAD
-  position: relative;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-
-  justify-content: center;
-  align-items: center;
-
-  .ImageContainer {
-=======
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -37,7 +22,6 @@ export const StyledLoginPageComponent = styled(Box)`
     top: 250px;
     right: -250px;
 
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
     @media screen and (max-width: 1439px) {
       display: none;
     }
@@ -45,13 +29,8 @@ export const StyledLoginPageComponent = styled(Box)`
 
   .StyledImageGoose {
     position: absolute;
-<<<<<<< HEAD
-    top: 350px;
-    right: 200px;
-=======
     top: -80px;
     right: -40px;
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
     background-image: url(${img1});
     background-size: cover;
     background-position: center;
@@ -66,13 +45,8 @@ export const StyledLoginPageComponent = styled(Box)`
 
   .StyledImageMessage {
     position: absolute;
-<<<<<<< HEAD
-    top: 250px;
-    right: 220px;
-=======
     top: -170px;
     right: -50px;
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
     background-image: url(${img3});
     background-size: cover;
     background-position: center;
@@ -100,10 +74,7 @@ export const StyledLoginPageComponent = styled(Box)`
     font-size: 14px;
     line-height: 1.14;
   }
-<<<<<<< HEAD
-=======
 
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
   .MessageFocus {
     color: #3e85f3;
   }

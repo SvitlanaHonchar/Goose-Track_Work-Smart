@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import React from 'react';
-=======
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
 import { useDispatch } from 'react-redux';
 import { Formik, Field, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
@@ -11,14 +7,6 @@ import { object, string } from 'yup';
 import {
   StyledLoginForm,
   StyledButton,
-<<<<<<< HEAD
-  StyledNavLink,
-  StyledContainer,
-} from './LoginForm.styled.js';
-import Icons from '../../../../shared/icons/sprite.svg';
-import { authLogin } from 'redux/auth/authOperations.js';
-import theme from '../../../../shared/theme.js';
-=======
   StyledContainer,
   StyledVisibilityBtn,
 } from './LoginForm.styled.js';
@@ -30,7 +18,6 @@ import {
 } from '../../../../shared/utils/notifications';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import theme from 'shared/theme';
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
 
 const validationSchema = object({
   email: string().required('Required').email('Invalid email'),
@@ -39,18 +26,6 @@ const validationSchema = object({
     .min(6, 'Password should be 6 chars minimum.'),
 });
 
-<<<<<<< HEAD
-const Icon = ({ name, width, height }) => (
-  <svg width={width} height={height}>
-    <use className="Icon" xlinkHref={`${Icons}#${name} `} />
-  </svg>
-);
-
-export const LoginForm = () => {
-  const dispatch = useDispatch();
-  return (
-    <>
-=======
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -67,30 +42,12 @@ export const LoginForm = () => {
 
   return (
     <StyledContainer>
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
       <Formik
         initialValues={{
           email: '',
           password: '',
         }}
         validationSchema={validationSchema}
-<<<<<<< HEAD
-        onSubmit={(values, { setSubmitting, resetForm }) => {
-          console.log(values);
-          dispatch(
-            authLogin({
-              email: values.email,
-              password: values.password,
-            })
-          );
-
-          setSubmitting(false);
-          resetForm();
-        }}
-      >
-        {({ values, isSubmitting }) => (
-          <StyledContainer>
-=======
         onSubmit={async (values, { setSubmitting, resetForm }) => {
           try {
             const actionResult = await dispatch(
@@ -115,29 +72,21 @@ export const LoginForm = () => {
       >
         {({ values, isSubmitting, errors, touched }) => (
           <div className="FormContainer">
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
             <StyledLoginForm>
               <p className="Title"> Log in</p>
               <label className="Inputlabel">
                 Email
                 <Field
-<<<<<<< HEAD
-                  className="InputField"
-=======
                   className={
                     errors.email && touched.email
                       ? 'InvalidInput InputField'
                       : 'ValidInput InputField'
                   }
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
                   type="email"
                   name="email"
                   value={values.email}
                   placeholder="nadiia@gmail.com"
-<<<<<<< HEAD
-=======
                   required
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
                 />
                 <ErrorMessage
                   name="email"
@@ -145,17 +94,6 @@ export const LoginForm = () => {
                   className="ErrorMessage"
                 />
               </label>
-<<<<<<< HEAD
-              <label className="Inputlabel">
-                Password
-                <Field
-                  className="InputField"
-                  type="password"
-                  name="password"
-                  value={values.password}
-                  placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
-                />
-=======
               <label className="Inputlabel ">
                 <span>Password</span>
                 <div className="PasswordInput ">
@@ -181,7 +119,6 @@ export const LoginForm = () => {
                     )}
                   </StyledVisibilityBtn>
                 </div>
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
                 <ErrorMessage
                   className="ErrorMessage"
                   name="password"
@@ -195,16 +132,6 @@ export const LoginForm = () => {
                 variant="contained"
               >
                 Submit
-<<<<<<< HEAD
-                <Icon className="Login" name="logIn" width="18" height="18" />
-              </StyledButton>
-            </StyledLoginForm>
-          </StyledContainer>
-        )}
-      </Formik>
-      <StyledNavLink to="/register">Sign in</StyledNavLink>
-    </>
-=======
                 <svg height="13.5" width="13.5">
                   <use href={sprite + '#loginStartPage'}></use>
                 </svg>
@@ -214,6 +141,5 @@ export const LoginForm = () => {
         )}
       </Formik>
     </StyledContainer>
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
   );
 };

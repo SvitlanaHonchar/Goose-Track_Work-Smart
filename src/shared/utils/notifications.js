@@ -12,11 +12,6 @@ export const showSuccessAddTask = () => {
 export const showSuccessEditTask = () => {
   toast.success("You've just  editted task");
 };
-<<<<<<< HEAD
-export const showErrorValidation = message => {
-  toast.error(message);
-};
-=======
 export const showSuccessDoneTasks = () => {
   toast.success('All done for today!');
 };
@@ -56,4 +51,3 @@ export const showSuccessDeleteTask = columnName => {
 export const showAnyError = errorText => {
   toast.error(errorText);
 };
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e

@@ -5,9 +5,6 @@ import { selectIsUserLoading, selectUser } from 'redux/auth/authSelectors';
 import theme from 'shared/theme';
 
 const UserInfo = () => {
-<<<<<<< HEAD
-  return <div>UserInfo</div>;
-=======
   const { name, userImgUrl } = useSelector(selectUser);
   const isUserLoading = useSelector(selectIsUserLoading);
   console.log('name', name);
@@ -39,7 +36,6 @@ const UserInfo = () => {
       <Typography>{name?.split(' ')[0] || ''}</Typography>
     </Box>
   );
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
 };
 
 export default UserInfo;

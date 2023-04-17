@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
-=======
 import PropTypes from 'prop-types';
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
 import {
   FormControl,
   FormControlLabel,
@@ -112,8 +109,6 @@ export const PriorityList = ({ defaultValue, handleChange }) => {
     </FormControl>
   );
 };
-<<<<<<< HEAD
-=======
 
 PriorityList.propTypes = {
   defaultValue: PropTypes.oneOf([
@@ -123,4 +118,3 @@ PriorityList.propTypes = {
   ]).isRequired,
   handleChange: PropTypes.func.isRequired,
 };
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e

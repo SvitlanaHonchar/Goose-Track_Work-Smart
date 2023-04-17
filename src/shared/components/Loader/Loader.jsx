@@ -1,9 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-
-const Loader = () => {
-  return <div>Loader</div>;
-=======
 import { StyledLoader } from './Loader.styled';
 
 export const Loader = () => {
@@ -31,7 +26,6 @@ export const Loader = () => {
       </div>
     </StyledLoader>
   );
->>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
 };
 
 export default Loader;
