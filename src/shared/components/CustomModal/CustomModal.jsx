@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
+<<<<<<< HEAD
+=======
 import PropTypes from 'prop-types';
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
 import Modal from 'react-modal';
 import IconButton from '@mui/material/IconButton';
 import sprite from 'shared/icons/sprite.svg';
@@ -78,6 +81,8 @@ const CustomModal = ({ children, ...props }) => {
   );
 };
 
+<<<<<<< HEAD
+=======
 CustomModal.propTypes = {
   children: PropTypes.node.isRequired,
   isOpen: PropTypes.bool.isRequired,
@@ -85,4 +90,5 @@ CustomModal.propTypes = {
   action: PropTypes.string.isRequired,
 };
 
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
 export default CustomModal;

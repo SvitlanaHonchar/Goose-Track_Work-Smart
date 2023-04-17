@@ -19,13 +19,22 @@
   font-style: italic;
 }
 
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  height: 100%;
 }
 
 code {
@@ -42,6 +51,8 @@ h6,
 p {
   margin: 0;
 }
+<<<<<<< HEAD
+=======
 
 a {
   text-decoration: none;
@@ -58,3 +69,4 @@ img {
   max-width: 100%;
   height: auto;
 }
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e

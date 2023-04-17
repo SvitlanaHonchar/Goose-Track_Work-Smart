@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+import React, { useCallback, useRef } from 'react';
+=======
 import React, { useCallback, useRef, useState } from 'react';
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
 import UserForm from './UserForm';
 import { UserAvatar } from './UserAvatar';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,6 +10,23 @@ import { useFormik } from 'formik';
 import { Grid, Typography } from '@mui/material';
 import ButtonAuth from 'shared/components/ui/ButtonAuth/ButtonAuth';
 import { authUpdate } from 'redux/auth/authOperations';
+<<<<<<< HEAD
+
+const AccountComponent = () => {
+  const dispatch = useDispatch();
+
+  const userData = useSelector(state => state.auth.user);
+  console.log('userData', userData);
+  const formRef = useRef(null);
+
+  const formik = useFormik({
+    initialValues: userData,
+    onSubmit: v => {
+      const formData = new FormData(formRef.current);
+      formData.delete('file');
+      formData.append('userImgUrl', v.userImgUrl);
+      dispatch(authUpdate(formData));
+=======
 import { selectIsUserLoading, selectUser } from 'redux/auth/authSelectors';
 
 const AccountComponent = () => {
@@ -56,22 +77,51 @@ const AccountComponent = () => {
       formData.append('userImgUrl', values.userImgUrl);
       dispatch(authUpdate(formData));
       setFormValues(values);
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
     },
   });
 
   const {
     values: { phone, name, email, birthday, skype, userImgUrl },
+<<<<<<< HEAD
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+    setValues,
+=======
     errors,
     touched,
     handleChange,
     handleSubmit,
     setFieldValue,
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
   } = formik;
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const setAvatar = useCallback(file => setFieldValue('userImgUrl', file), []);
   const setBirthday = useCallback(date => {
     setFieldValue('birthday', date);
+<<<<<<< HEAD
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const userAvatarFormData = { name, userImgUrl };
+  const userFormData = { name, birthday, email, phone, skype };
+
+  return (
+    <Grid container justifyContent={'center'}>
+      <UserAvatar setAvatar={setAvatar} formData={userAvatarFormData} />
+      <UserForm
+        formData={userData}
+        onChange={handleChange}
+        setBirthday={setBirthday}
+      />
+      <ButtonAuth
+      // sx={{ color: { md: 'red', lg: 'green' } }}
+      >
+        <Typography variant="button">Save changes</Typography>
+      </ButtonAuth>
+    </Grid>
+=======
   }, []);
   const userAvatarFormData = { name, userImgUrl };
   const userFormData = { name, birthday, email, phone, skype };
@@ -101,6 +151,7 @@ const AccountComponent = () => {
         </ButtonAuth>
       </Grid>
     </form>
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
   );
 };
 

@@ -1,5 +1,8 @@
 import React from 'react';
+<<<<<<< HEAD
+=======
 import PropTypes from 'prop-types';
+>>>>>>> 549f4e1c1556ad76f919ec2f9aa73ec870707a3e
 import CustomModal from '../CustomModal/CustomModal';
 import TaskForm from '../TaskForm/TaskForm';
 
