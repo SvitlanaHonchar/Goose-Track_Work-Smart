@@ -70,16 +70,19 @@ const AccountComponent = () => {
   useEffect(() => {
     // TODO: delete timeout, when register is ready
     setTimeout(() => dispatch(authGetUserInfo()), 500);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
     setFormValues(userData);
     setValues(userData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userData]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const setAvatar = useCallback(file => setFieldValue('userImgUrl', file), []);
   const setBirthday = useCallback(date => {
     setFieldValue('birthday', date);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const userAvatarFormData = { name, userImgUrl };
   const userFormData = { name, birthday, email, phone, skype };
