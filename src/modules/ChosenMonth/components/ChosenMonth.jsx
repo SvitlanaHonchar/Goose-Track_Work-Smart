@@ -13,7 +13,6 @@ const ChosenMonth = () => {
 
   return (
     <div className="chosenMonth">
-      ChosenMonth
       <CalendarHead mode="monthMode" />
       {tasks ? (
         <CalendarTable tasks={tasks} currentMonth={currentMonth} />

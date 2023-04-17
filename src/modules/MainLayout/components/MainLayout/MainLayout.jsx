@@ -11,6 +11,7 @@ import { useTheme } from '@mui/material';
 
 const MainLayout = () => {
   const user = useSelector(selectUser);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,7 +19,7 @@ const MainLayout = () => {
       return;
     }
 
-    dispatch(authGetUserInfo);
+    dispatch(authGetUserInfo());
   }, [dispatch, user.name]);
 
   const theme = useTheme();
