@@ -1,16 +1,15 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import UserForm from './UserForm';
 import { UserAvatar } from './UserAvatar';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { Grid, Typography } from '@mui/material';
 import ButtonAuth from 'shared/components/ui/ButtonAuth/ButtonAuth';
-import { authUpdate } from 'redux/auth/authOperations';
-import { selectIsUserLoading, selectUser } from 'redux/auth/authSelectors';
+import { authGetUserInfo, authUpdate } from 'redux/auth/authOperations';
+import { selectUser } from 'redux/auth/authSelectors';
 
 const AccountComponent = () => {
   const dispatch = useDispatch();
-  const isUserLoading = useSelector(selectIsUserLoading);
   const userData = useSelector(selectUser);
   const formRef = useRef(null);
   const [formValues, setFormValues] = useState(userData);
@@ -46,7 +45,6 @@ const AccountComponent = () => {
 
     return errors;
   }, []);
-
   const formik = useFormik({
     initialValues: formValues,
     validate: validate,
@@ -54,11 +52,11 @@ const AccountComponent = () => {
       const formData = new FormData(formRef.current);
       formData.delete('file');
       formData.append('userImgUrl', values.userImgUrl);
+      formData.append('birthday', values.birthday);
       dispatch(authUpdate(formData));
       setFormValues(values);
     },
   });
-
   const {
     values: { phone, name, email, birthday, skype, userImgUrl },
     errors,
@@ -66,7 +64,17 @@ const AccountComponent = () => {
     handleChange,
     handleSubmit,
     setFieldValue,
+    setValues,
   } = formik;
+
+  useEffect(() => {
+    // TODO: delete timeout, when register is ready
+    setTimeout(() => dispatch(authGetUserInfo()), 500);
+  }, []);
+  useEffect(() => {
+    setFormValues(userData);
+    setValues(userData);
+  }, [userData]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const setAvatar = useCallback(file => setFieldValue('userImgUrl', file), []);
@@ -75,12 +83,8 @@ const AccountComponent = () => {
   }, []);
   const userAvatarFormData = { name, userImgUrl };
   const userFormData = { name, birthday, email, phone, skype };
-  console.log('dirty', formik.dirty);
-  console.log('isValid', formik.isValid);
 
-  return isUserLoading ? (
-    <b>Loading user...</b>
-  ) : (
+  return (
     <form onSubmit={handleSubmit} ref={formRef} noValidate>
       <Grid container justifyContent={'center'}>
         <UserAvatar setAvatar={setAvatar} formData={userAvatarFormData} />

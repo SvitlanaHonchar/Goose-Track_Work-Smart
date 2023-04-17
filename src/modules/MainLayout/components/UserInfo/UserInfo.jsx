@@ -7,7 +7,7 @@ import theme from 'shared/theme';
 const UserInfo = () => {
   const { name, userImgUrl } = useSelector(selectUser);
   const isUserLoading = useSelector(selectIsUserLoading);
-  console.log('name', name);
+
   return isUserLoading ? (
     <b>Loading...</b>
   ) : (
