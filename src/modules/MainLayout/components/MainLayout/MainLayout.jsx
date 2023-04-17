@@ -38,9 +38,9 @@ const MainLayout = () => {
     // Component =>
     // ({ ...props }) => {
     <StyledDiv theme={theme}>
-      <Box className="mainLayout-frame">
+      <Box className="mainLayout-frame" sx={{ margin: 0 }}>
         <SideBar menu={menuStatus} onClose={closeMenu} />
-        <div>
+        <div className="rigth-frame">
           <Header onBurgerClick={openMenu} />
 
           <Suspense>

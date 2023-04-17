@@ -2,16 +2,18 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const SideBarContainer = styled.div`
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   /* flex-grow: 7, 1; */
+  padding: 24px 32px;
 
-  border-right: 1px solid #dce3e5;
   height: 100vh;
 
-  padding: 24px 32px;
+  background-color: #fff;
+  border-right: 1px solid #dce3e5;
 
   @media screen and (max-width: 767px) {
     background-color: #fff;
