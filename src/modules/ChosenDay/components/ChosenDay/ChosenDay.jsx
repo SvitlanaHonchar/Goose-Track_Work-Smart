@@ -13,13 +13,8 @@ const ChosenDay = () => {
 
   useEffect(() => {
     if (!tasksAll) return;
-
     const currentTasks = tasksAll.find(task => task.date === currentDay)?.tasks;
-    if (!currentTasks || currentTasks.length === 0) {
-      setTasksCurrentDay({ todoTasks: [], inProgressTasks: [], doneTasks: [] });
-      return;
-    }
-
+    if (!currentTasks) return;
     const todoTasks = currentTasks.filter(task => task.category === 'to-do');
     const inProgressTasks = currentTasks.filter(
       task => task.category === 'in-progress'
@@ -32,7 +27,7 @@ const ChosenDay = () => {
   return (
     <>
       <CalendarHead />
-      {tasksCurrentDay ? (
+      {tasksAll ? (
         <TasksColumnsList tasks={tasksCurrentDay} currentDay={currentDay} />
       ) : (
         <Loader />

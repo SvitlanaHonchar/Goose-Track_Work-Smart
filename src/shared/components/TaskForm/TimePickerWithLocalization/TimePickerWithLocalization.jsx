@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Info } from '../TaskForm.styled';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { ukUA } from '@mui/x-date-pickers/locales';
@@ -34,6 +35,11 @@ const TimePickerWithLocalization = ({ label, value, onChange }) => {
       </LocalizationProvider>
     </Info>
   );
+};
+TimePickerWithLocalization.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default TimePickerWithLocalization;

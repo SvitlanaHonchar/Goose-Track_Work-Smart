@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import {
   FormControl,
   FormControlLabel,
@@ -107,4 +108,13 @@ export const PriorityList = ({ defaultValue, handleChange }) => {
       </RadioGroup>
     </FormControl>
   );
+};
+
+PriorityList.propTypes = {
+  defaultValue: PropTypes.oneOf([
+    TASKS_PRIORITY.LOW,
+    TASKS_PRIORITY.MEDIUM,
+    TASKS_PRIORITY.HIGH,
+  ]).isRequired,
+  handleChange: PropTypes.func.isRequired,
 };

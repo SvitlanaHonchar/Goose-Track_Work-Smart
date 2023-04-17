@@ -9,6 +9,7 @@ import {
   selectTasksError,
 } from 'redux/tasks/tasksSelectors';
 import Loader from 'shared/components/Loader/Loader';
+import CalendarToolbar from 'modules/CalendarComponent/components/CalendarToolbar/CalendarToolbar';
 import { showAnyError } from 'shared/utils/notifications';
 
 const CalendarPage = () => {
@@ -71,7 +72,6 @@ const CalendarPage = () => {
 
   return (
     <div>
-      Calendar page
       {path === '/calendar' && (
         <Navigate replace to={`/calendar/month/${currentMonth}`} />
       )}
@@ -79,6 +79,7 @@ const CalendarPage = () => {
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
+        <CalendarToolbar />
       </CalendarComponent>
     </div>
   );

@@ -25,7 +25,12 @@ export const UserAvatar = ({ setAvatar, formData }) => {
   };
 
   return (
-    <Box sx={{ position: 'relative' }}>
+    <Box
+      sx={{
+        position: 'relative',
+        textAlign: 'center',
+      }}
+    >
       <Avatar
         src={curImageUrl || userImgUrl}
         alt={`${name} picture`}
