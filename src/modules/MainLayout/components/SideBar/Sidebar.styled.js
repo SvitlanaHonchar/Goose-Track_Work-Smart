@@ -16,12 +16,17 @@ export const SideBarContainer = styled.div`
   @media screen and (max-width: 767px) {
     background-color: #fff;
     width: 289px;
+    /* transform: scaleX(0, 0); */
+    /* transition: transform 0.25ms linear; */
     &.is-closed {
+      /* transform: scaleX(1, 1); */
       position: fixed;
       left: -100%;
+      /* transform: translateX(-100%); */
     }
 
     &.is-open {
+      transform: translateX(0);
       position: fixed;
       z-index: 999;
       top: 0;
