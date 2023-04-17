@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { List, ListItem } from '@mui/material';
+import { ListItem } from '@mui/material';
 import { Box } from '@mui/system';
-import { Navigate } from 'react-router';
 import { Link } from 'react-router-dom';
+import { ListStyled } from './CalendarHead.styled';
 
 const WEEK_DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
 const CalendarHead = ({ mode, currentDay }) => {
-  console.log('currentDay: ', currentDay);
   const options = {};
   if (currentDay) {
     options.selectedDate = new Date(currentDay);
@@ -22,17 +21,26 @@ const CalendarHead = ({ mode, currentDay }) => {
       )
     );
   }
-  // console.log(window.innerWidth, typeof window.innerWidth);
-  console.log('selectedDate: ', options);
+  console.log('options: ', options);
+
   return (
-    <List
-      className="calendarHead__list"
-      sx={'display: flex; align-items: center; justify-content: space-between;'}
+    <ListStyled
+      className={`calendarHead__list ${
+        mode === 'monthMode'
+          ? 'calendarHead__list--monthMode'
+          : 'calendarHead__list--dayMode'
+      }`}
     >
       {mode === 'monthMode' &&
-        WEEK_DAYS.map(day => (
+        WEEK_DAYS.map((day, index) => (
           <ListItem key={day} className="calendarHead__item">
-            {window.innerWidth >= 765 ? day : day[0]}
+            <span
+              className={`calendarHead__weekDay calendarHead__weekDay--monthMode ${
+                index >= 5 && 'calendarHead__weekDay--holiday'
+              }`}
+            >
+              {window.innerWidth >= 765 ? day : day[0]}
+            </span>
           </ListItem>
         ))}
       {mode === 'dayMode' &&
@@ -42,7 +50,7 @@ const CalendarHead = ({ mode, currentDay }) => {
               options.startWeekDate.getDate() + index
             )
           );
-          console.log('currentDate: ', currentDate);
+          console.log('currentDate: ', currentDate.getMonth() + 1);
 
           return (
             <ListItem
@@ -57,14 +65,23 @@ const CalendarHead = ({ mode, currentDay }) => {
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
+                  gap: { xs: '6px', md: '4px' },
                 }}
               >
-                <span>{window.innerWidth >= 765 ? day : day[0]}</span>
+                <span className="calendarHead__weekDay">
+                  {window.innerWidth >= 765 ? day : day[0]}
+                </span>
                 <Link
-                  to={`/calendar/day/${currentDay.slice(
-                    0,
-                    -2
-                  )}${currentDate.getDate()}`}
+                  to={`/calendar/day/${currentDate.getFullYear()}-${
+                    currentDate.getMonth() + 1 < 10
+                      ? `0${currentDate.getMonth() + 1}`
+                      : currentDate.getMonth() + 1
+                  }-${
+                    currentDate.getDate() < 10
+                      ? `0${currentDate.getDate()}`
+                      : currentDate.getDate()
+                  }`}
+                  className="calendarHead__dateLink"
                 >
                   {currentDate.getDate()}
                 </Link>
@@ -72,7 +89,7 @@ const CalendarHead = ({ mode, currentDay }) => {
             </ListItem>
           );
         })}
-    </List>
+    </ListStyled>
   );
 };
 CalendarHead.propTypes = {
