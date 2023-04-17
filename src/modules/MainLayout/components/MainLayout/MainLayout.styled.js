@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledDiv = styled.div`
-  /* background-color: #eaeaea; */
+  background-color: #eaeaea;
 
   margin-left: auto;
   margin-right: auto;

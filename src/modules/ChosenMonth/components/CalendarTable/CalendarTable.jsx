@@ -86,6 +86,8 @@ function CalendarTable({ tasks, currentMonth }) {
       <TableContainer
         sx={{
           // border: '1px rgba(220, 227, 229, 0.8) solid',
+          backgroundColor: '#fff',
+
           borderRadius: '8px',
         }}
         // component={Paper}
@@ -105,16 +107,40 @@ function CalendarTable({ tasks, currentMonth }) {
                         boxSizing: 'border-box',
                         height: 125,
                         width: 155,
+                        paddingTop: '18px',
+                        paddingRight: '22px',
+                        paddingLeft: '8px',
                       }}
                     >
                       <div className="cell-container">
-                        <NavLink to={`/calendar/day/${getNextDay(day.iso)}`}>
+                        <NavLink
+                          to={`/calendar/day/${getNextDay(day.iso)}`}
+                          className={
+                            day.iso === new Date().toISOString().slice(0, 10)
+                              ? 'current'
+                              : ''
+                          }
+                        >
                           {getNextDay(day.iso).slice(8, 10) < 10
                             ? getNextDay(day.iso).slice(9, 10)
                             : getNextDay(day.iso).slice(8, 10)}
                         </NavLink>
                         <StyledUl>
-                          {getAllDayTasks(`${getNextDay(day.iso)}`)}
+                          {getAllDayTasks(`${getNextDay(day.iso)}`).length < 1
+                            ? getAllDayTasks(`${getNextDay(day.iso)}`)
+                            : getAllDayTasks(`${getNextDay(day.iso)}`).slice(
+                                0,
+                                1
+                              )}
+                          {getAllDayTasks(`${getNextDay(day.iso)}`).length >
+                            2 && (
+                            <NavLink
+                              to={`/calendar/day/${getNextDay(day.iso)}`}
+                              className="more-btn"
+                            >
+                              ...more
+                            </NavLink>
+                          )}
                         </StyledUl>
                       </div>
                     </TableCell>

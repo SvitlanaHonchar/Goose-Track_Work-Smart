@@ -7,6 +7,7 @@ export const SideBarContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   /* flex-grow: 7, 1; */
+  background-color: #fff;
 
   border-right: 1px solid #dce3e5;
   height: 100vh;
