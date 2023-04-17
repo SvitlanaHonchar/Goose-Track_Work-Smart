@@ -79,6 +79,18 @@ const authSlice = createSlice({
           };
         }
       )
+      .addCase(
+        authGetUserInfo.fulfilled,
+        (state, { payload: { name, email, skype, phone, userImgUrl } }) => {
+          state.user = {
+            name,
+            email,
+            phone,
+            skype,
+            userImgUrl,
+          };
+        }
+      )
       .addMatcher(
         isAnyOf(...getExtraLogActions('fulfilled')),
         (state, action) => {

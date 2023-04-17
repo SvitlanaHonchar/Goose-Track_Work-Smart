@@ -18,7 +18,7 @@ const MainLayout = () => {
       return;
     }
 
-    dispatch(authGetUserInfo);
+    dispatch(authGetUserInfo());
   }, [dispatch, user.name]);
 
   const theme = useTheme();

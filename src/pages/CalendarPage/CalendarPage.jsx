@@ -21,12 +21,10 @@ const CalendarPage = () => {
   // --data for dispatch getMonthTasks
   const params = useParams();
   const paramsFormat = Object.keys(params).join('');
-  console.log(paramsFormat);
   const paramsDate =
     paramsFormat === 'currentDay'
       ? new Date(params.currentDay)?.toISOString().slice(0, 7)
       : new Date(`${params.currentMonth}-01`)?.toISOString().slice(0, 7);
-  console.log(paramsDate);
   const yearParams = paramsDate.slice(0, 4);
   const monthParams =
     paramsDate.slice(5, 7) < 10
@@ -47,20 +45,20 @@ const CalendarPage = () => {
 
   useEffect(() => {
     if (isLogged) {
-      setTimeout(() => {
-        dispatch(
-          getMonthTasks({
-            year: +yearParams,
-            month: +monthParams,
-          })
-        );
-        // dispatch(
-        //   getMonthTasks({
-        //     year: chosenDate.getFullYear(),
-        //     month: chosenDate.getMonth() + 1,
-        //   })
-        // );
-      }, 1000);
+      // setTimeout(() => {
+      dispatch(
+        getMonthTasks({
+          year: +yearParams,
+          month: +monthParams,
+        })
+      );
+      // dispatch(
+      //   getMonthTasks({
+      //     year: chosenDate.getFullYear(),
+      //     month: chosenDate.getMonth() + 1,
+      //   })
+      // );
+      // }, 1000);
     }
   }, [dispatch, isLogged, yearParams, monthParams]);
 

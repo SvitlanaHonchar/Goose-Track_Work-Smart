@@ -12,14 +12,14 @@ import {
 import MainLayout from './MainLayout/components/MainLayout/MainLayout';
 import {
   // authGetUserInfo,
-  authLogin,
+  // authLogin,
   // authLogout,
   authRefresh,
-  authRegister,
+  // authRegister,
   // authUpdate,
 } from 'redux/auth/authOperations';
-import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import { useDispatch, useSelector } from 'react-redux';
+// import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import { useDispatch } from 'react-redux';
 import StartPage from 'pages/StartPage/StartPage';
 
 import SharedLayout from '../shared/components/SharedLayout.js/SharedLayout';
@@ -48,7 +48,7 @@ const ChosenDay = lazy(() =>
 //adding private routes with redirect using HOC withAuthRedirect
 
 const AccountPageWithRedirect = withAuthRedirect(AccountPage, '/');
-// const CalendarPageWithRedirect = withAuthRedirect(CalendarPage, '/');
+const CalendarPageWithRedirect = withAuthRedirect(CalendarPage, '/');
 
 // ----------------------------------------------------
 // for gitHub
@@ -65,14 +65,10 @@ const router = createBrowserRouter(
       <Route path="login" element={<LoginPage />} />
       <Route path="register" element={<RegisterPage />} />
       <Route element={<MainLayout />}>
-        {/*// <Route path="account" element={<AccountPageWithRedirect />} />
-        {/*  <Route path="calendar" element={<CalendarPageWithRedirect />}>*/}
-        {/* for use without authoriazation */}
-        <Route path="account" element={<AccountPage />} />
-        <Route path="calendar" element={<CalendarPage />}>
+        <Route path="account" element={<AccountPageWithRedirect />} />
+        <Route path="calendar" element={<CalendarPageWithRedirect />}>
           <Route path="month/:currentMonth" element={<ChosenMonth />} />
-          <Route path="day/:currentDay" element={<ChosenDay />} />{' '}
-          {/*!!!!! currentDay format: '2023-04-14'*/}
+          <Route path="day/:currentDay" element={<ChosenDay />} />
         </Route>
       </Route>
 
@@ -100,14 +96,14 @@ const App = () => {
 
   //login-
   //login- success
-  useEffect(() => {
-    dispatch(
-      authLogin({
-        email: 'lolol@gmail.com',
-        password: 'mari123mari',
-      })
-    );
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(
+  //     authLogin({
+  //       email: 'lolol@gmail.com',
+  //       password: 'mari123mari',
+  //     })
+  //   );
+  // }, [dispatch]);
 
   // useEffect(() => {
   //   dispatch(

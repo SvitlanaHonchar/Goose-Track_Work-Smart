@@ -10,7 +10,6 @@ const CalendarComponent = () => {
 
   return (
     <div>
-      CalendarComponent
       <CalendarToolbar />
       {path.includes('day') ? <ChosenDay /> : <ChosenMonth />}
     </div>
