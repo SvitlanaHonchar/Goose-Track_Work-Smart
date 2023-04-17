@@ -17,6 +17,7 @@ import {
   TableRow,
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+import { StyledDiv, StyledLi, StyledUl } from './CalendarTable.styled';
 
 const calendarDates = new CalendarDates();
 
@@ -31,9 +32,9 @@ function CalendarTable({ tasks, currentMonth }) {
     const todayTasksMarkup =
       todayTasks.length !== 0
         ? todayTasks[0].tasks.map(task => (
-            <li key={task._id} className={task.priority}>
+            <StyledLi key={task._id} className={task.priority}>
               {task.title}
-            </li>
+            </StyledLi>
           ))
         : '';
 
@@ -81,11 +82,10 @@ function CalendarTable({ tasks, currentMonth }) {
   // }
 
   return (
-    <div>
-      CalendarTable
+    <StyledDiv>
       <TableContainer
         sx={{
-          border: '1px rgba(220, 227, 229, 0.8) solid',
+          // border: '1px rgba(220, 227, 229, 0.8) solid',
           borderRadius: '8px',
         }}
         // component={Paper}
@@ -102,14 +102,21 @@ function CalendarTable({ tasks, currentMonth }) {
                       sx={{
                         verticalAlign: 'top',
                         border: '1px rgba(220, 227, 229, 0.8) solid',
+                        boxSizing: 'border-box',
                         height: 125,
                         width: 155,
                       }}
                     >
-                      <NavLink to={`/calendar/day/${getNextDay(day.iso)}`}>
-                        {getNextDay(day.iso).slice(8, 10)}
-                      </NavLink>
-                      <ul>{getAllDayTasks(`${getNextDay(day.iso)}`)}</ul>
+                      <div className="cell-container">
+                        <NavLink to={`/calendar/day/${getNextDay(day.iso)}`}>
+                          {getNextDay(day.iso).slice(8, 10) < 10
+                            ? getNextDay(day.iso).slice(9, 10)
+                            : getNextDay(day.iso).slice(8, 10)}
+                        </NavLink>
+                        <StyledUl>
+                          {getAllDayTasks(`${getNextDay(day.iso)}`)}
+                        </StyledUl>
+                      </div>
                     </TableCell>
                   ))}
                 </TableRow>
@@ -117,7 +124,7 @@ function CalendarTable({ tasks, currentMonth }) {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </StyledDiv>
   );
 }
 
