@@ -26,8 +26,8 @@ const ChosenDay = () => {
 
   return (
     <>
-      <CalendarHead currentDay={currentDay} mode="dayMode" />
-      {tasksCurrentDay ? (
+      <CalendarHead />
+      {tasksAll ? (
         <TasksColumnsList tasks={tasksCurrentDay} currentDay={currentDay} />
       ) : (
         <Loader />

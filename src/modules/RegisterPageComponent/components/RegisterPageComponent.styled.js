@@ -6,16 +6,21 @@ import message from '../../../shared/images/signUpPage/desktop_goose_message_sig
 import message2 from '../../../shared/images/signUpPage/desktop_goose_message_signUp@2x.png';
 
 export const RegisterFormWrapper = styled.div`
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-bottom: 18px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 24px;
+  }
 `;
 
 export const Container = styled.div`
   position: relative;
   min-height: 100vh;
   background-color: #dcebf7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ImgWrapper = styled.div`

@@ -7,6 +7,7 @@ import {
   RegisterFormWrapper,
   TectAccent,
 } from './RegisterPageComponent.styled';
+import AuthNavigate from '../../../shared/components/AuthNavigate/AuthNavigate';
 
 const RegisterPageComponent = () => {
   return (
@@ -15,6 +16,7 @@ const RegisterPageComponent = () => {
         <RegisterFormWrapper>
           <RegisterForm />
         </RegisterFormWrapper>
+        <AuthNavigate link="/login" text="Log in" />
         <ImgWrapper>
           <Text>
             Quickly <TectAccent>register</TectAccent> and familiarize yourself

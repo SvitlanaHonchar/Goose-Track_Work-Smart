@@ -44,7 +44,7 @@ const Header = () => {
     }
 
     setTasksStatus(tasksNotDone);
-  }, [monthTasks, path]);
+  }, [monthTasks, path, params.currentDay]);
 
   return (
     <StyledHeader>
