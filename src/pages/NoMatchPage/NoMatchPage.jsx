@@ -1,7 +1,16 @@
 import React from 'react';
+import { Navigate, useLocation } from 'react-router';
 import TaskModal from 'shared/components/TaskModal/TaskModal';
 import useModal from 'shared/hooks/useModal';
 const NoMatchPage = () => {
+  // --for redirect
+  const location = useLocation();
+  const path = location.pathname;
+
+  const currentMonth = new Date().toISOString().slice(0, 7);
+  const currentDay = new Date().toISOString().slice(0, 10);
+  // --/for redirect
+
   const { isOpen, action, closeModal, toggleModal, details } = useModal();
 
   const myTaskDetails = {
@@ -21,6 +30,12 @@ const NoMatchPage = () => {
   };
   return (
     <div>
+      {path === '/calendar/month' && (
+        <Navigate replace to={`/calendar/month/${currentMonth}`} />
+      )}
+      {path === '/calendar/day' && (
+        <Navigate replace to={`/calendar/day/${currentDay}`} />
+      )}
       No match page
       <button type="button" onClick={handleAddTaskClick}>
         Add task
