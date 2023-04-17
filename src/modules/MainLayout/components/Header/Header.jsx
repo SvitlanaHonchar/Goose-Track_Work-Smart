@@ -10,7 +10,7 @@ import { StyledHeader } from './Header.styled';
 import UserInfo from '../UserInfo/UserInfo';
 import { useSelector } from 'react-redux';
 import { selectAllTasks } from 'redux/tasks/tasksSelectors';
-import { showSuccessDoneTasks } from 'shared/utils/notifications';
+// import { showSuccessDoneTasks } from 'shared/utils/notifications';
 
 const Header = () => {
   const location = useLocation();
@@ -38,9 +38,10 @@ const Header = () => {
         var tasksNotDone = todayTasks[0].tasks.some(
           task => task.category === 'to-do' || task.category === 'in-progress'
         );
-      } else {
-        showSuccessDoneTasks();
       }
+      // else {
+      // showSuccessDoneTasks();
+      // }
     }
 
     setTasksStatus(tasksNotDone);
