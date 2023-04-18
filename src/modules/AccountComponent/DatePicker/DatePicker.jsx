@@ -24,9 +24,11 @@ export const DatePicker = ({ setBirthday }) => {
   );
   const [open, setOpen] = useState(false);
   const datePickerRef = useRef(null);
+
   useEffect(() => {
     setDate((birthday && new Date(birthday)) || new Date());
   }, [birthday]);
+
   useEffect(() => {
     const formatedDate = formatDate(date);
     setBirthday(formatedDate);
