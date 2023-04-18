@@ -1,5 +1,6 @@
 import React from 'react';
 import TaskColumnCard from '../TaskColumnCard/TaskColumnCard';
+import { TasksWrapper } from './ColumnsTasksList.styled';
 
 const ColumnsTasksList = ({ tasks }) => {
   const lowTasks = tasks?.filter(task => task.priority === 'low');
@@ -9,11 +10,11 @@ const ColumnsTasksList = ({ tasks }) => {
   const filteredTasks = [...lowTasks, ...mediumTasks, ...highTasks];
 
   return (
-    <ul>
+    <TasksWrapper>
       {filteredTasks.map(task => (
         <TaskColumnCard key={task.id} {...task} />
       ))}
-    </ul>
+    </TasksWrapper>
   );
 };
 

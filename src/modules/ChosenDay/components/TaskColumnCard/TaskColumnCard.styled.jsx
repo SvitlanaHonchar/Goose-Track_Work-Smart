@@ -2,31 +2,27 @@ import theme from 'shared/theme';
 import styled from 'styled-components';
 
 export const BoxWrapper = styled.li`
-  @media screen and (max-width: 374px) {
-    max-width: 300px;
-    width: 100%;
-  }
-
-  width: 330px;
-  height: 108px;
-  width: 100%;
-
+  max-width: 300px;
+  height: 115px;
   border-radius: 8px;
   border: 1px solid ${theme.palette.grey.light};
   background-color: ${theme.palette.grey[200]};
-  padding: 14px 12px 18px 15px;
-  margin-bottom: 28px;
+  padding: 14px 14px 18px 14px;
+  margin-bottom: 14px;
+  overflow: hidden;
+
+  &: last-child {
+    margin-bottom: 0;
+  }
 
   @media screen and (min-width: 768px) {
     height: 112px;
-    padding: 14px 14px 18px 14px;
-    margin-bottom: 32px;
+    margin-bottom: 18px;
   }
 `;
 
 export const Title = styled.div`
-  margin-bottom: 28px;
-
+  margin-bottom: 25px;
   @media screen and (min-width: 768px) {
     margin-bottom: 32px;
   }
@@ -35,7 +31,7 @@ export const Title = styled.div`
     @media screen and (max-width: 375px) {
       width: auto;
     }
-
+    color: ${theme.palette.grey.body};
     font-size: 14px;
     font-weight: 500;
     line-height: 18px;
@@ -47,37 +43,38 @@ export const Title = styled.div`
 `;
 
 export const InfoBar = styled.div`
-  @media screen and (max-width: 375px) {
-    flex-direction: column;
-    justify-content: center;
-  }
-
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  align-items: flex-start;
 `;
 
 export const UserBar = styled.div`
   display: flex;
   gap: 8px;
-  align-items: center;
 
   & img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 32px;
     height: 32px;
+    border-radius: 50%;
+    border: 1.8px solid ${theme.palette.primary.main};
   }
 `;
 
 export const Priority = styled.p`
-  color: white;
-  text-align: center;
-  align-items: center;
+  align-self: flex-end;
+  color: ${theme.palette.grey[200]};
   padding: 4px 12px;
+
   border-radius: 4px;
   font-weight: 600;
   font-size: 10px;
   line-height: 12px;
   background: #72c2f8;
+
   &::first-letter {
     text-transform: capitalize;
   }

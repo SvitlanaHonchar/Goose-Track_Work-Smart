@@ -57,6 +57,8 @@ export const theme = createTheme({
       activePeriod: '#CAE8FF',
       pagBorder: '#dce3e580',
       mainWhite: '#FFFFFF',
+      scrollbarThumb: '#E7E5E5',
+      bgScrollbarTrack: '#F2F2F2',
     },
     darkmode: {
       dark: '#171820',
