@@ -10,12 +10,13 @@ import {
 //layoutes and pages lazy loading
 import MainLayout from './MainLayout/components/MainLayout/MainLayout';
 import { authRefresh } from 'redux/auth/authOperations';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import StartPage from 'pages/StartPage/StartPage';
 
 import SharedLayout from '../shared/components/SharedLayout.js/SharedLayout';
 import withAuthRedirect from 'hoc/withAuthRedirect/withAuthRedirect';
 import 'redux/tasks/tasksOperations';
+import { selectIsRefreshToken } from 'redux/auth/authSelectors';
 
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
@@ -66,10 +67,12 @@ const router = createBrowserRouter(
 
 const App = () => {
   const dispatch = useDispatch();
+  const refreshToken = useSelector(selectIsRefreshToken);
   // Refresh - success
   useEffect(() => {
+    if (!refreshToken) return;
     dispatch(authRefresh());
-  }, [dispatch]);
+  }, [dispatch, refreshToken]);
 
   return (
     <>
