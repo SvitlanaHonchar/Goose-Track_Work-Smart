@@ -51,7 +51,8 @@ const CalendarPage = () => {
   const isRefreshed = useSelector(selectIsRefreshed);
 
   useEffect(() => {
-    if (!isLogged && !isRefreshed && taskData !== null && isUserLoading) return;
+    if (!isLogged && !isRefreshed && isUserLoading) return;
+    console.log('calendarPage');
 
     setTimeout(() => {
       dispatch(
@@ -72,7 +73,7 @@ const CalendarPage = () => {
     isLogged,
     yearParams,
     monthParams,
-    taskData,
+    // taskData,
     isUserLoading,
     isRefreshed,
   ]);
