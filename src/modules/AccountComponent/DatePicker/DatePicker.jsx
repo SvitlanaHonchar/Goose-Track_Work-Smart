@@ -4,6 +4,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useSelector } from 'react-redux';
 import { IconButton, TextField } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import style from './DatePicker.module.css';
 
 const formatDate = date => {
   const y = date.getFullYear();
@@ -22,9 +24,11 @@ export const DatePicker = ({ setBirthday }) => {
   );
   const [open, setOpen] = useState(false);
   const datePickerRef = useRef(null);
+
   useEffect(() => {
     setDate((birthday && new Date(birthday)) || new Date());
   }, [birthday]);
+
   useEffect(() => {
     const formatedDate = formatDate(date);
     setBirthday(formatedDate);
@@ -43,28 +47,32 @@ export const DatePicker = ({ setBirthday }) => {
   };
 
   return (
-    <ReactDatePicker
-      dateFormat={'yyyy-MM-dd'}
-      selected={date}
-      onChange={handleChange}
-      open={open}
-      ref={datePickerRef}
-      customInput={
-        <TextField
-          name="birthday"
-          fullWidth
-          size="small"
-          color="primary"
-          InputProps={{
-            onBlur: handleClose,
-            endAdornment: (
-              <IconButton size="small" onClick={handleIconClick}>
-                <ExpandMoreIcon />
-              </IconButton>
-            ),
-          }}
-        />
-      }
-    />
+    <>
+      <ReactDatePicker
+        dateFormat={'yyyy-MM-dd'}
+        selected={date}
+        onChange={handleChange}
+        open={open}
+        ref={datePickerRef}
+        calendarClassName={style.calendar}
+        headerClassName={style.header}
+        dayClassName={() => style.day}
+        customInput={
+          <TextField
+            name="birthday"
+            fullWidth
+            size="small"
+            InputProps={{
+              onBlur: handleClose,
+              endAdornment: (
+                <IconButton size="small" onClick={handleIconClick}>
+                  {!open ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+                </IconButton>
+              ),
+            }}
+          />
+        }
+      />
+    </>
   );
 };

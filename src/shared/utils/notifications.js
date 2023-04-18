@@ -48,6 +48,10 @@ export const showSuccessDeleteTask = columnName => {
   );
 };
 
+export const showSuccessUserUpdate = () => {
+  toast.success('Your account has been updated successfully.');
+};
+
 export const showAnyError = errorText => {
   toast.error(errorText);
 };

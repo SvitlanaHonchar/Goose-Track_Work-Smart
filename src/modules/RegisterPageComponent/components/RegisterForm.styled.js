@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { Button } from '@mui/material';
 import { Form, Field, ErrorMessage } from 'formik';
-
 import theme from '../../../shared/theme';
 
 export const Container = styled.div`
@@ -11,36 +10,12 @@ export const Container = styled.div`
   padding-left: 20px;
 `;
 
-export const RegisterFormWrapper = styled.div`
-  margin-right: auto;
-  // margin-bottom: 18px;
-  margin-left: auto;
-
-  /* @media screen and (max-width: 374px) {
-    max-width: 100%; */
-  /* max-width: 335px; */
-  /* } */
-`;
-
 export const RegisterFormEl = styled(Form)`
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
   border-radius: 8px;
   padding: 40px 24px;
-
-  @media screen and (max-width: 374px) {
-    /* width: 100%; */
-    max-width: 335px;
-  }
-
-  @media screen and (min-width: 375px) {
-    width: 335px;
-  }
-  @media screen and (min-width: 768px) {
-    padding: 40px;
-    width: 480px;
-  }
 
   .ValidInput {
     border: 1px solid rgba(220, 227, 229, 0.6);
@@ -132,7 +107,6 @@ export const StyledField = styled(Field)`
 
 export const PasswordInput = styled.div`
   position: relative;
-  /* width: 100%; */
 `;
 
 export const StyledVisibilityBtn = styled(Button)`
