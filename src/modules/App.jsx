@@ -17,6 +17,7 @@ import SharedLayout from '../shared/components/SharedLayout.js/SharedLayout';
 import withAuthRedirect from 'hoc/withAuthRedirect/withAuthRedirect';
 import 'redux/tasks/tasksOperations';
 import { selectIsRefreshToken } from 'redux/auth/authSelectors';
+import { AppStyled } from './App.styled';
 
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
@@ -75,7 +76,7 @@ const App = () => {
   }, [dispatch, refreshToken]);
 
   return (
-    <>
+    <AppStyled className="app">
       <RouterProvider router={router} />
 
       <div>
@@ -106,7 +107,7 @@ const App = () => {
           }}
         />
       </div>
-    </>
+    </AppStyled>
   );
 };
 
