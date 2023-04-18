@@ -5,7 +5,6 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
-  RegisterFormWrapper,
   RegisterFormEl,
   Container,
   SignUpText,
@@ -62,7 +61,6 @@ const RegisterForm = () => {
               navigate('/calendar/month');
               showSuccessReg();
             } else {
-              // alert('Error registering user in try');
               showExistAcctErrorReg();
             }
           } catch (error) {
@@ -77,77 +75,71 @@ const RegisterForm = () => {
         }}
       >
         {({ isSubmitting, values, errors, touched }) => (
-          <RegisterFormWrapper>
-            <RegisterFormEl>
-              <SignUpText>Sign Up</SignUpText>
-              <Label>
-                Name
+          <RegisterFormEl>
+            <SignUpText>Sign Up</SignUpText>
+            <Label>
+              Name
+              <StyledField
+                className={
+                  errors.name && touched.name ? 'InvalidInput' : 'ValidInput'
+                }
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                value={values.name}
+              />
+              <StyledErrorMessage name="name" component="div" />
+            </Label>
+            <Label>
+              Email
+              <StyledField
+                className={
+                  errors.email && touched.email ? 'InvalidInput' : 'ValidInput'
+                }
+                type="email"
+                name="email"
+                placeholder="Enter email"
+                value={values.email}
+              />
+              <StyledErrorMessage name="email" component="div" />
+            </Label>
+            <Label>
+              Password
+              <PasswordInput>
                 <StyledField
                   className={
-                    errors.name && touched.name ? 'InvalidInput' : 'ValidInput'
-                  }
-                  type="text"
-                  name="name"
-                  placeholder="Enter your name"
-                  value={values.name}
-                />
-                <StyledErrorMessage name="name" component="div" />
-              </Label>
-              <Label>
-                Email
-                <StyledField
-                  className={
-                    errors.email && touched.email
+                    errors.password && touched.password
                       ? 'InvalidInput'
                       : 'ValidInput'
                   }
-                  type="email"
-                  name="email"
-                  placeholder="Enter email"
-                  value={values.email}
+                  type={passwordType}
+                  name="password"
+                  placeholder="Enter password"
+                  value={values.password}
                 />
-                <StyledErrorMessage name="email" component="div" />
-              </Label>
-              <Label>
-                Password
-                <PasswordInput>
-                  <StyledField
-                    className={
-                      errors.password && touched.password
-                        ? 'InvalidInput'
-                        : 'ValidInput'
-                    }
-                    type={passwordType}
-                    name="password"
-                    placeholder="Enter password"
-                    value={values.password}
-                  />
 
-                  <StyledVisibilityBtn type="button" onClick={togglePassword}>
-                    {passwordType === 'password' ? (
-                      <Visibility sx={{ color: theme.palette.primary.main }} />
-                    ) : (
-                      <VisibilityOff
-                        sx={{ color: theme.palette.primary.main }}
-                      />
-                    )}
-                  </StyledVisibilityBtn>
-                </PasswordInput>
-                <StyledErrorMessage name="password" component="div" />
-              </Label>
-              <StyledButton
-                type="submit"
-                variant="contained"
-                color="primary"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Submitting' : 'Sign Up'}
-                <Svg height="18" width="18">
-                  <use href={sprite + '#loginStartPage'}></use>
-                </Svg>
-              </StyledButton>
-            </RegisterFormEl>
-          </RegisterFormWrapper>
+                <StyledVisibilityBtn type="button" onClick={togglePassword}>
+                  {passwordType === 'password' ? (
+                    <Visibility sx={{ color: theme.palette.primary.main }} />
+                  ) : (
+                    <VisibilityOff sx={{ color: theme.palette.primary.main }} />
+                  )}
+                </StyledVisibilityBtn>
+              </PasswordInput>
+              <StyledErrorMessage name="password" component="div" />
+            </Label>
+            <StyledButton
+              type="submit"
+              variant="contained"
+              color="primary"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Submitting' : 'Sign Up'}
+              <Svg height="18" width="18">
+                <use href={sprite + '#loginStartPage'}></use>
+              </Svg>
+            </StyledButton>
+          </RegisterFormEl>
         )}
       </Formik>
     </Container>
