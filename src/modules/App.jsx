@@ -6,7 +6,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
-
+import { selectUserError } from 'redux/auth/authSelectors';
 //layoutes and pages lazy loading
 import MainLayout from './MainLayout/components/MainLayout/MainLayout';
 import { authRefresh } from 'redux/auth/authOperations';
@@ -69,11 +69,13 @@ const router = createBrowserRouter(
 const App = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-
+  const error = useSelector(selectUserError);
   // Refresh - success
   useEffect(() => {
     if (user.name !== null) return;
-
+    // if (error?.status === 401) {
+    //   console.log('401 error');
+    // }
     dispatch(authRefresh());
   }, [dispatch, user.name]);
 
