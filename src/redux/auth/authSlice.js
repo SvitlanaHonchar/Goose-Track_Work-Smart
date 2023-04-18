@@ -32,7 +32,8 @@ const authInitialState = {
   },
   isLogged: false,
   isLoading: false,
-  // isRefreshing
+  isRefreshed: false,
+
   error: false,
   accessToken: null,
   refreshToken: null,
