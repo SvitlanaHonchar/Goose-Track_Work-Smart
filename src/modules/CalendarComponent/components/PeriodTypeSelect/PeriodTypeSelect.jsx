@@ -1,26 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { buttonStyles } from './PeriodTypeSelectStyles';
+import usePeriodTypeFromPath from 'shared/hooks/usePeriodTypeFromPath';
 
-const PeriodTypeSelect = ({ selectedType, onTypeSelect, setActiveDate }) => {
-  const navigate = useNavigate();
+const PeriodTypeSelect = ({ setActiveDate }) => {
+  const periodType = usePeriodTypeFromPath();
+  const [period, setPeriod] = useState(periodType);
 
-  const handlePeriodType = type => {
-    onTypeSelect(type);
+  const handleChange = (event, newType) => {
+    if (newType === null) return;
+    setPeriod(newType);
+
     const currentDate = new Date();
+    navigateToCalendarDate(newType, currentDate);
     setActiveDate(currentDate);
-    navigateToCalendarDate(selectedType, currentDate);
   };
+
+  const navigate = useNavigate();
 
   const getUrlFormatDate = (type, date) => {
     const urlFormatDate =
-      type === 'month' ? format(date, 'yyyy-MM-dd') : format(date, 'yyyy-MM');
-    const newType = type === 'month' ? 'day' : 'month';
-    return `/calendar/${newType}/${urlFormatDate}`;
+      type === 'month' ? format(date, 'yyyy-MM') : format(date, 'yyyy-MM-dd');
+    return `/calendar/${type}/${urlFormatDate}`;
   };
 
   const navigateToCalendarDate = (type, date) => {
@@ -28,28 +33,19 @@ const PeriodTypeSelect = ({ selectedType, onTypeSelect, setActiveDate }) => {
     navigate(url);
   };
 
-  const handleClick = type => {
-    if (selectedType !== type) {
-      handlePeriodType(type);
-    }
-  };
-
-  const buttonData = [
-    { label: 'Month', type: 'month' },
-    { label: 'Day', type: 'day' },
-  ];
   return (
-    <ToggleButtonGroup>
-      {buttonData.map(({ label, type }) => (
-        <ToggleButton
-          key={type}
-          selected={selectedType === type}
-          onClick={() => handleClick(type)}
-          sx={buttonStyles}
-        >
-          {label}
-        </ToggleButton>
-      ))}
+    <ToggleButtonGroup
+      value={period}
+      exclusive
+      onChange={handleChange}
+      aria-label="Type of calendar period"
+    >
+      <ToggleButton value="month" aria-label="month" sx={buttonStyles}>
+        Month
+      </ToggleButton>
+      <ToggleButton value="day" aria-label="day" sx={buttonStyles}>
+        Day
+      </ToggleButton>
     </ToggleButtonGroup>
   );
 };
@@ -57,7 +53,5 @@ const PeriodTypeSelect = ({ selectedType, onTypeSelect, setActiveDate }) => {
 export default PeriodTypeSelect;
 
 PeriodTypeSelect.propTypes = {
-  selectedType: PropTypes.oneOf(['day', 'month']).isRequired,
-  onTypeSelect: PropTypes.func.isRequired,
   setActiveDate: PropTypes.func.isRequired,
 };

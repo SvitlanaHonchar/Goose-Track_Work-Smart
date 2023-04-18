@@ -1,7 +1,7 @@
 import theme from 'shared/theme';
 export const styles = {
   text: {
-    minWidth: '150px',
+    minWidth: { xs: '150px', md: '166px' },
     padding: { xs: '6px 12px', md: '8px 12px' },
     borderRadius: '8px',
     fontSize: { md: '16px' },

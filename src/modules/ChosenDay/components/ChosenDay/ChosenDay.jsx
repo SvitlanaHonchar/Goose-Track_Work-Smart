@@ -3,13 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectAllTasks } from 'redux/tasks/tasksSelectors';
 import TasksColumnsList from '../TasksColumnsList/TasksColumnsList';
-import Loader from 'shared/components/Loader/Loader';
 import { useParams } from 'react-router';
 
 const ChosenDay = () => {
-  const [tasksCurrentDay, setTasksCurrentDay] = useState(null);
   const { currentDay } = useParams();
   const tasksAll = useSelector(selectAllTasks);
+  const [tasksCurrentDay, setTasksCurrentDay] = useState([]);
+  // console.log('tasksCurrentDay: ', tasksCurrentDay);
+  // console.log('tasksAll у компоненті ChosenDay: ', tasksAll);
 
   useEffect(() => {
     if (!tasksAll) return;
@@ -27,11 +28,7 @@ const ChosenDay = () => {
   return (
     <>
       <CalendarHead mode="dayMode" currentDay={currentDay} />
-      {tasksCurrentDay ? (
-        <TasksColumnsList tasks={tasksCurrentDay} currentDay={currentDay} />
-      ) : (
-        <Loader />
-      )}
+      <TasksColumnsList tasks={tasksCurrentDay} currentDay={currentDay} />
     </>
   );
 };

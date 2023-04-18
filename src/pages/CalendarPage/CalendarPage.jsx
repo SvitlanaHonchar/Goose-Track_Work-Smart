@@ -50,20 +50,20 @@ const CalendarPage = () => {
 
   useEffect(() => {
     if (isLogged && taskData === null && !isUserLoading) {
-      // setTimeout(() => {
-      dispatch(
-        getMonthTasks({
-          year: +yearParams,
-          month: +monthParams,
-        })
-      );
-      // dispatch(
-      //   getMonthTasks({
-      //     year: chosenDate.getFullYear(),
-      //     month: chosenDate.getMonth() + 1,
-      //   })
-      // );
-      // }, 1000);
+      setTimeout(() => {
+        dispatch(
+          getMonthTasks({
+            year: +yearParams,
+            month: +monthParams,
+          })
+        );
+        // dispatch(
+        //   getMonthTasks({
+        //     year: chosenDate.getFullYear(),
+        //     month: chosenDate.getMonth() + 1,
+        //   })
+        // );
+      }, 3000);
     }
   }, [dispatch, isLogged, yearParams, monthParams, taskData, isUserLoading]);
 

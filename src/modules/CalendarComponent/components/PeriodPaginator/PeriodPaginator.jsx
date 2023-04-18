@@ -1,15 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import { addMonths, addDays, format } from 'date-fns';
 import { Box, Typography, Button, List, ListItem } from '@mui/material';
 import sprite from 'shared/icons/sprite.svg';
 import { styles } from './PeriodPaginatorStyles';
 
 const PeriodPaginator = ({ date, period, onDateChange }) => {
+  const navigate = useNavigate();
+
   const updateDate = amount => {
     const newDate =
       period === 'month' ? addMonths(date, amount) : addDays(date, amount);
     onDateChange(newDate);
+    const url = createCalendarUrl(newDate, period);
+    navigate(url);
+  };
+
+  const createCalendarUrl = (newDate, period) => {
+    return `/calendar/${period}/${format(
+      newDate,
+      period === 'month' ? 'yyyy-MM' : 'yyyy-MM-dd'
+    )}`;
   };
 
   const formattedDate =
