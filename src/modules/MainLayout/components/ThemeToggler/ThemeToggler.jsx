@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MdOutlineDarkMode } from 'react-icons/md';
 import { MdOutlineLightMode } from 'react-icons/md';
 import { ButtonStyled } from './ThemeToggler.styled';
