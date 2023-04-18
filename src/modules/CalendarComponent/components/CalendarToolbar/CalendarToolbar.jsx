@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Box } from '@mui/material';
 import PeriodPaginator from '../PeriodPaginator/PeriodPaginator';
 import PeriodTypeSelect from '../PeriodTypeSelect/PeriodTypeSelect';
@@ -8,10 +8,6 @@ import { getMonthTasks } from 'redux/tasks/tasksOperations';
 import { selectAllTasks } from 'redux/tasks/tasksSelectors';
 import usePeriodTypeFromPath from 'shared/hooks/usePeriodTypeFromPath';
 import { showError } from 'shared/utils/notifications';
-import {
-  selectIsLoggedIn,
-  selectIsUserLoading,
-} from 'redux/auth/authSelectors';
 
 const CalendarToolbar = () => {
   const periodType = usePeriodTypeFromPath();
@@ -38,42 +34,41 @@ const CalendarToolbar = () => {
     [dateFromUrl, periodType]
   );
 
-  // console.log('ОБЭКТ ДАТА: у тулбарі: ', dateObject);
-
   const [date, setDate] = useState(dateObject);
-
-  // console.log('У СТЕЙТЫ date: ', date);
 
   const setActiveDate = () => setDate(new Date());
   useEffect(() => {
     setDate(dateObject);
   }, [dateObject]);
 
-  // const dispatch = useDispatch();
-  // const tasksForSelectedMonth = useSelector(selectAllTasks);
+  const dispatch = useDispatch();
+  const tasksForSelectedMonth = useSelector(selectAllTasks);
+  const hasMatchingDate = tasksForSelectedMonth?.some(task =>
+    task.date?.startsWith(dateFromUrl)
+  );
 
-  // const hasMatchingDate =
-  //   tasksForSelectedMonth?.some(task => task.date?.startsWith(dateFromUrl)) ||
-  //   false;
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!hasMatchingDate) {
+        try {
+          const result = await dispatch(
+            getMonthTasks({
+              year: dateObject.getFullYear().toString(),
+              month: dateObject.getMonth() + 1,
+            })
+          );
+          if (result.error) {
+            showError();
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
 
-  // const isUserLoading = useSelector(selectIsUserLoading);
-  // const isLogged = useSelector(selectIsLoggedIn);
-
-  // useEffect(() => {
-  //   if (
-  //     !hasMatchingDate &&
-  //     isLogged &&
-  //     !isUserLoading &&
-  //     tasksForSelectedMonth !== null
-  //   ) {
-  //     dispatch(
-  //       getMonthTasks({
-  //         year: getYear(date),
-  //         month: getMonth(date) + 1,
-  //       })
-  //     );
-  //   }
-  // }, [dispatch, hasMatchingDate, date, isLogged, isUserLoading]);
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, dateObject]);
 
   return (
     <Box
