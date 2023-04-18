@@ -4,6 +4,7 @@ export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   width: 100%;
+  margin-bottom: 64px;
 
   & .header__right-container {
     display: flex;
@@ -49,16 +50,19 @@ export const StyledHeader = styled.header`
       }
     }
 
-    & button {
-      display: none;
-    }
-
     & h2 {
       display: block;
 
       &.header-title__calendar {
         left: 72px;
       }
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    margin-bottom: 32px;
+    & button {
+      display: none;
     }
   }
 `;

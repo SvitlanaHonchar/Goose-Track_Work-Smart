@@ -2,11 +2,11 @@ import React, { Suspense, useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import SideBar from '../SideBar/SideBar';
 import { Outlet } from 'react-router';
-import { StyledDiv } from './MainLayout.styled';
+import { StyledDiv, StyledMainContent } from './MainLayout.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/authSelectors';
 import { authGetUserInfo } from 'redux/auth/authOperations';
-import { Box } from '@mui/system';
+// import { Box } from '@mui/system';
 import { useTheme } from '@mui/material';
 
 const MainLayout = () => {
@@ -38,16 +38,18 @@ const MainLayout = () => {
     // Component =>
     // ({ ...props }) => {
     <StyledDiv theme={theme} className="mainLayout">
-      <Box className="mainLayout-frame">
-        <SideBar menu={menuStatus} onClose={closeMenu} />
-        <div>
-          <Header onBurgerClick={openMenu} />
+      {/* <Box className="mainLayout-frame"> */}
+      {/* <div> */}
+      <SideBar menu={menuStatus} onClose={closeMenu} />
+      <StyledMainContent>
+        <Header onBurgerClick={openMenu} />
 
-          <Suspense>
-            <Outlet />
-          </Suspense>
-        </div>
-      </Box>
+        <Suspense>
+          <Outlet />
+        </Suspense>
+      </StyledMainContent>
+      {/* </div> */}
+      {/* </Box>?\ */}
 
       {/* <Component {...props} /> */}
     </StyledDiv>

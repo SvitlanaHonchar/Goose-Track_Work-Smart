@@ -15,6 +15,10 @@ export const ListStyled = styled(List)`
   border-radius: 8px;
   text-transform: uppercase;
 
+  & li:not(:last-child) {
+    border-right: 1px solid ${theme.palette.grey.light};
+  }
+
   @media screen and (min-width: 768px) {
     &.calendarHead__list--dayMode {
       margin-bottom: 16px;
