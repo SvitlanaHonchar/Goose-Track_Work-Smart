@@ -15,6 +15,19 @@ export const StyledLoginPageComponent = styled(Box)`
 
   .ContentContainer {
     position: relative;
+
+    @media screen and (max-width: 374px) {
+      width: 100%;
+      max-width: 335px;
+    }
+
+    @media screen and (min-width: 375px) {
+      width: 335px;
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 480px;
+    }
   }
 
   .ImageContainer {

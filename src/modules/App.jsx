@@ -16,7 +16,7 @@ import StartPage from 'pages/StartPage/StartPage';
 import SharedLayout from '../shared/components/SharedLayout.js/SharedLayout';
 import withAuthRedirect from 'hoc/withAuthRedirect/withAuthRedirect';
 import 'redux/tasks/tasksOperations';
-import { selectIsRefreshToken } from 'redux/auth/authSelectors';
+import { selectUser } from 'redux/auth/authSelectors';
 
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
@@ -67,12 +67,14 @@ const router = createBrowserRouter(
 
 const App = () => {
   const dispatch = useDispatch();
-  const refreshToken = useSelector(selectIsRefreshToken);
+  const user = useSelector(selectUser);
+
   // Refresh - success
   useEffect(() => {
-    if (!refreshToken) return;
+    if (user.name !== null) return;
+
     dispatch(authRefresh());
-  }, [dispatch, refreshToken]);
+  }, [dispatch, user.name]);
 
   return (
     <>
