@@ -8,8 +8,10 @@ display: flex;
 flex-direction: column;
 list-style: none;
 width: 100%;
+height: fit-content;
 margin-left: auto;
 margin-right: auto;
+
 @media screen and (min-width: 375px) and (max-width: 767px) {
     width: 335px;
 }
@@ -24,10 +26,14 @@ margin-right: auto;
         flex-direction: row-reverse;
     }
 }
+
 & .opportunity--even{
     width: fit-content;
+    height: fit-content;
     @media screen and (min-width: 1440px) {
     margin-left: auto;
+    align-self: center;
+    
 }
 }
 &:nth-child(2n) .opportunity--even {
@@ -63,6 +69,7 @@ margin-right: auto;
     font-size: 32px;
     line-height: 1.25;
     @media screen and (min-width: 768px) {
+        padding: 6px 18px 6px 18px;
         font-size: 40px;
         line-height: 1.1;
 }
@@ -109,9 +116,16 @@ margin-right: auto;
     font-size: 14px;
     line-height: 1.29;
     color:${mainBlack2};
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 768px) and (max-width: 1439px) {
         margin-bottom: 48px;
         width: 275px;
 }
+@media screen and (min-width: 1440px) {
+        margin-bottom: 0;
+        width: 275px;
 }
+
+}
+
+
 `

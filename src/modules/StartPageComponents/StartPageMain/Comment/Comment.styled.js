@@ -20,6 +20,10 @@ border-radius: 8px;
         padding: 33px;    
         display: flex;
         flex-direction: column;
+        
+}
+@media screen and (min-width: 1440px) {
+        
 }
 & h3{    
 margin: 0;
@@ -69,6 +73,9 @@ margin: 0;
 margin-bottom:29px;
 align-self: flex-end;
 list-style: none;
+@media screen and (min-width: 768px) {
+    margin-bottom:24px;
+}
 & li:nth-child(-n+${props=>props.value}){
    & svg{
     fill:#FFAC33;
