@@ -84,6 +84,7 @@ function CalendarTable({ tasks, currentMonth }) {
   return (
     <StyledDiv>
       <TableContainer
+        className="calendarTable"
         sx={{
           // border: '1px rgba(220, 227, 229, 0.8) solid',
           backgroundColor: '#fff',

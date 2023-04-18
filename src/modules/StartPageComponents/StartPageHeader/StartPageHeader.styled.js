@@ -105,6 +105,7 @@ export const StartPageLink=styled(Link)`
         color:${mainWhite};
         font-size: 12px;
         line-height: 1.16;
+        text-decoration: underline;
            @media screen and (min-width: 768px) {
         font-size: 14px;
         line-height: 1.29;

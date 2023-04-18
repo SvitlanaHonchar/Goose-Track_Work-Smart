@@ -48,6 +48,7 @@ const authSlice = createSlice({
       .addCase(authLogout.fulfilled, (state, action) => {
         state.accessToken = null;
         state.refreshToken = null;
+        state.isLogged = false;
         state.user = {
           name: null,
           email: null,
@@ -135,7 +136,7 @@ function authLogFulfilled(state, action) {
 function authFulfilled(state) {
   state.isLoading = false;
   state.error = false;
-  state.isLogged = true;
+  // state.isLogged = true;
 }
 
 function authPending(state) {

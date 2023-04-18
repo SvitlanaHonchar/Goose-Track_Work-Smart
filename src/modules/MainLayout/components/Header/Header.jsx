@@ -48,7 +48,7 @@ const Header = ({ onBurgerClick }) => {
   }, [monthTasks, path, params.currentDay]);
 
   return (
-    <StyledHeader>
+    <StyledHeader className="headerLayout">
       {/* burger-btn */}
       <Button
         type="button"

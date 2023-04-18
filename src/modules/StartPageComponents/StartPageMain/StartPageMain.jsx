@@ -119,12 +119,12 @@ export function StartPageMain(){
             <section className="content-review">
                 <h2 className="content-h2">Reviews</h2>
                 <Slider  className="slider"  {...settings} >
-                <Comment src={Olena} num={4} name='Olena Doe'>GooseTrack is impressive, the calendar view and
+                <Comment className='tr' src={Olena} num={4} name='Olena Doe'>GooseTrack is impressive, the calendar view and
                     filter options make it easy to stay organized and focused. Highly recommended.</Comment>
-                <Comment src={Alexander} num={4} name='Alexander Hubbard'>GooseTrack is incredibly helpful, the sidebar with account management, 
+                <Comment className='tr' src={Alexander} num={4} name='Alexander Hubbard'>GooseTrack is incredibly helpful, the sidebar with account management, 
                 calendar, and filter options make navigation seamless. Great for staying organized.</Comment>   
-                <Comment src={Lisa} num={5} name='Lisa Olloc'>Good!</Comment>  
-                <Comment src={Obema} num={5} name='Obama'>Excellent!</Comment>      
+                <Comment className='tr' src={Lisa} num={5} name='Lisa Olloc'>Good!</Comment>  
+                <Comment className='tr' src={Obema} num={5} name='Obama'>Excellent!</Comment>      
                 </Slider>
             </section>
           

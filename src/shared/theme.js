@@ -58,6 +58,10 @@ export const theme = createTheme({
       pagBorder: '#dce3e580',
       mainWhite: '#FFFFFF',
     },
+    darkmode: {
+      dark: '#171820',
+      darkGrey: '#21222C',
+    },
   },
   typography: {
     fontFamily,

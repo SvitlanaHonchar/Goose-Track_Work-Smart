@@ -21,7 +21,7 @@ margin-top: 64px;
     padding-left:128px;
     padding-right: 128px;
     row-gap: 100px;
-    margin-bottom: 100px;
+    margin-bottom: 118px;
 }
 & ul.content-gap {
     display: flex;
