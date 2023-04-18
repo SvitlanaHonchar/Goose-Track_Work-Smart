@@ -8,12 +8,12 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { DatePickerWrapper } from './DatePicker.styled';
 
 const formatDate = date => {
-  const y = date.getFullYear();
-  const m = date.getMonth();
-  const d = date.getDate();
+  const y = date?.getFullYear();
+  const m = date?.getMonth();
+  const d = date?.getDate();
 
-  return `${y}-${(m + 1).toString().padStart(2, '0')}-${d
-    .toString()
+  return `${y}-${(m + 1)?.toString().padStart(2, '0')}-${d
+    ?.toString()
     .padStart(2, '0')}`;
 };
 const isValidDate = dateString => {
@@ -47,7 +47,15 @@ export const DatePicker = ({ setBirthday }) => {
   const handleChange = value => {
     setDate(value);
     setOpen(false);
+    console.log('value', value);
   };
+  const handleChangeInput = e => {
+    const value = e.target.value;
+    if (value.trim() !== '') {
+      setDate(new Date(value));
+    }
+  };
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -61,13 +69,12 @@ export const DatePicker = ({ setBirthday }) => {
         open={open}
         ref={datePickerRef}
         calendarClassName="calendar"
-        // headerClassName={style.header}
-        // dayClassName={() => style.day}
         customInput={
           <TextField
             name="birthday"
             fullWidth
             size="small"
+            onChange={handleChangeInput}
             InputProps={{
               onBlur: handleClose,
               endAdornment: (
