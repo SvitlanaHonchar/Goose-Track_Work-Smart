@@ -38,7 +38,7 @@ const TimePickerWithLocalization = ({ label, value, onChange }) => {
 };
 TimePickerWithLocalization.propTypes = {
   label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  // value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
 };
 
