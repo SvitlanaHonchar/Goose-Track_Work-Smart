@@ -50,7 +50,7 @@ const TasksColumn = ({ title, tasks, category }) => {
           onClose={closeModal}
           isOpen={isOpen}
           category={category}
-          // date={date}
+          date={tasks[0].date}
           taskDetails={details ? details.details : {}}
         />
       )}

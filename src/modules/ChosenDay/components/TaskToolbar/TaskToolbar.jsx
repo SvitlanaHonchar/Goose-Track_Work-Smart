@@ -13,8 +13,16 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 const TaskToolbar = ({ ...taskData }) => {
   const dispatch = useDispatch();
 
-  const { category, date, _id: id } = taskData;
+  const { priority, category, date, title, start, end, _id: id } = taskData;
   const { isOpen, action, closeModal, toggleModal, details } = useModal();
+
+  const editedTaskDetails = {
+    id,
+    title,
+    start,
+    end,
+    priority,
+  };
 
   const availableCategories = COLUMN_TASKS.filter(
     item => item.categories !== category
@@ -26,7 +34,7 @@ const TaskToolbar = ({ ...taskData }) => {
   };
 
   const handleEditTaskClick = () => {
-    toggleModal('edit', { details: taskData });
+    toggleModal('edit', { details: editedTaskDetails });
   };
 
   const handleDeleteTask = taskId => {
@@ -69,6 +77,7 @@ const TaskToolbar = ({ ...taskData }) => {
         </li>
         <li>
           <button
+            type="button"
             onClick={() => {
               handleEditTaskClick();
             }}
@@ -80,6 +89,7 @@ const TaskToolbar = ({ ...taskData }) => {
         </li>
         <li>
           <button
+            type="button"
             onClick={() => {
               handleDeleteTask(id);
             }}
