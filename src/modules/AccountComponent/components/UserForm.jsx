@@ -2,13 +2,13 @@ import { Grid, Typography, Box } from '@mui/material';
 
 import React from 'react';
 import TextInput from 'shared/components/ui/TextInput/TextInput';
-import { DatePicker } from './DatePicker';
+import { DatePicker } from '../DatePicker/DatePicker';
 
 export default function UserForm({ formData, onChange, setBirthday, errors }) {
   const { name, email, phone, skype } = formData;
 
   return (
-    <Grid container rowSpacing={2} columnSpacing={6} sx={{ pl: 4 }}>
+    <Grid container spacing={2}>
       <Grid item xs={12} lg={6}>
         <Typography variant="overline">User Name</Typography>
         <TextInput

@@ -3,10 +3,11 @@ import UserForm from './UserForm';
 import { UserAvatar } from './UserAvatar';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import { Grid, Typography } from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
 import ButtonAuth from 'shared/components/ui/ButtonAuth/ButtonAuth';
 import { authGetUserInfo, authUpdate } from 'redux/auth/authOperations';
 import { selectUser } from 'redux/auth/authSelectors';
+import { showSuccessUserUpdate } from 'shared/utils/notifications';
 
 const AccountComponent = () => {
   const dispatch = useDispatch();
@@ -29,11 +30,9 @@ const AccountComponent = () => {
       errors.email = 'Invalid email address';
     }
 
-    // if (!values.birthday) {
-    //   errors.birthday = 'Required';
-    // } else if (new Date(values.birthday) > new Date()) {
-    //   errors.birthday = 'Invalid date';
-    // }
+    if (new Date(values.birthday) > new Date()) {
+      errors.birthday = 'Invalid date';
+    }
 
     if (values.phone && !phoneRegex.test(values.phone)) {
       errors.phone = 'Invalid phone number';
@@ -45,16 +44,20 @@ const AccountComponent = () => {
 
     return errors;
   }, []);
+
   const formik = useFormik({
     initialValues: formValues,
     validate: validate,
-    onSubmit: values => {
+    onSubmit: async values => {
       const formData = new FormData(formRef.current);
       formData.delete('file');
       formData.append('userImgUrl', values.userImgUrl);
       formData.append('birthday', values.birthday);
-      dispatch(authUpdate(formData));
+      const actionResult = await dispatch(authUpdate(formData));
       setFormValues(values);
+      if (actionResult.type === 'user/update/fulfilled') {
+        showSuccessUserUpdate();
+      }
     },
   });
   const {
@@ -89,24 +92,35 @@ const AccountComponent = () => {
 
   return (
     <form onSubmit={handleSubmit} ref={formRef} noValidate>
-      <Grid container justifyContent={'center'}>
-        <UserAvatar setAvatar={setAvatar} formData={userAvatarFormData} />
-        <UserForm
-          formData={userFormData}
-          errors={errors}
-          touched={touched}
-          onChange={handleChange}
-          onBlur={formik.handleBlur}
-          setBirthday={setBirthday}
-        />
-        <ButtonAuth
-          type="submit"
-          disabled={!formik.dirty || !formik.isValid}
-          sx={{ borderRadius: '16px', display: 'block', height: 46, mt: 2 }}
-        >
-          <Typography variant="button">Save changes</Typography>
-        </ButtonAuth>
-      </Grid>
+      <Container
+        sx={{
+          backgroundColor: 'white',
+          borderRadius: '16px',
+          mt: { xs: 15, md: 8 },
+          ml: 2,
+          pt: { xs: 17, md: 5 },
+          pb: 5,
+        }}
+      >
+        <Grid container justifyContent={'center'}>
+          <UserAvatar setAvatar={setAvatar} formData={userAvatarFormData} />
+          <UserForm
+            formData={userFormData}
+            errors={errors}
+            touched={touched}
+            onChange={handleChange}
+            onBlur={formik.handleBlur}
+            setBirthday={setBirthday}
+          />
+          <ButtonAuth
+            type="submit"
+            disabled={!formik.dirty || !formik.isValid}
+            sx={{ borderRadius: '16px', display: 'block', height: 46, mt: 2 }}
+          >
+            <Typography variant="button">Save changes</Typography>
+          </ButtonAuth>
+        </Grid>
+      </Container>
     </form>
   );
 };

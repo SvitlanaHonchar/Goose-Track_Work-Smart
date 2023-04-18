@@ -1,4 +1,4 @@
-import { Avatar, Box, Typography } from '@mui/material';
+import { Avatar, Grid, Typography } from '@mui/material';
 import { useState } from 'react';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import theme from 'shared/theme';
@@ -25,42 +25,48 @@ export const UserAvatar = ({ setAvatar, formData }) => {
   };
 
   return (
-    <Box
-      sx={{
-        position: 'relative',
-        textAlign: 'center',
-      }}
-    >
-      <Avatar
-        src={curImageUrl || userImgUrl}
-        alt={`${name} picture`}
+    <Grid container justifyContent={'center'}>
+      <Grid
+        item
         sx={{
-          width: 72,
-          height: 72,
-          border: `2px solid ${theme.palette.primary.main}`,
+          position: { xs: 'absolute', md: 'relative' },
+          top: { xs: 150, md: 0 },
+          textAlign: 'center',
         }}
-      />
-      <label htmlFor="avatar-upload">
-        <AddCircleIcon
+      >
+        <Avatar
+          src={curImageUrl || userImgUrl}
+          alt={`${name} picture`}
           sx={{
-            position: 'absolute',
-            bottom: 42,
-            right: 0,
-            borderRadius: 50,
-            bgcolor: 'common.white',
+            width: 72,
+            height: 72,
+            border: `2px solid ${theme.palette.primary.main}`,
           }}
-          color="primary"
         />
-      </label>
-      <input
-        id="avatar-upload"
-        type="file"
-        accept="image/*"
-        onChange={handleAvatarChange}
-        style={{ display: 'none' }}
-      />
-      <Typography variant="h4">{name ? name : 'Your name'}</Typography>
-      <Typography variant="subtitle1">User</Typography>
-    </Box>
+        <label htmlFor="avatar-upload">
+          <AddCircleIcon
+            sx={{
+              position: 'absolute',
+              top: 52,
+              right: 0,
+              borderRadius: 50,
+              bgcolor: 'common.white',
+            }}
+            color="primary"
+          />{' '}
+        </label>
+        <input
+          id="avatar-upload"
+          type="file"
+          accept="image/*"
+          onChange={handleAvatarChange}
+          style={{ display: 'none' }}
+        />
+        <Typography variant="h4" sx={{ mt: 3 }}>
+          {name ? name : 'Your name'}
+        </Typography>
+        <Typography variant="subtitle1">User</Typography>
+      </Grid>
+    </Grid>
   );
 };
