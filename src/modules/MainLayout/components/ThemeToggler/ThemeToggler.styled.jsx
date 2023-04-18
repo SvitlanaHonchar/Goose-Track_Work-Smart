@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import theme from 'shared/theme';
 
 export const ButtonStyled = styled.div`
+  cursor: pointer;
   width: 10px;
   height: 10px;
   & .themeToggler__icon {

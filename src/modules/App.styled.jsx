@@ -14,7 +14,10 @@ export const AppStyled = styled.div`
     background-color: ${theme.palette.darkmode.darkGrey};
   }
 
-  &.darkMode .cell-container {
+  &.darkMode .cell-container,
+  &.darkMode
+    .calendarHead__weekDay--monthMode:not(.calendarHead__weekDay--holiday),
+  &.darkMode .calendarHead__dateLink {
     color: ${theme.palette.custom.mainWhite};
   }
 `;
