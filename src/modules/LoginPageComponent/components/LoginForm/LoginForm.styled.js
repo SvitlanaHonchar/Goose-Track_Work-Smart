@@ -4,33 +4,37 @@ import { Form } from 'formik';
 
 export const StyledContainer = styled.div`
   .FormContainer {
-    background-color: #ffffff;
-    border-radius: 8px;
-    margin-bottom: 18px;
+    // background-color: #ffffff;
+    // border-radius: 8px;
+    // margin-bottom: 18px;
 
-    @media screen and (max-width: 374px) {
-      width: 100%;
-      max-width: 335px;
-    }
+    // @media screen and (max-width: 374px) {
+    //   width: 100%;
+    //   max-width: 335px;
+    // }
 
-    @media screen and (min-width: 768px) {
-      margin-bottom: 24px;
-    }
+    // @media screen and (min-width: 768px) {
+    //   margin-bottom: 24px;
+    // }
   }
 `;
 
 export const StyledLoginForm = styled(Form)`
   display: flex;
   flex-direction: column;
+  margin-bottom: 18px;
   padding: 40px 24px;
+  background-color: #ffffff;
+  border-radius: 8px;
 
-  @media screen and (min-width: 375px) {
-    width: 335px;
-  }
+  // @media screen and (min-width: 375px) {
+  //   width: 335px;
+  // }
 
   @media screen and (min-width: 768px) {
+    margin-bottom: 24px;
     padding: 40px;
-    width: 480px;
+    // width: 480px;
   }
 
   .Title {

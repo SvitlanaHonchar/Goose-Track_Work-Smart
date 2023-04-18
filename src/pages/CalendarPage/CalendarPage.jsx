@@ -51,7 +51,7 @@ const CalendarPage = () => {
   const isRefreshed = useSelector(selectIsRefreshed);
 
   useEffect(() => {
-    if (!isLogged && !isRefreshed && isUserLoading) return;
+    if (!isLogged && taskData !== null && !isRefreshed && isUserLoading) return;
     console.log('calendarPage');
 
     setTimeout(() => {
