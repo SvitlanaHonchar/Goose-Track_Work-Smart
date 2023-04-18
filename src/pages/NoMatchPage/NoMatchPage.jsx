@@ -1,4 +1,6 @@
+import NoMatchPageComponent from 'modules/NoMatchPageComponent/NoMatchPageComponent';
 import React from 'react';
+
 import { Navigate, useLocation } from 'react-router';
 import TaskModal from 'shared/components/TaskModal/TaskModal';
 import useModal from 'shared/hooks/useModal';
@@ -53,6 +55,7 @@ const NoMatchPage = () => {
           taskDetails={details ? details.details : {}}
         />
       )}
+      <NoMatchPageComponent />
     </div>
   );
 };
