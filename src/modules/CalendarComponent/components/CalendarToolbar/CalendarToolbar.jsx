@@ -77,6 +77,7 @@ const CalendarToolbar = () => {
         flexDirection: { xs: 'column', md: 'row' },
         rowGap: { xs: '18px', md: '0' },
         justifyContent: { xs: 'flex-start', md: 'space-between' },
+        marginBottom: { xs: '24px', lg: '32px' },
       }}
     >
       <PeriodPaginator date={date} period={periodType} onDateChange={setDate} />
