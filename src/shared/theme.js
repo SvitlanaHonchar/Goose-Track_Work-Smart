@@ -114,13 +114,11 @@ export const theme = createTheme({
     },
   },
   components: {
-    // Name of the component
     MuiOutlinedInput: {
       styleOverrides: {
-        // Name of the slot
         root: {
-          // Some CSS
           height: 42,
+          maxWidth: 354,
         },
       },
     },
