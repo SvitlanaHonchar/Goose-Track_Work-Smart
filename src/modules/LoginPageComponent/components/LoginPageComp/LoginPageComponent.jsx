@@ -15,9 +15,9 @@ const LoginPageComponent = () => {
         <AuthNavigate link="/register" text="Sign up" />
         <div className="ImageContainer">
           <div className="StyledImageGoose"></div>
-          <div className="StyledImageMessage">
-            <span className="Message">
-              Quickly <span className="MessageFocus">come in</span> and write
+          <div className="StyledImageMessege">
+            <span className="Messege">
+              Quickly <span className="MessegeFocus">come in</span> and write
               down your tasks for the day!
             </span>
           </div>

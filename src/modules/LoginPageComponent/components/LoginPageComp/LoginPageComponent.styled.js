@@ -43,7 +43,7 @@ export const StyledLoginPageComponent = styled(Box)`
     }
   }
 
-  .StyledImageMessage {
+  .StyledImageMessege {
     position: absolute;
     top: -170px;
     right: -50px;
@@ -57,12 +57,9 @@ export const StyledLoginPageComponent = styled(Box)`
     @media screen and (min-device-pixel-ratio: 2) {
       background-image: url(${img4});
     }
-
-    @media screen and (min-width: 768px) {
-    }
   }
 
-  .Message {
+  .Messege {
     position: absolute;
     top: 23%;
     right: 11%;
@@ -73,9 +70,10 @@ export const StyledLoginPageComponent = styled(Box)`
     font-weight: 600;
     font-size: 14px;
     line-height: 1.14;
+    color: #111111;
   }
 
-  .MessageFocus {
+  .MessegeFocus {
     color: #3e85f3;
   }
 `;
