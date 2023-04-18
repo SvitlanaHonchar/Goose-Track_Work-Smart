@@ -57,6 +57,7 @@ const AccountComponent = () => {
       setFormValues(values);
       if (actionResult.type === 'user/update/fulfilled') {
         showSuccessUserUpdate();
+        resetForm({ values });
       }
     },
   });
@@ -68,6 +69,7 @@ const AccountComponent = () => {
     handleSubmit,
     setFieldValue,
     setValues,
+    resetForm,
   } = formik;
 
   useEffect(() => {
@@ -98,6 +100,7 @@ const AccountComponent = () => {
           borderRadius: '16px',
           mt: { xs: 15, md: 8 },
           ml: 2,
+          px: { md: 10, lg: 22 },
           pt: { xs: 17, md: 5 },
           pb: 5,
         }}

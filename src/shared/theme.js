@@ -118,7 +118,6 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           height: 42,
-          maxWidth: 354,
         },
       },
     },
