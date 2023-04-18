@@ -10,7 +10,7 @@ import {
 
 import { getMonthTasks } from 'redux/tasks/tasksOperations';
 import {
-  selectAllTasks,
+  // selectAllTasks,
   selectIsTasksError,
   selectTasksError,
 } from 'redux/tasks/tasksSelectors';
@@ -30,34 +30,29 @@ const CalendarPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { currentDay, currentMonth } = useParams();
-  // const params = useParams();
-  // console.log('params: ', params);
+  const paramsFormat = Object.keys(useParams()).join('');
   const taskError = useSelector(selectTasksError);
   const isTaskError = useSelector(selectIsTasksError);
   const isUserLoading = useSelector(selectIsUserLoading);
   const isRefreshed = useSelector(selectIsRefreshed);
   const isUserExist = useSelector(selectIsUserExist);
   // const isLogged = useSelector(selectIsLoggedIn);
-  const tasksForSelectedMonth = useSelector(selectAllTasks);
+  // const tasksForSelectedMonth = useSelector(selectAllTasks);
+
   const isValidDate = dateString => {
     const date = new Date(dateString);
     return !isNaN(date);
   };
 
-  const paramsDate = isValidDate(currentDay)
-    ? currentDay
-    : `${currentMonth}-01`;
-  const year = paramsDate.slice(0, 4);
-  const month = paramsDate.slice(5, 7);
+  const urlString =
+    paramsFormat === 'currentDay' ? currentDay : `${currentMonth}-01`;
+
+  const year = urlString.slice(0, 4);
+  const month = urlString.slice(5, 7);
 
   const location = useLocation();
   const path = location.pathname;
   const currentMonthPath = new Date().toISOString().slice(0, 7);
-
-  const hasMatchingDate = tasksForSelectedMonth?.some(task =>
-    task.date?.startsWith(currentMonthPath)
-  );
-  console.log('CALENDARTOOLBAR hasMatchingDate : ', hasMatchingDate);
 
   useEffect(() => {
     // if (!isLogged && tasksForSelectedMonth  !== null && !isRefreshed && isUserLoading) return;
@@ -88,23 +83,21 @@ const CalendarPage = () => {
     }
   }, [isTaskError, taskError]);
 
-  if (!isValidDate(paramsDate)) {
+  if (!isValidDate(urlString)) {
     //return <Navigate to="/calendar/month" replace />;
     return navigate(-1);
   }
-
+  if (path.match(/calendar(\/)?$/)) {
+    return <Navigate replace to={`/calendar/month/${currentMonthPath}`} />;
+  }
   return (
     <div className="calendarPage">
-      {path.match(/calendar(\/)?$/) ? (
-        <Navigate replace to={`/calendar/month/${currentMonthPath}`} />
-      ) : (
-        <CalendarComponent>
-          <Suspense fallback={<Loader />}>
-            <Outlet />
-          </Suspense>
-          <CalendarToolbar />
-        </CalendarComponent>
-      )}
+      <CalendarComponent>
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
+        <CalendarToolbar />
+      </CalendarComponent>
     </div>
   );
 };
