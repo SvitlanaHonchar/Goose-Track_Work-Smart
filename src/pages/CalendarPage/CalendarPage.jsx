@@ -6,6 +6,7 @@ import {
   selectIsLoggedIn,
   selectIsRefreshed,
   selectIsUserLoading,
+  selectIsUserExist,
 } from 'redux/auth/authSelectors';
 import { getMonthTasks } from 'redux/tasks/tasksOperations';
 import {
@@ -19,12 +20,9 @@ import { showAnyError } from 'shared/utils/notifications';
 
 const CalendarPage = () => {
   const dispatch = useDispatch();
-  const isLogged = useSelector(selectIsLoggedIn);
-  const taskData = useSelector(selectAllTasks);
-  // console.log(taskData);
-  // const [chosenDate] = useState(new Date());
+  // const isLogged = useSelector(selectIsLoggedIn);
+  // const taskData = useSelector(selectAllTasks);
 
-  // --data for dispatch getMonthTasks
   const params = useParams();
   const paramsFormat = Object.keys(params).join('');
   const paramsDate =
@@ -43,15 +41,15 @@ const CalendarPage = () => {
   const path = location.pathname;
 
   const currentMonth = new Date().toISOString().slice(0, 7);
-
   const taskError = useSelector(selectTasksError);
   const taskErrorStatus = useSelector(selectIsTasksError);
   const isUserLoading = useSelector(selectIsUserLoading);
-  // console.log('taskErrorStatus', taskErrorStatus);
   const isRefreshed = useSelector(selectIsRefreshed);
+  const isUserExist = useSelector(selectIsUserExist);
 
   useEffect(() => {
-    if (!isLogged && taskData !== null && !isRefreshed && isUserLoading) return;
+    // if (!isLogged && taskData !== null && !isRefreshed && isUserLoading) return;
+    if (!isUserExist && !isRefreshed && isUserLoading) return;
     console.log('calendarPage');
 
     setTimeout(() => {
@@ -61,21 +59,16 @@ const CalendarPage = () => {
           month: +monthParams,
         })
       );
-      // dispatch(
-      //   getMonthTasks({
-      //     year: chosenDate.getFullYear(),
-      //     month: chosenDate.getMonth() + 1,
-      //   })
-      // );
     }, 500);
   }, [
     dispatch,
-    isLogged,
+    // isLogged,
     yearParams,
     monthParams,
-    // taskData,
+    //taskData,
     isUserLoading,
     isRefreshed,
+    isUserExist,
   ]);
 
   useEffect(() => {
