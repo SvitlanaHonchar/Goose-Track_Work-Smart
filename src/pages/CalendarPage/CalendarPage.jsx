@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Outlet, useLocation, useParams } from 'react-router';
 import {
   selectIsLoggedIn,
+  selectIsRefreshed,
   selectIsUserLoading,
 } from 'redux/auth/authSelectors';
 import { getMonthTasks } from 'redux/tasks/tasksOperations';
@@ -47,25 +48,35 @@ const CalendarPage = () => {
   const taskErrorStatus = useSelector(selectIsTasksError);
   const isUserLoading = useSelector(selectIsUserLoading);
   // console.log('taskErrorStatus', taskErrorStatus);
+  const isRefreshed = useSelector(selectIsRefreshed);
 
   useEffect(() => {
-    if (isLogged && taskData === null && !isUserLoading) {
-      setTimeout(() => {
-        dispatch(
-          getMonthTasks({
-            year: +yearParams,
-            month: +monthParams,
-          })
-        );
-        // dispatch(
-        //   getMonthTasks({
-        //     year: chosenDate.getFullYear(),
-        //     month: chosenDate.getMonth() + 1,
-        //   })
-        // );
-      }, 3000);
-    }
-  }, [dispatch, isLogged, yearParams, monthParams, taskData, isUserLoading]);
+    if (!isLogged && !isRefreshed && isUserLoading) return;
+    console.log('calendarPage');
+
+    setTimeout(() => {
+      dispatch(
+        getMonthTasks({
+          year: +yearParams,
+          month: +monthParams,
+        })
+      );
+      // dispatch(
+      //   getMonthTasks({
+      //     year: chosenDate.getFullYear(),
+      //     month: chosenDate.getMonth() + 1,
+      //   })
+      // );
+    }, 500);
+  }, [
+    dispatch,
+    isLogged,
+    yearParams,
+    monthParams,
+    // taskData,
+    isUserLoading,
+    isRefreshed,
+  ]);
 
   useEffect(() => {
     if (taskErrorStatus) {
