@@ -1,75 +1,79 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { format, getYear, getMonth } from 'date-fns';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Box } from '@mui/material';
 import PeriodPaginator from '../PeriodPaginator/PeriodPaginator';
 import PeriodTypeSelect from '../PeriodTypeSelect/PeriodTypeSelect';
 import { getMonthTasks } from 'redux/tasks/tasksOperations';
 import { selectAllTasks } from 'redux/tasks/tasksSelectors';
 import usePeriodTypeFromPath from 'shared/hooks/usePeriodTypeFromPath';
-import useSelectedPeriodType from 'shared/hooks/useSelectedPeriodType';
 import { showError } from 'shared/utils/notifications';
+import {
+  selectIsLoggedIn,
+  selectIsUserLoading,
+} from 'redux/auth/authSelectors';
 
 const CalendarToolbar = () => {
-  const [date, setDate] = useState(new Date());
   const periodType = usePeriodTypeFromPath();
-  const [selectedPeriodType, handlePeriodTypeSelect] =
-  useSelectedPeriodType(periodType);
-  const navigate = useNavigate();
+  const { currentDay } = useParams();
+  const { currentMonth } = useParams();
+  const dateFromUrl = periodType === 'month' ? currentMonth : currentDay;
 
-  const handleDateChange = useCallback(
-    d => {
-      setDate(d);
-      const url = createCalendarUrl(d, periodType);
-      navigate(url);
-    },
-    [periodType, navigate]
+  const convertMonthDateStringToDateObject = str => {
+    const [year, month] = str.split('-');
+    const day = new Date().getDate();
+    const date = new Date(`${year}-${month}-${day}`);
+    return date;
+  };
+
+  const convertDayDateStringToDateObject = str => {
+    return new Date(str);
+  };
+
+  const dateObject = useMemo(
+    () =>
+      periodType === 'month'
+        ? convertMonthDateStringToDateObject(dateFromUrl)
+        : convertDayDateStringToDateObject(dateFromUrl),
+    [dateFromUrl, periodType]
   );
 
-  const createCalendarUrl = (newDate, period) => {
-    return `/calendar/${period}/${format(
-      newDate,
-      period === 'month' ? 'yyyy-MM' : 'yyyy-MM-dd'
-    )}`;
-  };
+  // console.log('ОБЭКТ ДАТА: у тулбарі: ', dateObject);
 
-  const setActiveDate = () => {
-    setDate(new Date());
-  };
+  const [date, setDate] = useState(dateObject);
 
-  const dispatch = useDispatch();
-  const tasksForSelectedMonth = useSelector(selectAllTasks);
-  const formattedDate = useMemo(() => format(date, 'yyyy-MM'), [date]);
-  const hasMatchingDate = useMemo(() => {
-    return (
-      tasksForSelectedMonth?.some(task =>
-        task.date?.startsWith(formattedDate)
-      ) || false
-    );
-  }, [formattedDate, tasksForSelectedMonth]);
+  // console.log('У СТЕЙТЫ date: ', date);
 
+  const setActiveDate = () => setDate(new Date());
   useEffect(() => {
-    const fetchData = async () => {
-      if (!hasMatchingDate) {
-        try {
-          const result = await dispatch(
-            getMonthTasks({
-              year: getYear(date),
-              month: getMonth(date) + 1,
-            })
-          );
-          if (result.error) {
-            showError();
-          }
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    };
+    setDate(dateObject);
+  }, [dateObject]);
 
-    fetchData();
-  }, [dispatch, date, hasMatchingDate]);
+  // const dispatch = useDispatch();
+  // const tasksForSelectedMonth = useSelector(selectAllTasks);
+
+  // const hasMatchingDate =
+  //   tasksForSelectedMonth?.some(task => task.date?.startsWith(dateFromUrl)) ||
+  //   false;
+
+  // const isUserLoading = useSelector(selectIsUserLoading);
+  // const isLogged = useSelector(selectIsLoggedIn);
+
+  // useEffect(() => {
+  //   if (
+  //     !hasMatchingDate &&
+  //     isLogged &&
+  //     !isUserLoading &&
+  //     tasksForSelectedMonth !== null
+  //   ) {
+  //     dispatch(
+  //       getMonthTasks({
+  //         year: getYear(date),
+  //         month: getMonth(date) + 1,
+  //       })
+  //     );
+  //   }
+  // }, [dispatch, hasMatchingDate, date, isLogged, isUserLoading]);
 
   return (
     <Box
@@ -80,16 +84,8 @@ const CalendarToolbar = () => {
         justifyContent: { xs: 'flex-start', md: 'space-between' },
       }}
     >
-      <PeriodPaginator
-        date={date}
-        period={periodType}
-        onDateChange={handleDateChange}
-      />
-      <PeriodTypeSelect
-        selectedType={selectedPeriodType}
-        onTypeSelect={handlePeriodTypeSelect}
-        setActiveDate={setActiveDate}
-      />
+      <PeriodPaginator date={date} period={periodType} onDateChange={setDate} />
+      <PeriodTypeSelect setActiveDate={setActiveDate} />
     </Box>
   );
 };

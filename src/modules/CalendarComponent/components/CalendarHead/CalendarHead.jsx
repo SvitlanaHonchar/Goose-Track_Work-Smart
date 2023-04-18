@@ -21,7 +21,7 @@ const CalendarHead = ({ mode, currentDay }) => {
       )
     );
   }
-  console.log('options: ', options);
+  // console.log('options: ', options);
 
   return (
     <ListStyled
@@ -50,7 +50,7 @@ const CalendarHead = ({ mode, currentDay }) => {
               options.startWeekDate.getDate() + index
             )
           );
-          console.log('currentDate: ', currentDate.getMonth() + 1);
+          // console.log('currentDate: ', currentDate.getMonth() + 1);
 
           return (
             <ListItem
