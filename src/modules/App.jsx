@@ -16,6 +16,7 @@ import StartPage from 'pages/StartPage/StartPage';
 import SharedLayout from '../shared/components/SharedLayout.js/SharedLayout';
 import withAuthRedirect from 'hoc/withAuthRedirect/withAuthRedirect';
 import 'redux/tasks/tasksOperations';
+import { AppStyled } from './App.styled';
 import { selectUser } from 'redux/auth/authSelectors';
 
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
@@ -77,7 +78,7 @@ const App = () => {
   }, [dispatch, user.name]);
 
   return (
-    <>
+    <AppStyled className="app">
       <RouterProvider router={router} />
 
       <div>
@@ -108,7 +109,7 @@ const App = () => {
           }}
         />
       </div>
-    </>
+    </AppStyled>
   );
 };
 

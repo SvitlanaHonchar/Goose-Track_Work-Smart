@@ -85,7 +85,7 @@ const CalendarPage = () => {
   }, [taskErrorStatus, taskError]);
 
   return (
-    <div>
+    <div className="calenderPage">
       {path === '/calendar' && (
         <Navigate replace to={`/calendar/month/${currentMonth}`} />
       )}
