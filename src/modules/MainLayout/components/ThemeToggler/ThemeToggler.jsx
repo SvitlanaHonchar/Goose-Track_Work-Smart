@@ -34,7 +34,7 @@ const ThemeToggler = () => {
       className="themeToggler"
       onClick={onThemeTogglerButtonClick}
     >
-      {darkMode === 'true' ? (
+      {darkMode === 'false' ? (
         <MdOutlineDarkMode className="themeToggler__icon" />
       ) : (
         <MdOutlineLightMode className="themeToggler__icon" />

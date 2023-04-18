@@ -37,7 +37,7 @@ const MainLayout = () => {
   return (
     // Component =>
     // ({ ...props }) => {
-    <StyledDiv theme={theme}>
+    <StyledDiv theme={theme} className="mainLayout">
       <Box className="mainLayout-frame">
         <SideBar menu={menuStatus} onClose={closeMenu} />
         <div>
