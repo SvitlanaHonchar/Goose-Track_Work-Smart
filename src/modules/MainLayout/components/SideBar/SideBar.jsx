@@ -5,7 +5,7 @@ import LogoutBtn from './LogoutBtn';
 
 function SideBar({ menu, onClose }) {
   return (
-    <SideBarContainer className={menu}>
+    <SideBarContainer className={`${menu} sidebar-container`}>
       <UserNav onClick={onClose} />
       <LogoutBtn />
     </SideBarContainer>

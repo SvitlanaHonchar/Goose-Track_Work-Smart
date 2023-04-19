@@ -69,7 +69,6 @@ const router = createBrowserRouter(
 const App = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
-  // const error = useSelector(selectUserError);
   // Refresh - success
   useEffect(() => {
     if (user.name !== null) return;

@@ -12,14 +12,18 @@ import {
 export default function UserNav({ onClick }) {
   const currentMonth = new Date().toISOString().slice(0, 7);
   return (
-    <StyledNavContainer>
+    <StyledNavContainer className="sidebar-usernav">
       <StyledLogoDiv>
         <div>
           <img src={require('./images/goose-logo.png')} alt="goose logo" />
         </div>
         <h2>Goose Track</h2>
 
-        <StyledCloseBtn type="button" onClick={onClick}>
+        <StyledCloseBtn
+          type="button"
+          onClick={onClick}
+          className="sidebar-usernav__close-btn"
+        >
           <Icon name="close" width="16px" height="16px" />
         </StyledCloseBtn>
       </StyledLogoDiv>
