@@ -3,7 +3,10 @@ import sprite from '../../../../shared/icons/sprite.svg';
 import { TaskToolbarList } from './TaskToolbar.styled';
 import useModal from 'shared/hooks/useModal';
 import TaskModal from 'shared/components/TaskModal/TaskModal';
-import { showSuccessDeleteTask } from 'shared/utils/notifications';
+// import {
+//   showSuccessDeleteTask,
+//   showSuccessMoveTask,
+// } from 'shared/utils/notifications';
 import { useDispatch } from 'react-redux';
 import { deleteTask, updateTask } from 'redux/tasks/tasksOperations';
 
@@ -13,26 +16,38 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 const TaskToolbar = ({ ...taskData }) => {
   const dispatch = useDispatch();
 
-  const { category, date, _id: id } = taskData;
+  const { priority, category, date, title, start, end, _id: id } = taskData;
   const { isOpen, action, closeModal, toggleModal, details } = useModal();
+
+  const editedTaskDetails = {
+    id,
+    title,
+    start,
+    end,
+    priority,
+  };
 
   const availableCategories = COLUMN_TASKS.filter(
     item => item.categories !== category
   );
 
-  const handleMoveTask = newCategories => {
-    dispatch(updateTask({ id, taskData }));
-    console.log('handleMoveTask', newCategories);
+  const handleMoveTask = newCategory => {
+    const updatingTask = {
+      ...taskData,
+      category: newCategory,
+    };
+    // console.log('newCategory', newCategory);
+    dispatch(updateTask({ id, task: updatingTask }));
+    // showSuccessMoveTask(newCategory);
   };
 
   const handleEditTaskClick = () => {
-    toggleModal('edit', { details: taskData });
+    toggleModal('edit', { details: editedTaskDetails });
   };
 
   const handleDeleteTask = taskId => {
     dispatch(deleteTask(taskId));
-    showSuccessDeleteTask(category);
-    console.log('deleteTask');
+    // showSuccessDeleteTask(category);
   };
 
   return (
@@ -69,6 +84,7 @@ const TaskToolbar = ({ ...taskData }) => {
         </li>
         <li>
           <button
+            type="button"
             onClick={() => {
               handleEditTaskClick();
             }}
@@ -80,6 +96,7 @@ const TaskToolbar = ({ ...taskData }) => {
         </li>
         <li>
           <button
+            type="button"
             onClick={() => {
               handleDeleteTask(id);
             }}

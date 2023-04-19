@@ -1,39 +1,47 @@
 import styled from 'styled-components';
 import { Grid } from '@mui/material';
+import theme from 'shared/theme';
 
 export const GridContainer = styled(Grid)`
-  border-color: black solid 1px;
-  max-height: 568px;
-  max-width: 1087px;
+  max-height: 432px;
   margin-top: 16px;
-  // gap: 20px;
-  height: 100%;
+  gap: 16px;
+  width: 375px;
   flex-direction: column,
-
-
+  
+  //  ------- scrollbarTrack ------- //
   ::-webkit-scrollbar {
-    height: 12px;
+    height: 30px;
   }
 
   ::-webkit-scrollbar-track {
     border-radius: 12px;
+    background: ${theme.palette.custom.bgScrollbarTrack};
+    margin-top: 100px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #e7e5e5;
+    background: ${theme.palette.custom.scrollbarThumb};
     border-radius: 12px;
   }
-
+  
   ::-webkit-scrollbar-thumb:hover {
-    background: #dce3e5;
+    background: ${theme.palette.grey.light};
   }
+  //  ------- scrollbarTrack ------- //
 
   @media screen and (min-width: 768px) {
+    max-height: 568px;
     min-height: 165px;
-    overflow-x: 'scroll';
+    gap: 20px;
 
     ::-webkit-scrollbar {
       height: 14px;
     }
+  }
+
+    @media screen and (min-width: 1440px) {
+    width: 344px;
+    gap: 27px;
   }
 `;

@@ -1,25 +1,32 @@
 import styled from 'styled-components';
 import theme from '../../../../shared/theme';
 
-export const AddTaskWrapper = styled.div``;
-
 export const Button = styled.button`
+  max-width: 297px;
+  width: 100%;
+  width: 100%;
+  height: 48px;
   display: flex;
-  justify-content: center;
 
+  justify-content: center;
   align-items: center;
   column-gap: 8px;
+  gap: 13px;
+
   background-color: ${theme.palette.secondary.light};
   border: 1px dashed ${theme.palette.custom.borderLight};
   border-radius: 8px;
-  gap: 13px;
+
   font-size: 14px;
   line-height: 18px;
-  cursor: pointer;
 
-  max-width: 299px;
-  width: 100%;
-  height: 48px;
+  cursor: pointer;
+  transition: border 200ms cubic-bezier(0.9, 0, 0.2, 1) 0ms;
+  margin-top: 5px;
+  &:hover,
+  &:focus {
+    border: 1.5px dashed ${theme.palette.primary.main};
+  }
 
   & svg {
     stroke: #111111;
@@ -35,6 +42,6 @@ export const Button = styled.button`
   }
 
   @media screen and (min-width: 768px) {
-    width: 304px;
+    margin-top: 32px;
   }
 `;

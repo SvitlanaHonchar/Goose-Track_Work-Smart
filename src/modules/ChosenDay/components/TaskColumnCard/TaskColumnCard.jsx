@@ -6,16 +6,15 @@ import {
   UserBar,
   Priority,
 } from './TaskColumnCard.styled';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { selectUser } from 'redux/auth/authSelectors';
-import userImg from '../../../../shared/images/reviews/reviews_1.png';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'redux/auth/authSelectors';
 import TaskToolbar from '../TaskToolbar/TaskToolbar';
 import clsx from 'clsx';
 
 const TaskColumnCard = ({ ...task }) => {
   const { priority, title } = task;
 
-  // const { userImgUrl } = useSelector(selectUser);
+  const { userImgUrl } = useSelector(selectUser);
 
   // const checkCurrentDate = () => {
   //   const currentDate = new Date();
@@ -34,7 +33,7 @@ const TaskColumnCard = ({ ...task }) => {
       </Title>
       <InfoBar>
         <UserBar>
-          <img src={userImg} />
+          <img src={userImgUrl} />
           <Priority
             className={clsx({
               low: priority === 'low',

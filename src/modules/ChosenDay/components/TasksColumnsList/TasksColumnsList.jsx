@@ -12,8 +12,8 @@ const TasksColumnsList = ({ tasks, currentDay }) => {
 
   const taskColumn = () => {
     tasksList?.map(tasks => {
-      Object.values(tasks).map(tasks2 => {
-        tasks2?.forEach(element => {
+      return Object.values(tasks).map(tasks2 => {
+        return tasks2?.forEach(element => {
           allTask.push(element);
         });
       });
@@ -33,10 +33,14 @@ const TasksColumnsList = ({ tasks, currentDay }) => {
       justifyContent="center"
       spacing={2}
       sx={{
-        overflowX: 'auto',
         flexDirection: 'column',
-        maxWidth: '1087',
-        height: '568',
+        overflowX: 'scroll',
+        overflowY: 'hidden',
+        maxWidth: { sm: 375, md: 768, lg: 1078 },
+        '&.MuiGrid-container': {
+          padding: 0,
+          margin: 2,
+        },
       }}
     >
       {COLUMN_TASKS.map(column => (
