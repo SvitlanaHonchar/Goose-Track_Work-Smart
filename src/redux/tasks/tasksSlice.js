@@ -53,16 +53,24 @@ const tasksSlice = createSlice({
       })
       .addCase(updateTask.fulfilled, (state, { payload }) => {
         const updatedTask = payload.task;
-
+        // =============
         state.data = state.data.map(el => {
-          el.tasks.map(task => {
-            if (task._id === updatedTask._id) {
-              return updatedTask;
-            }
-            return task;
-          });
+          if (el.date !== updatedTask.date) return;
+          el.tasks = el.tasks.map(task =>
+            task._id === updatedTask._id ? updatedTask : task
+          );
           return el;
         });
+        //  =========
+        //     state.data = state.data.map(el => {
+        //     el.tasks.map(task => {
+        //       if (task._id === updatedTask._id) {
+        //         return updatedTask;
+        //       }
+        //       return task;
+        //     });
+        //     return el;
+        //   });
       })
 
       .addMatcher(isAnyOf(...getExtraActions('fulfilled')), state =>
