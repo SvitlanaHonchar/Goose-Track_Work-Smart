@@ -1,6 +1,7 @@
 import React, { lazy, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import {
+  Navigate,
   Route,
   RouterProvider,
   createBrowserRouter,
@@ -60,7 +61,7 @@ const router = createBrowserRouter(
         </Route>
       </Route>
 
-      <Route path="*" element={<NoMatchPage />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Route>
   ),
   { basename }
