@@ -48,7 +48,7 @@ export const UserAvatar = ({ setAvatar, formData }) => {
             sx={{
               position: 'absolute',
               top: 52,
-              right: 0,
+              right: 10,
               borderRadius: 50,
               bgcolor: 'common.white',
             }}
