@@ -33,7 +33,6 @@ export const AppStyled = styled.div`
     color: ${theme.palette.custom.mainWhite};
   }
 
-
   &.darkMode .toggle-btn {
     background-color: ${theme.palette.darkmode.darkGrey};
     &.Mui-selected {
@@ -51,6 +50,7 @@ export const AppStyled = styled.div`
     svg {
       stroke: ${theme.palette.custom.mainWhite};
     }
+  }
 
   &.darkMode .sidebar-container,
   &.darkMode .sidebar-usernav {
@@ -79,6 +79,5 @@ export const AppStyled = styled.div`
   &.darkMode .accountContainer {
     background-color: ${theme.palette.darkmode.darkGrey};
     color: ${theme.palette.custom.mainWhite};
-
   }
 `;

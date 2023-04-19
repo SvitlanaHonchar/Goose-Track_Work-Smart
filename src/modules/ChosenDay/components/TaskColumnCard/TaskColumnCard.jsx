@@ -33,7 +33,7 @@ const TaskColumnCard = ({ ...task }) => {
       </Title>
       <InfoBar>
         <UserBar>
-          <img src={userImgUrl} />
+          <img src={userImgUrl} alt="avatar" />
           <Priority
             className={clsx({
               low: priority === 'low',
