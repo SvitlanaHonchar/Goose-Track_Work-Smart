@@ -10,7 +10,7 @@ import {
 
 import { getMonthTasks } from 'redux/tasks/tasksOperations';
 import {
-  // selectAllTasks,
+  selectAllTasks,
   selectIsTasksError,
   selectTasksError,
 } from 'redux/tasks/tasksSelectors';
@@ -37,7 +37,8 @@ const CalendarPage = () => {
   const isRefreshed = useSelector(selectIsRefreshed);
   const isUserExist = useSelector(selectIsUserExist);
   // const isLogged = useSelector(selectIsLoggedIn);
-  // const tasksForSelectedMonth = useSelector(selectAllTasks);
+  const tasksForSelectedMonth = useSelector(selectAllTasks);
+  console.log('tasksForSelectedMonth : ', tasksForSelectedMonth);
 
   const isValidDate = dateString => {
     const date = new Date(dateString);
@@ -55,7 +56,13 @@ const CalendarPage = () => {
   const currentMonthPath = new Date().toISOString().slice(0, 7);
 
   useEffect(() => {
-    // if (!isLogged && tasksForSelectedMonth  !== null && !isRefreshed && isUserLoading) return;
+    // if (
+    //   !isLogged &&
+    //   tasksForSelectedMonth !== null &&
+    //   !isRefreshed &&
+    //   isUserLoading
+    // )
+    //   return;
     if (!isUserExist && !isRefreshed && isUserLoading) return;
 
     setTimeout(() => {
@@ -71,7 +78,8 @@ const CalendarPage = () => {
     // isLogged,
     year,
     month,
-    //taskData,
+    //tasksForSelectedMonth,
+
     isUserLoading,
     isRefreshed,
     isUserExist,

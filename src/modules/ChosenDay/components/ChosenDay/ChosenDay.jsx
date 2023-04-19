@@ -9,8 +9,8 @@ const ChosenDay = () => {
   const { currentDay } = useParams();
   const tasksAll = useSelector(selectAllTasks);
   const [tasksCurrentDay, setTasksCurrentDay] = useState([]);
-  // console.log('tasksCurrentDay: ', tasksCurrentDay);
-  // console.log('tasksAll у компоненті ChosenDay: ', tasksAll);
+  console.log('ChosenDay SELECTOR alltasks: : ', tasksAll);
+  console.log('ChosenDay y USESTATE  ', tasksCurrentDay);
 
   useEffect(() => {
     if (!tasksAll) return;

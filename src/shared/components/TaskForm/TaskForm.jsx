@@ -29,6 +29,7 @@ import { createTask, updateTask } from 'redux/tasks/tasksOperations';
 const TaskForm = props => {
   const { action, onClose, category, date, taskDetails } = props;
   const [title, setTitle] = useState(taskDetails.title || '');
+  console.log('title: ', title);
   const [priority, setPriority] = useState(
     taskDetails.priority || TASKS_PRIORITY.LOW
   );
@@ -83,15 +84,16 @@ const TaskForm = props => {
     console.log('task: ', task);
 
     const isValid = await validateForm(task);
-
+    const taskId = taskDetails.id;
+    console.log('taskId: ', taskId);
     if (isValid) {
       const result =
         action === 'add'
           ? await dispatch(createTask(task))
-          : await dispatch(updateTask({ taskId: taskDetails.id, task }));
+          : await dispatch(updateTask({ taskId, task }));
 
       if (result.error) {
-        showError();
+        return showError();
       }
 
       onClose();
