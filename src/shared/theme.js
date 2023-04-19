@@ -62,10 +62,10 @@ export const theme = createTheme({
       bgScrollbarTrack: '#F2F2F2',
       labelDark: '#fafafa4d',
     },
-
     darkmode: {
       dark: '#171820',
       darkGrey: '#21222C',
+      black: '#13151A',
     },
   },
   typography: {

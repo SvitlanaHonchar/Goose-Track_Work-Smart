@@ -8,8 +8,8 @@ export default function UserForm({ formData, onChange, setBirthday, errors }) {
   const { name, email, phone, skype } = formData;
 
   return (
-    <Box sx={{ m: { md: '0', lg: '0 auto' }, maxWidth: 750 }}>
-      <Grid container columnSpacing={6}>
+    <Box sx={{ m: { lg: '0 auto' }, maxWidth: { md: 354, lg: 750 } }}>
+      <Grid container rowSpacing={3} columnSpacing={6}>
         <Grid item xs={12} lg={6}>
           <Typography variant="overline">User Name</Typography>
           <TextInput

@@ -98,17 +98,24 @@ const AccountComponent = () => {
   return (
     <form onSubmit={handleSubmit} ref={formRef} noValidate>
       <Container
+        className="accountContainer"
         sx={{
-          backgroundColor: 'white',
+          backgroundColor: '#fff',
           borderRadius: '16px',
           mt: { xs: 15, md: 8 },
-          ml: 2,
           px: { md: 10, lg: 22 },
           pt: { xs: 17, md: 5 },
           pb: 5,
         }}
       >
-        <Grid container justifyContent={'center'}>
+        <Grid
+          container
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
           <UserAvatar setAvatar={setAvatar} formData={userAvatarFormData} />
           <UserForm
             formData={userFormData}

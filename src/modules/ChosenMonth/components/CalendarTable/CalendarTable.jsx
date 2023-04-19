@@ -112,6 +112,12 @@ function CalendarTable({ tasks, currentMonth }) {
                         paddingRight: '22px',
                         paddingLeft: '8px',
                       }}
+                      className={
+                        getNextDay(day.iso).slice(5, 7) !==
+                        new Date().toISOString().slice(5, 7)
+                          ? 'not-current'
+                          : ''
+                      }
                     >
                       <div className="cell-container">
                         <NavLink
@@ -126,6 +132,7 @@ function CalendarTable({ tasks, currentMonth }) {
                             ? getNextDay(day.iso).slice(9, 10)
                             : getNextDay(day.iso).slice(8, 10)}
                         </NavLink>
+
                         <StyledUl>
                           {getAllDayTasks(`${getNextDay(day.iso)}`).length < 1
                             ? getAllDayTasks(`${getNextDay(day.iso)}`)

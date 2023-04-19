@@ -10,23 +10,28 @@ export const StyledDiv = styled.div`
   & .cell-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: stretch;
     gap: 22px;
     max-height: 80px;
     /* overflow: auto; */
 
     & a {
+      color: rgba(52, 52, 52, 1);
+      font-weight: 700;
+
       &.current {
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        width: 27px;
+        /* width: 27px; */
         height: 26px;
+
+        margin-left: auto;
         padding: 4px 8px;
         background-color: rgba(62, 133, 243, 1);
         color: #fff;
-        font-weight: 600;
+        /* font-weight: 600; */
 
         border-radius: 8px;
       }
@@ -34,6 +39,11 @@ export const StyledDiv = styled.div`
   }
   & td {
     border: '1px rgba(220, 227, 229, 0.8) solid';
+    &.not-current {
+      & a {
+        opacity: 70%;
+      }
+    }
     /* overflow: auto; */
   }
 `;
@@ -54,7 +64,7 @@ export const StyledLi = styled.li`
   align-items: center;
   justify-content: flex-start;
 
-  width: 140px;
+  max-width: 140px;
 
   margin-top: 2px;
   /* margin-left: 8px; */
