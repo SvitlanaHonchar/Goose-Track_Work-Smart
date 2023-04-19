@@ -24,7 +24,7 @@ const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const CalendarPage = lazy(() => import('pages/CalendarPage/CalendarPage'));
 const AccountPage = lazy(() => import('pages/AccountPage/AccountPage'));
-const NoMatchPage = lazy(() => import('pages/NoMatchPage/NoMatchPage'));
+// const NoMatchPage = lazy(() => import('pages/NoMatchPage/NoMatchPage'));
 const ChosenMonth = lazy(() => import('./ChosenMonth/components/ChosenMonth'));
 const ChosenDay = lazy(() =>
   import('./ChosenDay/components/ChosenDay/ChosenDay')
@@ -61,7 +61,7 @@ const router = createBrowserRouter(
         </Route>
       </Route>
 
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<Navigate to="/calendar" />} />
     </Route>
   ),
   { basename }
