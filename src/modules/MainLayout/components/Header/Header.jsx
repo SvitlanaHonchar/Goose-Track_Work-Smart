@@ -57,6 +57,7 @@ const Header = ({ onBurgerClick }) => {
           width: '32px',
         }}
         onClick={onBurgerClick}
+        className="burger-btn"
       >
         <svg width="32px" height="32px">
           <use href={`${icons}#menu`} className="header_burger-btn_icon"></use>

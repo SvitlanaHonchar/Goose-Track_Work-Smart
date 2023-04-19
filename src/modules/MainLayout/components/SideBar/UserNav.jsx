@@ -12,7 +12,7 @@ import {
 export default function UserNav({ onClick }) {
   const currentMonth = new Date().toISOString().slice(0, 7);
   return (
-    <StyledNavContainer>
+    <StyledNavContainer className="sidebar-usernav">
       <StyledLogoDiv>
         <div>
           <img src={require('./images/goose-logo.png')} alt="goose logo" />

@@ -63,10 +63,12 @@ export const theme = createTheme({
     darkmode: {
       dark: '#171820',
       darkGrey: '#21222C',
+      black: '#13151A',
     },
     darkmode: {
       dark: '#171820',
       darkGrey: '#21222C',
+      black: '#13151A',
     },
   },
   typography: {
