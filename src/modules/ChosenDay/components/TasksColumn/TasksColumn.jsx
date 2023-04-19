@@ -33,6 +33,7 @@ const TasksColumn = ({ title, tasks, category, currentDay }) => {
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
+            boxShadow: 'none',
           }}
         >
           {tasks && <ColumnsTasksList tasks={tasks} />}
