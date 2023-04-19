@@ -23,16 +23,16 @@ export const StyledHeader = styled.header`
   & button {
     padding: 0;
     border: none;
-    background-color: transparent;
+    // background-color: transparent;
     width: 32px;
 
     /* & .MuiTouchRipple-root {
       display: block;
     } */
 
-    & .header_burger-btn_icon {
-      stroke: #343434;
-    }
+    // & .header_burger-btn_icon {
+    //   stroke: #343434;
+    // }
   }
 
   @media screen and (min-width: 768px) {
@@ -61,8 +61,8 @@ export const StyledHeader = styled.header`
 
   @media screen and (min-width: 1440px) {
     margin-bottom: 32px;
-    & button {
-      display: none;
-    }
+    // & button {
+    //   display: none;
+    // }
   }
 `;
