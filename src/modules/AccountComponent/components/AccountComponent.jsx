@@ -9,7 +9,7 @@ import { authGetUserInfo, authUpdate } from 'redux/auth/authOperations';
 import { selectUser } from 'redux/auth/authSelectors';
 import { showSuccessUserUpdate } from 'shared/utils/notifications';
 
-const AccountComponent = () => {
+export const AccountComponent = () => {
   const dispatch = useDispatch();
   const userData = useSelector(selectUser);
   const formRef = useRef(null);
@@ -138,4 +138,4 @@ const AccountComponent = () => {
   );
 };
 
-export default AccountComponent;
+// export default AccountComponent;

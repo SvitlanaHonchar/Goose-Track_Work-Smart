@@ -2,7 +2,7 @@ import { StyledNoPageComponent } from './NoMatchPageComponent.styled';
 
 import theme from 'shared/theme';
 
-const NoMatchPageComponent = ({ children }) => {
+export const NoMatchPageComponent = ({ children }) => {
   return (
     <StyledNoPageComponent
       sx={{ backgroundColor: theme.palette.secondary.main }}
@@ -20,5 +20,3 @@ const NoMatchPageComponent = ({ children }) => {
     </StyledNoPageComponent>
   );
 };
-
-export default NoMatchPageComponent;

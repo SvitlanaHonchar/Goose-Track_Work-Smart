@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 // import { selectUserError } from 'redux/auth/authSelectors';
 //layoutes and pages lazy loading
-import MainLayout from './MainLayout/components/MainLayout/MainLayout';
+import { MainLayout } from './MainLayout';
 import { authRefresh } from 'redux/auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import StartPage from 'pages/StartPage/StartPage';

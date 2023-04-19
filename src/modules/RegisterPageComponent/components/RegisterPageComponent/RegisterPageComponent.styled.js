@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import goose from '../../../shared/images/signUpPage/desktop_goose_signupPage.png';
-import goose2 from '../../../shared/images/signUpPage/desktop_goose_signupPage@2x.png';
+import goose from '../../../../shared/images/signUpPage/desktop_goose_signupPage.png';
+import goose2 from '../../../../shared/images/signUpPage/desktop_goose_signupPage@2x.png';
 
-import message from '../../../shared/images/signUpPage/desktop_goose_message_signUp.png';
-import message2 from '../../../shared/images/signUpPage/desktop_goose_message_signUp@2x.png';
+import message from '../../../../shared/images/signUpPage/desktop_goose_message_signUp.png';
+import message2 from '../../../../shared/images/signUpPage/desktop_goose_message_signUp@2x.png';
 
 export const RegisterFormWrapper = styled.div`
   margin-bottom: 18px;

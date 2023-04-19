@@ -5,7 +5,7 @@ import AuthNavigate from 'shared/components/AuthNavigate/AuthNavigate';
 
 import theme from 'shared/theme';
 
-const LoginPageComponent = () => {
+export const LoginPageComponent = () => {
   return (
     <StyledLoginPageComponent
       sx={{ backgroundColor: theme.palette.secondary.main }}
@@ -26,5 +26,3 @@ const LoginPageComponent = () => {
     </StyledLoginPageComponent>
   );
 };
-
-export default LoginPageComponent;

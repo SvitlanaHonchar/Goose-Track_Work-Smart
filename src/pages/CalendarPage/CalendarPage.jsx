@@ -22,7 +22,7 @@ import {
   selectIsUserExist,
 } from 'redux/auth/authSelectors';
 import Loader from 'shared/components/Loader/Loader';
-import CalendarComponent from 'modules/CalendarComponent/components/CalendarComponent';
+import { CalendarComponent } from 'modules/CalendarComponent/index';
 import CalendarToolbar from 'modules/CalendarComponent/components/CalendarToolbar/CalendarToolbar';
 import { showAnyError } from 'shared/utils/notifications';
 

@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectAllTasks } from 'redux/tasks/tasksSelectors';
 import Loader from 'shared/components/Loader/Loader';
 
-const ChosenMonth = () => {
+export const ChosenMonth = () => {
   const { currentMonth } = useParams();
 
   const tasks = useSelector(selectAllTasks);
@@ -22,5 +22,3 @@ const ChosenMonth = () => {
     </div>
   );
 };
-
-export default ChosenMonth;

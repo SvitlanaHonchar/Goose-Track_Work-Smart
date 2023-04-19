@@ -1,4 +1,4 @@
-import NoMatchPageComponent from 'modules/NoMatchPageComponent/NoMatchPageComponent';
+import { NoMatchPageComponent } from 'modules/NoMatchPageComponent/';
 import React from 'react';
 
 import { Navigate, useLocation } from 'react-router';

@@ -5,7 +5,7 @@ import { selectAllTasks } from 'redux/tasks/tasksSelectors';
 import TasksColumnsList from '../TasksColumnsList/TasksColumnsList';
 import { useParams } from 'react-router';
 
-const ChosenDay = () => {
+export const ChosenDay = () => {
   const { currentDay } = useParams();
   const tasksAll = useSelector(selectAllTasks);
   const [tasksCurrentDay, setTasksCurrentDay] = useState([]);
@@ -31,4 +31,4 @@ const ChosenDay = () => {
   );
 };
 
-export default ChosenDay;
+// export default ChosenDay;
