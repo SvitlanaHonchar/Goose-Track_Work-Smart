@@ -1,10 +1,13 @@
-import { Avatar, Box, Button, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Avatar, Box, Button } from '@mui/material';
+
 import { selectIsUserLoading, selectUser } from 'redux/auth/authSelectors';
 import Loader from '../../../../shared/components/Loader/Loader';
 import theme from 'shared/theme';
 import UserInfoModal from './UserInfoModal';
+import { changeAvatarColor } from './UserInfoComponents/changeAvatarColor';
+import { UserInfoTypography } from './UserInfoComponents/UserInfoTypography';
 
 const style = {
   button: {
@@ -23,24 +26,6 @@ const style = {
   },
 };
 
-export const stringToColor = string => {
-  let hash = 0;
-  let i;
-
-  for (i = 0; i < string?.length; i += 1) {
-    hash = string.charCodeAt(i) + ((hash << 5) - hash);
-  }
-
-  let color = '#';
-
-  for (i = 0; i < 3; i += 1) {
-    const value = (hash >> (i * 8)) & 0xff;
-    color += `00${value.toString(16)}`.slice(-2);
-  }
-
-  return color;
-};
-
 const UserInfo = () => {
   const { name, userImgUrl } = useSelector(selectUser);
   const isUserLoading = useSelector(selectIsUserLoading);
@@ -50,7 +35,6 @@ const UserInfo = () => {
   const onCloseModal = () => setOpenModal(false);
 
   return isUserLoading ? (
-    // <b>Loading...</b>
     <Loader />
   ) : (
     <>
@@ -62,23 +46,7 @@ const UserInfo = () => {
         />
       )}
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-        <Typography
-          sx={{
-            fontWeight: 700,
-            color: theme.palette.grey[500],
-            lineHeight: {
-              xs: 1.29,
-              md: 1,
-            },
-
-            fontSize: {
-              xs: 14,
-              md: 18,
-            },
-          }}
-        >
-          {name?.split(' ')[0] || ''}
-        </Typography>
+        <UserInfoTypography name={name} />
         <Button sx={style.button} onClick={() => onOpenModal()}>
           {userImgUrl ? (
             <Avatar
@@ -104,13 +72,12 @@ const UserInfo = () => {
                 width: {
                   xs: 32,
                   md: 44,
-                  background: stringToColor(name),
+                  background: changeAvatarColor(name),
                 },
                 height: {
                   xs: 32,
                   md: 44,
                 },
-                // border: `2px solid ${theme.palette.primary.main}`,
               }}
             >
               {name?.charAt(0) || ''}
