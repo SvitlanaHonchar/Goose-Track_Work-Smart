@@ -5,28 +5,34 @@ import { useSelector } from 'react-redux';
 import { IconButton, TextField } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import style from './DatePicker.module.css';
+import { DatePickerWrapper } from './DatePicker.styled';
 
 const formatDate = date => {
-  const y = date.getFullYear();
-  const m = date.getMonth();
-  const d = date.getDate();
+  const y = date?.getFullYear();
+  const m = date?.getMonth();
+  const d = date?.getDate();
 
-  return `${y}-${(m + 1).toString().padStart(2, '0')}-${d
-    .toString()
+  return `${y}-${(m + 1)?.toString().padStart(2, '0')}-${d
+    ?.toString()
     .padStart(2, '0')}`;
+};
+const isValidDate = dateString => {
+  const parsedDate = new Date(dateString);
+  return !isNaN(parsedDate.getTime());
 };
 
 export const DatePicker = ({ setBirthday }) => {
   const birthday = useSelector(state => state.auth.user.birthday);
-  const [date, setDate] = useState(
-    (birthday && new Date(birthday)) || new Date()
-  );
+  const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const datePickerRef = useRef(null);
 
   useEffect(() => {
-    setDate((birthday && new Date(birthday)) || new Date());
+    if (birthday && isValidDate(birthday)) {
+      setDate(new Date(birthday));
+    } else {
+      setDate(new Date());
+    }
   }, [birthday]);
 
   useEffect(() => {
@@ -41,27 +47,34 @@ export const DatePicker = ({ setBirthday }) => {
   const handleChange = value => {
     setDate(value);
     setOpen(false);
+    console.log('value', value);
   };
+  const handleChangeInput = e => {
+    const value = e.target.value;
+    if (value.trim() !== '') {
+      setDate(new Date(value));
+    }
+  };
+
   const handleClose = () => {
     setOpen(false);
   };
 
   return (
-    <>
+    <DatePickerWrapper>
       <ReactDatePicker
         dateFormat={'yyyy-MM-dd'}
         selected={date}
         onChange={handleChange}
         open={open}
         ref={datePickerRef}
-        calendarClassName={style.calendar}
-        headerClassName={style.header}
-        dayClassName={() => style.day}
+        calendarClassName="calendar"
         customInput={
           <TextField
             name="birthday"
             fullWidth
             size="small"
+            onChange={handleChangeInput}
             InputProps={{
               onBlur: handleClose,
               endAdornment: (
@@ -73,6 +86,6 @@ export const DatePicker = ({ setBirthday }) => {
           />
         }
       />
-    </>
+    </DatePickerWrapper>
   );
 };

@@ -64,6 +64,10 @@ export const theme = createTheme({
       dark: '#171820',
       darkGrey: '#21222C',
     },
+    darkmode: {
+      dark: '#171820',
+      darkGrey: '#21222C',
+    },
   },
   typography: {
     fontFamily,
@@ -124,7 +128,6 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           height: 42,
-          maxWidth: 354,
         },
       },
     },

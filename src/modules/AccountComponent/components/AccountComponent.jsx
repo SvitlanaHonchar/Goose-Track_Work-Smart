@@ -18,6 +18,7 @@ const AccountComponent = () => {
     const errors = {};
     const emailRegex = /^\S+@\S+.\S+$/;
     const phoneRegex = /^\+380\d{9}$/;
+    const birthdayRegex = /^\d{4}-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01])$/;
     if (!values.name) {
       errors.name = 'Required';
     } else if (values.name.length > 16) {
@@ -31,6 +32,8 @@ const AccountComponent = () => {
     }
 
     if (new Date(values.birthday) > new Date()) {
+      errors.birthday = 'Invalid date';
+    } else if (!birthdayRegex.test(values.birthday)) {
       errors.birthday = 'Invalid date';
     }
 
@@ -57,6 +60,7 @@ const AccountComponent = () => {
       setFormValues(values);
       if (actionResult.type === 'user/update/fulfilled') {
         showSuccessUserUpdate();
+        resetForm({ values });
       }
     },
   });
@@ -68,6 +72,7 @@ const AccountComponent = () => {
     handleSubmit,
     setFieldValue,
     setValues,
+    resetForm,
   } = formik;
 
   useEffect(() => {
@@ -98,6 +103,7 @@ const AccountComponent = () => {
           borderRadius: '16px',
           mt: { xs: 15, md: 8 },
           ml: 2,
+          px: { md: 10, lg: 22 },
           pt: { xs: 17, md: 5 },
           pb: 5,
         }}
