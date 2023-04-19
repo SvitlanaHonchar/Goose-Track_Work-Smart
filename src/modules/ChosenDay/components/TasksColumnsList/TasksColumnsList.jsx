@@ -30,15 +30,15 @@ const TasksColumnsList = ({ tasks, currentDay }) => {
   return (
     <GridContainer
       container
-      justifyContent="center"
+      flexDirection="row"
+      flexWrap="nowrap"
       spacing={2}
       sx={{
-        flexDirection: 'column',
         overflowY: 'hidden',
-        width: { sm: 375, md: 768, lg: 1078 },
+        overflowX: 'auto',
         '&.MuiGrid-container': {
           padding: 0,
-          margin: 2,
+          margin: 1,
           marginLeft: 0,
         },
       }}

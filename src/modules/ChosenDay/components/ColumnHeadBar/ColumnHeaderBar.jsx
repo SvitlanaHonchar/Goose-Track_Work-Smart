@@ -6,6 +6,10 @@ export const ColumnHeadBarWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 35px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 31px;
+  }
 `;
 
 export const Title = styled.h3`

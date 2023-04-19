@@ -8,7 +8,7 @@ export const GridContainer = styled(Grid)`
   gap: 16px;
   width: 375px;
   flex-direction: column;
-  overflow-x: auto;
+  overflow-x: scroll;
 
   //  ------- scrollbarTrack ------- //
   ::-webkit-scrollbar {
@@ -18,7 +18,6 @@ export const GridContainer = styled(Grid)`
   ::-webkit-scrollbar-track {
     border-radius: 12px;
     background: ${theme.palette.custom.bgScrollbarTrack};
-    margin-top: 100px;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -42,7 +41,6 @@ export const GridContainer = styled(Grid)`
   }
 
   @media screen and (min-width: 1440px) {
-    width: 344px;
     gap: 27px;
     overflow: hidden;
   }
