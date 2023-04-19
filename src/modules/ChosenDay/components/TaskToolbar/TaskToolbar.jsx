@@ -37,7 +37,7 @@ const TaskToolbar = ({ ...taskData }) => {
       category: newCategory,
     };
     // console.log('newCategory', newCategory);
-    dispatch(updateTask({ id, task: updatingTask }));
+    dispatch(updateTask({ taskId: id, taskData: updatingTask }));
     // showSuccessMoveTask(newCategory);
   };
 
