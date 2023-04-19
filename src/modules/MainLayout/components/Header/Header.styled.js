@@ -21,10 +21,12 @@ export const StyledHeader = styled.header`
   }
 
   & button {
-    padding: 0;
-    border: none;
-    background-color: transparent;
-    width: 32px;
+    &.header_burger-btn_icon {
+      padding: 0;
+      border: none;
+      background-color: transparent;
+      width: 32px;
+    }
 
     /* & .MuiTouchRipple-root {
       display: block;
