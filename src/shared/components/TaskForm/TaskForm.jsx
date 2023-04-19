@@ -90,7 +90,9 @@ const TaskForm = props => {
       const result =
         action === 'add'
           ? await dispatch(createTask(task))
-          : await dispatch(updateTask({ taskId, task }));
+          : await dispatch(
+              updateTask({ taskId: taskDetails.id, taskData: task })
+            );
 
       if (result.error) {
         return showError();
