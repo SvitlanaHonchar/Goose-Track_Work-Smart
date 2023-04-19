@@ -7,11 +7,12 @@ export const GridContainer = styled(Grid)`
   margin-top: 16px;
   gap: 16px;
   width: 375px;
-  flex-direction: column,
-  
+  flex-direction: column;
+  overflow-x: auto;
+
   //  ------- scrollbarTrack ------- //
   ::-webkit-scrollbar {
-    height: 30px;
+    height: 12px;
   }
 
   ::-webkit-scrollbar-track {
@@ -24,7 +25,7 @@ export const GridContainer = styled(Grid)`
     background: ${theme.palette.custom.scrollbarThumb};
     border-radius: 12px;
   }
-  
+
   ::-webkit-scrollbar-thumb:hover {
     background: ${theme.palette.grey.light};
   }
@@ -40,8 +41,9 @@ export const GridContainer = styled(Grid)`
     }
   }
 
-    @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1440px) {
     width: 344px;
     gap: 27px;
+    overflow: hidden;
   }
 `;

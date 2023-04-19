@@ -53,6 +53,5 @@ export const GridItem = styled(Grid)`
 `;
 
 export const PaperTask = styled(Paper)`
-  overflow-y: auto;
   align-items: flex-start;
 `;

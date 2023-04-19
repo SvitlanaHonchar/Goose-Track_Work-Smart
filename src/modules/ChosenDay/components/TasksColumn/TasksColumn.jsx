@@ -7,7 +7,7 @@ import { ContainerTask, GridItem, PaperTask } from './TasksColumn.styled';
 import useModal from 'shared/hooks/useModal';
 import TaskModal from 'shared/components/TaskModal/TaskModal';
 
-const TasksColumn = ({ title, tasks, category }) => {
+const TasksColumn = ({ title, tasks, category, currentDay }) => {
   const { isOpen, action, closeModal, toggleModal, details } = useModal();
 
   const handleAddTaskClick = () => {
@@ -23,7 +23,6 @@ const TasksColumn = ({ title, tasks, category }) => {
           padding: '0',
           margin: '0',
           overflowY: 'auto',
-
           flexDirection: 'column',
           backgroundColor: theme.palette.primary.body,
         }}
@@ -46,7 +45,7 @@ const TasksColumn = ({ title, tasks, category }) => {
           onClose={closeModal}
           isOpen={isOpen}
           category={category}
-          date={tasks[0].date}
+          date={currentDay}
           taskDetails={details ? details.details : {}}
         />
       )}

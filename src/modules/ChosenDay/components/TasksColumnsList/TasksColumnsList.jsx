@@ -34,12 +34,12 @@ const TasksColumnsList = ({ tasks, currentDay }) => {
       spacing={2}
       sx={{
         flexDirection: 'column',
-        overflowX: 'scroll',
         overflowY: 'hidden',
-        maxWidth: { sm: 375, md: 768, lg: 1078 },
+        width: { sm: 375, md: 768, lg: 1078 },
         '&.MuiGrid-container': {
           padding: 0,
           margin: 2,
+          marginLeft: 0,
         },
       }}
     >
@@ -49,6 +49,7 @@ const TasksColumnsList = ({ tasks, currentDay }) => {
           key={column.categories}
           title={column.title}
           tasks={tasksByCategory[column.categories]}
+          currentDay={currentDay}
         />
       ))}
     </GridContainer>
