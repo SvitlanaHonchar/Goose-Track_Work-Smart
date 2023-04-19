@@ -30,17 +30,15 @@ export const UserInfoModalBtnLogOut = () => {
   const dispatch = useDispatch();
 
   return (
-    <>
-      <Button
-        variant="contained"
-        sx={style.buttonLogOut}
-        onClick={() => dispatch(authLogout())}
-      >
-        Log out
-        <svg height="16" width="16">
-          <use href={sprite + '#logOut'}></use>
-        </svg>
-      </Button>
-    </>
+    <Button
+      variant="contained"
+      sx={style.buttonLogOut}
+      onClick={() => dispatch(authLogout())}
+    >
+      Log out
+      <svg height="16" width="16">
+        <use href={sprite + '#logOut'}></use>
+      </svg>
+    </Button>
   );
 };

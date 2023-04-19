@@ -6,10 +6,10 @@ import { NavLink } from 'react-router-dom';
 export const UserInfoModalNavLink = ({ onCloseModal }) => {
   return (
     <>
+      <svg height="20" width="20">
+        <use href={sprite + '#userCheck'}></use>
+      </svg>
       <NavLink to="/account" onClick={onCloseModal}>
-        <svg height="20" width="20">
-          <use href={sprite + '#userCheck'}></use>
-        </svg>
         <Typography
           sx={{
             fontWeight: 500,
@@ -18,8 +18,7 @@ export const UserInfoModalNavLink = ({ onCloseModal }) => {
             color: theme.palette.grey[400],
           }}
         >
-          {/* <NavLink to="/account" onClick={onCloseModal}> */} My account
-          {/* </NavLink> */}
+          My account
         </Typography>
       </NavLink>
     </>

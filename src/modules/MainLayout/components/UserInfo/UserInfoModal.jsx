@@ -1,44 +1,15 @@
 import React from 'react';
-import { Box, Avatar, Modal, Button } from '@mui/material';
-// import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-// import { authLogout } from 'redux/auth/authOperations';
-// import { useDispatch } from 'react-redux';
-
-import theme from 'shared/theme';
-// import { stringToColor } from './UserInfo';
+import { Box, Modal } from '@mui/material';
 import { useEffect, useRef } from 'react';
-import sprite from '../../../../shared/icons/sprite.svg';
-import { NavLink } from 'react-router-dom';
+import theme from 'shared/theme';
+
 import { UserAvatar } from './UserInfoComponents/UserAvatar';
 import { UserInfoTypography } from './UserInfoComponents/UserInfoTypography';
 import { UserInfoModalBtnLogOut } from './UserInfoComponents/UserInfoModalLogoutBtn';
 import { UserInfoModalNavLink } from './UserInfoComponents/UserInfoModalNavLink';
 
-const style = {
-  buttonLogOut: {
-    minWidth: {
-      xs: '108px',
-    },
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '108px',
-    height: '37px',
-    gap: '8px',
-    bgcolor: theme.palette.primary.main,
-    boxShadow: '4px 2px 16px rgba(136, 165, 191, 0.48)',
-    borderRadius: '8px',
-    fontSize: 14,
-    lineHeight: 1.29,
-    letterSpacing: '-0.02em',
-    color: theme.palette.custom.mainWhite,
-    stroke: theme.palette.custom.mainWhite,
-  },
-};
-
 const UserInfoModal = ({ name, userImgUrl, onCloseModal }) => {
   const rootRef = useRef();
-  // const dispatch = useDispatch();
 
   useEffect(() => {
     function handleKeyDown(e) {
@@ -56,15 +27,12 @@ const UserInfoModal = ({ name, userImgUrl, onCloseModal }) => {
   return (
     <div>
       <Modal
-        // sx={style.container}
         ref={rootRef}
         disablePortal
         disableEnforceFocus
         disableAutoFocus
         open
         onClose={onCloseModal}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
       >
         <Box
           sx={{
@@ -111,34 +79,8 @@ const UserInfoModal = ({ name, userImgUrl, onCloseModal }) => {
             }}
           >
             <UserInfoModalNavLink onCloseModal={onCloseModal} />
-            {/* <svg height="20" width="20">
-              <use href={sprite + '#userCheck'}></use>
-            </svg>
-            <Typography
-              sx={{
-                fontWeight: 500,
-                fontSize: 14,
-                lineHeight: 1.21,
-                color: theme.palette.grey[400],
-              }}
-            >
-              <NavLink to="/account" onClick={onCloseModal}>
-                {' '}
-                My account
-              </NavLink>
-            </Typography> */}
           </Box>
           <UserInfoModalBtnLogOut />
-          {/* <Button
-            variant="contained"
-            sx={style.buttonLogOut}
-            onClick={() => dispatch(authLogout())}
-          >
-            Log out
-            <svg height="16" width="16">
-              <use href={sprite + '#logOut'}></use>
-            </svg>
-          </Button> */}
         </Box>
       </Modal>
     </div>

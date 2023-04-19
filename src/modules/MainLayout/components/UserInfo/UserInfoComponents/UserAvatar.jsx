@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Avatar } from '@mui/material';
 
 import theme from 'shared/theme';
@@ -19,6 +20,7 @@ export const UserAvatar = ({ userImgUrl, name }) => {
               xs: 38,
               md: 44,
             },
+
             border: `2px solid ${theme.palette.primary.main}`,
           }}
         />
@@ -29,8 +31,8 @@ export const UserAvatar = ({ userImgUrl, name }) => {
             width: {
               xs: 38,
               md: 44,
-              background: changeAvatarColor(name),
             },
+            background: changeAvatarColor(name),
             height: {
               xs: 38,
               md: 44,
@@ -42,4 +44,9 @@ export const UserAvatar = ({ userImgUrl, name }) => {
       )}
     </>
   );
+};
+
+UserAvatar.propTypes = {
+  userImgUrl: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
