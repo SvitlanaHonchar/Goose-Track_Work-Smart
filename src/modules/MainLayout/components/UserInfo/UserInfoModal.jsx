@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Box, Modal } from '@mui/material';
 import { useEffect, useRef } from 'react';
 import theme from 'shared/theme';
@@ -42,7 +43,7 @@ const UserInfoModal = ({ name, userImgUrl, onCloseModal }) => {
             transform: 'translate(-50%, -50%)',
             width: 197,
             paddingTop: '14px',
-            paddingBottom: '18px',
+            paddingBottom: '14px',
             paddingLeft: '14px',
             paddingRight: '14px',
             backgroundColor: theme.palette.custom.mainWhite,
@@ -87,3 +88,9 @@ const UserInfoModal = ({ name, userImgUrl, onCloseModal }) => {
   );
 };
 export default UserInfoModal;
+
+UserInfoModal.propTypes = {
+  onCloseModal: PropTypes.func,
+  name: PropTypes.string,
+  userImgUrl: PropTypes.string,
+};

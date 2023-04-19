@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Typography } from '@mui/material';
 import theme from 'shared/theme';
 import sprite from '../../../../../shared/icons/sprite.svg';
@@ -23,4 +24,8 @@ export const UserInfoModalNavLink = ({ onCloseModal }) => {
       </NavLink>
     </>
   );
+};
+
+UserInfoModalNavLink.propTypes = {
+  onCloseModal: PropTypes.func.isRequired,
 };

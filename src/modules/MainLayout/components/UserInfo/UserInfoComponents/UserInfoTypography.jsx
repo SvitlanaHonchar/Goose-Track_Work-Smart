@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Typography } from '@mui/material';
 
 import theme from 'shared/theme';
@@ -24,4 +25,8 @@ export const UserInfoTypography = ({ name }) => {
       </Typography>
     </>
   );
+};
+
+UserInfoTypography.propTypes = {
+  name: PropTypes.string.isRequired,
 };
