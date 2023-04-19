@@ -139,7 +139,7 @@ const TaskForm = props => {
               name="title"
               placeholder="Enter text"
               value={title}
-              onChange={event => setTitle(event.target.value)}
+              onChange={event => setTitle(event.target.value.trim())}
               style={{ ...inputStyles }}
             />
             {title.length > 250 && (
