@@ -51,6 +51,7 @@ const PeriodPaginator = ({ date, period, onDateChange }) => {
             }}
             variant="text"
             onClick={() => updateDate(-1)}
+            className="period-pag-btn"
           >
             <svg>
               <use xlinkHref={`${sprite}#arrowShortLeft`} />
@@ -67,6 +68,7 @@ const PeriodPaginator = ({ date, period, onDateChange }) => {
             }}
             variant="text"
             onClick={() => updateDate(1)}
+            className="period-pag-btn"
           >
             <svg>
               <use xlinkHref={`${sprite}#arrowShortRight`} />

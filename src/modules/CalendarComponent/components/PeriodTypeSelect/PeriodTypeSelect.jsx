@@ -44,10 +44,20 @@ const PeriodTypeSelect = ({ setActiveDate }) => {
       onChange={handleChange}
       aria-label="Type of calendar period"
     >
-      <ToggleButton value="month" aria-label="month" sx={buttonStyles}>
+      <ToggleButton
+        value="month"
+        aria-label="month"
+        sx={buttonStyles}
+        className="toggle-btn"
+      >
         Month
       </ToggleButton>
-      <ToggleButton value="day" aria-label="day" sx={buttonStyles}>
+      <ToggleButton
+        value="day"
+        aria-label="day"
+        sx={buttonStyles}
+        className="toggle-btn"
+      >
         Day
       </ToggleButton>
     </ToggleButtonGroup>

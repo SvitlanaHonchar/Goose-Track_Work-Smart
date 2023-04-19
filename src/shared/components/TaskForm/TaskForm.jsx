@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import { useDispatch } from 'react-redux';
@@ -14,6 +14,7 @@ import {
   CancelButton,
   WarningTime,
   WarningTitle,
+  Label,
 } from './TaskForm.styled';
 import TimePickerWithLocalization from './TimePickerWithLocalization/TimePickerWithLocalization';
 import sprite from 'shared/icons/sprite.svg';
@@ -23,17 +24,20 @@ import getTimeStringWithDate from 'shared/utils/getTimeStringWithDate';
 import theme from 'shared/theme';
 import { showError } from 'shared/utils/notifications';
 import { validateForm } from './validateForm';
-
 import { createTask, updateTask } from 'redux/tasks/tasksOperations';
+import { checkDarkTheme } from 'shared/utils/checkDarkTheme';
 
 const TaskForm = props => {
+  const [darkTheme, setDarkTheme] = useState(checkDarkTheme());
   const { action, onClose, category, date, taskDetails } = props;
   const [title, setTitle] = useState(taskDetails.title || '');
-  console.log('title: ', title);
   const [priority, setPriority] = useState(
     taskDetails.priority || TASKS_PRIORITY.LOW
   );
-
+  useEffect(() => {
+    setDarkTheme(checkDarkTheme());
+  }, []);
+  const dispatch = useDispatch();
   const getDefaultStartTime = (taskDetails, date) => {
     return taskDetails.start
       ? dayjs(getTimeStringWithDate(taskDetails.start, date))
@@ -47,7 +51,6 @@ const TaskForm = props => {
   };
   const [start, setStart] = useState(getDefaultStartTime(taskDetails, date));
   const [end, setEnd] = useState(getDefaultEndTime(taskDetails, date));
-  const dispatch = useDispatch();
 
   const createTaskObject = ({
     title,
@@ -103,6 +106,22 @@ const TaskForm = props => {
   };
   const isTimeWarning = useMemo(() => end.isBefore(start), [end, start]);
 
+  const labelStyles = {
+    color: darkTheme
+      ? `${theme.palette.custom.labelDark}`
+      : `${theme.palette.grey[500]}`,
+  };
+
+  const inputStyles = {
+    color: darkTheme
+      ? `${theme.palette.custom.mainWhite}`
+      : `${theme.palette.grey[600]}`,
+    backgroundColor: darkTheme ? `transparent` : `${theme.palette.grey.input}`,
+    border: darkTheme
+      ? `1px solid ${theme.palette.custom.pagDarkBorder}`
+      : `none`,
+  };
+
   return (
     <StyledForm
       onSubmit={handleSubmit}
@@ -111,29 +130,44 @@ const TaskForm = props => {
       <InfoWrapper>
         <Block>
           <Info>
-            <label htmlFor="title">Title</label>
+            <Label htmlFor="title" style={{ ...labelStyles }}>
+              {' '}
+              Title
+            </Label>
             <InfoInput
               type="text"
               name="title"
               placeholder="Enter text"
               value={title}
               onChange={event => setTitle(event.target.value)}
+              style={{ ...inputStyles }}
             />
             {title.length > 250 && (
               <WarningTitle>*Title limit: 250 characters max</WarningTitle>
             )}
           </Info>
+          <Info>
+            <Label htmlFor="start" style={{ ...labelStyles }}>
+              Start
+            </Label>
+            <TimePickerWithLocalization
+              label="start"
+              value={start}
+              onChange={newValue => setStart(newValue)}
+            />
+          </Info>
 
-          <TimePickerWithLocalization
-            label="start"
-            value={start}
-            onChange={newValue => setStart(newValue)}
-          />
-          <TimePickerWithLocalization
-            label="end"
-            value={end}
-            onChange={newValue => setEnd(newValue)}
-          />
+          <Info>
+            <Label htmlFor="end" style={{ ...labelStyles }}>
+              End
+            </Label>
+            <TimePickerWithLocalization
+              label="end"
+              value={end}
+              onChange={newValue => setEnd(newValue)}
+            />
+          </Info>
+
           {isTimeWarning && (
             <WarningTime>
               *End time must not be earlier than start time.

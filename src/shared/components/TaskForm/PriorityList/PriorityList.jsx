@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
   FormControl,
@@ -10,6 +10,7 @@ import {
 import capitalizeString from 'shared/utils/capitalizeString';
 import theme from 'shared/theme';
 import { TASKS_PRIORITY } from 'shared/constants';
+import { checkDarkTheme } from 'shared/utils/checkDarkTheme';
 
 const radioStyles = {
   low: {
@@ -51,6 +52,12 @@ const RadioIcon = ({ color, borderColor }) => (
 
 export const PriorityList = ({ defaultValue, handleChange }) => {
   const [priority, setPriority] = useState(defaultValue);
+  const [darkTheme, setDarkTheme] = useState(checkDarkTheme());
+
+  useEffect(() => {
+    setDarkTheme(checkDarkTheme());
+  }, []);
+
   return (
     <FormControl component="fieldset">
       <FormLabel component="legend" className="sr-only">
@@ -76,7 +83,7 @@ export const PriorityList = ({ defaultValue, handleChange }) => {
                   icon={
                     <RadioIcon
                       color={radioStyles[value].color}
-                      borderColor="#ffffff"
+                      borderColor={darkTheme ? 'transparent' : '#ffffff'}
                     />
                   }
                   checkedIcon={
@@ -99,7 +106,7 @@ export const PriorityList = ({ defaultValue, handleChange }) => {
                   fontWeight: 600,
                   fontSize: '12px',
                   lineHeight: '1.17',
-                  color: '#616161',
+                  color: darkTheme ? '#ffffff' : '#616161',
                 },
               }}
             />

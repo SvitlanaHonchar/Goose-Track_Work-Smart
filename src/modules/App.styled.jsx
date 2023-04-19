@@ -20,4 +20,23 @@ export const AppStyled = styled.div`
   &.darkMode .calendarHead__dateLink {
     color: ${theme.palette.custom.mainWhite};
   }
+
+  &.darkMode .toggle-btn {
+    background-color: ${theme.palette.darkmode.darkGrey};
+    &.Mui-selected {
+      color: ${theme.palette.custom.mainWhite};
+      background-color: ${theme.palette.primary.main};
+    }
+  }
+  &.darkMode .period-pag-btn {
+    background-color: ${theme.palette.darkmode.darkGrey};
+    border: 1px solid ${theme.palette.custom.pagDarkBorder};
+    &:hover,
+    &:focus {
+      background-color: ${theme.palette.primary.main};
+    }
+    svg {
+      stroke: ${theme.palette.custom.mainWhite};
+    }
+  }
 `;
