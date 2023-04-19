@@ -22,7 +22,7 @@ import { PriorityList } from './PriorityList/PriorityList';
 import { TASKS_PRIORITY } from 'shared/constants';
 import getTimeStringWithDate from 'shared/utils/getTimeStringWithDate';
 import theme from 'shared/theme';
-import { showError } from 'shared/utils/notifications';
+import { showError, showEmptyTitle } from 'shared/utils/notifications';
 import { validateForm } from './validateForm';
 import { createTask, updateTask } from 'redux/tasks/tasksOperations';
 import { checkDarkTheme } from 'shared/utils/checkDarkTheme';
@@ -75,9 +75,12 @@ const TaskForm = props => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-
+    const trimmedTitle = title.trim();
+    if (trimmedTitle.length === 0) {
+      return showEmptyTitle();
+    }
     const task = createTaskObject({
-      title,
+      title: trimmedTitle,
       start,
       end,
       priority,
@@ -139,7 +142,7 @@ const TaskForm = props => {
               name="title"
               placeholder="Enter text"
               value={title}
-              onChange={event => setTitle(event.target.value.trim())}
+              onChange={event => setTitle(event.target.value)}
               style={{ ...inputStyles }}
             />
             {title.length > 250 && (
