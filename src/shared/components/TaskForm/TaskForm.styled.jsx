@@ -3,10 +3,7 @@ import { TimeField } from '@mui/x-date-pickers/TimeField';
 import theme from 'shared/theme';
 
 const commonInputStyles = `
-  border: none;
   border-radius: 8px;
-  background-color: ${theme.palette.grey.input};
-  color: ${theme.palette.grey[600]};
   font-weight: 600;
   font-size: 14px;
   line-height: 1.29;
@@ -51,7 +48,7 @@ const commonWarningStyles = `
   bottom: -14px;
   width: 100%;
   margin: 0;
-  margin-top: 5px;
+  margin-top: 8px;
   font-size: 10px;
   color: ${theme.palette.error.main};
 `;
@@ -81,7 +78,7 @@ export const InfoInput = styled.input`
     outline: 1px solid ${theme.palette.primary.main};
   }
   &::placeholder {
-    color: ${theme.palette.grey[600]};
+    /* color: ${theme.palette.grey[600]}; */
     font-weight: 600;
     font-size: 14px;
     line-height: 1.29;
@@ -122,15 +119,17 @@ export const Info = styled.div`
       width: calc(50% - 7px);
     }
   }
-  label {
-    text-transform: capitalize;
-    font-size: 10px;
-    font-weight: 500;
-    line-height: 1.2;
-    color: ${theme.palette.grey[500]};
-    font-family: ${theme.typography.fontFamily};
-  }
 `;
+
+export const Label = styled.label`
+  text-transform: capitalize;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.2;
+
+  font-family: ${theme.typography.fontFamily};
+`;
+
 export const TimePicker = styled(TimeField)`
   input {
     ${commonInputStyles}

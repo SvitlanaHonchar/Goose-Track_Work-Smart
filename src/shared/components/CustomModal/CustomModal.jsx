@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import IconButton from '@mui/material/IconButton';
 import sprite from 'shared/icons/sprite.svg';
+import { checkDarkTheme } from 'shared/utils/checkDarkTheme';
 Modal.setAppElement('#root');
 
 const CustomModal = ({ children, ...props }) => {
   const { isOpen, onClose, action } = props;
   const [width, setWidth] = useState(window.innerWidth);
+  const [darkTheme, setDarkTheme] = useState(checkDarkTheme());
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
@@ -15,7 +17,11 @@ const CustomModal = ({ children, ...props }) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const iconButtonStyles = {
+  useEffect(() => {
+    setDarkTheme(checkDarkTheme());
+  }, []);
+
+  const closeButtonStyles = {
     position: 'absolute',
     padding: '14px',
     top: 0,
@@ -26,11 +32,21 @@ const CustomModal = ({ children, ...props }) => {
     '&:hover svg': {
       stroke: '#3E85F3',
     },
+    svg: {
+      stroke: darkTheme ? '#FFFFFF' : '#111111',
+    },
+  };
+
+  const modalContentStyles = {
+    background: darkTheme ? '#171820' : '#FFFFFF',
+    border: darkTheme
+      ? '1px solid #ffffff26'
+      : '1px solid rgba(220, 227, 229, 0.8)',
   };
 
   const customStyles = {
     overlay: {
-      // backgroundColor: 'rgba(0, 0, 0, 0.8)',
+      backgroundColor: 'rgba(0, 0, 0, 0.1)',
     },
     content: {
       top: '50%',
@@ -38,19 +54,20 @@ const CustomModal = ({ children, ...props }) => {
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
-      background: '#FFFFFF',
       width: width >= 768 ? '396px' : '303px',
       maxWidth: '100%',
       paddingTop: width >= 768 ? '40px' : '48px',
       paddingBottom: '40px',
       paddingLeft: width >= 768 ? '28px' : '18px',
       paddingRight: width >= 768 ? '28px' : '18px',
-      border: '1px solid rgba(220, 227, 229, 0.8)',
+
       borderRadius: '8px',
       boxShadow: '0px 4px 16px rgba(17, 17, 17, 0.1)',
       transform: 'translate(-50%, -50%)',
+      ...modalContentStyles,
     },
   };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -65,11 +82,11 @@ const CustomModal = ({ children, ...props }) => {
     >
       <IconButton
         aria-label="close modal"
-        sx={iconButtonStyles}
+        sx={closeButtonStyles}
         onClick={() => onClose()}
         className="close-modal-btn"
       >
-        <svg stroke="#111111" width="20" height="20">
+        <svg width="20" height="20">
           <use xlinkHref={`${sprite}#close`} />
         </svg>
       </IconButton>

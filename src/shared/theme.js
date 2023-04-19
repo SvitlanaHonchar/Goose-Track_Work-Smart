@@ -56,14 +56,11 @@ export const theme = createTheme({
       borderDark: '#ffffff26',
       activePeriod: '#CAE8FF',
       pagBorder: '#dce3e580',
+      pagDarkBorder: '#ffffff26',
       mainWhite: '#FFFFFF',
       scrollbarThumb: '#E7E5E5',
       bgScrollbarTrack: '#F2F2F2',
-    },
-    darkmode: {
-      dark: '#171820',
-      darkGrey: '#21222C',
-      black: '#13151A',
+      labelDark: '#fafafa4d',
     },
     darkmode: {
       dark: '#171820',

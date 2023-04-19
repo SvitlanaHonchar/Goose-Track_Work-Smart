@@ -15,7 +15,9 @@ export const styles = {
     height: { xs: '30px', md: '34px' },
     padding: { xs: '7px 10px', md: '8px 10px' },
     border: `1px solid ${theme.palette.custom.pagBorder}`,
+    borderColor: theme.palette.custom.pagBorder,
     borderRadius: '8px',
+    backgroundColor: theme.palette.custom.mainWhite,
     '&:hover': {
       backgroundColor: theme.palette.primary.main,
       borderColor: 'transparent',
