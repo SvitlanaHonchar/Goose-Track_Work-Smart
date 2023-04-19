@@ -42,6 +42,7 @@ export const Button = styled.button`
     opacity: 0.6;
     pointer-events: none;
   }
+
   @media screen and (min-width: 768px) {
     width: 300px;
   }
