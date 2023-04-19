@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const BoxWrapper = styled.li`
   max-width: 300px;
-  height: 115px;
+  height: 108px;
   border-radius: 8px;
   border: 1px solid ${theme.palette.grey.light};
   background-color: ${theme.palette.grey[200]};
@@ -22,7 +22,7 @@ export const BoxWrapper = styled.li`
 `;
 
 export const Title = styled.div`
-  margin-bottom: 25px;
+  margin-bottom: 28px;
   @media screen and (min-width: 768px) {
     margin-bottom: 32px;
   }
