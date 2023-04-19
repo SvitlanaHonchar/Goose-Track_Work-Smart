@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,11 @@ import usePeriodTypeFromPath from 'shared/hooks/usePeriodTypeFromPath';
 
 const PeriodTypeSelect = ({ setActiveDate }) => {
   const periodType = usePeriodTypeFromPath();
-  const [period, setPeriod] = useState(periodType);
+  const [period, setPeriod] = useState();
+
+  useEffect(() => {
+    setPeriod(periodType);
+  }, [periodType]);
 
   const handleChange = (event, newType) => {
     if (newType === null) return;
