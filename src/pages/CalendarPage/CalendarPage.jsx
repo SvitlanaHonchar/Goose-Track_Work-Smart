@@ -1,70 +1,76 @@
-import CalendarComponent from 'modules/CalendarComponent/components/CalendarComponent';
 import React, { Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, Outlet, useLocation, useParams } from 'react-router';
 import {
-  selectIsLoggedIn,
+  Navigate,
+  Outlet,
+  useLocation,
+  useParams,
+  useNavigate,
+} from 'react-router-dom';
+
+import { getMonthTasks } from 'redux/tasks/tasksOperations';
+import {
+  // selectAllTasks,
+  selectIsTasksError,
+  selectTasksError,
+} from 'redux/tasks/tasksSelectors';
+
+import {
+  // selectIsLoggedIn,
   selectIsRefreshed,
   selectIsUserLoading,
   selectIsUserExist,
 } from 'redux/auth/authSelectors';
-import { getMonthTasks } from 'redux/tasks/tasksOperations';
-import {
-  selectAllTasks,
-  selectIsTasksError,
-  selectTasksError,
-} from 'redux/tasks/tasksSelectors';
 import Loader from 'shared/components/Loader/Loader';
+import CalendarComponent from 'modules/CalendarComponent/components/CalendarComponent';
 import CalendarToolbar from 'modules/CalendarComponent/components/CalendarToolbar/CalendarToolbar';
 import { showAnyError } from 'shared/utils/notifications';
 
 const CalendarPage = () => {
   const dispatch = useDispatch();
-  // const isLogged = useSelector(selectIsLoggedIn);
-  // const taskData = useSelector(selectAllTasks);
-
-  const params = useParams();
-  const paramsFormat = Object.keys(params).join('');
-  const paramsDate =
-    paramsFormat === 'currentDay'
-      ? new Date(params.currentDay)?.toISOString().slice(0, 7)
-      : new Date(`${params.currentMonth}-01`)?.toISOString().slice(0, 7);
-  const yearParams = paramsDate.slice(0, 4);
-  const monthParams =
-    paramsDate.slice(5, 7) < 10
-      ? paramsDate.slice(6, 7)
-      : paramsDate.slice(5, 7);
-
-  // --/data for dispatch getMonthTasks
-
-  const location = useLocation();
-  const path = location.pathname;
-
-  const currentMonth = new Date().toISOString().slice(0, 7);
+  const navigate = useNavigate();
+  const { currentDay, currentMonth } = useParams();
+  const paramsFormat = Object.keys(useParams()).join('');
   const taskError = useSelector(selectTasksError);
-  const taskErrorStatus = useSelector(selectIsTasksError);
+  const isTaskError = useSelector(selectIsTasksError);
   const isUserLoading = useSelector(selectIsUserLoading);
   const isRefreshed = useSelector(selectIsRefreshed);
   const isUserExist = useSelector(selectIsUserExist);
+  // const isLogged = useSelector(selectIsLoggedIn);
+  // const tasksForSelectedMonth = useSelector(selectAllTasks);
+
+  const isValidDate = dateString => {
+    const date = new Date(dateString);
+    return !isNaN(date);
+  };
+
+  const urlString =
+    paramsFormat === 'currentDay' ? currentDay : `${currentMonth}-01`;
+
+  const year = urlString.slice(0, 4);
+  const month = urlString.slice(5, 7);
+
+  const location = useLocation();
+  const path = location.pathname;
+  const currentMonthPath = new Date().toISOString().slice(0, 7);
 
   useEffect(() => {
-    // if (!isLogged && taskData !== null && !isRefreshed && isUserLoading) return;
+    // if (!isLogged && tasksForSelectedMonth  !== null && !isRefreshed && isUserLoading) return;
     if (!isUserExist && !isRefreshed && isUserLoading) return;
-    console.log('calendarPage');
 
     setTimeout(() => {
       dispatch(
         getMonthTasks({
-          year: +yearParams,
-          month: +monthParams,
+          year: +year,
+          month: +month,
         })
       );
     }, 500);
   }, [
     dispatch,
     // isLogged,
-    yearParams,
-    monthParams,
+    year,
+    month,
     //taskData,
     isUserLoading,
     isRefreshed,
@@ -72,16 +78,20 @@ const CalendarPage = () => {
   ]);
 
   useEffect(() => {
-    if (taskErrorStatus) {
+    if (isTaskError) {
       showAnyError(taskError);
     }
-  }, [taskErrorStatus, taskError]);
+  }, [isTaskError, taskError]);
 
+  if (!isValidDate(urlString)) {
+    //return <Navigate to="/calendar/month" replace />;
+    return navigate(-1);
+  }
+  if (path.match(/calendar(\/)?$/)) {
+    return <Navigate replace to={`/calendar/month/${currentMonthPath}`} />;
+  }
   return (
-    <div className="calenderPage">
-      {path === '/calendar' && (
-        <Navigate replace to={`/calendar/month/${currentMonth}`} />
-      )}
+    <div className="calendarPage">
       <CalendarComponent>
         <Suspense fallback={<Loader />}>
           <Outlet />
