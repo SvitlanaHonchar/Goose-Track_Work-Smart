@@ -34,8 +34,10 @@ const UserInfoModal = ({ name, userImgUrl, onCloseModal }) => {
         disableAutoFocus
         open
         onClose={onCloseModal}
+        // hideBackdrop={true}
       >
         <Box
+          className="UserInfoModal"
           sx={{
             position: 'absolute',
             top: '50%',
@@ -62,7 +64,7 @@ const UserInfoModal = ({ name, userImgUrl, onCloseModal }) => {
             }}
           >
             <UserAvatar name={name} userImgUrl={userImgUrl} />
-            <UserInfoTypography name={name} />
+            <UserInfoTypography name={name} className="UserInfoTypography" />
           </Box>
           <Box
             sx={{

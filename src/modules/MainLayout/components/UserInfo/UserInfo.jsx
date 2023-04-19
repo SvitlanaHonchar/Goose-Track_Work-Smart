@@ -11,7 +11,11 @@ import { UserInfoTypography } from './UserInfoComponents/UserInfoTypography';
 
 const style = {
   button: {
-    minWidth: '32px',
+    minWidth: {
+      xs: '32px',
+      md: '44px',
+    },
+
     width: {
       xs: '32px',
       md: '44px',
