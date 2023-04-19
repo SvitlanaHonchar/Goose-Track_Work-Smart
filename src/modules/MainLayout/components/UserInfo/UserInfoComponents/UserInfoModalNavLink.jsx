@@ -7,11 +7,12 @@ import { NavLink } from 'react-router-dom';
 export const UserInfoModalNavLink = ({ onCloseModal }) => {
   return (
     <>
-      <svg height="20" width="20">
+      <svg height="20" width="20" className="UserInfoModalIcon">
         <use href={sprite + '#userCheck'}></use>
       </svg>
       <NavLink to="/account" onClick={onCloseModal}>
         <Typography
+          className="UserInfoModalNavLink"
           sx={{
             fontWeight: 500,
             fontSize: 14,

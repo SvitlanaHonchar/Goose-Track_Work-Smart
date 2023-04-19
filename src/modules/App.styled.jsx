@@ -80,4 +80,16 @@ export const AppStyled = styled.div`
     background-color: ${theme.palette.darkmode.darkGrey};
     color: ${theme.palette.custom.mainWhite};
   }
+
+  &.darkMode .UserInfoTypography,
+  &.darkMode .UserInfoModalNavLink {
+    color: ${theme.palette.custom.mainWhite};
+  }
+
+  &.darkMode .UserInfoModalIcon {
+    stroke: ${theme.palette.custom.mainWhite};
+  }
+  &.darkMode .UserInfoModal {
+    background-color: ${theme.palette.darkmode.dark};
+  }
 `;
