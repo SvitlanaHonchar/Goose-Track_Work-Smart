@@ -12,7 +12,7 @@ const ColumnsTasksList = ({ tasks }) => {
   return (
     <TasksWrapper>
       {filteredTasks.map(task => (
-        <TaskColumnCard key={task.id} {...task} />
+        <TaskColumnCard key={task._id} {...task} />
       ))}
     </TasksWrapper>
   );

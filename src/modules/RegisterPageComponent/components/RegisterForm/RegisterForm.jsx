@@ -16,14 +16,14 @@ import {
   PasswordInput,
   StyledVisibilityBtn,
 } from './RegisterForm.styled';
-import { authRegister } from '../../../redux/auth/authOperations';
-import sprite from '../../../shared/icons/sprite.svg';
+import { authRegister } from '../../../../redux/auth/authOperations';
+import sprite from '../../../../shared/icons/sprite.svg';
 import {
   showExistAcctErrorReg,
   showSuccessReg,
   showUnknwnErrReg,
 } from 'shared/utils/notifications';
-import theme from '../../../shared/theme';
+import theme from '../../../../shared/theme';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string()

@@ -2,7 +2,7 @@ import { Grid, Typography, Box } from '@mui/material';
 
 import React from 'react';
 import TextInput from 'shared/components/ui/TextInput/TextInput';
-import { DatePicker } from '../DatePicker/DatePicker';
+import { DatePicker } from './DatePicker/DatePicker';
 
 export default function UserForm({ formData, onChange, setBirthday, errors }) {
   const { name, email, phone, skype } = formData;

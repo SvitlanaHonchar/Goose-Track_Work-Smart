@@ -1,6 +1,7 @@
 import React, { lazy, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import {
+  Navigate,
   Route,
   RouterProvider,
   createBrowserRouter,
@@ -8,7 +9,7 @@ import {
 } from 'react-router-dom';
 // import { selectUserError } from 'redux/auth/authSelectors';
 //layoutes and pages lazy loading
-import MainLayout from './MainLayout/components/MainLayout/MainLayout';
+import { MainLayout } from './MainLayout';
 import { authRefresh } from 'redux/auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import StartPage from 'pages/StartPage/StartPage';
@@ -23,7 +24,7 @@ const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const CalendarPage = lazy(() => import('pages/CalendarPage/CalendarPage'));
 const AccountPage = lazy(() => import('pages/AccountPage/AccountPage'));
-const NoMatchPage = lazy(() => import('pages/NoMatchPage/NoMatchPage'));
+// const NoMatchPage = lazy(() => import('pages/NoMatchPage/NoMatchPage'));
 const ChosenMonth = lazy(() => import('./ChosenMonth/components/ChosenMonth'));
 const ChosenDay = lazy(() =>
   import('./ChosenDay/components/ChosenDay/ChosenDay')
@@ -60,7 +61,7 @@ const router = createBrowserRouter(
         </Route>
       </Route>
 
-      <Route path="*" element={<NoMatchPage />} />
+      <Route path="*" element={<Navigate to="/calendar" />} />
     </Route>
   ),
   { basename }

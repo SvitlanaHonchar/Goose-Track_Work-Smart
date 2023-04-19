@@ -13,6 +13,19 @@ export const StyledDiv = styled.div`
     align-items: stretch;
     gap: 22px;
     max-height: 80px;
+    width: 17px;
+
+    @media screen and (min-width: 375px) {
+      width: 17px;
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 70px;
+    }
+
+    @media screen and (min-width: 1440px) {
+      width: 125px;
+    }
     /* overflow: auto; */
 
     & a {
@@ -78,6 +91,12 @@ export const StyledLi = styled.li`
   font-size: 14px;
   line-height: 1.28;
   /* overflow: auto; */
+
+  & p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   &.low {
     background-color: rgba(206, 238, 253, 1);

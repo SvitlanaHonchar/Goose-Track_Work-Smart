@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LoginPageComponent from 'modules/LoginPageComponent/components/LoginPageComp/LoginPageComponent';
+import { LoginPageComponent } from 'modules/LoginPageComponent';
 
 const LoginPage = () => {
   return (

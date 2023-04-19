@@ -1,5 +1,5 @@
 import React from 'react';
-import RegisterForm from './RegisterForm';
+import RegisterForm from '../RegisterForm/RegisterForm';
 import {
   Container,
   ImgWrapper,
@@ -7,9 +7,9 @@ import {
   RegisterFormWrapper,
   TectAccent,
 } from './RegisterPageComponent.styled';
-import AuthNavigate from '../../../shared/components/AuthNavigate/AuthNavigate';
+import AuthNavigate from '../../../../shared/components/AuthNavigate/AuthNavigate';
 
-const RegisterPageComponent = () => {
+export const RegisterPageComponent = () => {
   return (
     <>
       <Container>
@@ -27,5 +27,3 @@ const RegisterPageComponent = () => {
     </>
   );
 };
-
-export default RegisterPageComponent;

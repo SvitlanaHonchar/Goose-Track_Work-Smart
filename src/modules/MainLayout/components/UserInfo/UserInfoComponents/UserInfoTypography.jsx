@@ -29,5 +29,5 @@ export const UserInfoTypography = ({ name }) => {
 };
 
 UserInfoTypography.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
 };

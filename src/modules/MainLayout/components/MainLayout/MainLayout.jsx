@@ -9,7 +9,7 @@ import { authGetUserInfo } from 'redux/auth/authOperations';
 // import { Box } from '@mui/system';
 import { useTheme } from '@mui/material';
 
-const MainLayout = () => {
+export const MainLayout = () => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
@@ -55,4 +55,3 @@ const MainLayout = () => {
     </StyledDiv>
   );
 };
-export default MainLayout;

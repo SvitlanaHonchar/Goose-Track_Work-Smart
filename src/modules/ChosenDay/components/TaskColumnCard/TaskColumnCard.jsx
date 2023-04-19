@@ -27,7 +27,7 @@ const TaskColumnCard = ({ ...task }) => {
   // };
 
   return (
-    <BoxWrapper>
+    <BoxWrapper key={task._id}>
       <Title>
         <p>{title}</p>
       </Title>
