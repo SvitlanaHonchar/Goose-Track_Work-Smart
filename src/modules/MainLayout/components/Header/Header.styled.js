@@ -39,6 +39,8 @@ export const StyledHeader = styled.header`
   }
 
   @media screen and (min-width: 768px) {
+    min-height: 69.352px;
+
     & .header-calendar {
       display: flex;
       align-items: flex-end;
