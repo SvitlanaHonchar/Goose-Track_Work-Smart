@@ -77,6 +77,7 @@ export const AccountComponent = () => {
 
   useEffect(() => {
     // TODO: delete timeout, when register is ready
+    if (!userData.email) return;
     setTimeout(() => dispatch(authGetUserInfo()), 500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

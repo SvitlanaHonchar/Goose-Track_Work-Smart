@@ -19,7 +19,7 @@ export const MainLayout = () => {
     if (user.name !== null) {
       return;
     }
-    if (user.email === null) {
+    if (!user.email) {
       return;
     }
 
