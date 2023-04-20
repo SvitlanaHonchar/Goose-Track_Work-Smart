@@ -22,8 +22,6 @@ import theme from 'shared/theme';
 const TaskToolbar = ({ ...taskData }) => {
   const dispatch = useDispatch();
 
-  const checkCurrentDate = () => {};
-
   const { priority, category, date, title, start, end, _id: id } = taskData;
   const { isOpen, action, closeModal, toggleModal, details } = useModal();
 
