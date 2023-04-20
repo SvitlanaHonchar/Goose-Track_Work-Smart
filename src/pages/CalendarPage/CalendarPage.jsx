@@ -63,7 +63,9 @@ const CalendarPage = () => {
     //   isUserLoading
     // )
     //   return;
+    // if (!isUserExist) return;
     if (!isUserExist && !isRefreshed && isUserLoading) return;
+    if (!+year || !+month) return;
 
     setTimeout(() => {
       dispatch(

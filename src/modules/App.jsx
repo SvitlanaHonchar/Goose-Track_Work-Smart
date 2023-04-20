@@ -11,14 +11,13 @@ import {
 //layoutes and pages lazy loading
 import { MainLayout } from './MainLayout';
 import { authRefresh } from 'redux/auth/authOperations';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import StartPage from 'pages/StartPage/StartPage';
 
 import SharedLayout from '../shared/components/SharedLayout.js/SharedLayout';
 import withAuthRedirect from 'hoc/withAuthRedirect/withAuthRedirect';
 import 'redux/tasks/tasksOperations';
 import { AppStyled } from './App.styled';
-import { selectUser } from 'redux/auth/authSelectors';
 
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
@@ -70,15 +69,24 @@ const router = createBrowserRouter(
 
 const App = () => {
   const dispatch = useDispatch();
-  const user = useSelector(selectUser);
+  // const user = useSelector(selectUser);
+  // const userError = useSelector(selectUserError);
+  // const tasksError = useSelector(selectTasksError);
   // Refresh - success
   useEffect(() => {
-    if (user.name !== null) return;
+    // if (user.name !== null) return;
     // if (error?.status === 401) {
     //   console.log('401 error');
     // }
-    dispatch(authRefresh());
-  }, [dispatch, user.name]);
+    // if (
+    //   userError === 'Request failed with status code 401' ||
+    //   tasksError === 'Request failed with status code 401'
+    // )
+
+    if (JSON.parse(localStorage.getItem('persist:auth')).refreshToken) {
+      dispatch(authRefresh());
+    }
+  }, [dispatch]);
 
   return (
     <AppStyled className="app">

@@ -153,6 +153,7 @@ function authPending(state) {
 }
 
 function authRejected(state, action) {
+  console.log('action: ', action);
   state.isLogged = false;
   state.isLoading = false;
   state.user = {

@@ -89,6 +89,8 @@ export const AccountComponent = () => {
 
   useEffect(() => {
     dispatch(authGetUserInfo());
+    if (!userData.email) return;
+   
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
