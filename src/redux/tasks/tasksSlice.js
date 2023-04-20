@@ -5,6 +5,7 @@ import {
   getMonthTasks,
   updateTask,
 } from './tasksOperations';
+import { ta } from 'date-fns/locale';
 
 const extraActions = [getMonthTasks, createTask, deleteTask, updateTask];
 const getExtraActions = type => extraActions.map(action => action[type]);
@@ -55,12 +56,18 @@ const tasksSlice = createSlice({
         const updatedTask = payload.task;
 
         state.data = state.data.map(el => {
-          el.tasks.map(task => {
-            if (task._id === updatedTask._id) {
-              return updatedTask;
-            }
-            return task;
-          });
+          if (
+            new Date(el.date).getTime() === new Date(updatedTask.date).getTime()
+          ) {
+            el.tasks = el.tasks.map(task => {
+              if (task._id === updatedTask._id) {
+                return updatedTask;
+              }
+              return task;
+            });
+          }
+
+          console.log('el: ', el.tasks[0].title);
           return el;
         });
       })
