@@ -22,7 +22,11 @@ import { PriorityList } from './PriorityList/PriorityList';
 import { TASKS_PRIORITY } from 'shared/constants';
 import getTimeStringWithDate from 'shared/utils/getTimeStringWithDate';
 import theme from 'shared/theme';
-import { showError, showEmptyTitle } from 'shared/utils/notifications';
+import {
+  showError,
+  showEmptyTitle,
+  showAnyError,
+} from 'shared/utils/notifications';
 import { validateForm } from './validateForm';
 import { createTask, updateTask } from 'redux/tasks/tasksOperations';
 import { checkDarkTheme } from 'shared/utils/checkDarkTheme';
@@ -76,6 +80,18 @@ const TaskForm = props => {
   const handleSubmit = async e => {
     e.preventDefault();
     const trimmedTitle = title.trim();
+    if (end === null && start === null) {
+      return showAnyError(
+        'Please, write the start and the end time for your task'
+      );
+    }
+    if (start === null) {
+      return showAnyError('Please, write the start time for your task');
+    }
+    if (end === null) {
+      return showAnyError('Please, write the end time for your task');
+    }
+
     if (trimmedTitle.length === 0) {
       return showEmptyTitle();
     }
@@ -107,7 +123,7 @@ const TaskForm = props => {
       onClose();
     }
   };
-  const isTimeWarning = useMemo(() => end.isBefore(start), [end, start]);
+  const isTimeWarning = useMemo(() => end?.isBefore(start), [end, start]);
 
   const labelStyles = {
     color: darkTheme
