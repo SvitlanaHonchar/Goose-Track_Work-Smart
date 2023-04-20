@@ -7,7 +7,7 @@ import theme from 'shared/theme';
 import { UserAvatar } from './UserInfoComponents/UserAvatar';
 import { UserInfoTypography } from './UserInfoComponents/UserInfoTypography';
 import { UserInfoModalBtnLogOut } from './UserInfoComponents/UserInfoMenuLogoutBtn';
-import { UserInfoModalNavLink } from './UserInfoComponents/UserInfoModalNavLink';
+import { UserInfoModalNavLink } from './UserInfoComponents/UserInfoMenuNavLink';
 
 const UserInfoModal = ({ name, userImgUrl, onCloseModal }) => {
   const rootRef = useRef();
