@@ -54,6 +54,13 @@ export const ListStyled = styled(List)`
     }
   }
 
+  .calendarHead__item {
+    justify-content: center;
+    min-width: 12px;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
   .calendarHead__item.current .calendarHead__dateLink {
     background: ${theme.palette.primary.main};
     color: ${theme.palette.custom.mainWhite};
