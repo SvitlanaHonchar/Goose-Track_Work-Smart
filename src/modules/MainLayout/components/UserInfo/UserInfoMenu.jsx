@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, MenuItem } from '@mui/material';
 
 import theme from 'shared/theme';
@@ -6,6 +6,7 @@ import { UserAvatar } from './UserInfoComponents/UserAvatar';
 import { UserInfoTypography } from './UserInfoComponents/UserInfoTypography';
 import { UserInfoMenuNavLink } from './UserInfoComponents/UserInfoMenuNavLink';
 import { UserInfoMenuBtnLogOut } from './UserInfoComponents/UserInfoMenuLogoutBtn';
+import { checkDarkTheme } from 'shared/utils/checkDarkTheme';
 
 export const UserInfoMenu = ({
   name,
@@ -15,6 +16,11 @@ export const UserInfoMenu = ({
   anchorEl,
   open,
 }) => {
+  const [darkTheme, setDarkTheme] = useState();
+  useEffect(() => {
+    setDarkTheme(checkDarkTheme());
+  }, []);
+
   return (
     <div>
       <Menu
@@ -25,18 +31,24 @@ export const UserInfoMenu = ({
         onClick={handleClose}
         PaperProps={{
           elevation: 0,
+
           sx: {
             width: 197,
             paddingTop: '14px',
             paddingBottom: '14px',
             paddingLeft: '18px',
             paddingRight: '18px',
-            backgroundColor: theme.palette.custom.mainWhite,
             borderRadius: '8px',
             height: { xs: 189, md: 203 },
             overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            filter: darkTheme
+              ? 'drop-shadow (4px 2px 16px rgba(136, 165, 191, 0.48))'
+              : `drop-shadow(1px solid ${theme.palette.custom.pagDarkBorder})`,
             mt: 1.5,
+
+            backgroundColor: darkTheme
+              ? `${theme.palette.darkmode.dark}`
+              : `${theme.palette.custom.mainWhite}`,
 
             '&:before': {
               content: '""',
@@ -46,9 +58,11 @@ export const UserInfoMenu = ({
               right: 14,
               width: 10,
               height: 10,
-              bgcolor: 'background.paper',
               transform: 'translateY(-50%) rotate(45deg)',
               zIndex: 0,
+              // backgroundColor: darkTheme
+              //   ? `${theme.palette.darkmode.dark}`
+              //   : `${theme.palette.custom.mainWhite}`,
             },
             '& .MuiMenu-list': {
               padding: 0,
@@ -57,9 +71,6 @@ export const UserInfoMenu = ({
         }}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-        // MenuListProps={{
-        //   'aria-labelledby': 'basic-button',
-        // }}
       >
         <MenuItem
           onClick={handleClose}
@@ -70,6 +81,9 @@ export const UserInfoMenu = ({
             padding: 0,
             paddingBottom: '18px',
             borderBottom: '1px solid rgba(220, 227, 229, 0.3)',
+            color: darkTheme
+              ? `${theme.palette.custom.mainWhite}`
+              : `${theme.palette.grey[500]}`,
           }}
         >
           <UserAvatar
@@ -78,7 +92,14 @@ export const UserInfoMenu = ({
             width={window.innerWidth >= 768 ? 44 : 38}
             height={window.innerWidth >= 768 ? 44 : 38}
           />
-          <UserInfoTypography name={name} />
+          <UserInfoTypography
+            name={name}
+            // sx={{
+            //   color: darkTheme
+            //     ? `${theme.palette.custom.mainWhite}`
+            //     : `${theme.palette.grey[500]}`,
+            // }}
+          />
         </MenuItem>
         <MenuItem
           onClick={handleClose}
@@ -94,8 +115,15 @@ export const UserInfoMenu = ({
             padding: 0,
             paddingTop: '8px',
             paddingBottom: '8px',
-            stroke: theme.palette.grey[400],
             borderBottom: '1px solid rgba(220, 227, 229, 0.3)',
+
+            color: darkTheme
+              ? `${theme.palette.custom.mainWhite}`
+              : `${theme.palette.grey[400]}`,
+
+            stroke: darkTheme
+              ? `${theme.palette.custom.mainWhite}`
+              : `${theme.palette.grey[400]}`,
           }}
         >
           <UserInfoMenuNavLink />

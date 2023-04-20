@@ -81,15 +81,15 @@ export const AppStyled = styled.div`
     color: ${theme.palette.custom.mainWhite};
   }
 
-  &.darkMode .UserInfoTypography,
-  &.darkMode .UserInfoModalNavLink {
+  &.darkMode .UserInfoTopography,
+  &.darkMode .UserInfoMenuNavLink {
     color: ${theme.palette.custom.mainWhite};
   }
 
-  &.darkMode .UserInfoModalIcon {
+  &.darkMode .UserInfoMenuIcon {
     stroke: ${theme.palette.custom.mainWhite};
   }
-  &.darkMode .UserInfoModal {
+  &.darkMode .UserInfoMenu {
     background-color: ${theme.palette.darkmode.dark};
   }
 

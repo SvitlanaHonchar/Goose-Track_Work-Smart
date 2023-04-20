@@ -7,6 +7,7 @@ import Loader from '../../../../shared/components/Loader/Loader';
 import { UserAvatar } from './UserInfoComponents/UserAvatar';
 import { UserInfoTypography } from './UserInfoComponents/UserInfoTypography';
 import { UserInfoMenu } from './UserInfoMenu';
+import BasicPopover from './UserInfoPopover';
 
 const style = {
   button: {
@@ -43,7 +44,7 @@ const UserInfo = () => {
     <Loader />
   ) : (
     <>
-      <UserInfoMenu
+      {/* <UserInfoMenu
         name={name}
         userImgUrl={userImgUrl}
         id="account-menu"
@@ -51,8 +52,8 @@ const UserInfo = () => {
         open={open}
         handleClose={handleClose}
         onClick={handleClose}
-      />
-
+      /> */}
+      <BasicPopover />
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
         <UserInfoTypography name={name} />
 
