@@ -9,8 +9,12 @@ export const StyledHeader = styled.header`
   & .header__right-container {
     display: flex;
     align-items: center;
-    gap: 14px;
+    /* gap: 14px; */
     margin-left: auto;
+
+    & p {
+      margin-left: 14px;
+    }
   }
 
   & .header-calendar {
