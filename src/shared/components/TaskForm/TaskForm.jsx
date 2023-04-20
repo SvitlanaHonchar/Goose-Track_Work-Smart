@@ -103,11 +103,8 @@ const TaskForm = props => {
       category,
       date,
     });
-    console.log('task: ', task);
 
     const isValid = await validateForm(task);
-    const taskId = taskDetails.id;
-    console.log('taskId: ', taskId);
     if (isValid) {
       const result =
         action === 'add'

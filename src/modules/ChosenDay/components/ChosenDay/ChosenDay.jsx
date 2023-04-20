@@ -8,12 +8,23 @@ import { useParams } from 'react-router';
 export const ChosenDay = () => {
   const { currentDay } = useParams();
   const tasksAll = useSelector(selectAllTasks);
-  const [tasksCurrentDay, setTasksCurrentDay] = useState([]);
+  const [tasksCurrentDay, setTasksCurrentDay] = useState({
+    todoTasks: [],
+    inProgressTasks: [],
+    doneTasks: [],
+  });
 
   useEffect(() => {
     if (!tasksAll) return;
     const currentTasks = tasksAll.find(task => task.date === currentDay)?.tasks;
-    if (!currentTasks) return;
+    if (!currentTasks) {
+      setTasksCurrentDay({
+        todoTasks: [],
+        inProgressTasks: [],
+        doneTasks: [],
+      });
+      return;
+    }
     const todoTasks = currentTasks.filter(task => task.category === 'to-do');
     const inProgressTasks = currentTasks.filter(
       task => task.category === 'in-progress'
@@ -30,5 +41,3 @@ export const ChosenDay = () => {
     </>
   );
 };
-
-// export default ChosenDay;

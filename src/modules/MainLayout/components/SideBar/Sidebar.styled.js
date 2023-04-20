@@ -6,11 +6,9 @@ export const SideBarContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  /* flex-grow: 7, 1; */
   background-color: #fff;
 
   border-right: 1px solid #dce3e5;
-  /* height: 100%; */
   width: 289px;
 
   padding: 24px 32px;
@@ -19,13 +17,10 @@ export const SideBarContainer = styled.div`
     height: 100%;
     background-color: #fff;
     width: 289px;
-    /* transform: scaleX(0, 0); */
-    /* transition: transform 0.25ms linear; */
+
     &.is-closed {
-      /* transform: scaleX(1, 1); */
       position: fixed;
       left: -100%;
-      /* transform: translateX(-100%); */
     }
 
     &.is-open {
@@ -43,7 +38,6 @@ export const SideBarContainer = styled.div`
 `;
 
 export const StyledNavContainer = styled.nav`
-  /* padding: 24px; */
   background-color: #fff;
   flex-grow: 6;
 
@@ -56,7 +50,6 @@ export const StyledLogoDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* padding: 8px; */
   margin-bottom: 32px;
 
   @media screen and (max-width: 1439px) {
@@ -69,10 +62,6 @@ export const StyledLogoDiv = styled.div`
 
   @media screen and (max-width: 767px) {
     margin-bottom: 64px;
-
-    /* & h2 {
-      margin-right: 45px;
-    } */
   }
 
   & h2 {
@@ -113,8 +102,6 @@ export const StyledLogoDiv = styled.div`
     }
   }
 `;
-
-// export const NavigationDiv = styled.div``;
 
 export const StyledNavLink = styled(NavLink)`
   padding: 18px 23px;
@@ -168,13 +155,6 @@ export const StyledIcon = styled.div`
 
 export const StyledNavDiv = styled.div`
   & p {
-    /* font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 17px;
-
-    color: #7e7d82; */
   }
 `;
 

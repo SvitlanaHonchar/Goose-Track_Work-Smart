@@ -19,8 +19,6 @@ const ThemeToggler = () => {
 
   function onThemeTogglerButtonClick() {
     const savedTheme = localStorage.getItem('darkModeGooseTrack');
-    console.log('savedTheme: ', savedTheme);
-    console.log('savedTheme: ', !savedTheme);
     localStorage.setItem(
       'darkModeGooseTrack',
       savedTheme === 'false' ? 'true' : 'false'

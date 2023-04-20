@@ -8,19 +8,17 @@ import { Provider } from 'react-redux';
 import { persistor, store } from 'redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 
-// TODO: Add theme when RTK is ready
-// const themeMode = useSelector((state) => state.app.themeMode);
 const themeMode = 'light';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
-  <PersistGate loading={null} persistor={persistor}>
-    <Provider store={store}>
-      <ThemeProvider theme={themeMode === 'light' ? theme : darkTheme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
-    </Provider>
-  </PersistGate>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <PersistGate loading={null} persistor={persistor}>
+      <Provider store={store}>
+        <ThemeProvider theme={themeMode === 'light' ? theme : darkTheme}>
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
+      </Provider>
+    </PersistGate>
+  </React.StrictMode>
 );

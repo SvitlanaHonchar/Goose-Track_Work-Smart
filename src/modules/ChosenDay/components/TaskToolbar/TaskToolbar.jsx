@@ -16,15 +16,7 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 const TaskToolbar = ({ ...taskData }) => {
   const dispatch = useDispatch();
 
-  const checkCurrentDate = () => {
-    // const taskCurrentday = new Date(currentDay).getTime();
-    // const today = new Date().getTime();
-    // if (taskCurrentday < today) {
-    //   return false;
-    // } else {
-    //   return true;
-    // }
-  };
+  const checkCurrentDate = () => {};
 
   const { priority, category, date, title, start, end, _id: id } = taskData;
   const { isOpen, action, closeModal, toggleModal, details } = useModal();
@@ -47,7 +39,6 @@ const TaskToolbar = ({ ...taskData }) => {
       category: newCategory,
     };
     dispatch(updateTask({ taskId: id, taskData: updatingTask }));
-    // showSuccessMoveTask(newCategory);
   };
 
   const handleEditTaskClick = () => {
@@ -56,7 +47,6 @@ const TaskToolbar = ({ ...taskData }) => {
 
   const handleDeleteTask = taskId => {
     dispatch(deleteTask(taskId));
-    // showSuccessDeleteTask(category);
   };
 
   return (
