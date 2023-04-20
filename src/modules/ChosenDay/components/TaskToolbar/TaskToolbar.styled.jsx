@@ -7,12 +7,12 @@ export const TaskToolbarList = styled.ul`
   justify-content: center;
   align-items: center;
 
-  & li{
+  & li {
     &.disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
-    pointer-events: none;
-  }
+      cursor: not-allowed;
+      opacity: 0.6;
+      pointer-events: none;
+    }
   }
 
   & button {
@@ -22,12 +22,12 @@ export const TaskToolbarList = styled.ul`
     border: transparent;
     cursor: pointer;
     padding: 0;
-    
+
     &.disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
-    pointer-events: none;
-  }
+      cursor: not-allowed;
+      opacity: 0.6;
+      pointer-events: none;
+    }
 
     & svg {
       stroke: ${theme.palette.grey.body};
@@ -42,11 +42,11 @@ export const TaskToolbarList = styled.ul`
       &:focus {
         stroke: ${theme.palette.primary.main};
       }
-   
+
       @media screen and (min-width: 768px) {
-      width: 16px;
-      height: 16px;
+        width: 16px;
+        height: 16px;
+      }
     }
   }
-
 `;

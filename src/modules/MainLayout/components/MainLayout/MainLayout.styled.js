@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledDiv = styled.div`
   background-color: #eaeaea;
-  height: 100vh;
+  /* height: 100vh; */
 
   margin-left: auto;
   margin-right: auto;

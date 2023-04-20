@@ -8,6 +8,7 @@ import { selectUser } from 'redux/auth/authSelectors';
 import { authGetUserInfo } from 'redux/auth/authOperations';
 // import { Box } from '@mui/system';
 import { useTheme } from '@mui/material';
+import Footer from '../Footer/Footer';
 
 export const MainLayout = () => {
   const user = useSelector(selectUser);
@@ -37,21 +38,24 @@ export const MainLayout = () => {
   return (
     // Component =>
     // ({ ...props }) => {
-    <StyledDiv theme={theme} className="mainLayout">
-      {/* <Box className="mainLayout-frame"> */}
-      {/* <div> */}
-      <SideBar menu={menuStatus} onClose={closeMenu} />
-      <StyledMainContent>
-        <Header onBurgerClick={openMenu} />
+    <>
+      <StyledDiv theme={theme} className="mainLayout">
+        {/* <Box className="mainLayout-frame"> */}
+        {/* <div> */}
+        <SideBar menu={menuStatus} onClose={closeMenu} />
+        <StyledMainContent>
+          <Header onBurgerClick={openMenu} />
 
-        <Suspense>
-          <Outlet />
-        </Suspense>
-      </StyledMainContent>
-      {/* </div> */}
-      {/* </Box>?\ */}
+          <Suspense>
+            <Outlet />
+          </Suspense>
+        </StyledMainContent>
+        {/* </div> */}
+        {/* </Box>?\ */}
 
-      {/* <Component {...props} /> */}
-    </StyledDiv>
+        {/* <Component {...props} /> */}
+      </StyledDiv>
+      <Footer />
+    </>
   );
 };
