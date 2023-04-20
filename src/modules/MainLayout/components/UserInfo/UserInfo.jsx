@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Avatar, Box, Button } from '@mui/material';
 
-import { selectIsUserLoading, selectUser } from 'redux/auth/authSelectors';
+import {
+  selectIsUserExist,
+  selectIsUserLoading,
+  selectUser,
+} from 'redux/auth/authSelectors';
 import Loader from '../../../../shared/components/Loader/Loader';
 import theme from 'shared/theme';
 import UserInfoModal from './UserInfoModal';
 import { changeAvatarColor } from './UserInfoComponents/changeAvatarColor';
 import { UserInfoTypography } from './UserInfoComponents/UserInfoTypography';
+import { authGetUserInfo } from 'redux/auth/authOperations';
 
 const style = {
   button: {
@@ -31,6 +36,13 @@ const style = {
 };
 
 const UserInfo = () => {
+  const dispatch = useDispatch();
+  const isUserExist = useSelector(selectIsUserExist);
+  useEffect(() => {
+    // if (!isUserExist) return;
+    dispatch(authGetUserInfo());
+  }, [dispatch, isUserExist]);
+
   const { name, userImgUrl } = useSelector(selectUser);
   const isUserLoading = useSelector(selectIsUserLoading);
 

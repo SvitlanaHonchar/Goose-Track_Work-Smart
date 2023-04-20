@@ -19,6 +19,10 @@ $privateHost.interceptors.response.use(
   async error => {
     console.log('error: ', error.response.status);
     const originalRequest = error.config;
+    console.log(
+      'error.response?.status === 401: ',
+      error.response?.status === 401
+    );
     if (
       error.response.status === 401 &&
       error.config &&
