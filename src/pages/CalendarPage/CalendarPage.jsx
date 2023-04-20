@@ -64,6 +64,9 @@ const CalendarPage = () => {
     // )
     //   return;
     if (!isUserExist && !isRefreshed && isUserLoading) return;
+    if (!+year || !+month) return;
+    console.log('month: ', month);
+    console.log('year: ', year);
 
     setTimeout(() => {
       dispatch(
