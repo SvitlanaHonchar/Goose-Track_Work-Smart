@@ -73,7 +73,6 @@ function CalendarTable({ tasks, currentMonth }) {
                       align="right"
                       sx={{
                         verticalAlign: 'top',
-                        border: '1px rgba(220, 227, 229, 0.8) solid',
                         boxSizing: 'border-box',
                         height: 125,
                         width: 155,
@@ -82,10 +81,11 @@ function CalendarTable({ tasks, currentMonth }) {
                         paddingLeft: '8px',
                       }}
                       className={
-                        getNextDay(day.iso).slice(5, 7) !==
+                        'tableCell ' +
+                        (getNextDay(day.iso).slice(5, 7) !==
                         new Date().toISOString().slice(5, 7)
                           ? 'not-current'
-                          : ''
+                          : '')
                       }
                     >
                       <div className="cell-container">

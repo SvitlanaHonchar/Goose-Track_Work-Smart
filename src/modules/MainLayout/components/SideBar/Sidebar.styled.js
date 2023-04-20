@@ -230,6 +230,7 @@ export const StyledCloseBtn = styled.button`
     top: 45px;
     right: 232px;
   } */
+  cursor: pointer;
 
   @media screen and (min-width: 1440px) {
     display: none;
