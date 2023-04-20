@@ -69,7 +69,6 @@ const authSlice = createSlice({
         ) => {
           state.accessToken = accessToken;
           state.refreshToken = refreshToken;
-          state.isLogged = true;
         }
       )
       .addCase(
