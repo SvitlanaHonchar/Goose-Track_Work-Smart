@@ -14,6 +14,36 @@ const $refreshHost = axios.create({
   baseURL,
 });
 
+$privateHost.interceptors.response.use(
+  config => config,
+  async error => {
+    console.log('error: ', error.response.status);
+    const originalRequest = error.config;
+    if (
+      error.response.status === 401 &&
+      error.config &&
+      !error.config._isRetry
+    ) {
+      try {
+        originalRequest._isRetry = true;
+        const response = await $refreshHost.post('user/refresh');
+        localStorage.setItem(
+          'persist:auth',
+          JSON.stringify({
+            accessToken: response.data.accessToken,
+            refreshToken: response.data.refreshToken,
+            _persist: '{"version":-1,"rehydrated":true}',
+          })
+        );
+        return $privateHost.request(originalRequest);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    throw error;
+  }
+);
+
 export const GooseTracker_API = {
   //!UserAuth
   register: async registerData => {
@@ -87,17 +117,14 @@ function setInterseptor(accessToken, refreshToken) {
   console.log('refreshToken: ', refreshToken);
   console.log('accessToken: ', accessToken);
   const authInterceptorPrivate = config => {
-    const authHeader = `Bearer ${accessToken.slice(1, accessToken.length - 1)}`;
+    const authHeader = `Bearer ${accessToken}`;
 
     config.headers['Authorization'] = authHeader;
     return config;
   };
 
   const authInterceptorRefresh = config => {
-    const refreshHeader = `Bearer ${refreshToken.slice(
-      1,
-      refreshToken.length - 1
-    )}`;
+    const refreshHeader = `Bearer ${refreshToken}`;
 
     config.headers['Authorization'] = refreshHeader;
     return config;
