@@ -22,7 +22,7 @@ export const AccountComponent = () => {
     const emailRegex = /^\S+@\S+.\S+$/;
     const phoneRegex = /^\+380\d{9}$/;
     const birthdayRegex = /^\d{4}-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01])$/;
-    if (!values.name.trim()) {
+    if (!values.name?.trim()) {
       errors.name = 'Required';
     } else if (values.name.trim().length > 16) {
       errors.name = 'Must be 16 characters or less';
@@ -44,7 +44,7 @@ export const AccountComponent = () => {
       errors.phone = 'Invalid phone number';
     }
 
-    if (values.skype.trim().length !== 0 && values.skype.trim().length > 16) {
+    if (values.skype?.trim().length !== 0 && values.skype?.trim().length > 16) {
       errors.skype = 'Must be 16 characters or less';
     }
 
@@ -90,7 +90,7 @@ export const AccountComponent = () => {
   useEffect(() => {
     dispatch(authGetUserInfo());
     if (!userData.email) return;
-   
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
