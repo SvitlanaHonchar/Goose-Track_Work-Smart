@@ -78,7 +78,6 @@ export const InfoInput = styled.input`
     outline: 1px solid ${theme.palette.primary.main};
   }
   &::placeholder {
-    /* color: ${theme.palette.grey[600]}; */
     font-weight: 600;
     font-size: 14px;
     line-height: 1.29;

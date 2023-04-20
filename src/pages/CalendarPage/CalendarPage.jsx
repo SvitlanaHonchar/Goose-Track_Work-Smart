@@ -7,16 +7,12 @@ import {
   useParams,
   useNavigate,
 } from 'react-router-dom';
-
 import { getMonthTasks } from 'redux/tasks/tasksOperations';
 import {
-  //selectAllTasks,
   selectIsTasksError,
   selectTasksError,
 } from 'redux/tasks/tasksSelectors';
-
 import {
-  // selectIsLoggedIn,
   selectIsRefreshed,
   selectIsUserLoading,
   selectIsUserExist,
@@ -25,6 +21,7 @@ import Loader from 'shared/components/Loader/Loader';
 import { CalendarComponent } from 'modules/CalendarComponent/index';
 import CalendarToolbar from 'modules/CalendarComponent/components/CalendarToolbar/CalendarToolbar';
 import { showAnyError } from 'shared/utils/notifications';
+import { authGetUserInfo } from 'redux/auth/authOperations';
 
 const CalendarPage = () => {
   const dispatch = useDispatch();
@@ -36,9 +33,6 @@ const CalendarPage = () => {
   const isUserLoading = useSelector(selectIsUserLoading);
   const isRefreshed = useSelector(selectIsRefreshed);
   const isUserExist = useSelector(selectIsUserExist);
-  // const isLogged = useSelector(selectIsLoggedIn);
-  //const tasksForSelectedMonth = useSelector(selectAllTasks);
-  // console.log('tasksForSelectedMonth : ', tasksForSelectedMonth);
 
   const isValidDate = dateString => {
     const date = new Date(dateString);
@@ -56,14 +50,6 @@ const CalendarPage = () => {
   const currentMonthPath = new Date().toISOString().slice(0, 7);
 
   useEffect(() => {
-    // if (
-    //   !isLogged &&
-    //   tasksForSelectedMonth !== null &&
-    //   !isRefreshed &&
-    //   isUserLoading
-    // )
-    //   return;
-    // if (!isUserExist) return;
     if (!isUserExist && !isRefreshed && isUserLoading) return;
     if (!+year || !+month) return;
 
@@ -75,17 +61,13 @@ const CalendarPage = () => {
         })
       );
     }, 500);
-  }, [
-    dispatch,
-    // isLogged,
-    year,
-    month,
-    //tasksForSelectedMonth,
+  }, [dispatch, year, month, isUserLoading, isRefreshed, isUserExist]);
 
-    isUserLoading,
-    isRefreshed,
-    isUserExist,
-  ]);
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(authGetUserInfo());
+    }, 500);
+  }, []);
 
   useEffect(() => {
     if (isTaskError) {
@@ -94,7 +76,6 @@ const CalendarPage = () => {
   }, [isTaskError, taskError]);
 
   if (!isValidDate(urlString)) {
-    //return <Navigate to="/calendar/month" replace />;
     return navigate(-1);
   }
   if (path.match(/calendar(\/)?$/)) {

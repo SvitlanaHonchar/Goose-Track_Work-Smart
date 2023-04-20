@@ -6,7 +6,6 @@ import { StyledDiv, StyledMainContent } from './MainLayout.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/authSelectors';
 import { authGetUserInfo } from 'redux/auth/authOperations';
-// import { Box } from '@mui/system';
 import { useTheme } from '@mui/material';
 
 export const MainLayout = () => {
@@ -27,7 +26,6 @@ export const MainLayout = () => {
   }, [dispatch, user]);
 
   const theme = useTheme();
-  // console.log(theme);
 
   const openMenu = () => {
     setMenuStatus('is-open');
@@ -38,11 +36,7 @@ export const MainLayout = () => {
   };
 
   return (
-    // Component =>
-    // ({ ...props }) => {
     <StyledDiv theme={theme} className="mainLayout">
-      {/* <Box className="mainLayout-frame"> */}
-      {/* <div> */}
       <SideBar menu={menuStatus} onClose={closeMenu} />
       <StyledMainContent>
         <Header onBurgerClick={openMenu} />
@@ -51,10 +45,6 @@ export const MainLayout = () => {
           <Outlet />
         </Suspense>
       </StyledMainContent>
-      {/* </div> */}
-      {/* </Box>?\ */}
-
-      {/* <Component {...props} /> */}
     </StyledDiv>
   );
 };

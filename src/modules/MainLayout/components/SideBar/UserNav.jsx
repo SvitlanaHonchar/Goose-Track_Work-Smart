@@ -10,7 +10,6 @@ import {
 } from './Sidebar.styled';
 
 export default function UserNav({ onClick }) {
-  // const currentMonth = new Date().toISOString().slice(0, 7);
   return (
     <StyledNavContainer className="sidebar-usernav">
       <StyledLogoDiv>

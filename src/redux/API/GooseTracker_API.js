@@ -77,7 +77,6 @@ export const GooseTracker_API = {
       const refreshToken = response.data.data.refreshToken;
       setInterseptor(accessToken, refreshToken);
     }
-    // console.log('response: ', response);
 
     return response.data;
   },
@@ -114,8 +113,6 @@ export const GooseTracker_API = {
 };
 
 function setInterseptor(accessToken, refreshToken) {
-  console.log('refreshToken: ', refreshToken);
-  console.log('accessToken: ', accessToken);
   const authInterceptorPrivate = config => {
     const authHeader = `Bearer ${accessToken}`;
 

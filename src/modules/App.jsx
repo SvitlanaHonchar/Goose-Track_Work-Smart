@@ -7,8 +7,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
-// import { selectUserError } from 'redux/auth/authSelectors';
-//layoutes and pages lazy loading
 import { MainLayout } from './MainLayout';
 import { authRefresh } from 'redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
@@ -18,7 +16,6 @@ import SharedLayout from '../shared/components/SharedLayout.js/SharedLayout';
 import withAuthRedirect from 'hoc/withAuthRedirect/withAuthRedirect';
 import 'redux/tasks/tasksOperations';
 import { AppStyled } from './App.styled';
-
 const RegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 const CalendarPage = lazy(() => import('pages/CalendarPage/CalendarPage'));
@@ -28,12 +25,6 @@ const ChosenMonth = lazy(() => import('./ChosenMonth/components/ChosenMonth'));
 const ChosenDay = lazy(() =>
   import('./ChosenDay/components/ChosenDay/ChosenDay')
 );
-
-//using MainLayout HOC for adding shared layout
-// const AccountPageWithLayout = MainLayout(AccountPage);
-// const CalendarPageWithLayout = MainLayout(CalendarPage);
-
-//adding private routes with redirect using HOC withAuthRedirect
 
 const AccountPageWithRedirect = withAuthRedirect(AccountPage, '/');
 const CalendarPageWithRedirect = withAuthRedirect(CalendarPage, '/');
@@ -69,20 +60,9 @@ const router = createBrowserRouter(
 
 const App = () => {
   const dispatch = useDispatch();
-  // const user = useSelector(selectUser);
-  // const userError = useSelector(selectUserError);
-  // const tasksError = useSelector(selectTasksError);
+
   // Refresh - success
   useEffect(() => {
-    // if (user.name !== null) return;
-    // if (error?.status === 401) {
-    //   console.log('401 error');
-    // }
-    // if (
-    //   userError === 'Request failed with status code 401' ||
-    //   tasksError === 'Request failed with status code 401'
-    // )
-
     if (JSON.parse(localStorage.getItem('persist:auth')).refreshToken) {
       dispatch(authRefresh());
     }

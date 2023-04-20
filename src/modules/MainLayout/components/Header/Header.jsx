@@ -10,14 +10,11 @@ import { StyledHeader } from './Header.styled';
 import UserInfo from '../UserInfo/UserInfo';
 import { useSelector } from 'react-redux';
 import { selectAllTasks } from 'redux/tasks/tasksSelectors';
-// import { showSuccessDoneTasks } from 'shared/utils/notifications';
 
 const Header = ({ onBurgerClick }) => {
   const location = useLocation();
   const path = location.pathname;
-  // console.log(location);
   const params = useParams();
-  // console.log('params:', params);
 
   const [tasksStatus, setTasksStatus] = useState(null);
 
@@ -27,8 +24,6 @@ const Header = ({ onBurgerClick }) => {
   useEffect(() => {
     if (monthTasks && path.includes('day')) {
       const currentDate = path.includes('day') && params.currentDay;
-      // ----for positive result:
-      // const currentDate = '2023-04-17';
 
       // find todays tasks
       const todayTasks = monthTasks.filter(task => task.date === currentDate);
@@ -39,9 +34,6 @@ const Header = ({ onBurgerClick }) => {
           task => task.category === 'to-do' || task.category === 'in-progress'
         );
       }
-      // else {
-      // showSuccessDoneTasks();
-      // }
     }
 
     setTasksStatus(tasksNotDone);

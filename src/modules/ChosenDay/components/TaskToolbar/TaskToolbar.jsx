@@ -52,7 +52,6 @@ const TaskToolbar = ({ ...taskData }) => {
       category: newCategory,
     };
     dispatch(updateTask({ taskId: id, taskData: updatingTask }));
-    // showSuccessMoveTask(newCategory);
   };
 
   const handleEditTaskClick = () => {
@@ -61,7 +60,6 @@ const TaskToolbar = ({ ...taskData }) => {
 
   const handleDeleteTask = taskId => {
     dispatch(deleteTask(taskId));
-    // showSuccessDeleteTask(category);
   };
 
   const isMobile = theme.breakpoints.values.xs;
@@ -90,7 +88,6 @@ const TaskToolbar = ({ ...taskData }) => {
             MenuListProps={{
               'aria-labelledby': 'basic-button',
             }}
-
             transformOrigin={
               isMobile
                 ? { horizontal: 'right', vertical: 'top' }

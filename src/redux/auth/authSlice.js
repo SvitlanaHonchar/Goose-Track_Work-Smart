@@ -140,20 +140,11 @@ function authFulfilled(state) {
 }
 
 function authPending(state) {
-  // state.isLogged = false;
   state.isLoading = true;
   state.error = false;
-  // state.user = {
-  //   name: null,
-  //   email: null,
-  //   phone: null,
-  //   skype: null,
-  //   userImgUrl: null,
-  // };
 }
 
 function authRejected(state, action) {
-  console.log('action: ', action);
   state.isLogged = false;
   state.isLoading = false;
   state.user = {
@@ -164,8 +155,6 @@ function authRejected(state, action) {
     userImgUrl: null,
   };
   state.error = action.payload;
-  // state.accessToken = null;
-  // state.refreshToken = null;
 }
 
 export const authReducer = authSlice.reducer;
