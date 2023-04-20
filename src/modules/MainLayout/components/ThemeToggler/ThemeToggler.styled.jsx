@@ -3,16 +3,18 @@ import theme from 'shared/theme';
 
 export const ButtonStyled = styled.div`
   cursor: pointer;
-  width: 10px;
-  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   & .themeToggler__icon {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     color: ${theme.palette.primary.main};
 
     @media screen and (min-width: 768px) {
-      width: 26px;
-      height: 26px;
+      width: 32px;
+      height: 32px;
     }
   }
 `;
