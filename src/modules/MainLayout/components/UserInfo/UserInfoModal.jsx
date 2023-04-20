@@ -6,7 +6,7 @@ import theme from 'shared/theme';
 
 import { UserAvatar } from './UserInfoComponents/UserAvatar';
 import { UserInfoTypography } from './UserInfoComponents/UserInfoTypography';
-import { UserInfoModalBtnLogOut } from './UserInfoComponents/UserInfoModalLogoutBtn';
+import { UserInfoModalBtnLogOut } from './UserInfoComponents/UserInfoMenuLogoutBtn';
 import { UserInfoModalNavLink } from './UserInfoComponents/UserInfoModalNavLink';
 
 const UserInfoModal = ({ name, userImgUrl, onCloseModal }) => {
