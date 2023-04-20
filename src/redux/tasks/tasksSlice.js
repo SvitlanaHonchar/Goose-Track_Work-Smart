@@ -46,11 +46,15 @@ const tasksSlice = createSlice({
         }
       })
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
-        const filteredTasks = state.data.map(el => {
-          el.tasks.filter(task => task._id !== payload);
+        state.data = state.data.map(el => {
+          if (
+            new Date(el.date).getTime() === new Date(payload.date).getTime()
+          ) {
+            el.tasks = el.tasks.filter(task => task._id !== payload._id);
+          }
+
           return el;
         });
-        state.data = filteredTasks;
       })
       .addCase(updateTask.fulfilled, (state, { payload }) => {
         const updatedTask = payload.task;
