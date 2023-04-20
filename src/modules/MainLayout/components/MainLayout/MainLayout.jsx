@@ -19,9 +19,10 @@ export const MainLayout = () => {
     if (user.name !== null) {
       return;
     }
+    if (!user.email) return;
 
     dispatch(authGetUserInfo());
-  }, [dispatch, user.name]);
+  }, [dispatch, user.name, user.email]);
 
   const theme = useTheme();
   // console.log(theme);

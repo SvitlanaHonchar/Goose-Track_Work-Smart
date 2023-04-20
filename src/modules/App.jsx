@@ -73,12 +73,12 @@ const App = () => {
   const user = useSelector(selectUser);
   // Refresh - success
   useEffect(() => {
-    if (user.name !== null) return;
+    if (user.email === null) return;
     // if (error?.status === 401) {
     //   console.log('401 error');
     // }
     dispatch(authRefresh());
-  }, [dispatch, user.name]);
+  }, [dispatch, user.email]);
 
   return (
     <AppStyled className="app">
