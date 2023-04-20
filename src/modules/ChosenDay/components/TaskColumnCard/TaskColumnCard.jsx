@@ -16,18 +16,8 @@ const TaskColumnCard = ({ ...task }) => {
 
   const { userImgUrl } = useSelector(selectUser);
 
-  // const checkCurrentDate = () => {
-  //   const currentDate = new Date();
-  //   const taskDate = new Date(task.date);
-  //   const isToday =
-  //     taskDate.getDate() === currentDate.getDate() &&
-  //     taskDate.getMonth() === currentDate.getMonth() &&
-  //     taskDate.getFullYear() === currentDate.getFullYear();
-  //   return isToday;
-  // };
-
   return (
-    <BoxWrapper key={task._id}>
+    <BoxWrapper key={task._id} className="boxWrapperTask">
       <Title>
         <p>{title}</p>
       </Title>

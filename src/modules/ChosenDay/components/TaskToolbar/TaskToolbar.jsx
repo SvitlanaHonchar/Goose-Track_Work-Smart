@@ -16,6 +16,16 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 const TaskToolbar = ({ ...taskData }) => {
   const dispatch = useDispatch();
 
+  const checkCurrentDate = () => {
+    // const taskCurrentday = new Date(currentDay).getTime();
+    // const today = new Date().getTime();
+    // if (taskCurrentday < today) {
+    //   return false;
+    // } else {
+    //   return true;
+    // }
+  };
+
   const { priority, category, date, title, start, end, _id: id } = taskData;
   const { isOpen, action, closeModal, toggleModal, details } = useModal();
 
@@ -36,7 +46,6 @@ const TaskToolbar = ({ ...taskData }) => {
       ...taskData,
       category: newCategory,
     };
-    // console.log('newCategory', newCategory);
     dispatch(updateTask({ taskId: id, taskData: updatingTask }));
     // showSuccessMoveTask(newCategory);
   };
@@ -53,7 +62,7 @@ const TaskToolbar = ({ ...taskData }) => {
   return (
     <>
       <TaskToolbarList>
-        <li>
+        <li className={checkCurrentDate ? '' : 'disabled'}>
           <div className="relative">
             <button type="button">
               <FormControl sx={{ width: '16', height: '16' }}>
@@ -82,7 +91,7 @@ const TaskToolbar = ({ ...taskData }) => {
             </button>
           </div>
         </li>
-        <li>
+        <li className={checkCurrentDate ? '' : 'disabled'}>
           <button
             type="button"
             onClick={() => {
@@ -94,7 +103,7 @@ const TaskToolbar = ({ ...taskData }) => {
             </svg>
           </button>
         </li>
-        <li>
+        <li className={checkCurrentDate ? '' : 'disabled'}>
           <button
             type="button"
             onClick={() => {

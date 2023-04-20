@@ -11,9 +11,9 @@ export const ContainerTask = styled.div`
   border-radius: 8px;
   background-color: ${theme.palette.custom.mainWhite};
   padding: 25px 18px 10px 18px;
- 
+
   &: last-child {
-    margin-right: 16px;
+    margin-right: 0;
   }
 
   @media screen and (min-width: 768px) {
@@ -24,9 +24,7 @@ export const ContainerTask = styled.div`
   
   @media screen and (min-width: 1440px) {
     width: 344px;
-  &: last-child {
-    margin-right: 0;
-  }
+
 `;
 
 export const GridItem = styled(Grid)`
@@ -75,5 +73,8 @@ export const PaperTask = styled(Paper)`
   @media screen and (min-width: 768px) {
     max-height: 376px;
     width: 300px;
+  }
+  & .MuiPaper-root {
+    background-color: rose;
   }
 `;

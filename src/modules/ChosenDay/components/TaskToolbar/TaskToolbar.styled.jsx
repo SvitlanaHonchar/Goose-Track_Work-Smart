@@ -7,6 +7,14 @@ export const TaskToolbarList = styled.ul`
   justify-content: center;
   align-items: center;
 
+  & li{
+    &.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  }
+
   & button {
     display: flex;
     flex-direction: row;
@@ -14,6 +22,12 @@ export const TaskToolbarList = styled.ul`
     border: transparent;
     cursor: pointer;
     padding: 0;
+    
+    &.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
+  }
 
     & svg {
       stroke: ${theme.palette.grey.body};
@@ -34,4 +48,5 @@ export const TaskToolbarList = styled.ul`
       height: 16px;
     }
   }
+
 `;

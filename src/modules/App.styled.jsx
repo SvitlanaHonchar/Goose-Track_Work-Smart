@@ -92,4 +92,43 @@ export const AppStyled = styled.div`
   &.darkMode .UserInfoModal {
     background-color: ${theme.palette.darkmode.dark};
   }
+
+  &.darkMode .containerTask {
+    background-color: ${theme.palette.grey.dark};
+    border: 1px solid ${theme.palette.custom.pagDarkBorder};
+  }
+
+  &.darkMode .boxWrapperTask {
+    background-color: ${theme.palette.grey[700]};
+    border: 1px solid ${theme.palette.custom.pagDarkBorder};
+  }
+
+  &.darkMode .boxWrapperTask,
+  &.darkMode .addTaskButton,
+  &.darkMode .columnHeadBar {
+    & p {
+      color: ${theme.palette.custom.mainWhite};
+    }
+    & svg {
+      stroke: ${theme.palette.custom.mainWhite};
+    }
+  }
+
+  &.darkMode .addTaskButton {
+    background-color: ${theme.palette.primary.main};
+  }
+
+  &.darkMode .darkScrollbarTrack {
+    ::-webkit-scrollbar-track {
+      background: ${theme.palette.grey[700]};
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: ${theme.palette.grey[800]};
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: ${theme.palette.grey[400]};
+    }
+  }
 `;

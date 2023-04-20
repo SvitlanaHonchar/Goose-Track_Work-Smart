@@ -33,6 +33,8 @@ const TasksColumnsList = ({ tasks, currentDay }) => {
       flexDirection="row"
       flexWrap="nowrap"
       spacing={2}
+      className="darkScrollbarTrack"
+      marginBootom="3"
       sx={{
         overflowY: 'hidden',
         overflowX: 'auto',
@@ -40,6 +42,7 @@ const TasksColumnsList = ({ tasks, currentDay }) => {
           padding: 0,
           margin: 1,
           marginLeft: 0,
+          marginRight: 0,
         },
       }}
     >
