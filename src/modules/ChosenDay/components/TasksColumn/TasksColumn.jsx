@@ -14,11 +14,27 @@ const TasksColumn = ({ title, tasks, category, currentDay }) => {
     toggleModal('add', { details: {} });
   };
 
+  const checkCurrentDate = () => {
+    const taskCurrentday = new Date(currentDay).getTime();
+    const today = new Date().getTime();
+    if (taskCurrentday < today) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   return (
-    <ContainerTask>
-      <ColumnHeadBar title={title} openTaskModal={handleAddTaskClick} />
+    <ContainerTask className="containerTask">
+      <ColumnHeadBar
+        title={title}
+        openTaskModal={handleAddTaskClick}
+        checkCurrentDate={checkCurrentDate()}
+      />
       <GridItem
         item
+        className="darkScrollbarTrack"
+        marginBottom={{ md: 3 }}
         sx={{
           padding: '0',
           margin: '0',
@@ -34,12 +50,18 @@ const TasksColumn = ({ title, tasks, category, currentDay }) => {
             justifyContent: 'center',
             alignItems: 'center',
             boxShadow: 'none',
+            '&.MuiPaper-root': {
+              backgroundColor: 'transparent',
+            },
           }}
         >
           {tasks && <ColumnsTasksList tasks={tasks} />}
         </PaperTask>
       </GridItem>
-      {<AddTaskBtn openTaskModal={handleAddTaskClick} />}
+      <AddTaskBtn
+        openTaskModal={handleAddTaskClick}
+        checkCurrentDate={checkCurrentDate()}
+      />
       {isOpen && (
         <TaskModal
           action={action}

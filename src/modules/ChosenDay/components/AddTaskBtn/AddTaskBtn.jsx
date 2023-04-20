@@ -2,28 +2,11 @@ import React from 'react';
 import sprite from '../../../../shared/icons/sprite.svg';
 import { Button } from './AddTaskBtn.styled';
 
-const AddTaskBtn = ({ openTaskModal }) => {
-  // const isTaskCreatedYesterday = () => {
-  //   const currentDate = new Date();
-  //   const taskDate = new Date(myTaskDetails.date);
-  //   const isPastOrPresent = taskDate <= currentDate;
-  //   return isPastOrPresent;
-  // };
-
-  // const isTaskCreatedYesterday = () => {
-  //   const currentDate = new Date();
-  //   const taskDate = new Date(myTaskDetails.date);
-  //   const isToday =
-  //     taskDate.getDate() === currentDate.getDate() &&
-  //     taskDate.getMonth() === currentDate.getMonth() &&
-  //     taskDate.getFullYear() === currentDate.getFullYear();
-  //   return isToday;
-  // };
-
+const AddTaskBtn = ({ openTaskModal, checkCurrentDate }) => {
   return (
     <>
       <Button
-        // className={isTaskCreatedYesterday() ? '' : 'disabled'}
+        className={`${checkCurrentDate ? '' : 'disabled'} addTaskButton`}
         onClick={openTaskModal}
       >
         <svg>

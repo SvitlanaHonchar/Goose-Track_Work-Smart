@@ -1,6 +1,7 @@
 import React, { lazy, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import {
+  Navigate,
   Route,
   RouterProvider,
   createBrowserRouter,
@@ -8,7 +9,7 @@ import {
 } from 'react-router-dom';
 // import { selectUserError } from 'redux/auth/authSelectors';
 //layoutes and pages lazy loading
-import MainLayout from './MainLayout/components/MainLayout/MainLayout';
+import { MainLayout } from './MainLayout';
 import { authRefresh } from 'redux/auth/authOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import StartPage from 'pages/StartPage/StartPage';
@@ -48,7 +49,8 @@ const basename = '';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<SharedLayout />}>
+    // <Route path="/" element={<SharedLayout />}>
+    <Route path="/" element={<SharedLayout />} errorElement={<NoMatchPage />}>
       <Route index element={<StartPage />} />
       <Route path="login" element={<LoginPage />} />
       <Route path="register" element={<RegisterPage />} />
@@ -60,7 +62,7 @@ const router = createBrowserRouter(
         </Route>
       </Route>
 
-      <Route path="*" element={<NoMatchPage />} />
+      <Route path="*" element={<Navigate to="/calendar" />} />
     </Route>
   ),
   { basename }

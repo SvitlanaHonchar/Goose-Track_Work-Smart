@@ -1,11 +1,3 @@
-// + 1. Компонент отримує колекцію днів обраного місяця з задачами, вказаними для виконання на відповідні дні.
-// 2. Якщо день має заплановані задачі, вони відображаються відповідними блоками всередині комірки дня.
-// + 3. Клік по комірці переадресовує юзера на відповідний день по маршруту /calendar/day/:date і показує модуль одного дня ChoosedDay з відповідною датою.
-// + 4. на стор.404 - переадресація
-// + 5. календар пейдж - запит за датою з юзпарамс
-// Додатково:
-// Клік по завданню з комірки, відкриває модалку для редагування даного завдання, заповнену даними з цього завдання.
-
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import CalendarDates from 'calendar-dates';
@@ -33,7 +25,7 @@ function CalendarTable({ tasks, currentMonth }) {
       todayTasks.length !== 0
         ? todayTasks[0].tasks.map(task => (
             <StyledLi key={task._id} className={task.priority}>
-              {task.title}
+              <p>{task.title}</p>
             </StyledLi>
           ))
         : '';
@@ -141,7 +133,7 @@ function CalendarTable({ tasks, currentMonth }) {
                                 1
                               )}
                           {getAllDayTasks(`${getNextDay(day.iso)}`).length >
-                            2 && (
+                            1 && (
                             <NavLink
                               to={`/calendar/day/${getNextDay(day.iso)}`}
                               className="more-btn"

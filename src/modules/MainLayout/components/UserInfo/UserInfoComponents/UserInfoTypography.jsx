@@ -7,6 +7,7 @@ export const UserInfoTypography = ({ name }) => {
   return (
     <>
       <Typography
+        className="UserInfoTypography"
         sx={{
           fontWeight: 700,
           color: theme.palette.grey[500],
@@ -28,5 +29,5 @@ export const UserInfoTypography = ({ name }) => {
 };
 
 UserInfoTypography.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
 };

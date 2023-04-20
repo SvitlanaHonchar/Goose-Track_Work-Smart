@@ -10,7 +10,7 @@ import {
 } from './Sidebar.styled';
 
 export default function UserNav({ onClick }) {
-  const currentMonth = new Date().toISOString().slice(0, 7);
+  // const currentMonth = new Date().toISOString().slice(0, 7);
   return (
     <StyledNavContainer className="sidebar-usernav">
       <StyledLogoDiv>
@@ -35,7 +35,7 @@ export default function UserNav({ onClick }) {
           </StyledIcon>
           <p>My account</p>
         </StyledNavLink>
-        <StyledNavLink to={`/calendar/month/${currentMonth}`}>
+        <StyledNavLink to={`/calendar`}>
           <StyledIcon>
             <Icon name="calendarCheck" width="18px" height="18px" />
           </StyledIcon>

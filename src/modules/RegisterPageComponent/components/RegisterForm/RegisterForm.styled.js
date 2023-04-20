@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Button } from '@mui/material';
 import { Form, Field, ErrorMessage } from 'formik';
-import theme from '../../../shared/theme';
+import theme from '../../../../shared/theme';
 
 export const Container = styled.div`
   margin-right: auto;

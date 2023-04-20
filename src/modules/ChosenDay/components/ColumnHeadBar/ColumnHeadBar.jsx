@@ -1,17 +1,20 @@
 import React from 'react';
 import sprite from '../../../../shared/icons/sprite.svg';
-import { Button, ColumnHeadBarWrapper, Title } from './ColumnHeaderBar';
+import { ColumnHeadBarWrapper } from './ColumnHeaderBar';
 
-const ColumnHeadBar = ({ title, openTaskModal }) => {
+const ColumnHeadBar = ({ title, openTaskModal, checkCurrentDate }) => {
   return (
     <>
-      <ColumnHeadBarWrapper>
-        <Title>{title}</Title>
-        <Button onClick={openTaskModal}>
+      <ColumnHeadBarWrapper className="columnHeadBar">
+        <p>{title}</p>
+        <button
+          onClick={openTaskModal}
+          className={checkCurrentDate ? '' : 'disabled'}
+        >
           <svg>
             <use href={sprite + '#plusInCircle'} />
           </svg>
-        </Button>
+        </button>
       </ColumnHeadBarWrapper>
     </>
   );

@@ -55,3 +55,6 @@ export const showSuccessUserUpdate = () => {
 export const showAnyError = errorText => {
   toast.error(errorText);
 };
+export const showEmptyTitle = () => {
+  toast.error('The title is required to have at least 3 letters');
+};
