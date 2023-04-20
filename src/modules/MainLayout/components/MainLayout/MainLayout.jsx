@@ -1,8 +1,13 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import SideBar from '../SideBar/SideBar';
+import Footer from '../Footer/Footer';
 import { Outlet } from 'react-router';
-import { StyledDiv, StyledMainContent } from './MainLayout.styled';
+import {
+  MainLayoutWrapper,
+  StyledDiv,
+  StyledMainContent,
+} from './MainLayout.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/authSelectors';
 import { authGetUserInfo } from 'redux/auth/authOperations';
@@ -36,15 +41,18 @@ export const MainLayout = () => {
   };
 
   return (
-    <StyledDiv theme={theme} className="mainLayout">
-      <SideBar menu={menuStatus} onClose={closeMenu} />
-      <StyledMainContent>
-        <Header onBurgerClick={openMenu} />
+    <MainLayoutWrapper>
+      <StyledDiv theme={theme} className="mainLayout">
+        <SideBar menu={menuStatus} onClose={closeMenu} />
+        <StyledMainContent>
+          <Header onBurgerClick={openMenu} />
 
-        <Suspense>
-          <Outlet />
-        </Suspense>
-      </StyledMainContent>
-    </StyledDiv>
+          <Suspense>
+            <Outlet />
+          </Suspense>
+        </StyledMainContent>
+      </StyledDiv>
+      <Footer />
+    </MainLayoutWrapper>
   );
 };

@@ -3,7 +3,7 @@ import theme from 'shared/theme';
 
 export const AppStyled = styled.div`
   background-color: #eaeaea;
-  height: 100vh;
+  height: 100%;
 
   &.darkMode,
   &.darkMode .headerLayout,
