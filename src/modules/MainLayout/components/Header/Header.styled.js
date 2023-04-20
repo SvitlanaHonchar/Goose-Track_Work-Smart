@@ -8,7 +8,8 @@ export const StyledHeader = styled.header`
 
   & .header__right-container {
     display: flex;
-    gap: 16px;
+    align-items: center;
+    gap: 14px;
     margin-left: auto;
   }
 
