@@ -18,32 +18,44 @@ export const GooseTracker_API = {
   //!UserAuth
   register: async registerData => {
     const response = await $publicHost.post('user/register', registerData);
-    console.log('register response: ', response);
+    if (response.statusText === 'OK') {
+      const accessToken = response.data.data.accessToken;
+      const refreshToken = response.data.data.refreshToken;
+      setInterseptor(accessToken, refreshToken);
+    }
 
     return response.data;
   },
   login: async loginData => {
     const response = await $publicHost.post('user/login', loginData);
+    if (response.statusText === 'OK') {
+      const accessToken = response.data.data.accessToken;
+      const refreshToken = response.data.data.refreshToken;
+      setInterseptor(accessToken, refreshToken);
+    }
     return response.data;
   },
   logout: async () => {
-    refreshInterseptor();
     const response = await $privateHost.get('user/logout');
     return response.data;
   },
   refreshUser: async () => {
     refreshInterseptor();
     const response = await $refreshHost.post('user/refresh');
+    if (response.statusText === 'OK') {
+      const accessToken = response.data.data.accessToken;
+      const refreshToken = response.data.data.refreshToken;
+      setInterseptor(accessToken, refreshToken);
+    }
+    // console.log('response: ', response);
 
     return response.data;
   },
   getUserInfo: async () => {
-    refreshInterseptor();
     const response = await $privateHost.get('user/info');
     return response.data;
   },
   updateUser: async updateData => {
-    refreshInterseptor();
     const response = await $privateHost.patch('user/update', updateData);
     return response.data;
   },
@@ -70,6 +82,30 @@ export const GooseTracker_API = {
     return response.data;
   },
 };
+
+function setInterseptor(accessToken, refreshToken) {
+  console.log('refreshToken: ', refreshToken);
+  console.log('accessToken: ', accessToken);
+  const authInterceptorPrivate = config => {
+    const authHeader = `Bearer ${accessToken.slice(1, accessToken.length - 1)}`;
+
+    config.headers['Authorization'] = authHeader;
+    return config;
+  };
+
+  const authInterceptorRefresh = config => {
+    const refreshHeader = `Bearer ${refreshToken.slice(
+      1,
+      refreshToken.length - 1
+    )}`;
+
+    config.headers['Authorization'] = refreshHeader;
+    return config;
+  };
+
+  $privateHost.interceptors.request.use(authInterceptorPrivate);
+  $refreshHost.interceptors.request.use(authInterceptorRefresh);
+}
 
 function refreshInterseptor() {
   const authInterceptorPrivate = config => {
