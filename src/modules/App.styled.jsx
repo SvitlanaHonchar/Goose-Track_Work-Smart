@@ -29,7 +29,8 @@ export const AppStyled = styled.div`
   &.darkMode .MuiInputBase-inputSizeSmall,
   &.darkMode
     .calendarHead__weekDay--monthMode:not(.calendarHead__weekDay--holiday),
-  &.darkMode .calendarHead__dateLink {
+  &.darkMode .calendarHead__dateLink,
+  &.darkMode .Mui-disabled {
     color: ${theme.palette.custom.mainWhite};
   }
 
@@ -79,6 +80,10 @@ export const AppStyled = styled.div`
   &.darkMode .accountContainer {
     background-color: ${theme.palette.darkmode.darkGrey};
     color: ${theme.palette.custom.mainWhite};
+  }
+
+  &.darkMode .MuiOutlinedInput-notchedOutline {
+    border-color: ${theme.palette.custom.mainWhite};
   }
 
   &.darkMode .UserInfoTypography,

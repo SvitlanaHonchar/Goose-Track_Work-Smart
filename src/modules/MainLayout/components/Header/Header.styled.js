@@ -8,7 +8,8 @@ export const StyledHeader = styled.header`
 
   & .header__right-container {
     display: flex;
-    gap: 16px;
+    align-items: center;
+    gap: 14px;
     margin-left: auto;
   }
 
@@ -38,6 +39,8 @@ export const StyledHeader = styled.header`
   }
 
   @media screen and (min-width: 768px) {
+    min-height: 69.352px;
+
     & .header-calendar {
       display: flex;
       align-items: flex-end;

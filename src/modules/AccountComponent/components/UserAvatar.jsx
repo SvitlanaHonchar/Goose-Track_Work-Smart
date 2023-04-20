@@ -35,7 +35,7 @@ export const UserAvatar = ({ setAvatar, formData }) => {
         }}
       >
         <Avatar
-          src={curImageUrl || userImgUrl}
+          src={typeof curImageUrl === 'string' ? curImageUrl : userImgUrl}
           alt={`${name} picture`}
           sx={{
             width: 72,
@@ -48,7 +48,6 @@ export const UserAvatar = ({ setAvatar, formData }) => {
             sx={{
               position: 'absolute',
               top: 52,
-              right: 10,
               borderRadius: 50,
               bgcolor: 'common.white',
             }}

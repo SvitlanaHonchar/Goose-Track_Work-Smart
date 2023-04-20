@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ListItem } from '@mui/material';
 import { Box } from '@mui/system';
@@ -8,6 +8,17 @@ import { ListStyled } from './CalendarHead.styled';
 const WEEK_DAYS = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 
 const CalendarHead = ({ mode, currentDay }) => {
+  const [isNarrowScreen, setIsNarrowScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsNarrowScreen(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const options = {};
   if (currentDay) {
     options.selectedDate = new Date(currentDay);
@@ -38,7 +49,7 @@ const CalendarHead = ({ mode, currentDay }) => {
                 index >= 5 && 'calendarHead__weekDay--holiday'
               }`}
             >
-              {window.innerWidth >= 765 ? day : day[0]}
+              {isNarrowScreen ? day[0] : day}
             </span>
           </ListItem>
         ))}

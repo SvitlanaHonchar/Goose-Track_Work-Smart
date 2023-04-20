@@ -115,7 +115,8 @@ function CalendarTable({ tasks, currentMonth }) {
                         <NavLink
                           to={`/calendar/day/${getNextDay(day.iso)}`}
                           className={
-                            day.iso === new Date().toISOString().slice(0, 10)
+                            getNextDay(day.iso) ===
+                            new Date().toISOString().slice(0, 10)
                               ? 'current'
                               : ''
                           }
