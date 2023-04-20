@@ -67,6 +67,7 @@ const CalendarPage = () => {
     setTimeout(() => {
       dispatch(authGetUserInfo());
     }, 500);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
