@@ -52,6 +52,12 @@ export const showSuccessUserUpdate = () => {
   toast.success('Your account has been updated successfully.');
 };
 
+export const showErrorUserUpdate = () => {
+  toast.error(
+    'Update failed due to an unexpected error. Please try again later.'
+  );
+};
+
 export const showAnyError = errorText => {
   toast.error(errorText);
 };

@@ -7,7 +7,10 @@ import { Container, Grid, Typography } from '@mui/material';
 import ButtonAuth from 'shared/components/ui/ButtonAuth/ButtonAuth';
 import { authGetUserInfo, authUpdate } from 'redux/auth/authOperations';
 import { selectUser } from 'redux/auth/authSelectors';
-import { showSuccessUserUpdate } from 'shared/utils/notifications';
+import {
+  showErrorUserUpdate,
+  showSuccessUserUpdate,
+} from 'shared/utils/notifications';
 
 export const AccountComponent = () => {
   const dispatch = useDispatch();
@@ -19,9 +22,9 @@ export const AccountComponent = () => {
     const emailRegex = /^\S+@\S+.\S+$/;
     const phoneRegex = /^\+380\d{9}$/;
     const birthdayRegex = /^\d{4}-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01])$/;
-    if (!values.name) {
+    if (!values.name.trim()) {
       errors.name = 'Required';
-    } else if (values.name.length > 16) {
+    } else if (values.name.trim().length > 16) {
       errors.name = 'Must be 16 characters or less';
     }
 
@@ -41,7 +44,7 @@ export const AccountComponent = () => {
       errors.phone = 'Invalid phone number';
     }
 
-    if (values.skype && values.skype.length > 16) {
+    if (values.skype.trim().length !== 0 && values.skype.trim().length > 16) {
       errors.skype = 'Must be 16 characters or less';
     }
 
@@ -61,7 +64,16 @@ export const AccountComponent = () => {
       if (actionResult.type === 'user/update/fulfilled') {
         showSuccessUserUpdate();
         resetForm({ values });
+      } else if (actionResult.type === 'user/update/rejected') {
+        showErrorUserUpdate();
+        resetForm({ values });
       }
+    },
+    handleChange: event => {
+      const { name, value } = event.target;
+      const trimmedValue =
+        name === 'name' || name === 'skype' ? value.trim() : value;
+      formik.setFieldValue(name, trimmedValue);
     },
   });
   const {
@@ -76,8 +88,7 @@ export const AccountComponent = () => {
   } = formik;
 
   useEffect(() => {
-    // TODO: delete timeout, when register is ready
-    setTimeout(() => dispatch(authGetUserInfo()), 500);
+    dispatch(authGetUserInfo());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
@@ -137,5 +148,3 @@ export const AccountComponent = () => {
     </form>
   );
 };
-
-// export default AccountComponent;
