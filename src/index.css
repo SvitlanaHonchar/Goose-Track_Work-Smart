@@ -1,5 +1,24 @@
 @import-normalize; /* bring in normalize.css styles */
 
+@font-face {
+  font-family: 'Coolvetica';
+  src: local('Coolvetica Regular'), local('Coolvetica-Regular'),
+    url('./shared/fonts/CoolveticaRg-Regular.woff2') format('woff2'),
+    url('./shared/fonts/CoolveticaRg-Regular.woff') format('woff'),
+    url('./shared/fonts/CoolveticaRg-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Coolvetica';
+  src: local('Coolvetica Italic'), local('Coolvetica-Italic'),
+    url('./shared/fonts/CoolveticaRg-Italic.woff2') format('woff2'),
+    url('./shared/fonts/CoolveticaRg-Italic.woff') format('woff'),
+    url('./shared/fonts/CoolveticaRg-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -12,4 +31,31 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
