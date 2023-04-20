@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import sprite from '../../../../shared/icons/sprite.svg';
-import { TaskToolbarList } from './TaskToolbar.styled';
+import {
+  CategoryTitle,
+  MenuItemColumn,
+  MenuList,
+  TaskToolbarList,
+} from './TaskToolbar.styled';
 import useModal from 'shared/hooks/useModal';
 import TaskModal from 'shared/components/TaskModal/TaskModal';
 // import {
@@ -11,23 +16,23 @@ import { useDispatch } from 'react-redux';
 import { deleteTask, updateTask } from 'redux/tasks/tasksOperations';
 
 import { COLUMN_TASKS } from 'shared/constants/tasksCategory';
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Button } from '@mui/material';
+import theme from 'shared/theme';
 
 const TaskToolbar = ({ ...taskData }) => {
   const dispatch = useDispatch();
 
-  const checkCurrentDate = () => {
-    // const taskCurrentday = new Date(currentDay).getTime();
-    // const today = new Date().getTime();
-    // if (taskCurrentday < today) {
-    //   return false;
-    // } else {
-    //   return true;
-    // }
-  };
-
   const { priority, category, date, title, start, end, _id: id } = taskData;
   const { isOpen, action, closeModal, toggleModal, details } = useModal();
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const editedTaskDetails = {
     id,
@@ -59,39 +64,67 @@ const TaskToolbar = ({ ...taskData }) => {
     // showSuccessDeleteTask(category);
   };
 
+  const isMobile = theme.breakpoints.values.xs;
+
   return (
     <>
       <TaskToolbarList>
-        <li className={checkCurrentDate ? '' : 'disabled'}>
-          <div className="relative">
-            <button type="button">
-              <FormControl sx={{ width: '16', height: '16' }}>
-                <InputLabel id="demo-select-small">
-                  <svg>
-                    <use href={sprite + '#arrowInCircle'} />
-                  </svg>
-                </InputLabel>
-                <Select
-                  inputProps={{ 'aria-label': 'Without label' }}
-                  labelId="demo-select-small"
-                  id="demo-select-small"
-                >
-                  {availableCategories.map(category => (
-                    <MenuItem
-                      key={category.categories}
-                      onClick={() => {
-                        handleMoveTask(category.categories);
-                      }}
-                    >
-                      {category.title}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </button>
-          </div>
+        <li>
+          <Button
+            id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}
+            sx={{ minWidth: 16 }}
+          >
+            <svg>
+              <use href={sprite + '#arrowInCircle'} />
+            </svg>
+          </Button>
+          <MenuList
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              'aria-labelledby': 'basic-button',
+            }}
+
+            transformOrigin={
+              isMobile
+                ? { horizontal: 'right', vertical: 'top' }
+                : { horizontal: 'left', vertical: 'top' }
+            }
+            anchorOrigin={
+              isMobile
+                ? { horizontal: 'right', vertical: 'bottom' }
+                : { horizontal: 'left', vertical: 'bottom' }
+            }
+          >
+            {availableCategories.map(category => (
+              <MenuItemColumn
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '10',
+                }}
+                key={category.categories}
+                onClick={() => {
+                  handleMoveTask(category.categories);
+                }}
+              >
+                <CategoryTitle>{category.title}</CategoryTitle>
+                <svg>
+                  <use href={sprite + '#arrowInCircle'} />
+                </svg>
+              </MenuItemColumn>
+            ))}
+          </MenuList>
         </li>
-        <li className={checkCurrentDate ? '' : 'disabled'}>
+        <li>
           <button
             type="button"
             onClick={() => {
@@ -103,7 +136,7 @@ const TaskToolbar = ({ ...taskData }) => {
             </svg>
           </button>
         </li>
-        <li className={checkCurrentDate ? '' : 'disabled'}>
+        <li>
           <button
             type="button"
             onClick={() => {

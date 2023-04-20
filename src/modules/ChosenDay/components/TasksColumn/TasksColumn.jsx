@@ -15,13 +15,8 @@ const TasksColumn = ({ title, tasks, category, currentDay }) => {
   };
 
   const checkCurrentDate = () => {
-    // const taskCurrentday = new Date(currentDay).getTime();
-    // const today = new Date().getTime();
     const taskCurrentday = new Date(currentDay).toISOString().slice(0, 10);
     const today = new Date().toISOString().slice(0, 10);
-    // console.log('taskCurrentday:', taskCurrentday);
-    // console.log('today:', today);
-
     if (taskCurrentday < today) {
       return false;
     } else {
