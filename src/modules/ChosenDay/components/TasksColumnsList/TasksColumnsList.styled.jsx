@@ -8,11 +8,12 @@ export const GridContainer = styled(Grid)`
   gap: 16px;
   flex-direction: column;
   overflow-x: scroll;
-
+  width: 100%;
+  width: 335px;
+  max-width: 1087px;
   &.MuiGrid-container {
     width: 335px;
   }
-
   //  ------- scrollbarTrack ------- //
   ::-webkit-scrollbar {
     height: 12px;
