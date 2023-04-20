@@ -12,8 +12,11 @@ export const SideBarContainer = styled.div`
   border-right: 1px solid #dce3e5;
   /* height: 100%; */
   width: 289px;
-
+  min-height: calc(100vh - 55.5px);
+  /* max-height: 100vh; */
   padding: 24px 32px;
+  position: sticky;
+  top: 0;
 
   @media screen and (max-width: 1439px) {
     height: 100%;

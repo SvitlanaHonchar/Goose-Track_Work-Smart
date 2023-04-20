@@ -7,6 +7,9 @@ export const StyledDiv = styled.div`
     color: rgba(52, 52, 52, 1);
   }
 
+  & .calendarTable {
+    height: 610px;
+  }
   & .cell-container {
     display: flex;
     flex-direction: column;
