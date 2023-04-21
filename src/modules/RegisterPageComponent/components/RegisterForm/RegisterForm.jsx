@@ -28,11 +28,13 @@ import theme from '../../../../shared/theme';
 const validationSchema = Yup.object().shape({
   name: Yup.string()
     .required('Name is required')
-    .min(3, 'Name must be at least 3 characters long'),
+    .min(3, 'Name must be at least 3 characters long')
+    .matches(/^\S*$/, 'Name must not contain spaces'),
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string()
     .required('Password is required')
-    .min(6, 'Password must be at least 6 characters long'),
+    .min(6, 'Password must be at least 6 characters long')
+    .matches(/^\S*$/, 'Password must not contain spaces'),
 });
 
 const RegisterForm = () => {
