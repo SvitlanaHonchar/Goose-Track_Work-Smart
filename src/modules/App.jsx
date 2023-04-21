@@ -31,10 +31,10 @@ const CalendarPageWithRedirect = withAuthRedirect(CalendarPage, '/');
 
 // ----------------------------------------------------
 // for gitHub
-const basename = '/Goose-Track_Work-Smart/';
+// const basename = '/Goose-Track_Work-Smart/';
 
 // for work
-// const basename = '';
+const basename = '';
 // ----------------------------------------------------
 
 const router = createBrowserRouter(
