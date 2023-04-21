@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material';
 // import React, { useState, useEffect } from 'react';
 
-import theme from 'shared/theme';
+// import theme from 'shared/theme';
 import sprite from '../../../../../shared/icons/sprite.svg';
 import { NavLink } from 'react-router-dom';
 // import { checkDarkTheme } from 'shared/utils/checkDarkTheme';

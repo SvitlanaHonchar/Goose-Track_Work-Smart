@@ -6,7 +6,6 @@ import { UserAvatar } from './UserInfoComponents/UserAvatar';
 import { UserInfoTypography } from './UserInfoComponents/UserInfoTypography';
 import { UserInfoMenuNavLink } from './UserInfoComponents/UserInfoMenuNavLink';
 import { UserInfoMenuBtnLogOut } from './UserInfoComponents/UserInfoMenuLogoutBtn';
-import { checkDarkTheme } from 'shared/utils/checkDarkTheme';
 
 export const UserInfoMenu = ({
   name,
@@ -17,9 +16,11 @@ export const UserInfoMenu = ({
   open,
 }) => {
   const [darkTheme, setDarkTheme] = useState();
+  const dark = localStorage.getItem('darkModeGooseTrack');
+
   useEffect(() => {
-    setDarkTheme(checkDarkTheme());
-  }, []);
+    setDarkTheme(dark);
+  }, [dark]);
 
   return (
     <div>
@@ -41,14 +42,16 @@ export const UserInfoMenu = ({
             borderRadius: '8px',
             height: { xs: 189, md: 203 },
             overflow: 'visible',
-            filter: darkTheme
-              ? 'drop-shadow (4px 2px 16px rgba(136, 165, 191, 0.48))'
-              : `drop-shadow(1px solid ${theme.palette.custom.pagDarkBorder})`,
+            filter:
+              darkTheme === 'true'
+                ? 'drop-shadow (4px 2px 16px rgba(136, 165, 191, 0.48))'
+                : `drop-shadow(1px solid ${theme.palette.custom.pagDarkBorder})`,
             mt: 1.5,
 
-            backgroundColor: darkTheme
-              ? `${theme.palette.grey[800]}`
-              : `${theme.palette.custom.mainWhite}`,
+            backgroundColor:
+              darkTheme === 'true'
+                ? `${theme.palette.grey[800]}`
+                : `${theme.palette.custom.mainWhite}`,
 
             '&:before': {
               content: '""',
@@ -60,9 +63,10 @@ export const UserInfoMenu = ({
               height: 10,
               transform: 'translateY(-50%) rotate(45deg)',
               zIndex: 0,
-              backgroundColor: darkTheme
-                ? `${theme.palette.grey[800]}`
-                : `${theme.palette.custom.mainWhite}`,
+              backgroundColor:
+                darkTheme === 'true'
+                  ? `${theme.palette.grey[800]}`
+                  : `${theme.palette.custom.mainWhite}`,
             },
             '& .MuiMenu-list': {
               padding: 0,
@@ -82,9 +86,10 @@ export const UserInfoMenu = ({
             padding: 0,
             paddingBottom: '18px',
             borderBottom: '1px solid rgba(220, 227, 229, 0.3)',
-            color: darkTheme
-              ? `${theme.palette.custom.mainWhite}`
-              : `${theme.palette.grey[500]}`,
+            color:
+              darkTheme === 'true'
+                ? `${theme.palette.custom.mainWhite}`
+                : `${theme.palette.grey[500]}`,
           }}
         >
           <UserAvatar
@@ -97,9 +102,10 @@ export const UserInfoMenu = ({
             className=""
             name={name}
             sx={{
-              color: darkTheme
-                ? `${theme.palette.custom.mainWhite}`
-                : `${theme.palette.grey[500]}`,
+              color:
+                darkTheme === 'true'
+                  ? `${theme.palette.custom.mainWhite}`
+                  : `${theme.palette.grey[500]}`,
             }}
           />
         </MenuItem>
@@ -119,13 +125,15 @@ export const UserInfoMenu = ({
             paddingBottom: '8px',
             borderBottom: '1px solid rgba(220, 227, 229, 0.3)',
 
-            color: darkTheme
-              ? `${theme.palette.custom.mainWhite}`
-              : `${theme.palette.grey[400]}`,
+            color:
+              darkTheme === 'true'
+                ? `${theme.palette.custom.mainWhite}`
+                : `${theme.palette.grey[400]}`,
 
-            stroke: darkTheme
-              ? `${theme.palette.custom.mainWhite}`
-              : `${theme.palette.grey[400]}`,
+            stroke:
+              darkTheme === 'true'
+                ? `${theme.palette.custom.mainWhite}`
+                : `${theme.palette.grey[400]}`,
           }}
         >
           <UserInfoMenuNavLink />
