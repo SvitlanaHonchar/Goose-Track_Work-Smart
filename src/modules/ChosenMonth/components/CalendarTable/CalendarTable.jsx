@@ -88,39 +88,44 @@ function CalendarTable({ tasks, currentMonth }) {
                           : '')
                       }
                     >
-                      <div className="cell-container">
-                        <NavLink
-                          to={`/calendar/day/${getNextDay(day.iso)}`}
-                          className={
-                            getNextDay(day.iso) ===
-                            new Date().toISOString().slice(0, 10)
-                              ? 'current'
-                              : ''
-                          }
-                        >
-                          {getNextDay(day.iso).slice(8, 10) < 10
-                            ? getNextDay(day.iso).slice(9, 10)
-                            : getNextDay(day.iso).slice(8, 10)}
-                        </NavLink>
+                      <NavLink
+                        to={`/calendar/day/${getNextDay(day.iso)}`}
+                        className="more-btn"
+                      >
+                        <div className="cell-container">
+                          <NavLink
+                            to={`/calendar/day/${getNextDay(day.iso)}`}
+                            className={
+                              getNextDay(day.iso) ===
+                              new Date().toISOString().slice(0, 10)
+                                ? 'current'
+                                : ''
+                            }
+                          >
+                            {getNextDay(day.iso).slice(8, 10) < 10
+                              ? getNextDay(day.iso).slice(9, 10)
+                              : getNextDay(day.iso).slice(8, 10)}
+                          </NavLink>
 
-                        <StyledUl>
-                          {getAllDayTasks(`${getNextDay(day.iso)}`).length < 1
-                            ? getAllDayTasks(`${getNextDay(day.iso)}`)
-                            : getAllDayTasks(`${getNextDay(day.iso)}`).slice(
-                                0,
-                                1
-                              )}
-                          {getAllDayTasks(`${getNextDay(day.iso)}`).length >
-                            1 && (
-                            <NavLink
-                              to={`/calendar/day/${getNextDay(day.iso)}`}
-                              className="more-btn"
-                            >
-                              ...
-                            </NavLink>
-                          )}
-                        </StyledUl>
-                      </div>
+                          <StyledUl>
+                            {getAllDayTasks(`${getNextDay(day.iso)}`).length < 1
+                              ? getAllDayTasks(`${getNextDay(day.iso)}`)
+                              : getAllDayTasks(`${getNextDay(day.iso)}`).slice(
+                                  0,
+                                  1
+                                )}
+                            {getAllDayTasks(`${getNextDay(day.iso)}`).length >
+                              1 && (
+                              <NavLink
+                                to={`/calendar/day/${getNextDay(day.iso)}`}
+                                className="more-btn"
+                              >
+                                ...
+                              </NavLink>
+                            )}
+                          </StyledUl>
+                        </div>
+                      </NavLink>
                     </TableCell>
                   ))}
                 </TableRow>

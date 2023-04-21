@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Box, Button, Tooltip } from '@mui/material';
-
-import { selectIsUserLoading, selectUser } from 'redux/auth/authSelectors';
-import Loader from '../../../../shared/components/Loader/Loader';
+import { selectUser } from 'redux/auth/authSelectors';
 import { UserAvatar } from './UserInfoComponents/UserAvatar';
 import { UserInfoTypography } from './UserInfoComponents/UserInfoTypography';
 import { UserInfoMenu } from './UserInfoMenu';
@@ -28,7 +26,6 @@ const style = {
 
 const UserInfo = () => {
   const { name, userImgUrl } = useSelector(selectUser);
-  const isUserLoading = useSelector(selectIsUserLoading);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -40,9 +37,7 @@ const UserInfo = () => {
     setAnchorEl(null);
   };
 
-  return isUserLoading ? (
-    <Loader />
-  ) : (
+  return (
     <>
       <UserInfoMenu
         name={name}
