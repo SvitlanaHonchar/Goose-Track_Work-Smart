@@ -23,19 +23,11 @@ export const ColumnHeadBarWrapper = styled.div`
     }
   }
   & button {
-    width: 70px;
+    padding-left: 30px;
     background: transparent;
     border: transparent;
     cursor: pointer;
     transition: stroke 200ms cubic-bezier(0.9, 0, 0.2, 1) 0ms;
-
-    @media screen and (min-width: 768px) {
-      width: 40px;
-    }
-
-    @media screen and (min-width: 1140px) {
-      width: 30px;
-    }
 
     & svg {
       fill: none;
