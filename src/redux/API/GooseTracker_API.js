@@ -49,6 +49,7 @@ $privateHost.interceptors.response.use(
           })
         );
         setInterseptor(newAccessToken, newRefreshToken);
+        refreshInterseptor();
         return $privateHost.request(originalRequest);
       } catch (error) {
         console.log(error);
@@ -85,15 +86,13 @@ export const GooseTracker_API = {
     return response.data;
   },
   refreshUser: async () => {
-    refreshInterseptor();
     const response = await $refreshHost.post('user/refresh');
     if (response.statusText === 'OK') {
       const accessToken = response.data.data.accessToken;
-      console.log('accessToken: ', accessToken);
       const refreshToken = response.data.data.refreshToken;
-      console.log('refreshToken: ', refreshToken);
       setInterseptor(accessToken, refreshToken);
     }
+    refreshInterseptor();
 
     return response.data;
   },
