@@ -2,6 +2,7 @@ import React from 'react';
 import TasksColumn from '../TasksColumn/TasksColumn';
 import { COLUMN_TASKS } from 'shared/constants/tasksCategory';
 import { GridContainer } from './TasksColumnsList.styled';
+import PropTypes from 'prop-types';
 
 const TasksColumnsList = ({ tasks, currentDay }) => {
   const allTask = [];
@@ -34,7 +35,7 @@ const TasksColumnsList = ({ tasks, currentDay }) => {
       flexWrap="nowrap"
       spacing={2}
       className="darkScrollbarTrack"
-      marginBottom={{ md: 3 }}
+      columnGap={{ md: 5, lg: 3.3 }}
       sx={{
         overflowY: 'hidden',
         overflowX: 'auto',

@@ -39,34 +39,26 @@ export const TaskToolbarList = styled.ul`
 `;
 
 export const MenuList = styled(Menu)`
-  & .css-1ka5eyc-MuiPaper-root-MuiMenu-paper-MuiPopover-paper {
-    @media screen and (min-width: 768px) {
+  .css-1ka5eyc-MuiPaper-root-MuiMenu-paper-MuiPopover-paper {
+    @media screen and (max-width: 768px) {
       height: 80px;
       width: 130px;
     }
   }
-
-  @media screen and (max-width: 375px) {
+  @media screen and (min-width: 375px) {
     & .css-6hp17o-MuiList-root-MuiMenu-list {
-      padding-top: 3px;
-      padding-bottom: 3px;
+      padding: 0;
     }
-
     & .css-ib3qtv-MuiButtonBase-root-MuiMenuItem-root {
-      padding-left: 6px;
-      padding-right: 6px;
-      padding-top: 3px;
-      padding-bottom: 3px;
+      padding: 0;
     }
   }
 `;
 
 export const MenuItemColumn = styled(MenuItem)`
-  padding: 0;
   & svg {
     height: 14px;
     width: 14px;
-    stroke: ${theme.palette.grey[600]};
     fill: none;
     display: inline;
     width: 14px;
@@ -78,9 +70,11 @@ export const MenuItemColumn = styled(MenuItem)`
       height: 16px;
       width: 16px;
     }
-  }
-  @media screen and (max-width: 375px) {
-    height: 30px;
+
+    @media screen and (max-width: 375px) {
+      height: 30px;
+      padding: 1px;
+    }
   }
 `;
 
@@ -88,7 +82,6 @@ export const CategoryTitle = styled.span`
   font-weight: 500;
   font-size: 12px;
   line-height: 1.4;
-  color: ${theme.palette.grey[600]};
 
   @media screen and (min-width: 768px) {
     font-size: 14px;

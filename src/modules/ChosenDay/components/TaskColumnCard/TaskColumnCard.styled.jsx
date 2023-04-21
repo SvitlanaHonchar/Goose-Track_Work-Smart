@@ -1,5 +1,6 @@
 import theme from 'shared/theme';
 import styled from 'styled-components';
+import Avatar from '@mui/material/Avatar';
 
 export const BoxWrapper = styled.li`
   height: 108px;
@@ -51,16 +52,16 @@ export const InfoBar = styled.div`
 export const UserBar = styled.div`
   display: flex;
   gap: 8px;
+`;
 
-  & img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 1.8px solid ${theme.palette.primary.main};
-  }
+export const AvatarUser = styled(Avatar)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1.8px solid ${theme.palette.primary.main};
+  width: 32px;
+  height: 32px;
 `;
 
 export const Priority = styled.p`
