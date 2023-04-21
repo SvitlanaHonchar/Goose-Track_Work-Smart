@@ -13,7 +13,6 @@ import {
   selectTasksError,
 } from 'redux/tasks/tasksSelectors';
 import {
-  selectIsRefreshed,
   selectIsUserLoading,
   selectIsUserExist,
 } from 'redux/auth/authSelectors';
@@ -31,7 +30,6 @@ const CalendarPage = () => {
   const taskError = useSelector(selectTasksError);
   const isTaskError = useSelector(selectIsTasksError);
   const isUserLoading = useSelector(selectIsUserLoading);
-  const isRefreshed = useSelector(selectIsRefreshed);
   const isUserExist = useSelector(selectIsUserExist);
 
   const isValidDate = dateString => {
@@ -50,23 +48,23 @@ const CalendarPage = () => {
   const currentMonthPath = new Date().toISOString().slice(0, 7);
 
   useEffect(() => {
-    if (!isUserExist && !isRefreshed && isUserLoading) return;
+    if (!isUserExist || isUserLoading) return;
     if (!+year || !+month) return;
 
-    setTimeout(() => {
-      dispatch(
-        getMonthTasks({
-          year: +year,
-          month: +month,
-        })
-      );
-    }, 500);
-  }, [dispatch, year, month, isUserLoading, isRefreshed, isUserExist]);
+    // setTimeout(() => {
+    dispatch(
+      getMonthTasks({
+        year: +year,
+        month: +month,
+      })
+    );
+    // }, 500);
+  }, [dispatch, year, month, isUserLoading, isUserExist]);
 
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(authGetUserInfo());
-    }, 500);
+    // setTimeout(() => {
+    dispatch(authGetUserInfo());
+    // }, 500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

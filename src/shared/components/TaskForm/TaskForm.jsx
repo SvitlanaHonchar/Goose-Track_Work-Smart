@@ -41,6 +41,7 @@ const TaskForm = props => {
   useEffect(() => {
     setDarkTheme(checkDarkTheme());
   }, []);
+
   const dispatch = useDispatch();
   const getDefaultStartTime = (taskDetails, date) => {
     return taskDetails.start

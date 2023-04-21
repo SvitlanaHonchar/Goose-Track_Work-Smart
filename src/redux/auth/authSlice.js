@@ -104,6 +104,7 @@ const authSlice = createSlice({
           };
           state.isLoading = false;
           state.error = false;
+          state.isLogged = true;
         }
       )
       .addMatcher(

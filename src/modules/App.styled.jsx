@@ -3,7 +3,7 @@ import theme from 'shared/theme';
 
 export const AppStyled = styled.div`
   background-color: #eaeaea;
-  height: 100vh;
+  height: 100%;
 
   &.darkMode,
   &.darkMode .headerLayout,
@@ -82,6 +82,12 @@ export const AppStyled = styled.div`
     color: ${theme.palette.custom.mainWhite};
   }
 
+
+
+  &.darkMode .UserInfoTopography {
+   color: ${theme.palette.custom.mainWhite};
+  }
+
   &.darkMode .MuiOutlinedInput-notchedOutline {
     border-color: ${theme.palette.custom.mainWhite};
   }
@@ -91,11 +97,8 @@ export const AppStyled = styled.div`
     color: ${theme.palette.custom.mainWhite};
   }
 
-  &.darkMode .UserInfoModalIcon {
+  &.darkMode .UserInfoMenuIcon {
     stroke: ${theme.palette.custom.mainWhite};
-  }
-  &.darkMode .UserInfoModal {
-    background-color: ${theme.palette.darkmode.dark};
   }
 
   &.darkMode .containerTask {

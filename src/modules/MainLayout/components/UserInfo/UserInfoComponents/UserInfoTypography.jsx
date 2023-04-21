@@ -1,16 +1,17 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@mui/material';
-
-import theme from 'shared/theme';
 
 export const UserInfoTypography = ({ name }) => {
   return (
     <>
       <Typography
-        className="UserInfoTypography"
+        className="UserInfoTopography"
         sx={{
+          // color: darkTheme
+          //   ? `${theme.palette.custom.mainWhite}`
+          //   : `${theme.palette.grey[500]}`,
           fontWeight: 700,
-          color: theme.palette.grey[500],
           lineHeight: {
             xs: 1.29,
             md: 1,

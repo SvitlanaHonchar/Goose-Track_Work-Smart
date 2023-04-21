@@ -4,7 +4,7 @@ import { Avatar } from '@mui/material';
 import theme from 'shared/theme';
 import { changeAvatarColor } from './changeAvatarColor';
 
-export const UserAvatar = ({ userImgUrl, name }) => {
+export const UserAvatar = ({ userImgUrl, name, width, height }) => {
   return (
     <>
       {userImgUrl ? (
@@ -12,15 +12,8 @@ export const UserAvatar = ({ userImgUrl, name }) => {
           src={userImgUrl}
           alt={`${name} picture`}
           sx={{
-            width: {
-              xs: 38,
-              md: 44,
-            },
-            height: {
-              xs: 38,
-              md: 44,
-            },
-
+            width: width,
+            height: height,
             border: `2px solid ${theme.palette.primary.main}`,
           }}
         />
@@ -28,15 +21,9 @@ export const UserAvatar = ({ userImgUrl, name }) => {
         <Avatar
           alt={`${name} picture`}
           sx={{
-            width: {
-              xs: 38,
-              md: 44,
-            },
+            width: width,
             background: changeAvatarColor(name),
-            height: {
-              xs: 38,
-              md: 44,
-            },
+            height: height,
           }}
         >
           {name?.charAt(0) || ''}
@@ -47,6 +34,6 @@ export const UserAvatar = ({ userImgUrl, name }) => {
 };
 
 UserAvatar.propTypes = {
-  userImgUrl: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  userImgUrl: PropTypes.string,
+  name: PropTypes.string,
 };

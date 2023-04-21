@@ -1,4 +1,4 @@
-import React, { lazy, useEffect } from 'react';
+import React, { lazy } from 'react';
 import { Toaster } from 'react-hot-toast';
 import {
   Navigate,
@@ -8,8 +8,8 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 import { MainLayout } from './MainLayout';
-import { authRefresh } from 'redux/auth/authOperations';
-import { useDispatch } from 'react-redux';
+// import { authRefresh } from 'redux/auth/authOperations';
+// import { useDispatch } from 'react-redux';
 import StartPage from 'pages/StartPage/StartPage';
 
 import SharedLayout from '../shared/components/SharedLayout.js/SharedLayout';
@@ -31,10 +31,10 @@ const CalendarPageWithRedirect = withAuthRedirect(CalendarPage, '/');
 
 // ----------------------------------------------------
 // for gitHub
-// const basename = 'Goose-Track_Work-Smart';
+const basename = '/Goose-Track_Work-Smart/';
 
 // for work
-const basename = '';
+// const basename = '';
 // ----------------------------------------------------
 
 const router = createBrowserRouter(
@@ -59,14 +59,14 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // Refresh - success
-  useEffect(() => {
-    if (JSON.parse(localStorage.getItem('persist:auth')).refreshToken) {
-      dispatch(authRefresh());
-    }
-  }, [dispatch]);
+  // useEffect(() => {
+  //   if (JSON.parse(localStorage.getItem('persist:auth')).refreshToken) {
+  //     dispatch(authRefresh());
+  //   }
+  // }, [dispatch]);
 
   return (
     <AppStyled className="app">
