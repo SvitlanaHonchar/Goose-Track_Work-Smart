@@ -2,7 +2,6 @@ import theme from 'shared/theme';
 import styled from 'styled-components';
 
 export const BoxWrapper = styled.li`
-  max-width: 300px;
   height: 108px;
   border-radius: 8px;
   border: 1px solid ${theme.palette.grey.light};
@@ -46,7 +45,7 @@ export const InfoBar = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 `;
 
 export const UserBar = styled.div`

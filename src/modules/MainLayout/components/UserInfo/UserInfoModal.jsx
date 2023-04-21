@@ -34,7 +34,6 @@ const UserInfoModal = ({ name, userImgUrl, onCloseModal }) => {
         disableAutoFocus
         open
         onClose={onCloseModal}
-        // hideBackdrop={true}
       >
         <Box
           className="UserInfoModal"

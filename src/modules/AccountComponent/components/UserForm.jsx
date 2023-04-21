@@ -46,7 +46,7 @@ export default function UserForm({ formData, onChange, setBirthday, errors }) {
             value={phone || ''}
             error={!!errors.phone}
             helperText={errors.phone}
-            placeholder="Enter your phone number"
+            placeholder="+380xxxxxxxxx"
           />
         </Grid>
         <Grid item xs={12} lg={6}>

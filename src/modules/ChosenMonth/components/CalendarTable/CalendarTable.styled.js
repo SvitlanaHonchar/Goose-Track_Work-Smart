@@ -2,6 +2,20 @@ import styled from 'styled-components';
 
 export const StyledDiv = styled.div`
   /* width: 1087px; */
+  .calendarTable {
+    border: 1px solid rgba(220, 227, 229, 0.8);
+    border-radius: 8px;
+    height: 570px;
+    overflow-x: hidden;
+  }
+  .calendarTable tbody tr:last-child .tableCell {
+    border-bottom: none;
+  }
+
+  .tableCell:not(:last-child) {
+    border-right: 1px solid rgba(220, 227, 229, 0.8);
+  }
+
   & a {
     text-decoration: none;
     color: rgba(52, 52, 52, 1);

@@ -8,8 +8,8 @@ import {
 } from './TaskColumnCard.styled';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/auth/authSelectors';
-import TaskToolbar from '../TaskToolbar/TaskToolbar';
 import clsx from 'clsx';
+import TaskToolbar from '../TaskToolbar/TaskToolbar';
 
 const TaskColumnCard = ({ ...task }) => {
   const { priority, title } = task;

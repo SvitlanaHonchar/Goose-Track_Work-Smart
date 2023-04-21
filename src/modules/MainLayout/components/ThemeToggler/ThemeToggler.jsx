@@ -8,7 +8,11 @@ const ThemeToggler = () => {
   const app = document.querySelector('.app');
 
   useEffect(() => {
-    setMode(localStorage.getItem('darkModeGooseTrack') ?? false);
+    const savedMode = localStorage.getItem('darkModeGooseTrack');
+    if (!savedMode) {
+      setMode(localStorage.setItem('darkModeGooseTrack', 'false'));
+    }
+    setMode(localStorage.getItem('darkModeGooseTrack') ?? 'false');
     if (darkMode === 'true') {
       app.classList.add('darkMode');
     }
@@ -19,8 +23,6 @@ const ThemeToggler = () => {
 
   function onThemeTogglerButtonClick() {
     const savedTheme = localStorage.getItem('darkModeGooseTrack');
-    console.log('savedTheme: ', savedTheme);
-    console.log('savedTheme: ', !savedTheme);
     localStorage.setItem(
       'darkModeGooseTrack',
       savedTheme === 'false' ? 'true' : 'false'

@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 
+export const MainLayoutWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const StyledDiv = styled.div`
   background-color: #eaeaea;
-  height: 100vh;
+  /* height: 100vh; */
 
   margin-left: auto;
   margin-right: auto;
-  /* margin-top: 20px; */
-  /* margin-bottom: 20px; */
 
   & .mainLayout-frame {
     display: flex;
@@ -19,6 +22,10 @@ export const StyledDiv = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 768px;
+  }
+
+  @media screen and (max-width: 1439px) {
+    min-height: calc(100vh - 55.5px);
   }
 
   @media screen and (min-width: 1440px) {

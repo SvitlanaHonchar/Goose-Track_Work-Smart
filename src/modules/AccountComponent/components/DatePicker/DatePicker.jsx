@@ -47,7 +47,6 @@ export const DatePicker = ({ setBirthday }) => {
   const handleChange = value => {
     setDate(value);
     setOpen(false);
-    console.log('value', value);
   };
   const handleChangeInput = e => {
     const value = e.target.value;

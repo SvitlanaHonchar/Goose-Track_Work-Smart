@@ -33,22 +33,12 @@ function CalendarTable({ tasks, currentMonth }) {
     return todayTasksMarkup;
   };
 
-  // function getNextDay(currDate) {
-  //   const nextDate = new Date(currDate);
-  //   nextDate.setDate(nextDate.getDate() + 1);
-
-  //   return nextDate.toISOString().slice(0, 10);
-  // }
-
   function getNextDay(currDate) {
     currDate = new Date(currDate);
     const nextDate = new Date(currDate.getTime() + 24 * 60 * 60 * 1000);
 
     return nextDate.toISOString().slice(0, 10);
   }
-
-  // const yesterday = getNextDay('2023-03-26');
-  // console.log(yesterday);
 
   useEffect(() => {
     const mainAsync = async () => {
@@ -62,28 +52,15 @@ function CalendarTable({ tasks, currentMonth }) {
     mainAsync();
   }, [currentMonth]);
 
-  // if (monthMatrix !== null) {
-  //   // month
-  //   console.log('month', monthMatrix);
-  //   // week
-  //   console.log(monthMatrix[0]);
-  //   // day data
-  //   console.log(monthMatrix[0][0]);
-  //   // day
-  //   console.log(monthMatrix[0][0].date);
-  // }
-
   return (
     <StyledDiv>
       <TableContainer
         className="calendarTable"
         sx={{
-          // border: '1px rgba(220, 227, 229, 0.8) solid',
           backgroundColor: '#fff',
 
           borderRadius: '8px',
         }}
-        // component={Paper}
       >
         <Table aria-label="simple table">
           <TableBody>
@@ -96,7 +73,6 @@ function CalendarTable({ tasks, currentMonth }) {
                       align="right"
                       sx={{
                         verticalAlign: 'top',
-                        border: '1px rgba(220, 227, 229, 0.8) solid',
                         boxSizing: 'border-box',
                         height: 125,
                         width: 155,
@@ -105,17 +81,19 @@ function CalendarTable({ tasks, currentMonth }) {
                         paddingLeft: '8px',
                       }}
                       className={
-                        getNextDay(day.iso).slice(5, 7) !==
+                        'tableCell ' +
+                        (getNextDay(day.iso).slice(5, 7) !==
                         new Date().toISOString().slice(5, 7)
                           ? 'not-current'
-                          : ''
+                          : '')
                       }
                     >
                       <div className="cell-container">
                         <NavLink
                           to={`/calendar/day/${getNextDay(day.iso)}`}
                           className={
-                            day.iso === new Date().toISOString().slice(0, 10)
+                            getNextDay(day.iso) ===
+                            new Date().toISOString().slice(0, 10)
                               ? 'current'
                               : ''
                           }

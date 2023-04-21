@@ -12,7 +12,7 @@ export const DatePickerWrapper = styled.div`
     color: #fff;
   }
 
-  & .react-datepicker__header {
+  & .react-datepicker .react-datepicker__header {
     background-color: #3e85f3;
     border-radius: 16px 16px 0 0;
     color: #fff;

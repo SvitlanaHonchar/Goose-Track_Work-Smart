@@ -3,7 +3,7 @@ import theme from 'shared/theme';
 
 export const AppStyled = styled.div`
   background-color: #eaeaea;
-  height: 100vh;
+  height: 100%;
 
   &.darkMode,
   &.darkMode .headerLayout,
@@ -29,7 +29,8 @@ export const AppStyled = styled.div`
   &.darkMode .MuiInputBase-inputSizeSmall,
   &.darkMode
     .calendarHead__weekDay--monthMode:not(.calendarHead__weekDay--holiday),
-  &.darkMode .calendarHead__dateLink {
+  &.darkMode .calendarHead__dateLink,
+  &.darkMode .Mui-disabled {
     color: ${theme.palette.custom.mainWhite};
   }
 
@@ -81,7 +82,18 @@ export const AppStyled = styled.div`
     color: ${theme.palette.custom.mainWhite};
   }
 
+
+
   &.darkMode .UserInfoTopography {
+   color: ${theme.palette.custom.mainWhite};
+  }
+
+  &.darkMode .MuiOutlinedInput-notchedOutline {
+    border-color: ${theme.palette.custom.mainWhite};
+  }
+
+  &.darkMode .UserInfoTypography,
+  &.darkMode .UserInfoModalNavLink {
     color: ${theme.palette.custom.mainWhite};
   }
 

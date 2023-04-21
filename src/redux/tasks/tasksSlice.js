@@ -5,6 +5,8 @@ import {
   getMonthTasks,
   updateTask,
 } from './tasksOperations';
+import { authLogout } from 'redux/auth/authOperations';
+// import { ta } from 'date-fns/locale';
 
 const extraActions = [getMonthTasks, createTask, deleteTask, updateTask];
 const getExtraActions = type => extraActions.map(action => action[type]);
@@ -26,9 +28,7 @@ const tasksSlice = createSlice({
         state.data = payload ?? null;
       })
       .addCase(createTask.fulfilled, (state, { payload }) => {
-        console.log('payload: ', payload);
         const taskDate = payload.date.slice(0, 10);
-        console.log('taskDate: ', taskDate);
         let dateFound = false;
         if (!state.data) {
           state.data = [{ date: taskDate, tasks: [payload] }];
@@ -45,24 +45,36 @@ const tasksSlice = createSlice({
         }
       })
       .addCase(deleteTask.fulfilled, (state, { payload }) => {
-        const filteredTasks = state.data.map(el => {
-          el.tasks.filter(task => task._id !== payload);
+        state.data = state.data.map(el => {
+          if (
+            new Date(el.date).getTime() === new Date(payload.date).getTime()
+          ) {
+            el.tasks = el.tasks.filter(task => task._id !== payload._id);
+          }
+
           return el;
         });
-        state.data = filteredTasks;
       })
       .addCase(updateTask.fulfilled, (state, { payload }) => {
         const updatedTask = payload.task;
 
         state.data = state.data.map(el => {
-          el.tasks.map(task => {
-            if (task._id === updatedTask._id) {
-              return updatedTask;
-            }
-            return task;
-          });
+          if (
+            new Date(el.date).getTime() === new Date(updatedTask.date).getTime()
+          ) {
+            el.tasks = el.tasks.map(task => {
+              if (task._id === updatedTask._id) {
+                return updatedTask;
+              }
+              return task;
+            });
+          }
+
           return el;
         });
+      })
+      .addCase(authLogout.fulfilled, state => {
+        state.data = null;
       })
 
       .addMatcher(isAnyOf(...getExtraActions('fulfilled')), state =>
