@@ -31,10 +31,10 @@ const CalendarPageWithRedirect = withAuthRedirect(CalendarPage, '/');
 
 // ----------------------------------------------------
 // for gitHub
-const basename = '/Goose-Track_Work-Smart/';
+// const basename = '/Goose-Track_Work-Smart/';
 
 // for work
-// const basename = '';
+const basename = '';
 // ----------------------------------------------------
 
 const router = createBrowserRouter(
@@ -59,14 +59,14 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  // Refresh - success
-  useEffect(() => {
-    if (JSON.parse(localStorage.getItem('persist:auth')).refreshToken) {
-      dispatch(authRefresh());
-    }
-  }, [dispatch]);
+  // // Refresh - success
+  // useEffect(() => {
+  //   if (JSON.parse(localStorage.getItem('persist:auth')).refreshToken) {
+  //     dispatch(authRefresh());
+  //   }
+  // }, [dispatch]);
 
   return (
     <AppStyled className="app">
