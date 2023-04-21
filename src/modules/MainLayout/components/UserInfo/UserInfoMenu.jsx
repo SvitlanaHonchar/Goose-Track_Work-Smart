@@ -47,7 +47,7 @@ export const UserInfoMenu = ({
             mt: 1.5,
 
             backgroundColor: darkTheme
-              ? `${theme.palette.darkmode.dark}`
+              ? `${theme.palette.grey[800]}`
               : `${theme.palette.custom.mainWhite}`,
 
             '&:before': {
@@ -60,9 +60,9 @@ export const UserInfoMenu = ({
               height: 10,
               transform: 'translateY(-50%) rotate(45deg)',
               zIndex: 0,
-              // backgroundColor: darkTheme
-              //   ? `${theme.palette.darkmode.dark}`
-              //   : `${theme.palette.custom.mainWhite}`,
+              backgroundColor: darkTheme
+                ? `${theme.palette.grey[800]}`
+                : `${theme.palette.custom.mainWhite}`,
             },
             '& .MuiMenu-list': {
               padding: 0,
@@ -73,6 +73,7 @@ export const UserInfoMenu = ({
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem
+          className="Name"
           onClick={handleClose}
           sx={{
             display: 'flex',
@@ -93,12 +94,13 @@ export const UserInfoMenu = ({
             height={window.innerWidth >= 768 ? 44 : 38}
           />
           <UserInfoTypography
+            className=""
             name={name}
-            // sx={{
-            //   color: darkTheme
-            //     ? `${theme.palette.custom.mainWhite}`
-            //     : `${theme.palette.grey[500]}`,
-            // }}
+            sx={{
+              color: darkTheme
+                ? `${theme.palette.custom.mainWhite}`
+                : `${theme.palette.grey[500]}`,
+            }}
           />
         </MenuItem>
         <MenuItem
