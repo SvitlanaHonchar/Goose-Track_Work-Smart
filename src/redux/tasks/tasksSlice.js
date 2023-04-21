@@ -5,6 +5,7 @@ import {
   getMonthTasks,
   updateTask,
 } from './tasksOperations';
+import { authLogout } from 'redux/auth/authOperations';
 // import { ta } from 'date-fns/locale';
 
 const extraActions = [getMonthTasks, createTask, deleteTask, updateTask];
@@ -71,6 +72,9 @@ const tasksSlice = createSlice({
 
           return el;
         });
+      })
+      .addCase(authLogout.fulfilled, state => {
+        state.data = null;
       })
 
       .addMatcher(isAnyOf(...getExtraActions('fulfilled')), state =>
