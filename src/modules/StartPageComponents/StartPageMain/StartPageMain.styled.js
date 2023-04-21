@@ -7,21 +7,22 @@ font-family: "Inter";
 display: flex;
 flex-direction: column;
 row-gap: 64px;
-margin-bottom: 64px;
-margin-top: 64px;
+background-color: white;
+padding-top: 64px;
+padding-bottom: 64px;
     padding-left:20px;
     padding-right: 20px;
   @media screen and (min-width: 768px) and (max-width: 1439px) {
     padding-left:32px;
     padding-right: 32px;
     row-gap: 100px;
-    margin-bottom: 100px;
+    padding-bottom: 100px;
 }
 @media screen and (min-width: 1440px) {
     padding-left:128px;
     padding-right: 128px;
     row-gap: 100px;
-    margin-bottom: 118px;
+    padding-bottom: 118px;
 }
 & ul.content-gap {
     display: flex;

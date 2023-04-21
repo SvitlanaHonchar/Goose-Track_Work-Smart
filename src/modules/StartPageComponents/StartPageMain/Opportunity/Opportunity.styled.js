@@ -109,7 +109,6 @@ margin-right: auto;
     height: 100%;
 }
 & .opportunity--text{
-
     margin: 0;
     margin-bottom: 40px;
     font-weight: 500;
