@@ -26,7 +26,7 @@ const style = {
   },
 };
 
-export const UserInfoModalBtnLogOut = () => {
+export const UserInfoMenuBtnLogOut = () => {
   const dispatch = useDispatch();
 
   return (
@@ -36,7 +36,7 @@ export const UserInfoModalBtnLogOut = () => {
       onClick={() => dispatch(authLogout())}
     >
       Log out
-      <svg height="16" width="16" aria-label='log out icon'>
+      <svg height="16" width="16" aria-label="log out icon">
         <use href={sprite + '#logOut'}></use>
       </svg>
     </Button>
