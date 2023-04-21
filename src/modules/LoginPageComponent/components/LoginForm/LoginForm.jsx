@@ -19,10 +19,11 @@ import { Visibility, VisibilityOff } from '@mui/icons-material';
 import theme from 'shared/theme';
 
 const validationSchema = object({
-  email: string().required('Required').email('Invalid email'),
+  email: string().required('Email is required').email('Invalid email'),
   password: string()
-    .required('Required')
-    .min(6, 'Password should be 6 chars minimum.'),
+    .required('Password is required')
+    .min(6, 'Password should be 6 chars minimum.')
+    .matches(/^\S*$/, 'Name must not contain spaces'),
 });
 
 export const LoginForm = () => {
