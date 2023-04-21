@@ -10,7 +10,7 @@ export const BoxWrapper = styled.li`
   margin-bottom: 14px;
   overflow: hidden;
 
-  &: last-child {
+  &:last-child {
     margin-bottom: 0;
   }
 

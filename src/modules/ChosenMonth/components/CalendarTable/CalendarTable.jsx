@@ -116,7 +116,7 @@ function CalendarTable({ tasks, currentMonth }) {
                               to={`/calendar/day/${getNextDay(day.iso)}`}
                               className="more-btn"
                             >
-                              ...more
+                              ...
                             </NavLink>
                           )}
                         </StyledUl>
