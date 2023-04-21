@@ -128,8 +128,9 @@ const TaskToolbar = ({ ...taskData }) => {
                   darkTheme === 'true'
                     ? `${theme.palette.grey[800]}`
                     : `${theme.palette.custom.mainWhite}`,
-                width: { sm: 115, md: 140 },
-                height: { xs: 90, sm: 70, md: 80 },
+                marginTop: { sm: 1, md: 1.5 },
+                height: { sm: 80, md: 90, lg: 90 },
+                width: { sm: 114, md: 140 },
                 borderRadius: '8px',
                 boxShadow: '(0px 4px 16px rgba(17, 17, 17, 0.1))',
                 padding: { sm: 0.5, md: 1 },
@@ -156,7 +157,6 @@ const TaskToolbar = ({ ...taskData }) => {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   padding: 0.7,
-
                   color:
                     darkTheme === 'true'
                       ? `${theme.palette.custom.mainWhite}`
