@@ -84,7 +84,7 @@ export const GooseTracker_API = {
     return response.data;
   },
   refreshUser: async () => {
-    refreshInterseptor();
+    // refreshInterseptor();
     const response = await $refreshHost.post('user/refresh');
     if (response.statusText === 'OK') {
       const accessToken = response.data.data.accessToken;
@@ -95,6 +95,7 @@ export const GooseTracker_API = {
     return response.data;
   },
   getUserInfo: async () => {
+    refreshInterseptor();
     const response = await $privateHost.get('user/info');
     return response.data;
   },

@@ -11,14 +11,14 @@ import { PersistGate } from 'redux-persist/integration/react';
 const themeMode = 'light';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
-  <PersistGate loading={null} persistor={persistor}>
-    <Provider store={store}>
-      <ThemeProvider theme={themeMode === 'light' ? theme : darkTheme}>
-        <CssBaseline />
-        <App />
-      </ThemeProvider>
-    </Provider>
-  </PersistGate>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <PersistGate loading={null} persistor={persistor}>
+      <Provider store={store}>
+        <ThemeProvider theme={themeMode === 'light' ? theme : darkTheme}>
+          <CssBaseline />
+          <App />
+        </ThemeProvider>
+      </Provider>
+    </PersistGate>
+  </React.StrictMode>
 );
