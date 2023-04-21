@@ -31,7 +31,7 @@ const CalendarPageWithRedirect = withAuthRedirect(CalendarPage, '/');
 
 // ----------------------------------------------------
 // for gitHub
-const basename = '/Goose-Track_Work-Smart/';
+// const basename = '/Goose-Track_Work-Smart/';
 
 // for work
 // const basename = '';
@@ -54,8 +54,8 @@ const router = createBrowserRouter(
 
       <Route path="*" element={<Navigate to="/calendar" />} />
     </Route>
-  ),
-  { basename }
+  )
+  // { basename }
 );
 
 const App = () => {

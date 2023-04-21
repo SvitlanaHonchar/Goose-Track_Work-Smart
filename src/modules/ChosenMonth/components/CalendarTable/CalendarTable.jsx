@@ -14,29 +14,34 @@ import useModal from 'shared/hooks/useModal';
 import TaskModal from 'shared/components/TaskModal/TaskModal';
 
 const calendarDates = new CalendarDates();
-// const editedTaskDetails = {
-//   id,
-//   title,
-//   start,
-//   end,
-//   priority,
-// };
+
 function CalendarTable({ tasks, currentMonth }) {
   const [monthMatrix, setMonthMatrix] = useState(null);
   const { isOpen, action, closeModal, toggleModal, details } = useModal();
-  // const handleEditTaskClick = () => {
-  //   toggleModal('edit', { details: editedTaskDetails });
-  // };
+  const handleEditTaskClick = editedTaskDetails => {
+    toggleModal('edit', { details: editedTaskDetails });
+  };
   const getAllDayTasks = date => {
     if (tasks === null) {
       return '';
     }
     const todayTasks = tasks.filter(task => task.date === date);
+
     const todayTasksMarkup =
       todayTasks.length !== 0
         ? todayTasks[0].tasks.map(task => (
             <StyledLi key={task._id} className={task.priority}>
               <p>{task.title}</p>
+              {isOpen && (
+                <TaskModal
+                  action={action}
+                  onClose={closeModal}
+                  isOpen={isOpen}
+                  category={task.category}
+                  date={date}
+                  taskDetails={details ? details.details : {}}
+                />
+              )}
             </StyledLi>
           ))
         : '';
@@ -109,16 +114,6 @@ function CalendarTable({ tasks, currentMonth }) {
                               : ''
                           }
                         >
-                          {/* {isOpen && (
-        <TaskModal
-          action={action}
-          onClose={closeModal}
-          isOpen={isOpen}
-          category={category}
-          date={date}
-          taskDetails={details ? details.details : {}}
-        />
-      )} */}
                           {getNextDay(day.iso).slice(8, 10) < 10
                             ? getNextDay(day.iso).slice(9, 10)
                             : getNextDay(day.iso).slice(8, 10)}
