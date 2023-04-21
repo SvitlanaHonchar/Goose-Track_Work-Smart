@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import theme from '../../../../shared/theme';
 
 export const MainLayoutWrapper = styled.div`
   display: flex;
@@ -6,7 +7,7 @@ export const MainLayoutWrapper = styled.div`
 `;
 
 export const StyledDiv = styled.div`
-  background-color: #eaeaea;
+  background-color: ${theme.palette.grey[200]};
   /* height: 100vh; */
 
   margin-left: auto;

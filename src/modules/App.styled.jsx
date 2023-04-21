@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import theme from 'shared/theme';
 
 export const AppStyled = styled.div`
-  background-color: #eaeaea;
+  background-color: ${theme.palette.grey[200]};
   height: 100%;
 
   &.darkMode,

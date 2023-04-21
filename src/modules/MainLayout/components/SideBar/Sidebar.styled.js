@@ -176,6 +176,9 @@ export const StyledNavName = styled.p`
 `;
 
 export const StyledLogoutBtn = styled.button`
+  position: sticky;
+  bottom: 24px;
+
   display: flex;
   align-items: center;
   justify-content: center;
