@@ -39,15 +39,9 @@ export const TaskToolbarList = styled.ul`
 `;
 
 export const MenuList = styled(Menu)`
-  .css-1ka5eyc-MuiPaper-root-MuiMenu-paper-MuiPopover-paper {
-    @media screen and (max-width: 768px) {
-      height: 80px;
-      width: 130px;
-    }
-  }
-  @media screen and (min-width: 375px) {
+  @media screen and (min-width: 678px) {
     & .css-6hp17o-MuiList-root-MuiMenu-list {
-      padding: 0;
+      padding-bottom: 5px;
     }
     & .css-ib3qtv-MuiButtonBase-root-MuiMenuItem-root {
       padding: 0;
