@@ -17,24 +17,38 @@ const $refreshHost = axios.create({
 $privateHost.interceptors.response.use(
   config => config,
   async error => {
-    console.log('error: ', error.response.status);
     const originalRequest = error.config;
     if (
-      error.response.status === 401 &&
+      error.response?.status === 401 &&
       error.config &&
       !error.config._isRetry
     ) {
       try {
         originalRequest._isRetry = true;
-        const response = await $refreshHost.post('user/refresh');
+        const refreshToken = JSON.parse(
+          localStorage.getItem('persist:auth')
+        ).refreshToken;
+        if (!refreshToken) return;
+        const response = await axios.post(`${baseURL}user/refresh`, null, {
+          headers: {
+            Authorization: `Bearer ${refreshToken.slice(
+              1,
+              refreshToken.length - 1
+            )}`,
+          },
+        });
+        const newAccessToken = response.data.data.accessToken;
+        const newRefreshToken = response.data.data.refreshToken;
+
         localStorage.setItem(
           'persist:auth',
           JSON.stringify({
-            accessToken: response.data.accessToken,
-            refreshToken: response.data.refreshToken,
+            accessToken: newAccessToken,
+            refreshToken: newRefreshToken,
             _persist: '{"version":-1,"rehydrated":true}',
           })
         );
+        setInterseptor(newAccessToken, newRefreshToken);
         return $privateHost.request(originalRequest);
       } catch (error) {
         console.log(error);
@@ -60,7 +74,9 @@ export const GooseTracker_API = {
     const response = await $publicHost.post('user/login', loginData);
     if (response.statusText === 'OK') {
       const accessToken = response.data.data.accessToken;
+      console.log('accessToken login API: ', accessToken);
       const refreshToken = response.data.data.refreshToken;
+      console.log('refreshToken login API: ', refreshToken);
       setInterseptor(accessToken, refreshToken);
     }
     return response.data;
@@ -81,6 +97,7 @@ export const GooseTracker_API = {
     return response.data;
   },
   getUserInfo: async () => {
+    refreshInterseptor();
     const response = await $privateHost.get('user/info');
     return response.data;
   },
@@ -93,6 +110,8 @@ export const GooseTracker_API = {
   getMonthTasks: async ({ year, month }) => {
     if (typeof month !== 'number' || month > 12 || month < 1)
       throw new Error('Bad month tasks request: enter correct values!');
+    refreshInterseptor();
+    console.log('interceptors: ', $privateHost.interceptors.request);
     const response = await $privateHost.get(
       `task/by-month?year=${year}&month=${month}`
     );

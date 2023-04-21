@@ -50,8 +50,13 @@ const CalendarPage = () => {
   const currentMonthPath = new Date().toISOString().slice(0, 7);
 
   useEffect(() => {
-    if (!isUserExist && !isRefreshed && isUserLoading) return;
+    if (!isUserExist || isUserLoading) return;
+    console.log('isUserLoading: ', isUserLoading);
+    console.log('isRefreshed: ', isRefreshed);
+    console.log('isUserExist: ', isUserExist);
     if (!+year || !+month) return;
+    console.log('month: ', month);
+    console.log('year: ', year);
 
     setTimeout(() => {
       dispatch(
@@ -61,7 +66,7 @@ const CalendarPage = () => {
         })
       );
     }, 500);
-  }, [dispatch, year, month, isUserLoading, isRefreshed, isUserExist]);
+  }, [dispatch, isRefreshed, isUserExist, isUserLoading, month, year]);
 
   useEffect(() => {
     setTimeout(() => {
