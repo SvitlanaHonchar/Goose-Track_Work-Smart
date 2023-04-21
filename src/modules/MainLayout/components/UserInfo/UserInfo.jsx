@@ -40,9 +40,7 @@ const UserInfo = () => {
     setAnchorEl(null);
   };
 
-  return isUserLoading ? (
-    <Loader />
-  ) : (
+  return (
     <>
       <UserInfoMenu
         name={name}
