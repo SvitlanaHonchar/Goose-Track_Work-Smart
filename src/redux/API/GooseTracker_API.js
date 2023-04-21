@@ -17,24 +17,38 @@ const $refreshHost = axios.create({
 $privateHost.interceptors.response.use(
   config => config,
   async error => {
-    console.log('error: ', error.response.status);
     const originalRequest = error.config;
     if (
-      error.response.status === 401 &&
+      error.response?.status === 401 &&
       error.config &&
       !error.config._isRetry
     ) {
       try {
         originalRequest._isRetry = true;
-        const response = await $refreshHost.post('user/refresh');
+        const refreshToken = JSON.parse(
+          localStorage.getItem('persist:auth')
+        ).refreshToken;
+        if (!refreshToken) return;
+        const response = await axios.post(`${baseURL}user/refresh`, null, {
+          headers: {
+            Authorization: `Bearer ${refreshToken.slice(
+              1,
+              refreshToken.length - 1
+            )}`,
+          },
+        });
+        const newAccessToken = response.data.data.accessToken;
+        const newRefreshToken = response.data.data.refreshToken;
+
         localStorage.setItem(
           'persist:auth',
           JSON.stringify({
-            accessToken: response.data.accessToken,
-            refreshToken: response.data.refreshToken,
+            accessToken: newAccessToken,
+            refreshToken: newRefreshToken,
             _persist: '{"version":-1,"rehydrated":true}',
           })
         );
+        setInterseptor(newAccessToken, newRefreshToken);
         return $privateHost.request(originalRequest);
       } catch (error) {
         console.log(error);
