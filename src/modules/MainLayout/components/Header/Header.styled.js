@@ -69,6 +69,8 @@ export const StyledHeader = styled.header`
   }
 
   @media screen and (min-width: 1440px) {
+    width: 1087px;
+
     margin-bottom: 32px;
     & button {
       &.burger-btn {
