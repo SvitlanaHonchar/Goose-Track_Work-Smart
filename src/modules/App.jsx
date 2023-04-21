@@ -39,7 +39,6 @@ const basename = '/Goose-Track_Work-Smart/';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    // <Route path="/" element={<SharedLayout />}>
     <Route path="/" element={<SharedLayout />} errorElement={<NoMatchPage />}>
       <Route index element={<StartPage />} />
       <Route path="login" element={<LoginPage />} />
@@ -59,15 +58,6 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
-  // const dispatch = useDispatch();
-
-  // Refresh - success
-  // useEffect(() => {
-  //   if (JSON.parse(localStorage.getItem('persist:auth')).refreshToken) {
-  //     dispatch(authRefresh());
-  //   }
-  // }, [dispatch]);
-
   return (
     <AppStyled className="app">
       <RouterProvider router={router} />

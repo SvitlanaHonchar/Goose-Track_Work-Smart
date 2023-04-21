@@ -6,7 +6,10 @@ export const authRegister = createAsyncThunk(
   'user/register',
   async (user, thunkAPI) => {
     try {
-      return await GooseTracker_API.register(user);
+      return await GooseTracker_API.register(
+        user,
+        thunkAPI.getState().auth.accessToken
+      );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -18,7 +21,10 @@ export const authLogin = createAsyncThunk(
   'user/login',
   async (user, thunkAPI) => {
     try {
-      return await GooseTracker_API.login(user);
+      return await GooseTracker_API.login(
+        user,
+        thunkAPI.getState().auth.accessToken
+      );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -30,7 +36,9 @@ export const authLogout = createAsyncThunk(
   'user/logout',
   async (_, thunkAPI) => {
     try {
-      return await GooseTracker_API.logout();
+      return await GooseTracker_API.logout(
+        thunkAPI.getState().auth.accessToken
+      );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -40,11 +48,18 @@ export const authLogout = createAsyncThunk(
 //!Refresh
 export const authRefresh = createAsyncThunk(
   'user/refresh',
-  async (_, thunkAPI) => {
+  async (cb, { getState, rejectWithValue, dispatch }) => {
     try {
-      return await GooseTracker_API.refreshUser();
+      const newTokens = await GooseTracker_API.refreshUser(
+        getState().auth.refreshToken
+      );
+      setTimeout(() => {
+        dispatch(cb());
+      }, 0);
+
+      return newTokens;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -54,7 +69,9 @@ export const authGetUserInfo = createAsyncThunk(
   'user/info',
   async (_, thunkAPI) => {
     try {
-      return await GooseTracker_API.getUserInfo();
+      return await GooseTracker_API.getUserInfo(
+        thunkAPI.getState().auth.accessToken
+      );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -66,7 +83,10 @@ export const authUpdate = createAsyncThunk(
   'user/update',
   async (user, thunkAPI) => {
     try {
-      return await GooseTracker_API.updateUser(user);
+      return await GooseTracker_API.updateUser(
+        user,
+        thunkAPI.getState().auth.accessToken
+      );
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
