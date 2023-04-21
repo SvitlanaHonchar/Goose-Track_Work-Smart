@@ -13,10 +13,6 @@ export const ContainerTask = styled.div`
   background-color: ${theme.palette.custom.mainWhite};
   padding: 25px 18px 10px 18px;
 
-  &: last-child {
-    margin-right: 0;
-  }
-
   @media screen and (min-width: 768px) {
     padding: 25px 20px 28px 20px;
     min-width: 344px;
@@ -35,7 +31,6 @@ export const GridItem = styled(Grid)`
 
   @media screen and (min-width: 768px) {
     max-height: 376px;
-
   }
 
   //  ------- scrollbarTrack ------- //
@@ -46,7 +41,6 @@ export const GridItem = styled(Grid)`
   ::-webkit-scrollbar-track {
     border-radius: 12px;
     margin-left: 10px;
-
     background: ${theme.palette.custom.bgScrollbarTrack};
   }
 
@@ -75,9 +69,5 @@ export const PaperTask = styled(Paper)`
   @media screen and (min-width: 768px) {
     max-height: 376px;
     width: 300px;
-  }
-
-  & .MuiPaper-root {
-    background-color: rose;
   }
 `;
