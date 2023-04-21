@@ -10,12 +10,23 @@ import {
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { StyledDiv, StyledLi, StyledUl } from './CalendarTable.styled';
+import useModal from 'shared/hooks/useModal';
+import TaskModal from 'shared/components/TaskModal/TaskModal';
 
 const calendarDates = new CalendarDates();
-
+// const editedTaskDetails = {
+//   id,
+//   title,
+//   start,
+//   end,
+//   priority,
+// };
 function CalendarTable({ tasks, currentMonth }) {
   const [monthMatrix, setMonthMatrix] = useState(null);
-
+  const { isOpen, action, closeModal, toggleModal, details } = useModal();
+  // const handleEditTaskClick = () => {
+  //   toggleModal('edit', { details: editedTaskDetails });
+  // };
   const getAllDayTasks = date => {
     if (tasks === null) {
       return '';
@@ -98,6 +109,16 @@ function CalendarTable({ tasks, currentMonth }) {
                               : ''
                           }
                         >
+                          {/* {isOpen && (
+        <TaskModal
+          action={action}
+          onClose={closeModal}
+          isOpen={isOpen}
+          category={category}
+          date={date}
+          taskDetails={details ? details.details : {}}
+        />
+      )} */}
                           {getNextDay(day.iso).slice(8, 10) < 10
                             ? getNextDay(day.iso).slice(9, 10)
                             : getNextDay(day.iso).slice(8, 10)}
