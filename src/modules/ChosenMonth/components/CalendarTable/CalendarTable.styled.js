@@ -1,25 +1,12 @@
 import styled from 'styled-components';
 
 export const StyledDiv = styled.div`
-  max-width: 1087px;
-
+  /* width: 1087px; */
   .calendarTable {
     border: 1px solid rgba(220, 227, 229, 0.8);
     border-radius: 8px;
-    /* height: 570px; */
-    overflow-y: overlay;
+    height: 570px;
     overflow-x: hidden;
-
-    &::-webkit-scrollbar {
-      width: 0.5em;
-    }
-    &::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: rgba(220, 227, 229, 0.8);
-      border-radius: 5px;
-    }
   }
   .calendarTable tbody tr:last-child .tableCell {
     border-bottom: none;
@@ -43,15 +30,15 @@ export const StyledDiv = styled.div`
     width: 17px;
 
     @media screen and (min-width: 375px) {
-      width: 16px;
+      width: 17px;
     }
 
     @media screen and (min-width: 768px) {
-      width: 69px;
+      width: 70px;
     }
 
     @media screen and (min-width: 1440px) {
-      width: 124px;
+      width: 125px;
     }
     /* overflow: auto; */
 
