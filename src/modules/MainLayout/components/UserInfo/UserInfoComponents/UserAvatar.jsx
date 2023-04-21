@@ -48,5 +48,5 @@ export const UserAvatar = ({ userImgUrl, name }) => {
 
 UserAvatar.propTypes = {
   userImgUrl: PropTypes.string,
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
 };
