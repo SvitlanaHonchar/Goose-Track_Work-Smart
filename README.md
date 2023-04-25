@@ -20,3 +20,5 @@ GooseTrack is an all-in-one productivity tool that helps you stay on top of your
 7. [Erika Tatchyn](https://github.com/ErikaTatchyn)
 8. [Uliana Shymanska](https://github.com/UlianaShyma)
 9. [Natalia Karpenko](https://github.com/natalia-no-war)
+
+👨🏻‍💻 Technology stack: React, Material UI, Redux, Redux Toolkit, redux async thunk, redux-persist, react-router-dom, private routes, Javascript, ES6+, async Javascript (async-await), REST APIs (using API - https://goose-tracker-backend.p.goit.global/api-docs/), DOM, localstorage, pagination, SCSS, responsive layout, responsive and lazy loaded images, mobile-first approach, HTML5, BEM methodology, Webpack, Figma
