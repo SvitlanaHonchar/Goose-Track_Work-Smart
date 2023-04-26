@@ -5,7 +5,7 @@ import {
   Outlet,
   useLocation,
   useParams,
-  useNavigate,
+  // useNavigate,
 } from 'react-router-dom';
 import { getMonthTasks } from 'redux/tasks/tasksOperations';
 import {
@@ -24,7 +24,7 @@ import { authGetUserInfo } from 'redux/auth/authOperations';
 
 const CalendarPage = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { currentDay, currentMonth } = useParams();
   const paramsFormat = Object.keys(useParams()).join('');
   const taskError = useSelector(selectTasksError);
