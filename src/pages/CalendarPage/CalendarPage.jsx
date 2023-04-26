@@ -75,7 +75,8 @@ const CalendarPage = () => {
   }, [isTaskError, taskError]);
 
   if (!isValidDate(urlString)) {
-    return navigate(-1);
+    // return navigate(-1);
+    return <Navigate replace to={`/calendar/month/${currentMonthPath}`} />;
   }
   if (path.match(/calendar(\/)?$/)) {
     return <Navigate replace to={`/calendar/month/${currentMonthPath}`} />;
