@@ -62,9 +62,9 @@ const CalendarPage = () => {
   }, [dispatch, year, month, isUserLoading, isUserExist]);
 
   useEffect(() => {
-    // setTimeout(() => {
-    dispatch(authGetUserInfo());
-    // }, 500);
+    setTimeout(() => {
+      dispatch(authGetUserInfo());
+    }, 500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

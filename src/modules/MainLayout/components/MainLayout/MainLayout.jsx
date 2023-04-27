@@ -27,7 +27,9 @@ export const MainLayout = () => {
       return;
     }
 
-    dispatch(authGetUserInfo());
+    setTimeout(() => {
+      dispatch(authGetUserInfo());
+    }, 500);
   }, [dispatch, user]);
 
   const theme = useTheme();
