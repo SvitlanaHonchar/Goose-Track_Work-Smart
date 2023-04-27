@@ -88,7 +88,9 @@ export const AccountComponent = () => {
   } = formik;
 
   useEffect(() => {
-    dispatch(authGetUserInfo());
+    setTimeout(() => {
+      dispatch(authGetUserInfo());
+    }, 500);
     if (!userData.email) return;
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
